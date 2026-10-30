@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hofladen Wiechern, Handeloh</title>
+<style>
+  body { margin: 0; font: 1.0625rem/1.6 system-ui, sans-serif; color: #1d2430; background: #fbfbf8; }
+  main { padding: 1rem; max-width: 40rem; }
+  a { color: #1f5b3a; }
+  #cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; background: #fff; border-top: 2px solid #1d2430; padding: 1rem; }
+  #cookie-banner .btn { display: inline-block; cursor: pointer; padding: .7rem 1.2rem; background: #1f5b3a; color: #fff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Kartoffeln, Eier und Honig vom Hof</h1>
+  <p>Unser Hofladen hat Dienstag bis Samstag von 8 bis 18 Uhr geöffnet. Wir verkaufen, was auf dem Hof wächst, und ein paar Dinge von Nachbarhöfen.</p>
+  <p><a href="#sortiment">Sortiment</a> · <a href="#anfahrt">Anfahrt</a></p>
+  <footer><a href="#impressum">Impressum</a> <a href="#barrierefreiheit">Barrierefreiheit</a></footer>
+</main>
+<div id="cookie-banner">
+  <p>Wir verwenden Cookies, um die Website zu verbessern. Mit „Akzeptieren“ stimmen Sie der Nutzung zu.</p>
+  <div class="btn" id="accept">Akzeptieren</div>
+</div>
+<script>document.getElementById('accept').addEventListener('click', () => document.getElementById('cookie-banner').remove());</script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hausverwaltung Kröger, Buchholz</title>
+<!-- Mobile anti-fixture: every mobile check should fire (size-adjust on the display face makes the font swap shift deterministic). Images and fonts come from examples/ (check with fileRoot = repo root). -->
+<style>
+  @font-face { font-family: "Display"; src: url("../../examples/themes/nordlicht-immobilien/assets/fonts/cormorant-latin-wght-normal.woff2") format("woff2"); font-weight: 300 700; font-display: swap; size-adjust: 160%; }
+  @font-face { font-family: "Display"; font-style: italic; src: url("../../examples/themes/nordlicht-immobilien/assets/fonts/cormorant-latin-wght-italic.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+  @font-face { font-family: "Text"; src: url("../../examples/themes/nordlicht-immobilien/assets/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; }
+  @font-face { font-family: "Label"; src: url("../../examples/themes/harms-praezisionstechnik/assets/fonts/archivo-latin-wdth-normal.woff2") format("woff2"); font-display: swap; }
+  @font-face { font-family: "Mono"; src: url("../../examples/themes/harms-praezisionstechnik/assets/fonts/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); font-display: swap; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #fafaf7; color: #1d2329; }
+  body { font: 13px/1.5 "Text", Arial, sans-serif; }
+  a { color: #0f4c6b; }
+  header.bar { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid #ccd; padding: 12px 16px; }
+  header.bar .claim { font: 22px/normal "Display", serif; margin: 0 0 8px; }
+  header.bar .brand { font: 600 28px/1.1 "Display", Georgia, serif; margin: 0 0 8px; }
+  header.bar .tag { font: 12px/1.4 "Label", Arial, sans-serif; margin: 0 0 8px; }
+  header.bar nav a { display: inline-block; padding: 12px 8px; font-family: "Mono", monospace; }
+  .hero { min-height: 100vh; position: relative; }
+  .hero img { display: block; width: 100%; height: auto; }
+  main { padding: 16px; }
+  h1 { font: 600 40px/1.1 "Display", Georgia, serif; margin: 16px 0; }
+  h1 em { font-style: italic; }
+  .col p { max-width: 150px; }
+  .wide { width: 350px; height: 20px; background: #dde; }
+  ul.slider { display: flex; overflow-x: auto; list-style: none; margin: 16px 0; padding: 0; gap: 0; }
+  ul.slider li { flex: 0 0 100%; padding: 24px; background: #eef; }
+  .card { border: 1px solid #ccd; padding: 12px; margin: 16px 0; }
+  .card .more { display: none; }
+  .card:hover .more { display: block; }
+  .thumb { width: 120px; height: auto; }
+  footer.callbar { position: fixed; left: 0; right: 0; bottom: 0; height: 60px; background: #0f4c6b; color: #fff; padding: 18px 16px; }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <p class="brand">Hausverwaltung Kröger</p>
+    <p class="tag">Miet- und WEG-Verwaltung im Landkreis Harburg seit 1994</p>
+    <p class="claim">Seit drei Jahrzehnten kümmern wir uns um Häuser, Wohnungen und Eigentümergemeinschaften zwischen Buchholz, Tostedt und Winsen an der Luhe.</p>
+    <nav aria-label="Hauptmenü"><a href="#leistungen">Leistungen</a> <a href="#team">Team</a></nav>
+  </header>
+  <div class="hero">
+    <img src="../../examples/themes/nordlicht-immobilien/assets/img/wendeltreppe-1100.jpg" alt="Wendeltreppe in einem sanierten Altbau" loading="lazy">
+  </div>
+  <main>
+    <h1>Ihre Immobilie in <em>guten Händen</em></h1>
+    <div class="col">
+      <p>Wir betreuen 140 Eigentümergemeinschaften und rund 2.300 Mietwohnungen zwischen Buchholz, Tostedt und Winsen. Abrechnungen kommen pünktlich, Reparaturen werden innerhalb einer Woche beauftragt.</p>
+      <p>Eigentümerversammlungen bereiten wir mit einer klaren Tagesordnung vor und schicken das Protokoll spätestens zwei Wochen danach. Rücklagen werden getrennt geführt und jährlich offengelegt.</p>
+      <p>Für Mieterinnen und Mieter gibt es eine feste Ansprechperson pro Haus, erreichbar werktags von 8 bis 16 Uhr und im Notfall auch am Wochenende über die Notrufnummer.</p>
+    </div>
+    <div class="wide" role="presentation"></div>
+    <ul class="slider" aria-label="Pakete">
+      <li>Mietverwaltung ab 29 € pro Einheit und Monat</li>
+      <li>WEG-Verwaltung ab 34 € pro Einheit und Monat</li>
+      <li>Sondereigentum ab 25 € pro Einheit und Monat</li>
+    </ul>
+    <div class="card">
+      <p>Unser Team</p>
+      <div class="more"><a href="#team">Alle Ansprechpersonen ansehen</a></div>
+    </div>
+    <img class="thumb" src="../../examples/themes/nordlicht-immobilien/assets/img/elbe-hoch-1200.jpg" alt="Wohnhaus an der Elbe" width="1200" height="1601">
+    <p>Büro: Telefon 04181 2345678, Lindenstraße 4, 21244 Buchholz.</p>
+    <form>
+      <label>Name <input name="name" autocomplete="name"></label>
+      <label>E-Mail <input name="email" type="text" autocomplete="email"></label>
+    </form>
+  </main>
+  <footer class="callbar">Mo bis Fr 8 bis 16 Uhr</footer>
+</body>
+</html>

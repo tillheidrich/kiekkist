@@ -1,0 +1,506 @@
+{
+ "id": "reflex-fonts",
+ "version": "2026-10-30.1",
+ "kind": "list",
+ "title": "Reflex fonts",
+ "description": "Faces that come back far more often than briefs justify. Not bad typefaces: using one in the voice role needs a written reason from the brief. The checker flags them as info (reflex-font); role \"display\" entries count only when they set headings. Brand fonts fixed by the client are exempt (checkTarget brandFonts, CLI --brand-font). typography.md renders its reflex table from this pack.",
+ "license": "MIT",
+ "reviewed": "2026-10-30",
+ "fields": {
+  "name": "family name as written",
+  "match": "exact | prefix (lower-case comparison with the first family of the computed stack)",
+  "role": "any (counts wherever it sets text) | display (counts only in headings)",
+  "sectors": "industries where it is the measured sector default",
+  "added": "date it was added",
+  "retired": "date and reason when removed; retired entries are ignored by the checker"
+ },
+ "sources": [
+  {
+   "id": "bis",
+   "title": "brand-identity-skill, references/ai-defaults.md (30-brief experiment, 2026-10)",
+   "url": "https://github.com/fatihaydost/brand-identity-skill",
+   "license": "MIT"
+  },
+  {
+   "id": "impeccable",
+   "title": "Impeccable, typography reference (training-data reflex list, 2026)",
+   "url": "https://github.com/pbakaus/impeccable",
+   "license": "Apache-2.0"
+  },
+  {
+   "id": "taste",
+   "title": "Taste Skill / redesign skills: recommended replacement fonts (defaults by construction)",
+   "url": "https://github.com/Leonxlnx/taste-skill",
+   "license": "MIT"
+  },
+  {
+   "id": "superdesign",
+   "title": "superdesign prompt library, 355 records profiled 30.10.2026 (font frequency)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-q37",
+   "title": "Maintainer's research notes, sources 23.10.2026, Q37 @nataindata (Inter, Geist, Space Grotesk)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-rt12",
+   "title": "Maintainer's research notes, sources 19.10.2026, RT1/RT12 (Plus Jakarta Sans as anti-AI tip; Playfair with italic word)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "kiekkist",
+   "title": "Kiekkist checker list until 29.10.2026",
+   "url": null,
+   "license": "AGPL-3.0"
+  }
+ ],
+ "items": [
+  {
+   "id": "inter",
+   "name": "Inter",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "most frequent text face in a 30-brief experiment; also used as display; named display reflex in the maintainer's research sweep",
+   "source": [
+    "bis",
+    "impeccable",
+    "wiki-q37",
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null,
+   "data": "Inter in 104 of 355 superdesign records"
+  },
+  {
+   "id": "fraunces",
+   "name": "Fraunces",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "most frequent display face in the same experiment; soft serif for anything \"warm\"",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "playfair-display",
+   "name": "Playfair Display",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex; with one italic word it is the editorial-lane cliché",
+   "source": [
+    "impeccable",
+    "wiki-rt12"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "instrument-serif",
+   "name": "Instrument Serif",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "current display reflex of generators and of the \"anti-AI\" tips",
+   "source": [
+    "impeccable",
+    "kiekkist"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "instrument-sans",
+   "name": "Instrument Sans",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "training-data reflex",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "cormorant",
+   "name": "Cormorant",
+   "match": "prefix",
+   "role": "display",
+   "sectors": [
+    "wine",
+    "hotel",
+    "property"
+   ],
+   "reason": "sector default (Cormorant Garamond)",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "canela",
+   "name": "Canela",
+   "match": "exact",
+   "role": "display",
+   "sectors": [
+    "law"
+   ],
+   "reason": "sector default; commercial face",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "barlow-condensed",
+   "name": "Barlow Condensed",
+   "match": "exact",
+   "role": "display",
+   "sectors": [
+    "construction",
+    "logistics"
+   ],
+   "reason": "sector default",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "space-grotesk",
+   "name": "Space Grotesk",
+   "match": "exact",
+   "role": "any",
+   "sectors": [
+    "ai",
+    "crypto",
+    "fintech"
+   ],
+   "reason": "sector default; named display reflex in the maintainer's research sweep",
+   "source": [
+    "bis",
+    "wiki-q37",
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null,
+   "data": "Space Grotesk in 49 of 355 superdesign records"
+  },
+  {
+   "id": "sora",
+   "name": "Sora",
+   "match": "exact",
+   "role": "any",
+   "sectors": [
+    "ai",
+    "crypto",
+    "fintech"
+   ],
+   "reason": "sector default",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "poppins",
+   "name": "Poppins",
+   "match": "exact",
+   "role": "any",
+   "sectors": [
+    "education"
+   ],
+   "reason": "sector default",
+   "source": [
+    "bis"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "lora",
+   "name": "Lora",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "crimson",
+   "name": "Crimson",
+   "match": "prefix",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex (Crimson Text, Crimson Pro)",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "newsreader",
+   "name": "Newsreader",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "syne",
+   "name": "Syne",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "space-mono",
+   "name": "Space Mono",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex as a voice face (mono labels are counted separately)",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "ibm-plex",
+   "name": "IBM Plex",
+   "match": "prefix",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex (Plex Sans, Serif, Mono)",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "dm-sans",
+   "name": "DM Sans",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "training-data reflex",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "dm-serif",
+   "name": "DM Serif",
+   "match": "prefix",
+   "role": "display",
+   "sectors": [],
+   "reason": "training-data reflex (DM Serif Display, Text)",
+   "source": [
+    "impeccable"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "outfit",
+   "name": "Outfit",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "training-data reflex; also a \"replacement\" recommended by other skills",
+   "source": [
+    "impeccable",
+    "taste"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "plus-jakarta-sans",
+   "name": "Plus Jakarta Sans",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "training-data reflex; recommended as an \"anti-AI tip\" that is itself a default",
+   "source": [
+    "impeccable",
+    "wiki-rt12",
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null,
+   "data": "Plus Jakarta Sans in 58 of 355 superdesign records"
+  },
+  {
+   "id": "geist",
+   "name": "Geist",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "generator default; named display reflex in the maintainer's research sweep",
+   "source": [
+    "taste",
+    "wiki-q37"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "satoshi",
+   "name": "Satoshi",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "generator default and \"replacement\" font of other skills",
+   "source": [
+    "taste",
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null,
+   "data": "Satoshi in 83 of 355 superdesign records"
+  },
+  {
+   "id": "manrope",
+   "name": "Manrope",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "generator default",
+   "source": [
+    "kiekkist"
+   ],
+   "evidence": "D",
+   "added": "2026-10-29",
+   "retired": null
+  },
+  {
+   "id": "general-sans",
+   "name": "General Sans",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "generator default",
+   "source": [
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-30",
+   "retired": null,
+   "data": "General Sans in 86 of 355 superdesign records"
+  },
+  {
+   "id": "cabinet-grotesk",
+   "name": "Cabinet Grotesk",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "\"replacement\" font of other skills, therefore a default by construction",
+   "source": [
+    "taste"
+   ],
+   "evidence": "D",
+   "added": "2026-10-30",
+   "retired": null
+  },
+  {
+   "id": "clash-display",
+   "name": "Clash Display",
+   "match": "exact",
+   "role": "display",
+   "sectors": [],
+   "reason": "generator default",
+   "source": [
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-30",
+   "retired": null
+  },
+  {
+   "id": "switzer",
+   "name": "Switzer",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "generator default",
+   "source": [
+    "superdesign"
+   ],
+   "evidence": "D",
+   "added": "2026-10-30",
+   "retired": null
+  },
+  {
+   "id": "montserrat",
+   "name": "Montserrat",
+   "match": "exact",
+   "role": "any",
+   "sectors": [],
+   "reason": "long-time template default",
+   "source": [
+    "kiekkist"
+   ],
+   "evidence": "P",
+   "added": "2026-10-30",
+   "retired": null
+  }
+ ],
+ "retired": []
+}

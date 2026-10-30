@@ -1,0 +1,1462 @@
+[
+  {
+    "id": "siteinspire",
+    "name": "Siteinspire",
+    "url": "https://www.siteinspire.com",
+    "kind": "gallery",
+    "good_for": "Editoriale, ruhige Seiten mit sehr strenger Auswahl. Erste Adresse für vertrauenswürdige KMU-, Beratungs- und Architekturästhetik.",
+    "industries": [
+      "beratung",
+      "agentur",
+      "architektur",
+      "immobilien",
+      "kultur"
+    ],
+    "search_url_template": null,
+    "note": "Such-/Kategorie-URL am 29.10.2026 nicht prüfbar: Seite lädt clientseitig und antwortet auf automatische Abrufe mit 429. Im Browser filtern. Quelle des Boards vom 28.10.",
+    "good_for_en": "Editorial, calm sites with a very strict selection. First stop for trustworthy small-business, consulting and architecture aesthetics.",
+    "note_en": "Search and category URLs could not be checked on 29 Oct 2026: the site loads client-side and answers automated requests with 429. Filter in the browser. Source of the internal review board of 28 Oct 2026.",
+    "industries_en": [
+      "consulting",
+      "agency",
+      "architecture",
+      "real-estate",
+      "culture"
+    ]
+  },
+  {
+    "id": "land-book",
+    "name": "Land-book",
+    "url": "https://land-book.com",
+    "kind": "gallery",
+    "good_for": "Sehr große, nach Branche und Stil gefilterte Landingpage-Galerie mit echten Seiten statt Fantasie-Shots.",
+    "industries": [
+      "alle",
+      "saas",
+      "immobilien",
+      "beratung"
+    ],
+    "search_url_template": null,
+    "note": "Such- und Kategorie-URLs am 29.10.2026 nicht prüfbar (403 Bot-Schutz, robots blockiert). Nur im Browser. Viel SaaS, Branchenfilter trotzdem brauchbar.",
+    "good_for_en": "Very large landing page gallery filtered by industry and style, with real sites instead of concept shots.",
+    "note_en": "Search and category URLs could not be checked on 29 Oct 2026 (403 bot protection, blocked by robots). Browser only. Lots of SaaS, but the industry filter is still useful.",
+    "industries_en": [
+      "all",
+      "saas",
+      "real-estate",
+      "consulting"
+    ]
+  },
+  {
+    "id": "minimal-gallery",
+    "name": "Minimal Gallery",
+    "url": "https://minimal.gallery",
+    "kind": "gallery",
+    "good_for": "Minimalistische Seiten mit sauberen Branchen-Tags (real-estate, architecture-interior-design, consulting, law-firm, manufacturing). Liefert direkte Links auf die Originalseiten.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "architektur",
+      "beratung",
+      "kanzlei",
+      "industrie",
+      "gastro"
+    ],
+    "search_url_template": "https://minimal.gallery/tag/{q}/",
+    "note": "Tag-URL geprüft 29.10.2026 (real-estate: 23 Seiten mit Direktlinks). {q} ist ein Tag-Slug, z. B. real-estate, architecture-interior-design, consulting, law-firm. Viele Studio-Portfolios, Branchen-Tags teils locker vergeben (Hotels unter real-estate).",
+    "good_for_en": "Minimalist sites with clean industry tags (real-estate, architecture-interior-design, consulting, law-firm, manufacturing). Provides direct links to the original sites.",
+    "note_en": "Tag URL checked 29 Oct 2026 (real-estate: 23 sites with direct links). {q} is a tag slug, e.g. real-estate, architecture-interior-design, consulting, law-firm. Many studio portfolios; industry tags are sometimes applied loosely (hotels under real-estate).",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "architecture",
+      "consulting",
+      "law-firm",
+      "manufacturing",
+      "hospitality"
+    ]
+  },
+  {
+    "id": "lapa-ninja",
+    "name": "Lapa Ninja",
+    "url": "https://www.lapa.ninja",
+    "kind": "gallery",
+    "good_for": "Landingpage-Galerie mit feinen Kategorien, gut für schnelle Richtungsfindung nach Branche.",
+    "industries": [
+      "alle",
+      "saas",
+      "immobilien"
+    ],
+    "search_url_template": "https://www.lapa.ninja/category/{q}/",
+    "note": "Kategorie-URL geprüft 29.10.2026 (real-estate: 14 Einträge), Abruf gibt aber nur Taglines ohne Namen her, curl bekommt 403. Schwerpunkt Start-ups und Portale, wenig klassische Makler.",
+    "good_for_en": "Landing page gallery with fine-grained categories, good for quickly finding a direction by industry.",
+    "note_en": "Category URL checked 29 Oct 2026 (real-estate: 14 entries), but fetching only returns taglines without names, and curl gets 403. Focus on start-ups and portals, few traditional estate agents.",
+    "industries_en": [
+      "all",
+      "saas",
+      "real-estate"
+    ]
+  },
+  {
+    "id": "one-page-love",
+    "name": "One Page Love",
+    "url": "https://onepagelove.com",
+    "kind": "gallery",
+    "good_for": "Onepager und Landingpages mit Fokus auf Aufbau und Reihenfolge der Abschnitte. Branchen-Tags mit Direktlinks.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "gastro",
+      "event",
+      "portfolio"
+    ],
+    "search_url_template": "https://onepagelove.com/tag/{q}",
+    "note": "Tag-URL geprüft 29.10.2026 (real-estate: 25 Seiten, Direktlinks mit ?ref=onepagelove). Volltextsuche geht auch: https://onepagelove.com/?s={q}. Seitenleiste enthält Werbelinks, die nicht zum Eintrag gehören.",
+    "good_for_en": "One-pagers and landing pages with a focus on structure and section order. Industry tags with direct links.",
+    "note_en": "Tag URL checked 29 Oct 2026 (real-estate: 25 sites, direct links with ?ref=onepagelove). Full-text search also works: https://onepagelove.com/?s={q}. The sidebar contains ad links that do not belong to the entry.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "hospitality",
+      "events",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "awwwards",
+    "name": "Awwwards",
+    "url": "https://www.awwwards.com/websites/",
+    "kind": "gallery",
+    "good_for": "Award-Galerie mit großen Branchenkategorien und Detailseiten samt Link zur Originalseite. Ergiebigste Quelle für Immobilien-Websites.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "architektur",
+      "agentur"
+    ],
+    "search_url_template": "https://www.awwwards.com/websites/{q}/",
+    "note": "Kategorie-URL geprüft 29.10.2026 von Tills Mac (real-estate: rund 90 Seiten). Aus der Cloud per robots gesperrt. Hang zu Effekten und Scroll-Show; Lighthouse und Barrierefreiheit immer gegenprüfen. Einreichung kostet, also Selbstauswahl der Agenturen.",
+    "good_for_en": "Award gallery with large industry categories and detail pages that link to the original site. Most productive source for real estate websites.",
+    "note_en": "Category URL checked 29 Oct 2026 from a local machine (real-estate: about 90 sites). Blocked by robots from the cloud. Tends towards effects and scroll shows; always cross-check Lighthouse and accessibility. Submissions cost money, so agencies select themselves.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "architecture",
+      "agency"
+    ]
+  },
+  {
+    "id": "godly",
+    "name": "Godly",
+    "url": "https://godly.website",
+    "kind": "gallery",
+    "good_for": "War die Premium-Messlatte für konzeptstarke Seiten.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Am 29.10.2026 leitet godly.website auf recent.design weiter. Eintrag beobachten, eventuell eingestellt.",
+    "good_for_en": "Was the premium benchmark for concept-driven sites.",
+    "note_en": "On 29 Oct 2026 godly.website redirects to recent.design. Keep an eye on this entry, possibly discontinued.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "recent-design",
+    "name": "Recent Design",
+    "url": "https://recent.design",
+    "kind": "gallery",
+    "good_for": "Getrennt nach Website, App-Screenshot, App-Icon und OG-Bild. Schneller Einstieg, um vor einem Prompt 5 bis 10 echte Referenzen zu ziehen.",
+    "industries": [
+      "alle",
+      "saas",
+      "app"
+    ],
+    "search_url_template": null,
+    "note": "Keine geprüfte Such-URL. Schwerpunkt Tech und SaaS.",
+    "good_for_en": "Split into website, app screenshot, app icon and OG image. Quick way in to pull 5 to 10 real references before writing a prompt.",
+    "note_en": "No verified search URL. Focus on tech and SaaS.",
+    "industries_en": [
+      "all",
+      "saas",
+      "app"
+    ]
+  },
+  {
+    "id": "maxibestof",
+    "name": "Maxibestof",
+    "url": "https://maxibestof.one",
+    "kind": "gallery",
+    "good_for": "Kuratierte Galerie mit starkem Schnitt und Branchenkategorien.",
+    "industries": [
+      "alle",
+      "immobilien"
+    ],
+    "search_url_template": "https://maxibestof.one/websites/{q}",
+    "note": "Kategorie-Pfad (z. B. /websites/real-estate) laut Suchindex vorhanden, Abruf am 29.10.2026 aber 403, also ungeprüft.",
+    "good_for_en": "Curated gallery with a strong selection and industry categories.",
+    "note_en": "Category path (e.g. /websites/real-estate) exists according to the search index, but fetching returned 403 on 29 Oct 2026, so unverified.",
+    "industries_en": [
+      "all",
+      "real-estate"
+    ]
+  },
+  {
+    "id": "httpster",
+    "name": "Httpster",
+    "url": "https://httpster.net",
+    "kind": "gallery",
+    "good_for": "Mutige, typografische Indie-Seiten für Kunden, die sich abheben dürfen.",
+    "industries": [
+      "agentur",
+      "kultur",
+      "portfolio"
+    ],
+    "search_url_template": null,
+    "note": "Abruf am 29.10.2026 403. Für Handwerk und Makler meist zu laut.",
+    "good_for_en": "Bold, typographic indie sites for clients who are allowed to stand out.",
+    "note_en": "Fetch returned 403 on 29 Oct 2026. Usually too loud for trades and estate agents.",
+    "industries_en": [
+      "agency",
+      "culture",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "hoverstates",
+    "name": "Hoverstat.es",
+    "url": "https://hoverstat.es",
+    "kind": "gallery",
+    "good_for": "Experimentelle, gut gemachte Seiten als Anregung für mehr Eigenheit.",
+    "industries": [
+      "agentur",
+      "kultur",
+      "portfolio"
+    ],
+    "search_url_template": null,
+    "note": "Keine Such-URL. Viel Kunst und Studios, wenig Branchenbezug.",
+    "good_for_en": "Experimental, well-made sites as a prompt for more individuality.",
+    "note_en": "No search URL. Lots of art and studios, little industry relevance.",
+    "industries_en": [
+      "agency",
+      "culture",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "site-of-sites",
+    "name": "Site of Sites",
+    "url": "https://www.siteofsites.co",
+    "kind": "gallery",
+    "good_for": "Kuratierte Seiten mit Angabe der Plattform, der Macher und der besten Stellen einer Seite.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Keine Such-URL geprüft. Viel Framer und Webflow.",
+    "good_for_en": "Curated sites listing the platform, the makers and the best parts of each site.",
+    "note_en": "No search URL checked. Lots of Framer and Webflow.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "landing-picks",
+    "name": "Landing Picks",
+    "url": "https://www.landingpicks.com",
+    "kind": "gallery",
+    "good_for": "Landingpage-Galerie für Hero- und Angebotsaufbau.",
+    "industries": [
+      "alle",
+      "saas"
+    ],
+    "search_url_template": null,
+    "note": "Stark SaaS-lastig, keine geprüfte Such-URL.",
+    "good_for_en": "Landing page gallery for hero and offer structure.",
+    "note_en": "Heavily SaaS-focused, no verified search URL.",
+    "industries_en": [
+      "all",
+      "saas"
+    ]
+  },
+  {
+    "id": "landings-dev",
+    "name": "Landings",
+    "url": "https://landings.dev",
+    "kind": "gallery",
+    "good_for": "Landingpage-Galerie mit kleinen Farbwerkzeugen.",
+    "industries": [
+      "alle",
+      "saas"
+    ],
+    "search_url_template": null,
+    "note": "Am 29.10.2026 nicht erreichbar (Zeitüberschreitung). Status prüfen.",
+    "good_for_en": "Landing page gallery with small colour tools.",
+    "note_en": "Not reachable on 29 Oct 2026 (timeout). Check status.",
+    "industries_en": [
+      "all",
+      "saas"
+    ]
+  },
+  {
+    "id": "viewport-ui",
+    "name": "Viewport UI",
+    "url": "https://www.viewport-ui.design",
+    "kind": "gallery",
+    "good_for": "Nach Seitentyp sortierte UI-Galerie.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Leitet am 29.10.2026 auf viewportui.com/kind/web/1 um. Kategorien nur über die Seite.",
+    "good_for_en": "UI gallery sorted by page type.",
+    "note_en": "Redirects to viewportui.com/kind/web/1 on 29 Oct 2026. Categories only via the site itself.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "dark-design",
+    "name": "dark.design",
+    "url": "https://dark.design",
+    "kind": "gallery",
+    "good_for": "Dunkle Websites, filterbar nach Agentur, KI, Software, Kultur. Nützlich als Marktbeobachtung des KI-Trendlooks.",
+    "industries": [
+      "agentur",
+      "saas",
+      "ki"
+    ],
+    "search_url_template": null,
+    "note": "Für Handwerk und ältere Zielgruppen fast immer die falsche Richtung. Finanziert über Sponsoring.",
+    "good_for_en": "Dark websites, filterable by agency, AI, software, culture. Useful for watching the AI trend look in the market.",
+    "note_en": "Almost always the wrong direction for trades and older audiences. Funded by sponsorship.",
+    "industries_en": [
+      "agency",
+      "saas",
+      "ai"
+    ]
+  },
+  {
+    "id": "loadmore",
+    "name": "loadmo.re",
+    "url": "https://loadmo.re",
+    "kind": "gallery",
+    "good_for": "Galerie ausschließlich mobiler Websites mit Videos und Angaben zu den Machern. Vor jeder Designrichtung zuerst hier schauen, weil Kunden fast nur mobil kommen.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Persönliches Kuratorenprojekt, kleiner Bestand, keine Branchenfilter.",
+    "good_for_en": "Gallery of mobile websites only, with videos and details on the makers. Look here first before choosing any design direction, because clients arrive almost entirely on mobile.",
+    "note_en": "Personal curator project, small collection, no industry filters.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "framer-gallery",
+    "name": "Framer Gallery",
+    "url": "https://www.framer.com/gallery/",
+    "kind": "gallery",
+    "good_for": "Echte, mit Framer gebaute Seiten als Layout-Ideen.",
+    "industries": [
+      "alle",
+      "saas",
+      "agentur",
+      "portfolio"
+    ],
+    "search_url_template": null,
+    "note": "Leitet am 29.10.2026 auf framer.com/community/gallery um. Plattform-Werbung, Stack passt nicht zu statischen Astro-Projekten.",
+    "good_for_en": "Real sites built with Framer as layout ideas.",
+    "note_en": "Redirects to framer.com/community/gallery on 29 Oct 2026. Platform advertising; the stack does not match the curator's stack.",
+    "industries_en": [
+      "all",
+      "saas",
+      "agency",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "made-in-webflow",
+    "name": "Made in Webflow",
+    "url": "https://webflow.com/made-in-webflow",
+    "kind": "gallery",
+    "good_for": "Community-Projekte aus Webflow, nach Thema abrufbar, um Abschnitts-Abfolgen zu studieren.",
+    "industries": [
+      "alle",
+      "immobilien"
+    ],
+    "search_url_template": "https://webflow.com/made-in-webflow/{q}",
+    "note": "URL geprüft 29.10.2026 (real-estate liefert Einträge). Großteils Klone und Vorlagen, wenige echte Kundenseiten.",
+    "good_for_en": "Community projects from Webflow, browsable by topic, for studying section sequences.",
+    "note_en": "URL checked 29 Oct 2026 (real-estate returns entries). Mostly clones and templates, few real client sites.",
+    "industries_en": [
+      "all",
+      "real-estate"
+    ]
+  },
+  {
+    "id": "wix-studio-inspiration",
+    "name": "Wix Studio Inspiration",
+    "url": "https://www.wix.com/studio/inspiration",
+    "kind": "gallery",
+    "good_for": "Kuratierte Seiten auf Wix Studio.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Plattform-Schaufenster, keine geprüfte Such-URL.",
+    "good_for_en": "Curated sites built on Wix Studio.",
+    "note_en": "Platform showcase, no verified search URL.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "brutalist-websites",
+    "name": "Brutalist Websites",
+    "url": "https://brutalistwebsites.com",
+    "kind": "gallery",
+    "good_for": "Bewusst regelbrechende Seiten als Gegenmittel zum Einheitslook.",
+    "industries": [
+      "kultur",
+      "portfolio"
+    ],
+    "search_url_template": null,
+    "note": "Für Kundenseiten selten direkt brauchbar, gut für Briefing-Gegenbilder.",
+    "good_for_en": "Deliberately rule-breaking sites as an antidote to the uniform look.",
+    "note_en": "Rarely usable directly for client sites, good for counter-examples in a brief.",
+    "industries_en": [
+      "culture",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "cssda",
+    "name": "CSS Design Awards",
+    "url": "https://www.cssdesignawards.com",
+    "kind": "gallery",
+    "good_for": "Award-Galerie als Zusatz-Benchmark.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Branchenfilter ?category=real-estate wird beim Abruf am 29.10.2026 ignoriert (gemischte Liste). Einreichung kostet.",
+    "good_for_en": "Award gallery as an additional benchmark.",
+    "note_en": "The industry filter ?category=real-estate was ignored when fetched on 29 Oct 2026 (mixed list). Submissions cost money.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "the-fwa",
+    "name": "The FWA",
+    "url": "https://thefwa.com",
+    "kind": "gallery",
+    "good_for": "Benchmark für technisch außergewöhnliche Effekte.",
+    "industries": [
+      "agentur",
+      "kultur"
+    ],
+    "search_url_template": "https://thefwa.com/search?q={q}",
+    "note": "Such-URL antwortet mit 200, Treffer laden clientseitig, Inhalt nicht verifiziert. Effekt-lastig, Lighthouse und Barrierefreiheit gegenprüfen.",
+    "good_for_en": "Benchmark for technically exceptional effects.",
+    "note_en": "Search URL answers with 200, results load client-side, content not verified. Effect-heavy; cross-check Lighthouse and accessibility.",
+    "industries_en": [
+      "agency",
+      "culture"
+    ]
+  },
+  {
+    "id": "ecomm-design",
+    "name": "Ecomm.design",
+    "url": "https://ecomm.design",
+    "kind": "gallery",
+    "good_for": "Shop-Galerie mit Filtern nach Branche und Shopsystem.",
+    "industries": [
+      "e-commerce"
+    ],
+    "search_url_template": "https://ecomm.design/?s={q}",
+    "note": "Such-URL geprüft 29.10.2026 (Treffer zu „furniture“). Nur Shops.",
+    "good_for_en": "Shop gallery with filters by industry and shop system.",
+    "note_en": "Search URL checked 29 Oct 2026 (results for \"furniture\"). Shops only.",
+    "industries_en": [
+      "e-commerce"
+    ]
+  },
+  {
+    "id": "commerce-cream",
+    "name": "Commerce Cream",
+    "url": "https://commercecream.com",
+    "kind": "gallery",
+    "good_for": "Shop-Inspiration, standardmäßig mobil dargestellt.",
+    "industries": [
+      "e-commerce"
+    ],
+    "search_url_template": null,
+    "note": "Nur Shops, kleiner Bestand.",
+    "good_for_en": "Shop inspiration, shown in mobile view by default.",
+    "note_en": "Shops only, small collection.",
+    "industries_en": [
+      "e-commerce"
+    ]
+  },
+  {
+    "id": "agency-showcases",
+    "name": "Agentur-Showcases (AKQA, Instrument u. a.)",
+    "url": "https://www.akqa.com",
+    "kind": "agency",
+    "good_for": "Messlatte für Art Direction und Interaktion großer Studios: AKQA, Instrument, Fantasy, Code and Theory, Hello Monday, Locomotive.",
+    "industries": [
+      "agentur"
+    ],
+    "search_url_template": null,
+    "note": "Kein Verzeichnis, sondern eine Liste von Studio-Seiten. Ueno gibt es nicht mehr als eigenständiges Studio. Produktionsbudgets weit über KMU-Niveau.",
+    "good_for_en": "Benchmark for art direction and interaction from large studios: AKQA, Instrument, Fantasy, Code and Theory, Hello Monday, Locomotive.",
+    "note_en": "Not a directory but a list of studio sites. Ueno no longer exists as an independent studio. Production budgets far above small-business level.",
+    "industries_en": [
+      "agency"
+    ]
+  },
+  {
+    "id": "cofolios",
+    "name": "Cofolios",
+    "url": "https://www.cofolios.com",
+    "kind": "gallery",
+    "good_for": "Designer-Portfolios mit gutem Aufbau von Fallstudien.",
+    "industries": [
+      "portfolio",
+      "agentur"
+    ],
+    "search_url_template": null,
+    "note": "Fast nur Produktdesign-Portfolios aus Tech-Konzernen.",
+    "good_for_en": "Designer portfolios with well-structured case studies.",
+    "note_en": "Almost exclusively product design portfolios from big tech companies.",
+    "industries_en": [
+      "portfolio",
+      "agency"
+    ]
+  },
+  {
+    "id": "killer-portfolio",
+    "name": "Killer Portfolio",
+    "url": "https://www.killerportfolio.com",
+    "kind": "gallery",
+    "good_for": "Handverlesene Portfolio-Seiten von Personen, Firmen und Entwicklern.",
+    "industries": [
+      "portfolio",
+      "agentur"
+    ],
+    "search_url_template": null,
+    "note": "Keine Branchenfilter.",
+    "good_for_en": "Hand-picked portfolio sites from individuals, companies and developers.",
+    "note_en": "No industry filters.",
+    "industries_en": [
+      "portfolio",
+      "agency"
+    ]
+  },
+  {
+    "id": "portfoliex",
+    "name": "Portfoliex",
+    "url": "https://portfoliex.com",
+    "kind": "gallery",
+    "good_for": "Agentur-Selbstdarstellungen als Referenz für die eigene Seite.",
+    "industries": [
+      "agentur",
+      "portfolio"
+    ],
+    "search_url_template": null,
+    "note": "Kleiner Bestand.",
+    "good_for_en": "Agency self-presentations as a reference for your own site.",
+    "note_en": "Small collection.",
+    "industries_en": [
+      "agency",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "sections-wtf",
+    "name": "Sections.wtf",
+    "url": "https://sections.wtf",
+    "kind": "gallery",
+    "good_for": "Einzelne Landingpage-Abschnitte (Hero, Preise, FAQ). Passt zum Bauen Abschnitt für Abschnitt.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Keine geprüfte Such-URL.",
+    "good_for_en": "Individual landing page sections (hero, pricing, FAQ). Fits building section by section.",
+    "note_en": "No verified search URL.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "unsection",
+    "name": "Unsection",
+    "url": "https://www.unsection.com",
+    "kind": "gallery",
+    "good_for": "Einzelne Abschnitte wie Hero und CTA, getaggt.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Keine geprüfte Such-URL.",
+    "good_for_en": "Individual sections such as hero and CTA, tagged.",
+    "note_en": "No verified search URL.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "supahero",
+    "name": "supahero.io",
+    "url": "https://supahero.io",
+    "kind": "gallery",
+    "good_for": "Nur Hero-Abschnitte, 500+ Einträge von Stripe bis Einzelportfolio.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Inzwischen Teil von screensdesign, Preise nicht offen. Prämiert Optik ohne Aussage: H1 immer aus Leistung, Zielgruppe und Region bilden. Status prüfen.",
+    "good_for_en": "Hero sections only, 500+ entries from Stripe to single-person portfolios.",
+    "note_en": "Now part of screensdesign, pricing not public. Rewards looks without substance: always build the H1 from service, audience and region. Check status.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "landingfolio",
+    "name": "Landingfolio",
+    "url": "https://www.landingfolio.com",
+    "kind": "gallery",
+    "good_for": "Landingpages und einzelne Komponenten mit Branchenseiten.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "saas"
+    ],
+    "search_url_template": "https://www.landingfolio.com/inspiration/{q}",
+    "note": "Kategorie-URL antwortet 29.10.2026 mit 200 (real-estate), Inhalt kaum serverseitig sichtbar. Teile hinter Bezahlschranke.",
+    "good_for_en": "Landing pages and individual components with industry pages.",
+    "note_en": "Category URL answers with 200 on 29 Oct 2026 (real-estate), but content is barely visible server-side. Parts behind a paywall.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "saas"
+    ]
+  },
+  {
+    "id": "21st-dev",
+    "name": "21st.dev",
+    "url": "https://21st.dev",
+    "kind": "directory",
+    "good_for": "Katalog für UI-Komponenten mit eigenem MCP-Server, den ein Agent direkt durchsuchen kann.",
+    "industries": [
+      "saas",
+      "app"
+    ],
+    "search_url_template": null,
+    "note": "React/Tailwind-zentriert: nur als Referenz für Anatomie und Zustände, nicht als Abhängigkeit.",
+    "good_for_en": "Catalogue of UI components with its own MCP server that an agent can search directly.",
+    "note_en": "React/Tailwind-centred: only as a reference for anatomy and states, not as a dependency.",
+    "industries_en": [
+      "saas",
+      "app"
+    ]
+  },
+  {
+    "id": "flowbase",
+    "name": "Flowbase",
+    "url": "https://flowbase.co",
+    "kind": "marketplace",
+    "good_for": "Webflow-Komponenten und Abschnitte, um Abschnitts-Mechanik zu studieren.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Webflow-Output, teils kostenpflichtig.",
+    "good_for_en": "Webflow components and sections for studying section mechanics.",
+    "note_en": "Webflow output, partly paid.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "ui8",
+    "name": "UI8",
+    "url": "https://ui8.net",
+    "kind": "marketplace",
+    "good_for": "Kits und Vorlagen, wenn Zeitdruck einen Kauf rechtfertigt.",
+    "industries": [
+      "alle",
+      "saas",
+      "app"
+    ],
+    "search_url_template": null,
+    "note": "Kostenpflichtig, Abruf 29.10.2026 403. Viel Dribbble-Ästhetik.",
+    "good_for_en": "Kits and templates, when time pressure justifies a purchase.",
+    "note_en": "Paid, fetch on 29 Oct 2026 returned 403. Lots of Dribbble aesthetics.",
+    "industries_en": [
+      "all",
+      "saas",
+      "app"
+    ]
+  },
+  {
+    "id": "no-code-supply",
+    "name": "No Code Supply Co.",
+    "url": "https://www.nocodesupply.co",
+    "kind": "directory",
+    "good_for": "Verzeichnis für Design- und No-Code-Ressourcen.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Viele Affiliate-Links.",
+    "good_for_en": "Directory of design and no-code resources.",
+    "note_en": "Many affiliate links.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "mobbin",
+    "name": "Mobbin",
+    "url": "https://mobbin.com",
+    "kind": "gallery",
+    "good_for": "Echte App- und Web-Screens samt Abläufen, Maßstab für Portale, Dashboards und mehrstufige Formulare.",
+    "industries": [
+      "saas",
+      "app",
+      "portal"
+    ],
+    "search_url_template": "https://mobbin.com/search/apps/web?content_type=screens&q={q}",
+    "note": "Such-URL antwortet mit 200, Ergebnisse nur mit Konto. Bezahlschranke (Pro).",
+    "good_for_en": "Real app and web screens including flows, the benchmark for portals, dashboards and multi-step forms.",
+    "note_en": "Search URL answers with 200, results only with an account. Paywall (Pro).",
+    "industries_en": [
+      "saas",
+      "app",
+      "portal"
+    ]
+  },
+  {
+    "id": "refero-styles",
+    "name": "Refero Styles",
+    "url": "https://styles.refero.design",
+    "kind": "directory",
+    "good_for": "2.000+ aus echten Seiten extrahierte Design-Systeme, je eines als DESIGN.md. Startpunkt für tokens.css.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Beta, fremde Marken-Systeme: nie 1:1, Hex nach OKLCH übersetzen, Qualität je Stil prüfen.",
+    "good_for_en": "2,000+ design systems extracted from real sites, each as a DESIGN.md. Starting point for tokens.css.",
+    "note_en": "Beta, other brands' systems: never copy 1:1, convert hex to OKLCH, check quality per style.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "design-spells",
+    "name": "Design Spells",
+    "url": "https://designspells.com",
+    "kind": "gallery",
+    "good_for": "Gesammelte kleine Interaktionen mit Charme.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Nur Detailideen, auf Barrierefreiheit und Performance prüfen.",
+    "good_for_en": "Collected small interactions with charm.",
+    "note_en": "Detail ideas only; check accessibility and performance.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "savee",
+    "name": "Savee",
+    "url": "https://savee.com",
+    "kind": "gallery",
+    "good_for": "Moodboards für Farb- und Bildrichtung je Projekt.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Suche nur mit Login (Abruf landet auf /login).",
+    "good_for_en": "Moodboards for colour and image direction per project.",
+    "note_en": "Search only with login (fetch lands on /login).",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "cosmos",
+    "name": "Cosmos",
+    "url": "https://cosmos.so",
+    "kind": "gallery",
+    "good_for": "Wachsendes Moodboard-Werkzeug ähnlich Savee.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Suche leitet ohne Login auf /explore um.",
+    "good_for_en": "Growing moodboard tool similar to Savee.",
+    "note_en": "Search redirects to /explore without login.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "are-na",
+    "name": "Are.na",
+    "url": "https://www.are.na",
+    "kind": "gallery",
+    "good_for": "Recherche-Kanäle abseits des Mainstreams, gut für Art Direction mit Tiefe.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://www.are.na/search/{q}",
+    "note": "Such-URL geprüft 29.10.2026 (leitet auf die Suchseite mit Begriff um). Inhalte sehr gemischt.",
+    "good_for_en": "Research channels away from the mainstream, good for art direction with depth.",
+    "note_en": "Search URL checked 29 Oct 2026 (redirects to the search page with the term). Content very mixed.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "pinterest",
+    "name": "Pinterest",
+    "url": "https://www.pinterest.com",
+    "kind": "gallery",
+    "good_for": "Breite Bild-Moodboards für Farbe, Material und Fotostimmung.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://www.pinterest.com/search/pins/?q={q}",
+    "note": "Such-URL antwortet mit 200. Nur Detailideen, voller KI-Bilder und Werbung, nie als Layout-Vorlage.",
+    "good_for_en": "Broad image moodboards for colour, material and photo mood.",
+    "note_en": "Search URL answers with 200. Detail ideas only, full of AI images and ads, never as a layout template.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "dribbble",
+    "name": "Dribbble",
+    "url": "https://dribbble.com",
+    "kind": "gallery",
+    "good_for": "Einzelne Shots für Farbpaare und Mikro-Interaktionen.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://dribbble.com/search/{q}",
+    "note": "Such-URL antwortet mit 202 (Bot-Prüfung), im Browser üblich. Viel Fantasie und KI-Slop, nie als Layout-Vorlage. Nur Details, nie Seitenlayout.",
+    "good_for_en": "Individual shots for colour pairs and micro-interactions.",
+    "note_en": "Search URL answers with 202 (bot check), works normally in the browser. Lots of fantasy work and AI slop, never as a layout template. Details only, never page layout (curator's notes).",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "behance",
+    "name": "Behance",
+    "url": "https://www.behance.net",
+    "kind": "gallery",
+    "good_for": "Projekte und Markenauftritte als breite Anregung.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Suche am 29.10.2026 mit 403 gesperrt. Viele Konzeptarbeiten, die nie live gingen.",
+    "good_for_en": "Projects and brand identities as broad inspiration.",
+    "note_en": "Search blocked with 403 on 29 Oct 2026. Many concept projects that never went live.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "designspiration",
+    "name": "Designspiration",
+    "url": "https://www.designspiration.com",
+    "kind": "gallery",
+    "good_for": "Bildsuche auch nach Farbe oder Hex-Wert.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://www.designspiration.com/search/saves/?q={q}",
+    "note": "Such-URL geprüft 29.10.2026.",
+    "good_for_en": "Image search, including by colour or hex value.",
+    "note_en": "Search URL checked 29 Oct 2026.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "colossal",
+    "name": "This Is Colossal",
+    "url": "https://www.thisiscolossal.com",
+    "kind": "gallery",
+    "good_for": "Kunst und visuelle Kultur gegen den Reflex, dass alle Seiten gleich aussehen.",
+    "industries": [
+      "kultur"
+    ],
+    "search_url_template": null,
+    "note": "Kein Web-Design, nur Anregung.",
+    "good_for_en": "Art and visual culture against the reflex that all sites look the same.",
+    "note_en": "Not web design, inspiration only.",
+    "industries_en": [
+      "culture"
+    ]
+  },
+  {
+    "id": "winamp-skin-museum",
+    "name": "Winamp Skin Museum",
+    "url": "https://skins.webamp.org",
+    "kind": "gallery",
+    "good_for": "65.000 Skins um 2000 als Gegenbild zum runden KI-Einheitslook im Briefing.",
+    "industries": [
+      "kultur"
+    ],
+    "search_url_template": null,
+    "note": "Keine Vorlage für Kundenseiten.",
+    "good_for_en": "65,000 skins from around 2000 as a counter-image to the rounded uniform AI look in a brief.",
+    "note_en": "Not a template for client sites.",
+    "industries_en": [
+      "culture"
+    ]
+  },
+  {
+    "id": "brand-new",
+    "name": "Brand New",
+    "url": "https://www.underconsideration.com/brandnew",
+    "kind": "gallery",
+    "good_for": "Besprechungen von Rebrandings mit Vorher-Nachher, gut für Logo, Farbe und Tonalität.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://www.underconsideration.com/brandnew/?s={q}",
+    "note": "Such-URL geprüft 29.10.2026 (real estate: Treffer). Teil der Archive hinter Mitgliedschaft.",
+    "good_for_en": "Reviews of rebrands with before and after, good for logo, colour and tone.",
+    "note_en": "Search URL checked 29 Oct 2026 (real estate: results). Part of the archive behind a membership.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "rebrand-gallery",
+    "name": "Rebrand Gallery",
+    "url": "https://rebrand.gallery",
+    "kind": "gallery",
+    "good_for": "Rebranding-Schaufenster für Markenrichtung, nicht Layout.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Keine geprüfte Such-URL.",
+    "good_for_en": "Rebranding showcase for brand direction, not layout.",
+    "note_en": "No verified search URL.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "abduzeedo",
+    "name": "Abduzeedo",
+    "url": "https://abduzeedo.com",
+    "kind": "gallery",
+    "good_for": "Branding- und Grafik-Inspiration.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Suche /search/node?keys= gibt 404. Viel Agenturwerbung.",
+    "good_for_en": "Branding and graphic design inspiration.",
+    "note_en": "Search /search/node?keys= returns 404. Lots of agency advertising.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "fonts-in-use",
+    "name": "Fonts In Use",
+    "url": "https://fontsinuse.com",
+    "kind": "directory",
+    "good_for": "Schriften im echten Einsatz, auch auf Websites. Typo-Referenz mit Herkunftsangaben.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": "https://fontsinuse.com/search?terms={q}",
+    "note": "Such-URL geprüft 29.10.2026.",
+    "good_for_en": "Typefaces in real use, including on websites. Type reference with sources.",
+    "note_en": "Search URL checked 29 Oct 2026.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "typewolf",
+    "name": "Typewolf",
+    "url": "https://www.typewolf.com",
+    "kind": "directory",
+    "good_for": "Schriftpaare und Typo-Trends auf echten Seiten.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Abruf 29.10.2026 mit 429 begrenzt. Teile mit Affiliate-Links zu Foundries.",
+    "good_for_en": "Font pairings and type trends on real sites.",
+    "note_en": "Fetch rate-limited with 429 on 29 Oct 2026. Some affiliate links to foundries.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "toools",
+    "name": "Toools.design",
+    "url": "https://www.toools.design/ui-web-design-inspiration-websites",
+    "kind": "directory",
+    "good_for": "Verzeichnis der Inspirationsseiten, Einstieg wenn diese Liste erweitert werden soll.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Verzeichnis mit Affiliate-Anteil.",
+    "good_for_en": "Directory of inspiration sites, a starting point when this list is to be extended.",
+    "note_en": "Directory with some affiliate content.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "muzli",
+    "name": "Muzli",
+    "url": "https://muz.li",
+    "kind": "directory",
+    "good_for": "Kuratierte Design-Inspiration als Browser-Erweiterung.",
+    "industries": [
+      "alle"
+    ],
+    "search_url_template": null,
+    "note": "Viel Trend und Dribbble-Ware.",
+    "good_for_en": "Curated design inspiration as a browser extension.",
+    "note_en": "Lots of trends and Dribbble-style work.",
+    "industries_en": [
+      "all"
+    ]
+  },
+  {
+    "id": "codrops",
+    "name": "Codrops",
+    "url": "https://tympanus.net/codrops",
+    "kind": "directory",
+    "good_for": "Tutorials für Effekte und Animationen, technisch nah am Code.",
+    "industries": [
+      "agentur"
+    ],
+    "search_url_template": null,
+    "note": "Effekte vor dem Einbau auf Performance und Barrierefreiheit prüfen.",
+    "good_for_en": "Tutorials for effects and animations, technically close to the code.",
+    "note_en": "Check effects for performance and accessibility before using them.",
+    "industries_en": [
+      "agency"
+    ]
+  },
+  {
+    "id": "themeforest",
+    "name": "ThemeForest",
+    "url": "https://themeforest.net",
+    "kind": "marketplace",
+    "good_for": "Größter Vorlagenmarkt. Als Branchen-Index nützlich: zeigt, welche Abschnitte eine Branche erwartet (Objektsuche, Agentenprofil, Exposé).",
+    "industries": [
+      "alle",
+      "immobilien",
+      "handwerk",
+      "gastro",
+      "beratung"
+    ],
+    "search_url_template": "https://themeforest.net/search/{q}",
+    "note": "Such-URL geprüft 29.10.2026 (real estate: 2.654 Treffer). Fast nur WordPress mit viel Ballast, Vorschaubilder geschönt. Nur Struktur ablesen.",
+    "good_for_en": "Largest template marketplace. Useful as an industry index: shows which sections an industry expects (property search, agent profile, property listing).",
+    "note_en": "Search URL checked 29 Oct 2026 (real estate: 2,654 results). Almost only WordPress with a lot of bloat, preview images polished. Read the structure only.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "trades",
+      "hospitality",
+      "consulting"
+    ]
+  },
+  {
+    "id": "webflow-templates",
+    "name": "Webflow Templates",
+    "url": "https://webflow.com/templates",
+    "kind": "marketplace",
+    "good_for": "Vorlagen nach Branche, gut um Seitenaufbau und Navigation einer Branche schnell zu überblicken.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "architektur",
+      "beratung"
+    ],
+    "search_url_template": "https://webflow.com/templates/subcategory/{q}-websites",
+    "note": "URL-Muster aus der Seite belegt (real-estate, architecture, property-management), antwortet mit 200, Treffer laden aber per JavaScript und sind beim Abruf leer. Im Browser prüfen.",
+    "good_for_en": "Templates by industry, good for quickly surveying an industry's page structure and navigation.",
+    "note_en": "URL pattern confirmed from the site (real-estate, architecture, property-management), answers with 200, but results load via JavaScript and are empty when fetched. Check in the browser.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "architecture",
+      "consulting"
+    ]
+  },
+  {
+    "id": "framer-marketplace",
+    "name": "Framer Marketplace",
+    "url": "https://www.framer.com/marketplace/",
+    "kind": "marketplace",
+    "good_for": "Moderne Vorlagen nach Branche, oft näher am aktuellen Geschmack als WordPress-Themes.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "agentur",
+      "saas"
+    ],
+    "search_url_template": "https://www.framer.com/marketplace/templates/categories/{q}/",
+    "note": "Kategorie-URL geprüft 29.10.2026 (real-estate: 24 Vorlagen). Suche unter /marketplace/search/?q={q} antwortet ebenfalls. Viel gleichförmiger Framer-Look.",
+    "good_for_en": "Modern templates by industry, often closer to current taste than WordPress themes.",
+    "note_en": "Category URL checked 29 Oct 2026 (real-estate: 24 templates). Search at /marketplace/search/?q={q} also answers. Lots of uniform Framer look.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "agency",
+      "saas"
+    ]
+  },
+  {
+    "id": "astro-themes",
+    "name": "Astro Themes",
+    "url": "https://astro.build/themes/",
+    "kind": "marketplace",
+    "good_for": "Offizielles Verzeichnis für Astro-Themes, passend zu Astro-Projekten.",
+    "industries": [
+      "alle",
+      "saas",
+      "blog"
+    ],
+    "search_url_template": "https://astro.build/themes/?search={q}",
+    "note": "Parameter wird beim Abruf am 29.10.2026 nicht sichtbar angewendet (Filter vermutlich clientseitig). Kaum echte Branchenthemes für Immobilien, viele Sammelpakete.",
+    "good_for_en": "Official directory of Astro themes, matching the curator's stack.",
+    "note_en": "The parameter is not visibly applied when fetched on 29 Oct 2026 (filter probably client-side). Hardly any real industry themes for real estate, many bundles.",
+    "industries_en": [
+      "all",
+      "saas",
+      "blog"
+    ]
+  },
+  {
+    "id": "one-page-love-templates",
+    "name": "One Page Love Templates",
+    "url": "https://onepagelove.com/templates",
+    "kind": "marketplace",
+    "good_for": "Kuratierte Onepager-Vorlagen nach Plattform und Zweck (Astro, Portfolio, Restaurant, Event).",
+    "industries": [
+      "alle",
+      "gastro",
+      "event",
+      "portfolio"
+    ],
+    "search_url_template": "https://onepagelove.com/{q}-templates/",
+    "note": "Muster geprüft 29.10.2026 für Plattform und Zweck (astro, portfolio, restaurant). Keine Branchenkategorie Immobilien (real-estate-templates gibt 404). Teils Affiliate-Links.",
+    "good_for_en": "Curated one-page templates by platform and purpose (Astro, portfolio, restaurant, event).",
+    "note_en": "Pattern checked 29 Oct 2026 for platform and purpose (astro, portfolio, restaurant). No real estate industry category (real-estate-templates returns 404). Some affiliate links.",
+    "industries_en": [
+      "all",
+      "hospitality",
+      "events",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "squarespace-templates",
+    "name": "Squarespace Templates",
+    "url": "https://www.squarespace.com/templates",
+    "kind": "marketplace",
+    "good_for": "Baukasten-Vorlagen nach Thema als Layout-Referenz.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "gastro",
+      "portfolio"
+    ],
+    "search_url_template": "https://www.squarespace.com/templates/browse/topic/{q}",
+    "note": "URL geprüft 29.10.2026 (real-estate-properties). Plattform-Werbung.",
+    "good_for_en": "Website builder templates by topic as a layout reference.",
+    "note_en": "URL checked 29 Oct 2026 (real-estate-properties). Platform advertising.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "hospitality",
+      "portfolio"
+    ]
+  },
+  {
+    "id": "wix-templates",
+    "name": "Wix Templates",
+    "url": "https://www.wix.com/website/templates",
+    "kind": "marketplace",
+    "good_for": "Baukasten-Vorlagen nach Branche, zeigt den Standard, den Kunden kennen.",
+    "industries": [
+      "alle",
+      "immobilien",
+      "handwerk",
+      "gastro"
+    ],
+    "search_url_template": "https://www.wix.com/website/templates/html/{q}",
+    "note": "URL geprüft 29.10.2026; real-estate leitet auf business/real-estate um, also {q}=business/real-estate. Gut als Gegenbild, selten als Vorbild.",
+    "good_for_en": "Website builder templates by industry, shows the standard clients are familiar with.",
+    "note_en": "URL checked 29 Oct 2026; real-estate redirects to business/real-estate, so {q}=business/real-estate. Good as a counter-example, rarely as a model.",
+    "industries_en": [
+      "all",
+      "real-estate",
+      "trades",
+      "hospitality"
+    ]
+  },
+  {
+    "id": "showit-store",
+    "name": "Showit Store",
+    "url": "https://store.showit.com",
+    "kind": "marketplace",
+    "good_for": "Vorlagen für Fotografen und Kleinunternehmer.",
+    "industries": [
+      "portfolio",
+      "fotografie"
+    ],
+    "search_url_template": null,
+    "note": "Suche /search?q= gibt 404. Sehr feminin-pastellige Ästhetik, enger Zweck.",
+    "good_for_en": "Templates for photographers and small business owners.",
+    "note_en": "Search /search?q= returns 404. Very feminine pastel aesthetic, narrow purpose.",
+    "industries_en": [
+      "portfolio",
+      "photography"
+    ]
+  },
+  {
+    "id": "csswinner",
+    "name": "CSS Winner",
+    "url": "https://www.csswinner.com",
+    "kind": "gallery",
+    "good_for": "Award-Benchmark für Handwerk im Detail (KB 15). Blendwerk-Quote hoch.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Award benchmark for craft in the details (curator's notes). High share of style over substance.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "cssnectar",
+    "name": "CSS Nectar",
+    "url": "https://cssnectar.com",
+    "kind": "gallery",
+    "good_for": "Award-Benchmark (KB 15).",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Award benchmark (curator's notes).",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "workspaces-xyz",
+    "name": "Workspaces",
+    "url": "https://www.workspaces.xyz",
+    "kind": "gallery",
+    "good_for": "Editoriales Handwerk: Arbeitsplätze als Reportage (KB 15 §3 G).",
+    "industries": [
+      "beratung",
+      "kreativ"
+    ],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Editorial craft: workspaces as reportage (curator's notes).",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": [
+      "consulting",
+      "creative"
+    ]
+  },
+  {
+    "id": "witanddelight",
+    "name": "Wit & Delight",
+    "url": "https://witanddelight.com",
+    "kind": "gallery",
+    "good_for": "Editoriales Handwerk, Magazin-Ton (KB 15 §3 G).",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Editorial craft, magazine tone (curator's notes).",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "fontsinuse-print",
+    "name": "Fonts In Use (Print, Beschilderung)",
+    "url": "https://fontsinuse.com",
+    "kind": "print",
+    "good_for": "Schrift in echten Drucksachen, Verpackungen, Leitsystemen. Für Konzeptkarten, nicht für Seitenlayouts.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Type in real print work, packaging, wayfinding systems. For concept boards, not for page layouts.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "itsnicethat",
+    "name": "It's Nice That",
+    "url": "https://www.itsnicethat.com",
+    "kind": "print",
+    "good_for": "Aktuelles Grafikdesign, Editorial, Identitäten.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Current graphic design, editorial, identities.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "standards-manual",
+    "name": "Standards Manual",
+    "url": "https://standardsmanual.com",
+    "kind": "archive",
+    "good_for": "Neu aufgelegte Gestaltungshandbücher (Verkehr, Raumfahrt): Systemdenken. Logik übernehmen, nicht den Retro-Look.",
+    "industries": [
+      "verkehr",
+      "technik"
+    ],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Reissued design manuals (transport, space travel): systems thinking. Adopt the logic, not the retro look.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": [
+      "transport",
+      "tech"
+    ]
+  },
+  {
+    "id": "letterform-archive",
+    "name": "Letterform Archive",
+    "url": "https://letterformarchive.org",
+    "kind": "archive",
+    "good_for": "Schriftmuster, Plakate, Ephemera in hoher Auflösung. Rechte beim Archiv, nur Referenz.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Type specimens, posters, ephemera in high resolution. Rights held by the archive, reference only.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "emuseum-zh",
+    "name": "Museum für Gestaltung Zürich (eMuseum)",
+    "url": "https://www.emuseum.ch",
+    "kind": "archive",
+    "good_for": "Schweizer Plakate und Grafikgeschichte. Gefahr: Epochenkostüm.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Swiss posters and graphic design history. Risk: period costume.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "cooper-hewitt",
+    "name": "Cooper Hewitt Collection",
+    "url": "https://collection.cooperhewitt.org",
+    "kind": "archive",
+    "good_for": "Objekte, Produktdesign, Drucksachen mit Metadaten.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Objects, product design, printed matter with metadata.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "eye-magazine",
+    "name": "Eye Magazine",
+    "url": "https://www.eyemagazine.com",
+    "kind": "print",
+    "good_for": "Kritische Texte zu Grafikdesign und Editorial.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Critical writing on graphic design and editorial.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "100-beste-plakate",
+    "name": "100 Beste Plakate",
+    "url": "https://100-beste-plakate.de",
+    "kind": "print",
+    "good_for": "Jährlicher Plakatwettbewerb im deutschsprachigen Raum.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Annual poster competition in the German-speaking region.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "stiftung-buchkunst",
+    "name": "Stiftung Buchkunst",
+    "url": "https://www.stiftung-buchkunst.de",
+    "kind": "print",
+    "good_for": "Die schönsten deutschen Bücher: Buchtypografie und Struktur.",
+    "industries": [
+      "verlag",
+      "kultur"
+    ],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "The most beautiful German books: book typography and structure.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": [
+      "publishing",
+      "culture"
+    ]
+  },
+  {
+    "id": "adc-de",
+    "name": "ADC Deutschland",
+    "url": "https://www.adc.de",
+    "kind": "print",
+    "good_for": "Ausgezeichnete Arbeiten über alle Medien. Award-Bias.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Aufgenommen 29.10.2026 nach redaktioneller Prüfung; Erreichbarkeit nicht per Skript geprüft.",
+    "good_for_en": "Award-winning work across all media. Award bias.",
+    "note_en": "Added on 29 Oct 2026 after comparison with the curator's notes; availability not checked by script.",
+    "industries_en": []
+  },
+  {
+    "id": "thedesignstack",
+    "name": "The Design Stack",
+    "url": "https://thedesignstack.co.in",
+    "kind": "directory",
+    "good_for": "Interaktionen als Video, Figma-Komponente und Prompt (Scroll, Hero, Hover, Loader, Menüs, Text). Gut, um Mechaniken zu benennen.",
+    "industries": [],
+    "search_url_template": null,
+    "note": "Abo (25 $ je 6 Monate), Code nicht frei weiterverwendbar. Nur Mechanik übernehmen, selbst bauen. Eingetragen 30.10.2026 auf Tills Hinweis.",
+    "good_for_en": "Interactions as video, Figma component and prompt (scroll, hero, hover, loaders, menus, text). Useful for naming mechanics.",
+    "note_en": "Subscription (25 USD per 6 months), code not free to reuse. Take the mechanism only and build it yourself. Added 30 Oct 2026.",
+    "industries_en": []
+  }
+]

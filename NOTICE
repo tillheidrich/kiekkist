@@ -1,0 +1,19 @@
+Kiekkist
+Copyright (c) 2026 Till Heidrich (Heidrich Digital)
+
+The tool is licensed under the GNU Affero General Public License v3.0 only (LICENSE).
+The skill in skill/kiekkist-agency is licensed under the MIT License (skill/kiekkist-agency/LICENSE).
+The knowledge packs in knowledge/packs carry the licence declared in each file (knowledge/README.md).
+The example themes in examples/themes are licensed as described in examples/LICENSE. Their photos
+are (c) Till Heidrich and licensed only for use within these examples; not for other use.
+
+Third-party components included in this repository:
+- Fonts in examples/themes/*/assets/fonts and public/landing/fonts: SIL Open Font License 1.1,
+  copied from Fontsource packages; each family's licence file is next to its fonts.
+
+Third-party components installed as dependencies (not included; see package.json and package-lock.json):
+- axe-core (MPL-2.0), Deque Systems; injected into checked pages at run time.
+- Playwright (Apache-2.0), Microsoft; with Chromium (BSD-style licences).
+- Hono, @hono/node-server, @modelcontextprotocol/sdk, better-sqlite3, culori, jszip, zod (MIT, or MIT/GPL-3.0 dual for jszip).
+
+Ideas credited in skill/kiekkist-agency/references/credits.md; no text was copied.

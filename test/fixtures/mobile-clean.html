@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hausverwaltung Kröger, Buchholz</title>
+<!-- Mobile counterpart of mobile-bad.html done right: one WOFF2 with font-display optional, LCP image in the HTML with
+     fetchpriority and dimensions, slim sticky header, call link, side scroller with peek and keyboard access, hover with focus twin. -->
+<style>
+  @font-face { font-family: "Text"; src: url("../../examples/themes/nordlicht-immobilien/assets/fonts/hanken-grotesk-latin-wght-normal.woff2") format("woff2"); font-weight: 100 900; font-display: optional; }
+  * { box-sizing: border-box; }
+  html { background: #fafaf7; scroll-padding-top: 64px; }
+  body { margin: 0; background: #fafaf7; color: #1d2329; font: 1.0625rem/1.6 "Text", Arial, sans-serif; }
+  a { color: #0f4c6b; }
+  header.bar { position: sticky; top: 0; z-index: 5; background: #fff; border-bottom: 1px solid #ccd; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 0 16px; min-height: 56px; }
+  header.bar .brand { font-weight: 700; color: #1d2329; text-decoration: none; padding: 12px 0; }
+  header.bar a.call { padding: 12px 4px; min-height: 44px; display: inline-block; }
+  main { padding: 0 16px 32px; max-width: 40rem; margin: 0 auto; }
+  footer { padding: 16px; max-width: 40rem; margin: 0 auto; }
+  footer a { display: inline-block; padding: 12px 0; min-height: 44px; }
+  h1 { font-size: 1.75rem; line-height: 1.2; margin: 20px 0 12px; }
+  .hero { display: block; width: 100%; height: auto; }
+  .cta { display: inline-block; margin: 16px 0; padding: 12px 18px; background: #0f4c6b; color: #fff; text-decoration: none; font-weight: 700; min-height: 44px; }
+  ul.slider { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; list-style: none; margin: 24px 0; padding: 0; }
+  ul.slider li { flex: 0 0 78%; scroll-snap-align: start; padding: 20px; background: #eef; }
+  .card { border: 1px solid #ccd; padding: 12px; margin: 16px 0; }
+  .card .more { max-height: 0; overflow: hidden; }
+  .card:hover .more, .card:focus-within .more { max-height: 4em; }
+  input { font: inherit; padding: 10px; border: 1px solid #778; }
+  label { display: grid; gap: 4px; margin: 12px 0; font-weight: 700; }
+</style>
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="#start">Hausverwaltung Kröger</a>
+    <a class="call" href="tel:+4941812345678">04181 2345678</a>
+  </header>
+  <main id="start">
+    <h1>Hausverwaltung für Buchholz und Tostedt</h1>
+    <p>Wir betreuen Eigentümergemeinschaften und Mietwohnungen im Landkreis Harburg. Abrechnungen kommen pünktlich.</p>
+    <a class="cta" href="#kontakt">Angebot anfragen</a>
+    <img class="hero" src="../../examples/themes/nordlicht-immobilien/assets/img/elbe-hoch-700.jpg" alt="Wohnhaus an der Elbe im Abendlicht" width="700" height="934" fetchpriority="high">
+    <p>Eigentümerversammlungen bereiten wir mit einer klaren Tagesordnung vor und schicken das Protokoll spätestens zwei Wochen danach. Rücklagen werden getrennt geführt und jährlich offengelegt.</p>
+    <ul class="slider" aria-label="Pakete" tabindex="0">
+      <li>Mietverwaltung für Einzelwohnungen und Häuser</li>
+      <li>WEG-Verwaltung für Eigentümergemeinschaften</li>
+      <li>Sondereigentumsverwaltung für vermietete Wohnungen</li>
+    </ul>
+    <div class="card">
+      <p>Unser Team</p>
+      <div class="more"><a href="#team">Alle Ansprechpersonen ansehen</a></div>
+    </div>
+    <form id="kontakt">
+      <label>Name <input name="name" autocomplete="name"></label>
+      <label>E-Mail <input name="email" type="email" autocomplete="email"></label>
+      <label>Telefon <input name="telefon" type="tel" autocomplete="tel"></label>
+    </form>
+  </main>
+  <footer><a href="barrierefreiheit.html">Barrierefreiheit</a></footer>
+</body>
+</html>

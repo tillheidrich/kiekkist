@@ -1,0 +1,629 @@
+{
+ "id": "stacks",
+ "version": "2026-10-30.1",
+ "kind": "stack",
+ "title": "Delivery targets, editors and EU hosting",
+ "license": "MIT",
+ "description": "How one Kiekkist theme (DESIGN.md, DTCG tokens, pages) is delivered per target, which editor fits which client, token mappings and EU hosting options. Facts checked 2026-10-30; re-check version lines before promising them. Not endorsements.",
+ "sources": [
+  {
+   "title": "Astro 6 release",
+   "url": "https://astro.build/blog/astro-6/",
+   "date": "2026-03-10"
+  },
+  {
+   "title": "Astro upgrade guide v6",
+   "url": "https://docs.astro.build/de/guides/upgrade-to/v6/"
+  },
+  {
+   "title": "Next.js 16 overview (NashTech)",
+   "url": "https://blog.nashtechglobal.com/next-js-16-whats-new-what-changed-and-why-it-matters/"
+  },
+  {
+   "title": "Next.js static exports",
+   "url": "https://nextjs.org/docs/pages/guides/static-exports"
+  },
+  {
+   "title": "WordPress 7.0 Armstrong (DreamHost)",
+   "url": "https://www.dreamhost.com/blog/wordpress-7-0/",
+   "date": "2026-05-20"
+  },
+  {
+   "title": "theme.json version 3 reference",
+   "url": "https://developer.wordpress.org/block-editor/reference-guides/theme-json-reference/theme-json-living/"
+  },
+  {
+   "title": "Elementor CLI kit export",
+   "url": "https://developers.elementor.com/docs/cli/kit-export"
+  },
+  {
+   "title": "Design Tokens Format Module 2025.10",
+   "url": "https://www.w3.org/community/reports/design-tokens/CG-FINAL-format-20251028/",
+   "date": "2025-10-28"
+  },
+  {
+   "title": "Maintainer's research notes: Entscheidungs-Leitfaden CMS- & Shop-Wahl",
+   "url": null,
+   "note": "maintainer's research notes, not public"
+  },
+  {
+   "title": "Maintainer's research notes: Client-editierbare Astro-Sites (r/astrojs-Konsens)",
+   "url": null,
+   "note": "maintainer's research notes, not public"
+  }
+ ],
+ "items": [
+  {
+   "id": "target-astro",
+   "name": "Astro (default)",
+   "role": "target",
+   "tags": [
+    "target",
+    "static",
+    "ssr",
+    "default"
+   ],
+   "version": "7.x (7.0.0 released 2026-06-22; 7.4.4 on 2026-10-30); 6.x line from 2026-03-10 still common. Check engines with npm view astro engines before promising a Node version",
+   "summary": "Static by default, components per section, content collections via content.config.ts, CSP API stable, zero JS by default.",
+   "fits": "new brochure and service sites, editorial sites, small shops with a payment link or headless commerce",
+   "avoid": "teams that must edit layouts visually without any developer",
+   "tokens": "tokens.css imported unchanged",
+   "fonts": "theme woff2 in public/fonts; Fonts API only if build output verified free of remote URLs",
+   "traps": [
+    "Astro.glob() removed: use import.meta.glob()",
+    "<ViewTransitions /> removed: use <ClientRouter />",
+    "legacy content collections removed",
+    "image optimiser strips metadata (C2PA) — see privacy-eu AI rule"
+   ],
+   "hosting": [
+    "any EU webspace (static)",
+    "Coolify on Hetzner Cloud",
+    "VPS with Caddy/nginx"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "target-wordpress",
+   "name": "WordPress block theme",
+   "role": "target",
+   "tags": [
+    "target",
+    "php",
+    "cms",
+    "client-editing"
+   ],
+   "version": "WordPress 7.0 (2026-05-20), PHP >= 7.4; theme.json schema v3; Interactivity API since 6.5",
+   "summary": "Block theme with theme.json generated from tokens, one pattern per section, locked palette and type scale, contentOnly locking for structured sections.",
+   "fits": "existing WordPress editorial teams, clients who must edit everything themselves",
+   "avoid": "sites nobody edits (maintenance without benefit); page builders on top",
+   "tokens": "settings.color.palette, typography.fontFamilies with local fontFace, fontSizes, spacing.spacingSizes, custom.*",
+   "fonts": "fontFace src file:./assets/fonts/*.woff2",
+   "traps": [
+    "emoji script and s.w.org DNS prefetch: remove",
+    "AI Connectors (Anthropic/Google/OpenAI) off unless decided with DPA",
+    "plugins are the main risk: list each with purpose",
+    "reCAPTCHA in form plugins: replace"
+   ],
+   "hosting": [
+    "managed WordPress at a German host",
+    "VPS only with care plan"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "target-elementor",
+   "name": "Elementor kit structure (honest path)",
+   "role": "target",
+   "tags": [
+    "target",
+    "wordpress",
+    "page-builder",
+    "legacy"
+   ],
+   "version": "kit export/import via wp elementor kit export|import (content, templates, site-settings)",
+   "summary": "Deliver global colors/fonts from tokens (hex fallback) plus a style-guide page; section templates only when an import test in a disposable WordPress passes kk check and kk compare.",
+   "fits": "clients who keep an existing Elementor site",
+   "avoid": "new builds",
+   "tokens": "system_colors/custom_colors (hex), system_typography/custom_typography; fluid type becomes three breakpoint sizes",
+   "traps": [
+    "element JSON is not a documented stable public schema",
+    "disable Elementor Google Fonts",
+    "no third-party add-on widgets",
+    "lower fidelity: say so in the offer"
+   ],
+   "evidence": "H",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "target-next",
+   "name": "Next.js",
+   "role": "target",
+   "tags": [
+    "target",
+    "react",
+    "static-export",
+    "ssr"
+   ],
+   "version": "16 (2025-10-21), Node >= 20.9; Turbopack default; proxy.ts replaces middleware.ts on Node runtime",
+   "summary": "App router; static export (output: 'export') or standalone server in Docker; tokens.css plus CSS Modules; Tailwind v4 only on request with generated @theme.",
+   "fits": "clients whose developers already work in React; app-like sites",
+   "avoid": "brochure sites without a React team",
+   "tokens": "tokens.css in root layout; optional @theme file",
+   "fonts": "next/font/local with theme woff2",
+   "traps": [
+    "static export: no server actions, ISR, cookies()/headers(), config rewrites/headers, proxy.ts, default image optimiser",
+    "images.unoptimized or pre-sized images",
+    "trailingSlash for plain webspaces",
+    "Vercel is US: not default"
+   ],
+   "hosting": [
+    "static: any EU webspace",
+    "standalone: Coolify/VPS in DE or FR"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "target-html",
+   "name": "Plain HTML",
+   "role": "target",
+   "tags": [
+    "target",
+    "static",
+    "one-pager"
+   ],
+   "summary": "Theme pages cleaned for production with identical header/footer, per-page meta, sitemap, robots, 404, header templates (.htaccess/_headers).",
+   "fits": "one-pagers, campaign and landing pages, up to about five pages",
+   "avoid": "regular content changes by non-developers",
+   "hosting": [
+    "any EU webspace"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "target-webflow-framer",
+   "name": "Webflow / Framer (later)",
+   "role": "target",
+   "tags": [
+    "target",
+    "saas",
+    "unverified"
+   ],
+   "summary": "No tested import path that keeps components editable; deliver variables list and pages as visual reference only. US SaaS: informed choice, not default.",
+   "status": "unverified",
+   "evidence": "H",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-none",
+   "name": "No CMS (Markdown/MDX in repo)",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "git",
+    "default"
+   ],
+   "targets": [
+    "astro",
+    "next",
+    "html"
+   ],
+   "client_edits": "nothing directly; agency or agent edits files",
+   "data": "repository",
+   "fits": "default for brochure sites with a care plan",
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-sveltia",
+   "name": "Sveltia CMS",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "git",
+    "self-host"
+   ],
+   "targets": [
+    "astro"
+   ],
+   "client_edits": "fields per collection in /admin",
+   "data": "Git (GitHub, GitLab, Gitea/Forgejo); no server, no DB",
+   "fits": "small teams on self-hosted Forgejo/Gitea",
+   "caveats": [
+    "no visual page building (felt as a gap in agency practice)"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-decap",
+   "name": "Decap CMS",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "git"
+   ],
+   "targets": [
+    "astro"
+   ],
+   "client_edits": "fields per collection",
+   "data": "Git incl. Gitea/Forgejo backend; OAuth helper needed",
+   "caveats": [
+    "older UX than Sveltia"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-pages",
+   "name": "Pages CMS",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "git",
+    "github"
+   ],
+   "targets": [
+    "astro"
+   ],
+   "client_edits": "email login, one YAML config",
+   "data": "GitHub only",
+   "caveats": [
+    "GitHub is a US service"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-keystatic",
+   "name": "Keystatic",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "git",
+    "github"
+   ],
+   "targets": [
+    "astro",
+    "next"
+   ],
+   "client_edits": "local or cloud UI",
+   "data": "online mode GitHub only",
+   "caveats": [
+    "not for self-hosted Git"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-directus",
+   "name": "Directus (self-host)",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "headless",
+    "self-host",
+    "visual-editing"
+   ],
+   "targets": [
+    "astro",
+    "next"
+   ],
+   "client_edits": "admin app plus visual editing on the live page",
+   "data": "own server, SQL DB",
+   "fits": "in-context editing with EU data control",
+   "caveats": [
+    "a server to patch",
+    "BSL licence: check current revenue threshold for larger clients"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-storyblok",
+   "name": "Storyblok",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "headless",
+    "saas",
+    "visual-editing"
+   ],
+   "targets": [
+    "astro",
+    "next"
+   ],
+   "client_edits": "visual editor with live preview of the site",
+   "data": "SaaS, EU region selectable",
+   "fits": "marketing teams with several editors",
+   "caveats": [
+    "subscription, lock-in",
+    "processor: DPA, named in policy"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-apostrophe",
+   "name": "ApostropheCMS",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "self-host",
+    "visual-editing"
+   ],
+   "targets": [
+    "astro"
+   ],
+   "client_edits": "on-page editing",
+   "data": "self-host, Node + MongoDB",
+   "caveats": [
+    "another stack to operate"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-payload",
+   "name": "Payload",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "headless",
+    "self-host"
+   ],
+   "targets": [
+    "astro",
+    "next"
+   ],
+   "client_edits": "admin from code, blocks, live preview",
+   "data": "self-host, Node + DB",
+   "caveats": [
+    "schema changes need a developer",
+    "commerce parts Next.js-oriented"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-statamic-kirby",
+   "name": "Statamic / Kirby (headless or native)",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "php",
+    "self-host"
+   ],
+   "targets": [
+    "astro"
+   ],
+   "client_edits": "mature PHP panels, block fields",
+   "data": "self-host, flat files or DB",
+   "caveats": [
+    "two systems when used headless"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "cms-wordpress-site-editor",
+   "name": "WordPress Site Editor",
+   "role": "editor",
+   "tags": [
+    "editor",
+    "php"
+   ],
+   "targets": [
+    "wordpress"
+   ],
+   "client_edits": "texts, images, menus, posts, pages from patterns; locked palette and scale",
+   "data": "own WordPress DB",
+   "caveats": [
+    "updates monthly",
+    "plugins"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "map-css",
+   "name": "DTCG to CSS custom properties",
+   "role": "mapping",
+   "tags": [
+    "mapping",
+    "tokens"
+   ],
+   "rules": {
+    "color.<n>": "--c-<n>: oklch(L% C H)",
+    "font.<role>": "--font-<role>",
+    "type.<role>.*": "--fs/--fw/--lh/--ls-<role>",
+    "space.<n>": "--s-<n>",
+    "radius.<n>": "--r-<n>",
+    "shadow.<n>": "--shadow-<n>",
+    "motion.*": "--dur-*, --ease-*",
+    "alias {a.b}": "var(--…)"
+   },
+   "evidence": "S",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "map-theme-json",
+   "name": "DTCG to WordPress theme.json v3",
+   "role": "mapping",
+   "tags": [
+    "mapping",
+    "tokens",
+    "wordpress"
+   ],
+   "rules": {
+    "color.<n>": "settings.color.palette[{slug,name,color}] -> --wp--preset--color--<slug>",
+    "font.<role>": "settings.typography.fontFamilies[{slug,fontFamily,fontFace[file:./assets/fonts/…]}]",
+    "type.<role>.fontSize": "settings.typography.fontSizes[{slug,size:clamp(),fluid:false}]",
+    "space.<n>": "settings.spacing.spacingSizes; defaultSpacingSizes:false",
+    "radius/motion/other": "settings.custom.<group>.<n> -> --wp--custom--…",
+    "shadow.<n>": "settings.shadow.presets; defaultPresets:false",
+    "locks": "color.custom:false, customGradient:false, defaultPalette:false, defaultGradients:false, typography.customFontSize:false, defaultFontSizes:false"
+   },
+   "evidence": "S",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "map-tailwind-v4",
+   "name": "DTCG to Tailwind v4 @theme",
+   "role": "mapping",
+   "tags": [
+    "mapping",
+    "tokens",
+    "tailwind"
+   ],
+   "rules": {
+    "reset": "@theme { --color-*: initial; --font-*: initial; }",
+    "color.<n>": "--color-<n>",
+    "font.<role>": "--font-<role>",
+    "type.<role>": "--text-<role> plus --text-<role>--line-height/--letter-spacing/--font-weight",
+    "space.<n>": "--spacing-<n>",
+    "radius.<n>": "--radius-<n>",
+    "easing": "--ease-<n>"
+   },
+   "evidence": "S",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "map-elementor",
+   "name": "DTCG to Elementor globals",
+   "role": "mapping",
+   "tags": [
+    "mapping",
+    "tokens",
+    "elementor"
+   ],
+   "rules": {
+    "colors": "hex fallback into system/custom colors",
+    "type": "roles into system/custom typography; clamp min/mid/max into mobile/tablet/desktop"
+   },
+   "caveats": [
+    "no OKLCH, no fluid type: fidelity loss"
+   ],
+   "evidence": "H",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "host-webspace-de",
+   "name": "Shared webspace at a German host",
+   "role": "host",
+   "tags": [
+    "host",
+    "static",
+    "php",
+    "eu"
+   ],
+   "suits": [
+    "astro-static",
+    "html",
+    "next-export",
+    "wordpress"
+   ],
+   "examples": [
+    "All-Inkl",
+    "Hetzner Webhosting",
+    "netcup",
+    "IONOS",
+    "Strato",
+    "Mittwald",
+    "Uberspace"
+   ],
+   "requires": [
+    "TLS",
+    "custom headers",
+    "DPA in panel",
+    "backups with restore"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "host-vps-coolify",
+   "name": "VPS with Coolify (DE/FR)",
+   "role": "host",
+   "tags": [
+    "host",
+    "docker",
+    "ssr",
+    "eu"
+   ],
+   "suits": [
+    "astro-ssr",
+    "next-standalone",
+    "directus",
+    "payload",
+    "wordpress"
+   ],
+   "examples": [
+    "Hetzner Cloud",
+    "netcup VPS",
+    "Scaleway",
+    "OVHcloud"
+   ],
+   "requires": [
+    "patching",
+    "backups to second location",
+    "monitoring"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "host-managed-wp",
+   "name": "Managed WordPress (DE)",
+   "role": "host",
+   "tags": [
+    "host",
+    "wordpress",
+    "eu"
+   ],
+   "suits": [
+    "wordpress"
+   ],
+   "examples": [
+    "Raidboxes",
+    "Mittwald",
+    "All-Inkl",
+    "IONOS"
+   ],
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "host-cdn-eu",
+   "name": "EU CDN (only if needed)",
+   "role": "host",
+   "tags": [
+    "host",
+    "cdn",
+    "eu"
+   ],
+   "examples": [
+    "bunny.net (Slovenia)"
+   ],
+   "note": "usually unnecessary for regional businesses",
+   "evidence": "P",
+   "checked": "2026-10-30"
+  },
+  {
+   "id": "host-codeberg-pages",
+   "name": "Codeberg Pages",
+   "role": "host",
+   "tags": [
+    "host",
+    "static",
+    "non-profit"
+   ],
+   "note": "non-profit, Berlin; for non-commercial projects",
+   "evidence": "P",
+   "checked": "2026-10-30"
+  }
+ ]
+}

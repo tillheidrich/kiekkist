@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tischlerei Brandt, Tostedt</title>
+<!-- Calm, self-contained fixture: one accent, two families, left axis, real copy. -->
+<style>
+  :root {
+    --paper: oklch(0.975 0.006 230);
+    --surface: oklch(0.94 0.012 150);
+    --ink: oklch(0.24 0.02 250);
+    --muted: oklch(0.45 0.02 250);
+    --line: oklch(0.85 0.01 230);
+    --accent: oklch(0.46 0.1 150);
+    --on-accent: oklch(0.99 0.004 150);
+    --font-text: "Atkinson Hyperlegible", "Noto Sans", sans-serif;
+    --font-display: "Literata", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html { background: var(--paper); }
+  body { margin: 0; background: var(--paper); color: var(--ink); font: 1.125rem/1.6 var(--font-text); }
+  a { color: var(--accent); }
+  .wrap { max-width: 68rem; margin: 0 auto; padding: 0 1.25rem; }
+  header.top { border-bottom: 1px solid var(--line); }
+  header.top .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1.5rem; }
+  .mark { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; padding: .75rem 0; display: inline-block; }
+  nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: .25rem; flex-wrap: wrap; }
+  nav a { display: inline-block; padding: .7rem .6rem; min-height: 44px; min-width: 44px; color: var(--ink); text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .intro { padding: 4rem 1.25rem 3rem; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 3rem; align-items: end; }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0 0 .75rem; font-weight: 600; }
+  h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); max-width: 18ch; }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+  h3 { font-size: 1.2rem; }
+  .lead { font-size: 1.2rem; color: var(--muted); max-width: 36ch; }
+  .call { display: inline-block; margin-top: 1.25rem; padding: .85rem 1.3rem; background: var(--accent); color: var(--on-accent); text-decoration: none; border-radius: 2px; font-weight: 700; }
+  .fact { border-left: 3px solid var(--accent); padding-left: 1rem; color: var(--muted); }
+  section { padding: 3rem 0; border-top: 1px solid var(--line); }
+  dl.work { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem 3rem; margin: 1.5rem 0 0; }
+  dl.work dt { font-weight: 700; }
+  dl.work dd { margin: .25rem 0 0; color: var(--muted); }
+  .project { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 2.5rem; align-items: start; }
+  .project figure { margin: 0; background: var(--surface); }
+  .project img { display: block; width: 100%; height: auto; }
+  .project figcaption { padding: .6rem .8rem; font-size: .95rem; color: var(--muted); }
+  blockquote { margin: 0; font-family: var(--font-display); font-size: 1.35rem; line-height: 1.45; max-width: 40ch; }
+  blockquote footer { font-family: var(--font-text); font-size: 1rem; color: var(--muted); margin-top: .75rem; }
+  form { display: grid; gap: 1rem; max-width: 32rem; }
+  label { display: grid; gap: .3rem; font-weight: 700; }
+  input, textarea { font: inherit; font-size: 1rem; padding: .7rem .8rem; border: 1px solid var(--muted); border-radius: 2px; background: var(--paper); color: var(--ink); }
+  button { font: inherit; font-weight: 700; padding: .8rem 1.3rem; border: 0; border-radius: 2px; background: var(--accent); color: var(--on-accent); justify-self: start; min-height: 44px; }
+  footer.end { border-top: 1px solid var(--line); padding: 2rem 0 3rem; color: var(--muted); font-size: 1rem; }
+  footer.end a { display: inline-block; padding: .6rem 0; min-height: 44px; }
+  @media (max-width: 760px) {
+    .intro, .project, dl.work { grid-template-columns: 1fr; }
+    .intro { padding-top: 2.5rem; gap: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <a class="mark" href="#start">Tischlerei Brandt</a>
+      <nav aria-label="Hauptmenü">
+        <ul>
+          <li><a href="#leistungen">Leistungen</a></li>
+          <li><a href="#projekt">Projekt</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="start">
+    <div class="wrap intro">
+      <div>
+        <h1>Möbel nach Maß, gebaut in Tostedt</h1>
+        <p class="lead">Wir planen und bauen Einbauschränke, Küchen und Treppen aus heimischem Holz. Seit 1987, mit fünf Leuten in einer Werkstatt am Ortsrand.</p>
+        <a class="call" href="#kontakt">Aufmaß vereinbaren</a>
+      </div>
+      <p class="fact">Ein Aufmaß bei Ihnen zu Hause ist kostenlos. Ein Angebot bekommen Sie danach innerhalb von zehn Werktagen.</p>
+    </div>
+
+    <section id="leistungen">
+      <div class="wrap">
+        <h2>Was wir machen</h2>
+        <dl class="work">
+          <div><dt>Einbauschränke</dt><dd>Für Dachschrägen, Nischen und Flure, auf den Millimeter angepasst.</dd></div>
+          <div><dt>Küchen</dt><dd>Fronten aus Eiche oder Esche, Arbeitsplatten aus Massivholz oder Stein.</dd></div>
+          <div><dt>Treppen</dt><dd>Neue Treppen und die Aufarbeitung alter Stufen, auch im Bestand.</dd></div>
+          <div><dt>Reparaturen</dt><dd>Türen, Fenster und Möbelstücke, die noch ein paar Jahrzehnte halten sollen.</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="projekt">
+      <div class="wrap project">
+        <figure>
+          <img alt="Einbauschrank aus Eiche unter einer Dachschräge, Türen halb geöffnet" width="600" height="400"
+               src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23cfd8cf'/%3E%3Cpath d='M0 400 L600 60 L600 400 Z' fill='%23b7a58a'/%3E%3Crect x='80' y='230' width='140' height='170' fill='%23a18a6a'/%3E%3C/svg%3E">
+          <figcaption>Dachschrank in Handeloh, Eiche geölt</figcaption>
+        </figure>
+        <div>
+          <h2>Ein Schrank für die Schräge</h2>
+          <p>Im Obergeschoss eines Hauses von 1962 blieb unter der Dachschräge ein Meter ungenutzt. Wir haben drei Schiebetüren und zwei Auszüge eingepasst. Gebaut wurde in der Werkstatt, montiert an einem Tag.</p>
+          <blockquote>
+            „Der Schrank sieht aus, als wäre er immer schon da gewesen.“
+            <footer>Familie Meyer, Handeloh</footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontakt">
+      <div class="wrap">
+        <h2>Kontakt</h2>
+        <p>Rufen Sie an unter <a href="tel:+494182000000">04182 000000</a> oder schreiben Sie uns kurz, worum es geht.</p>
+        <form>
+          <label>Name <input name="name" autocomplete="name"></label>
+          <label>Telefon oder E-Mail <input name="kontakt" autocomplete="email"></label>
+          <label>Worum geht es? <textarea name="text" rows="4"></textarea></label>
+          <button type="submit">Nachricht senden</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="end">
+    <div class="wrap">
+      <p>Tischlerei Brandt, Am Moor 4, 21255 Tostedt. Werkstatt geöffnet Montag bis Freitag, 7 bis 16 Uhr.</p>
+      <a href="#impressum">Impressum</a> &nbsp; <a href="#datenschutz">Datenschutz</a> &nbsp; <a href="barrierefreiheit.html">Barrierefreiheit</a>
+    </div>
+  </footer>
+</body>
+</html>

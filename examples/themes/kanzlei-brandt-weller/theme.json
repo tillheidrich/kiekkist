@@ -1,0 +1,29 @@
+{
+  "slug": "kanzlei-brandt-weller",
+  "name": "Kanzlei Brandt Weller",
+  "summary": "Purely typographic theme for a commercial law and tax firm serving family-owned Mittelstand companies: book typography, margin numbers, case references instead of imagery.",
+  "industry": [
+    "recht",
+    "law",
+    "steuerberatung",
+    "professional-services"
+  ],
+  "media": [
+    "web",
+    "slides",
+    "social"
+  ],
+  "mood": [
+    "serious",
+    "quiet",
+    "typographic",
+    "dense"
+  ],
+  "fonts": [
+    "Source Serif 4",
+    "Public Sans"
+  ],
+  "license": "CC-BY-4.0 (code and copy); fonts OFL-1.1; photos © Till Heidrich, use only within this example",
+  "author": "Heidrich Digital (example theme, fictional company)",
+  "created": "2026-10-29"
+}

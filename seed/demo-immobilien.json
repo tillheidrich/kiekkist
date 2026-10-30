@@ -1,0 +1,147 @@
+{
+  "board": {
+    "name": "Immobilien: hochwertige Makler-Websites",
+    "client": "Demo",
+    "brief": "Ein inhabergeführtes Maklerbüro in den Hamburger Elbvororten (Blankenese, Nienstedten, Othmarschen) will seine Website neu aufstellen. Zielgruppe sind Eigentümer zwischen 55 und 75, die ihr Haus verkaufen wollen, und Käufer mit hohem Budget, die meist über Empfehlung kommen. Der Ton soll ruhig, hanseatisch und sachlich sein: echte Fotos der Objekte und des Teams, Exposés mit belastbaren Daten statt Werbesprache, kein Gold, kein Glanz. Die Seite muss vor allem das Vertrauen der Verkäufer gewinnen, die Objektliste ist zweitrangig.",
+    "status": "collecting",
+    "created_at": "2026-10-29",
+    "research_note": "Gesucht über Minimal Gallery (Tags real-estate und architecture-interior-design), One Page Love (Tag real-estate) und Awwwards (Kategorie real-estate). Siteinspire und Land-book waren am 29.10. nur im Browser erreichbar (429 bzw. 403 beim automatischen Abruf). Alle 15 URLs am 29.10.2026 per Abruf geprüft."
+  },
+  "refs": [
+    {
+      "url": "https://www.luxury-places.ch/",
+      "title": "Luxury Places (Genfersee und Alpen)",
+      "industry": ["immobilien"],
+      "tags": ["makler", "dach", "schweiz", "objektliste", "kategorien"],
+      "mechanism": "Objektkategorien als Kacheln mit Live-Zähler (Seeufer 22, historische Residenzen 16, Neubau 5) statt einer Suchmaske im Einstieg.",
+      "note": "Am nächsten an einem hochwertigen Maklerbüro: Kategorien nach Lebensgefühl, Preis oder „Sur demande“, Merkliste. Schwäche: Flächenangaben ohne Bezeichnung (Grundstück oder Wohnfläche), gemischte Währungen im Raster, laut Dateinamen teils KI-Bilder.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://wild-ag.ch/",
+      "title": "Wild AG (Wallisellen, Zürich)",
+      "industry": ["immobilien"],
+      "tags": ["projektentwickler", "dach", "schweiz", "nummerierte-sektionen"],
+      "mechanism": "Leistungen als fünf groß nummerierte Blöcke, jeder endet mit einem Link auf die passenden Projekte; dazu ein Drei-Schritt-Prozess (Analyse, Projektierung, Realisierung).",
+      "note": "Klare Gliederung, deutsche Sprache ohne Behördenton, Projektkarten mit harten Daten (20 Mietwohnungen, Markteinführung 2027). Schwäche: nur zwei Projekte, Partnerleiste dreifach wiederholt, Team ohne Lebensläufe.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://www.the-cradle.de/",
+      "title": "The Cradle (Düsseldorf, Medienhafen)",
+      "industry": ["immobilien"],
+      "tags": ["objektwebsite", "dach", "buero", "nachhaltigkeit", "einseiter"],
+      "mechanism": "Eigene Website für ein einzelnes Gebäude, die abstrakte Kennzahlen in Alltagsvergleiche übersetzt (CO2-Ersparnis als 287 Weltumrundungen im Flugzeug).",
+      "note": "Gutes Muster für ein Exposé als Erzählung mit Haltung. Schwäche: keine Grundrisse, Flächen oder Mietkonditionen, obwohl die Seite Mieter gewinnen soll; Galeriebilder mit gleichem Alt-Text.",
+      "found_via": "Minimal Gallery"
+    },
+    {
+      "url": "https://deiterhaus.de/",
+      "title": "Deiterhaus (Essen, Vendum Immobilien)",
+      "industry": ["immobilien"],
+      "tags": ["makler", "dach", "einzelobjekt", "denkmal", "storytelling"],
+      "mechanism": "Ein Makler baut einem einzelnen Verkaufsobjekt eine eigene Einseiter-Website: Geschichte als Zeitleiste, dann die Fakten als Schlüssel-Wert-Liste, Ansprechpartner im Overlay jederzeit erreichbar.",
+      "note": "Genau das Format, das ein Elbvororte-Makler für ein besonderes Haus braucht. Schwäche: kein Preis, keine Rendite, keine Energiedaten, und die Knöpfe „Informationen anfordern“ zeigen beim Abruf auf „#“.",
+      "found_via": "One Page Love"
+    },
+    {
+      "url": "https://www.buena.com/en/home",
+      "title": "Buena (Hausverwaltung, Deutschland)",
+      "industry": ["immobilien"],
+      "tags": ["hausverwaltung", "dach", "eigentuemer", "testimonials"],
+      "mechanism": "Zwei Einstiege nach Eigentümertyp (WEG oder Mietverwaltung), deren Knöpfe das Angebotsformular schon vorsortiert öffnen.",
+      "note": "Kein Makler, aber dieselbe Zielgruppe (Eigentümer) und ein ruhiger, sachlicher Ton mit Kundenstimmen samt Stadt. Schwäche: „Best in Germany“ ohne Beleg, keine Adresse, kein Preis, ein Zitat doppelt.",
+      "found_via": "Minimal Gallery"
+    },
+    {
+      "url": "https://m3-pg.de",
+      "title": "M3 Planungsgruppe (Northeim)",
+      "industry": ["immobilien"],
+      "tags": ["architektur", "dach", "projektliste", "typografie"],
+      "mechanism": "Projekte als nummerierter Index (1 bis 6) mit großem Bild und einem Satz zur Besonderheit des Grundstücks, etwa 27 Prozent Hangneigung.",
+      "note": "Zeigt, wie ein kleines Büro aus der Provinz hochwertig auftreten kann. Schwäche: mehrere „Mehr erfahren“-Links und der Menüpunkt Projekte zeigen auf „#“, Projektkarten ohne Jahr und Rolle.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://www.250broadway.com/",
+      "title": "250 Broadway (New York)",
+      "industry": ["immobilien"],
+      "tags": ["vermietung", "gewerbe", "datenblatt", "grundriss", "international"],
+      "mechanism": "Exposé als Datenblatt: Etagen-Tabs mit Fläche, Deckenhöhe, Zustand, Verfügbarkeit und Grundriss-PDF direkt auf der Startseite.",
+      "note": "Das beste Beispiel für „Daten statt Adjektive“, Vermietungsteam mit Namen im Footer. Schwäche: Flächen im Text und im Datenblatt widersprechen sich, keine Mietpreise.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://360lexingtonave.com",
+      "title": "360 Lexington Avenue (New York)",
+      "industry": ["immobilien"],
+      "tags": ["vermietung", "gewerbe", "lage", "karte", "international"],
+      "mechanism": "Lage als Hauptargument: „zwei Minuten bis Grand Central“, nummerierte Pins auf einer Umgebungskarte und Verkehrsanbindung als Liste.",
+      "note": "Übertragbar auf die Elbvororte (S-Bahn, Elbe, Schulen als Pins). Schwäche: Grundrisse und Verfügbarkeit nur auf einer Unterseite, dieselbe Fläche dreimal unterschiedlich geschrieben.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://www.homeofambrose.com/",
+      "title": "Home of Ambrose (Madrid)",
+      "industry": ["immobilien"],
+      "tags": ["kuratierte-objekte", "video", "storytelling", "international"],
+      "mechanism": "Immer nur ein Objekt im Fokus, erzählt als Geschichte mit Video und Statusmarke (Verkauft / Zu verkaufen), dazu eine Ortsuhr Madrid im Kopf.",
+      "note": "Stark für den Ton „wenige, besondere Häuser“. Schwäche: keine Preise, keine Grundrisse, Absätze im Über-uns doppelt, Zoom auf dem Handy gesperrt.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://lagom-development.com/",
+      "title": "Lagom Development (Lwiw)",
+      "industry": ["immobilien"],
+      "tags": ["projektentwickler", "preise", "verfuegbarkeit", "international"],
+      "mechanism": "Projektkarten als abgeschlossene Verkaufseinheit: Preis pro m², Hausgröße, Ratenzahlung, Zahl freier Häuser, Karte und Fotostreifen in einer Karte.",
+      "note": "Zeigt offen Preise und Verfügbarkeit, was deutsche Makler selten wagen. Schwäche: Hauptknopf führt auf eine externe Lageplan-Seite, ein Detail-Link zeigt aufs falsche Projekt.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://www.quintadamalia.com/",
+      "title": "Quinta D. Amália (Vila Nova de Gaia)",
+      "industry": ["immobilien"],
+      "tags": ["neubauprojekt", "wohnungstypen", "einseiter", "international"],
+      "mechanism": "Wohnungstypen T1, T2, T3 als drei nebeneinanderstehende Karten mit je eigenem Anfrageknopf, darunter die Ausstattung als Kacheln mit Kurzschlagwort.",
+      "note": "Brauchbares Muster für Neubauvermarktung. Schwäche: Kennzahlen „Startpreis“ und „verfügbare Wohnungen“ ohne Wert im Abruf, keine Grundrisse, viel Werbesprache.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://resider.ca",
+      "title": "Resider (Vancouver)",
+      "industry": ["immobilien"],
+      "tags": ["portal", "suche", "karte", "datendicht", "international"],
+      "mechanism": "Listen-, Karten- und Hybridansicht nebeneinander; jede Karte zeigt Baujahr, Preis, Zimmer, Fläche, Stellplatz und Inseratsdatum.",
+      "note": "Referenz für eine dichte, saubere Objektsuche, falls der Makler viele Objekte hat. Schwäche: Portal statt Makler, viele Daten erst nach Anmeldung, Reste unfertiger Oberfläche im Quelltext.",
+      "found_via": "Awwwards"
+    },
+    {
+      "url": "https://www.samuelsre.com/",
+      "title": "Samuels & Associates (Boston)",
+      "industry": ["immobilien"],
+      "tags": ["projektentwickler", "kennzahl", "lokal", "international"],
+      "mechanism": "Eine einzige große Kennzahl („12 million sq. ft“) plus Zitate mit Lokalbezug (Fenway) tragen den Auftritt.",
+      "note": "Zeigt, wie Verwurzelung im Viertel als Marke funktioniert, für Blankenese gut übertragbar. Schwäche: Portfolio auf der Startseite unsichtbar, Hauptüberschrift lautet „Homepage“.",
+      "found_via": "Minimal Gallery"
+    },
+    {
+      "url": "https://artifactproperty.co.nz/",
+      "title": "Artifact Property (Auckland)",
+      "industry": ["immobilien"],
+      "tags": ["projektentwickler", "architektur", "galerie", "ruhig", "international"],
+      "mechanism": "Ein Projekt im Fokus, darunter eine Bildgalerie aus Hoch- und Querformaten im Wechsel, Inhaber mit Telefon und Mail direkt auf der Startseite.",
+      "note": "Sehr ruhig, warmes Off-White, persönlich. Schwäche: Meta-Beschreibung „Description to go here“, leere Alt-Texte, keine Flächen oder Preise.",
+      "found_via": "Minimal Gallery"
+    },
+    {
+      "url": "https://livinghouse.nz/",
+      "title": "The Living House (Neuseeland)",
+      "industry": ["immobilien"],
+      "tags": ["haus-als-produkt", "preis", "grundriss", "kostenaufstellung", "international"],
+      "mechanism": "Größenschalter (2 oder 3 Schlafzimmer) wechselt Preis, Grundriss und Galerie; von der Preiszeile führt ein Link in die vollständige Kostenaufstellung.",
+      "note": "Transparenz als Verkaufsargument, gut für Verkäufergespräche über Wertermittlung. Schwäche: Kopfpreis ohne Grundstück und Nebenkosten, wichtige Einschränkungen nur in der FAQ.",
+      "found_via": "Minimal Gallery"
+    }
+  ]
+}

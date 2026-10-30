@@ -1,0 +1,1 @@
+{ "slug": "theme-dark", "name": "Dunkel Test", "summary": "Fixture: dark default with light scheme by media query, font preload, inline styles, small inline footer links.", "license": "CC-BY-4.0", "fonts": ["Public Sans"] }

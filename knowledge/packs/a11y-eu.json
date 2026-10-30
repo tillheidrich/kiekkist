@@ -1,0 +1,2032 @@
+{
+ "id": "a11y-eu",
+ "version": "2026-10-30.2",
+ "kind": "rules",
+ "title": "EU accessibility requirements (WCAG 2.2 AA, EN 301 549, EAA/BFSG/BITV)",
+ "description": "All WCAG 2.2 level A and AA success criteria plus the EN 301 549 clauses beyond WCAG that matter for websites, apps and documents, with legal hook, media they apply to, whether the designer must decide it early, what can be automated and how to test. Legal status as of 2026-10-30; not legal advice.",
+ "license": "CC-BY-4.0 (own text)",
+ "as_of": "2026-10-30",
+ "sources": [
+  {
+   "id": "eaa",
+   "title": "Directive (EU) 2019/882 (European Accessibility Act)",
+   "url": "https://eur-lex.europa.eu/eli/dir/2019/882/oj",
+   "date": "2019-04-17",
+   "type": "primary"
+  },
+  {
+   "id": "bfsg",
+   "title": "Barrierefreiheitsstärkungsgesetz (BFSG), Stand: Art. 32 G v. 6.5.2024",
+   "url": "https://www.gesetze-im-internet.de/bfsg/",
+   "date": "2024-05-06",
+   "type": "primary"
+  },
+  {
+   "id": "bfsgv",
+   "title": "Verordnung zum BFSG (BFSGV), geändert durch V v. 10.7.2026 (BGBl. 2026 I Nr. 205)",
+   "url": "https://www.gesetze-im-internet.de/bfsgv/",
+   "date": "2026-07-16",
+   "type": "primary"
+  },
+  {
+   "id": "bitv",
+   "title": "BITV 2.0, Stand: V v. 24.10.2023",
+   "url": "https://www.gesetze-im-internet.de/bitv_2_0/",
+   "date": "2023-10-24",
+   "type": "primary"
+  },
+  {
+   "id": "en301549v4",
+   "title": "ETSI/CEN/CENELEC EN 301 549 V4.1.1 (2026-09)",
+   "url": "https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf",
+   "date": "2026-09-02",
+   "type": "primary"
+  },
+  {
+   "id": "en301549v3",
+   "title": "EN 301 549 V3.2.1 (2021-03), cited under Directive (EU) 2016/2102 by Implementing Decision (EU) 2021/1339",
+   "url": "https://www.etsi.org/deliver/etsi_en/301500_301599/301549/03.02.01_60/en_301549v030201p.pdf",
+   "date": "2021-03",
+   "type": "primary"
+  },
+  {
+   "id": "wcag22",
+   "title": "W3C WCAG 2.2 Recommendation (identical to ISO/IEC 40500:2025)",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "date": "2024-12-12",
+   "type": "primary"
+  },
+  {
+   "id": "accessibleeu-en4",
+   "title": "AccessibleEU: The European accessibility standard EN 301 549 has been updated",
+   "url": "https://accessible-eu-centre.ec.europa.eu/content-corner/news/european-accessibility-standard-en-301-549-has-been-updated-2026-09-07_en",
+   "date": "2026-09-07",
+   "type": "primary (EU centre)"
+  },
+  {
+   "id": "mlbf-sh",
+   "title": "Land Schleswig-Holstein: MLBF (address, start 26.09.2025)",
+   "url": "https://www.schleswig-holstein.de/DE/fachinhalte/A/arbeitsschutz/mlbf",
+   "date": "2026",
+   "type": "primary (Land authority)"
+  },
+  {
+   "id": "zdh",
+   "title": "ZDH Praxis Recht: Barrierefreiheit von Webseiten (FAQ, based on Bundesfachstelle answers Feb 2025)",
+   "url": "https://www.zdh.de/ueber-uns/fachbereich-organisation-und-recht/praxis-recht-/-leitfaeden/praxis-recht-barrierefreiheit-von-webseiten/",
+   "date": "2026-08-18",
+   "type": "secondary (trade association)"
+  },
+  {
+   "id": "axe",
+   "title": "axe-core 4.14.0 rule metadata (tags wcag*, EN-9.*)",
+   "url": "https://github.com/dequelabs/axe-core",
+   "date": "2026",
+   "type": "primary (tool)"
+  }
+ ],
+ "items": [
+  {
+   "id": "wcag-1.1.1",
+   "name": "Non-text content",
+   "wcag": "1.1.1",
+   "wcag_version": "2.0",
+   "en301549": "9.1.1.1 / 10.1.1.1 / 11.1.1.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "axe:image-alt,input-image-alt,role-img-alt,svg-img-alt,object-alt,area-alt; kk:img-alt",
+   "how_to_test": "Check every image, icon and chart: informative ones have a text alternative that serves the same purpose; decorative ones are hidden (alt=\"\", aria-hidden). Automated rules only find missing alt, never wrong alt.",
+   "evidence": "S",
+   "note": "Decide in design which images carry information. Charts need a text summary or data table. Social posts: alt text in the platform field. Logos: alt = company name, not 'logo'.",
+   "tags": [
+    "perceivable",
+    "images"
+   ]
+  },
+  {
+   "id": "wcag-1.2.1",
+   "name": "Audio-only and video-only (prerecorded)",
+   "wcag": "1.2.1",
+   "wcag_version": "2.0",
+   "en301549": "9.1.2.1 / 10.1.2.1 / 11.1.2.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "For podcasts/audio: transcript linked next to the player. For silent video that carries information: text or audio alternative.",
+   "evidence": "S",
+   "note": "Not needed for purely decorative muted background video (but then 2.2.2 applies).",
+   "tags": [
+    "media"
+   ]
+  },
+  {
+   "id": "wcag-1.2.2",
+   "name": "Captions (prerecorded)",
+   "wcag": "1.2.2",
+   "wcag_version": "2.0",
+   "en301549": "9.1.2.2 / 11.1.2.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "axe:video-caption (only <video> without <track>; cannot judge quality)",
+   "how_to_test": "Play each video with sound off: are all spoken words and relevant sounds captioned, synchronised and accurate? Check <track kind=\"captions\"> or the platform caption track.",
+   "evidence": "S",
+   "note": "Budget captions in the offer. Social: upload SRT where the platform allows it; burned-in captions are better than none but cannot be resized or turned off.",
+   "tags": [
+    "media",
+    "video"
+   ]
+  },
+  {
+   "id": "wcag-1.2.3",
+   "name": "Audio description or media alternative (prerecorded)",
+   "wcag": "1.2.3",
+   "wcag_version": "2.0",
+   "en301549": "9.1.2.3 / 11.1.2.3",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Watch with eyes closed: is important visual information also spoken? If not, an audio-described version or a full text alternative exists.",
+   "evidence": "S",
+   "note": "Cheapest route: script videos so the speaker says what is shown ('integrated description').",
+   "tags": [
+    "media",
+    "video"
+   ]
+  },
+  {
+   "id": "wcag-1.2.4",
+   "name": "Captions (live)",
+   "wcag": "1.2.4",
+   "wcag_version": "2.0",
+   "en301549": "9.1.2.4 / 11.1.2.4",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Live streams and webinars offer real-time captions (human or reviewed automatic).",
+   "evidence": "S",
+   "note": "Relevant for webinars and live events streamed on the site.",
+   "tags": [
+    "media",
+    "live"
+   ]
+  },
+  {
+   "id": "wcag-1.2.5",
+   "name": "Audio description (prerecorded)",
+   "wcag": "1.2.5",
+   "wcag_version": "2.0",
+   "en301549": "9.1.2.5 / 11.1.2.5",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "As 1.2.3, but at AA a text alternative alone is not enough: provide audio description (or integrated description).",
+   "evidence": "S",
+   "note": "Plan this in the video script, not after the edit.",
+   "tags": [
+    "media",
+    "video"
+   ]
+  },
+  {
+   "id": "wcag-1.3.1",
+   "name": "Info and relationships",
+   "wcag": "1.3.1",
+   "wcag_version": "2.0",
+   "en301549": "9.1.3.1 / 10.1.3.1 / 11.1.3.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "axe:list,listitem,definition-list,dlitem,td-headers-attr,th-has-data-cells,aria-required-children,aria-required-parent,label (partial)",
+   "how_to_test": "Screen reader or accessibility tree: headings are real headings, lists are lists, tables have header cells, form fields are grouped (fieldset/legend), visual emphasis that carries meaning is in the markup. PDFs/PPTX: tags and reading structure exist.",
+   "evidence": "S",
+   "note": "Design the heading hierarchy in the content model. Visual-only grouping (cards, columns) must map to structure.",
+   "tags": [
+    "structure"
+   ]
+  },
+  {
+   "id": "wcag-1.3.2",
+   "name": "Meaningful sequence",
+   "wcag": "1.3.2",
+   "wcag_version": "2.0",
+   "en301549": "9.1.3.2 / 10.1.3.2 / 11.1.3.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Disable CSS or read with a screen reader: the reading order makes sense. Watch for CSS order/grid reordering, absolutely positioned labels, PowerPoint reading order (Selection pane).",
+   "evidence": "S",
+   "note": "Asymmetric layouts must still read top-to-bottom in a sensible order on phones.",
+   "tags": [
+    "structure"
+   ]
+  },
+  {
+   "id": "wcag-1.3.3",
+   "name": "Sensory characteristics",
+   "wcag": "1.3.3",
+   "wcag_version": "2.0",
+   "en301549": "9.1.3.3 / 10.1.3.3 / 11.1.3.3",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Search the copy for 'click the green button', 'on the right', 'round icon', sound cues. Instructions must not rely only on shape, colour, size, position or sound.",
+   "evidence": "S",
+   "note": "Copywriting rule, not code.",
+   "tags": [
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-1.3.4",
+   "name": "Orientation",
+   "wcag": "1.3.4",
+   "wcag_version": "2.1",
+   "en301549": "9.1.3.4 / 11.1.3.4",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "axe:css-orientation-lock (experimental, enable explicitly); kk:orientation",
+   "how_to_test": "Rotate the phone (or emulate 844x390): content works in both orientations unless essential.",
+   "evidence": "S",
+   "note": "Apps: do not lock portrait unless essential.",
+   "tags": [
+    "layout",
+    "mobile"
+   ]
+  },
+  {
+   "id": "wcag-1.3.5",
+   "name": "Identify input purpose",
+   "wcag": "1.3.5",
+   "wcag_version": "2.1",
+   "en301549": "9.1.3.5 / 11.1.3.5",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "axe:autocomplete-valid (only invalid tokens); kk:autocomplete-missing",
+   "how_to_test": "Personal-data fields (name, email, tel, street-address, postal-code, cc-*) carry the correct autocomplete token; check the browser offers autofill.",
+   "evidence": "S",
+   "note": "Also reduces redundant entry (3.3.7) and helps 3.3.8.",
+   "tags": [
+    "forms"
+   ]
+  },
+  {
+   "id": "wcag-1.4.1",
+   "name": "Use of colour",
+   "wcag": "1.4.1",
+   "wcag_version": "2.0",
+   "en301549": "9.1.4.1 / 10.1.4.1 / 11.1.4.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "axe:link-in-text-block (links only); manual",
+   "how_to_test": "View in greyscale: links in text, required fields, errors, chart series, status and selected states are still distinguishable (underline, icon, text, pattern).",
+   "evidence": "S",
+   "note": "Token rule: every status colour has a second carrier (icon or text). Charts: direct labels or patterns.",
+   "tags": [
+    "colour",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-1.4.2",
+   "name": "Audio control",
+   "wcag": "1.4.2",
+   "wcag_version": "2.0",
+   "en301549": "9.1.4.2 / 11.1.4.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "axe:no-autoplay-audio; kk:autoplay-audio",
+   "how_to_test": "Any audio that starts automatically and lasts more than 3 s can be paused/stopped or muted independently of system volume. Better: no autoplay with sound.",
+   "evidence": "S",
+   "note": "Background videos must be muted.",
+   "tags": [
+    "media",
+    "motion"
+   ]
+  },
+  {
+   "id": "wcag-1.4.3",
+   "name": "Contrast (minimum)",
+   "wcag": "1.4.3",
+   "wcag_version": "2.0",
+   "en301549": "9.1.4.3 / 10.1.4.3 / 11.1.4.3",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "axe:color-contrast; kk:contrast",
+   "how_to_test": "Text 4.5:1, large text (>=24 px regular or >=18.66 px bold) 3:1, in every state (hover, focus, disabled is exempt but should remain readable) and every theme. Text over images: measure the worst spot or use a solid field.",
+   "evidence": "S",
+   "note": "Decide in the palette: each text/ground token pair is checked once and recorded in DESIGN.md. Projectors and sunlight need more than the minimum.",
+   "tags": [
+    "colour",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-1.4.4",
+   "name": "Resize text",
+   "wcag": "1.4.4",
+   "wcag_version": "2.0",
+   "en301549": "9.1.4.4 / 10.1.4.4 / 11.1.4.4",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:zoom-disabled (zoom blocked in the viewport meta), text-resize-200 (heuristic)",
+   "how_to_test": "Browser zoom 200 % (and text-only zoom in Firefox): no text clipped or overlapping, no functionality lost. Never block pinch zoom.",
+   "evidence": "S",
+   "note": "Use rem/em for type and containers with text; avoid fixed heights on text boxes.",
+   "tags": [
+    "layout",
+    "typography"
+   ]
+  },
+  {
+   "id": "wcag-1.4.5",
+   "name": "Images of text",
+   "wcag": "1.4.5",
+   "wcag_version": "2.0",
+   "en301549": "9.1.4.5 / 10.1.4.5 / 11.1.4.5",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "manual (kk-planned heuristic)",
+   "how_to_test": "No text rendered as image except logos and where essential. Headline graphics, quote cards, buttons as images are failures on web pages.",
+   "evidence": "S",
+   "note": "Social graphics are images of text by nature: put the same text in the post caption and alt text. On the website rebuild them in HTML/CSS.",
+   "tags": [
+    "typography",
+    "images"
+   ]
+  },
+  {
+   "id": "wcag-1.4.10",
+   "name": "Reflow",
+   "wcag": "1.4.10",
+   "wcag_version": "2.1",
+   "en301549": "9.1.4.10 / 10.1.4.10 / 11.1.4.10",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:reflow-320,page-overflow",
+   "how_to_test": "Viewport 320 CSS px wide (= 1280 px at 400 % zoom): no horizontal scrolling for text content, no loss of content or function. Exceptions: data tables, maps, diagrams, toolbars that need 2D layout. Vertical-text content: 256 px height.",
+   "evidence": "S",
+   "note": "Design the 320 px layout explicitly, not only 390. Navigation, sticky headers and cookie banners must still leave room for content.",
+   "tags": [
+    "layout",
+    "mobile",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-1.4.11",
+   "name": "Non-text contrast",
+   "wcag": "1.4.11",
+   "wcag_version": "2.1",
+   "en301549": "9.1.4.11 / 10.1.4.11 / 11.1.4.11",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "kk:non-text-contrast (axe has no rule)",
+   "how_to_test": "UI component boundaries needed to identify them (input borders, checkbox outlines, toggle tracks), states (selected, focus indicator) and meaningful graphics (icons, chart lines) reach 3:1 against adjacent colours.",
+   "evidence": "S",
+   "note": "Light grey input borders and pale outline buttons are the classic failure. Put a --line-strong token at 3:1.",
+   "tags": [
+    "colour",
+    "design-token",
+    "forms"
+   ]
+  },
+  {
+   "id": "wcag-1.4.12",
+   "name": "Text spacing",
+   "wcag": "1.4.12",
+   "wcag_version": "2.1",
+   "en301549": "9.1.4.12 / 10.1.4.12 / 11.1.4.12",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "axe:avoid-inline-spacing (only inline !important); kk:text-spacing",
+   "how_to_test": "Apply line-height 1.5, paragraph spacing 2x font size, letter spacing 0.12 em, word spacing 0.16 em (bookmarklet): no text clipped, overlapped or hidden.",
+   "evidence": "S",
+   "note": "Kill fixed heights on buttons, badges and cards that contain text; let them grow.",
+   "tags": [
+    "typography",
+    "layout"
+   ]
+  },
+  {
+   "id": "wcag-1.4.13",
+   "name": "Content on hover or focus",
+   "wcag": "1.4.13",
+   "wcag_version": "2.1",
+   "en301549": "9.1.4.13 / 11.1.4.13",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:hover-content (heuristic)",
+   "how_to_test": "Tooltips, mega menus and popovers that appear on hover/focus: can be dismissed with Esc without moving focus, the pointer can move onto them without them disappearing, they stay until dismissed or no longer relevant.",
+   "evidence": "S",
+   "note": "Avoid hover-only information entirely on touch-first audiences.",
+   "tags": [
+    "interaction"
+   ]
+  },
+  {
+   "id": "wcag-2.1.1",
+   "name": "Keyboard",
+   "wcag": "2.1.1",
+   "wcag_version": "2.0",
+   "en301549": "9.2.1.1 / 10.2.1.1 / 11.2.1.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "axe:scrollable-region-focusable,frame-focusable-content,server-side-image-map (partial); kk:click-handler-not-focusable",
+   "how_to_test": "Unplug the mouse: every function (menu, carousel, filter, map alternative, booking widget, cookie banner, video player) works with Tab, Shift+Tab, Enter, Space, arrow keys.",
+   "evidence": "S",
+   "note": "Custom widgets need a keyboard model in the spec (WAI-ARIA Authoring Practices).",
+   "tags": [
+    "keyboard"
+   ]
+  },
+  {
+   "id": "wcag-2.1.2",
+   "name": "No keyboard trap",
+   "wcag": "2.1.2",
+   "wcag_version": "2.0",
+   "en301549": "9.2.1.2 / 11.2.1.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "kk:keyboard-trap",
+   "how_to_test": "Tab through the whole page including embedded iframes (maps, video, chat, payment): focus can always leave every component; modal dialogs return focus on close.",
+   "evidence": "S",
+   "note": "Third-party widgets (chat, booking) are the usual trap.",
+   "tags": [
+    "keyboard"
+   ]
+  },
+  {
+   "id": "wcag-2.1.4",
+   "name": "Character key shortcuts",
+   "wcag": "2.1.4",
+   "wcag_version": "2.1",
+   "en301549": "9.2.1.4 / 11.2.1.4",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "If single-key shortcuts exist (e.g. 's' for search), they can be turned off, remapped, or only work on focus.",
+   "evidence": "S",
+   "note": "Rare on brochure sites; check web apps.",
+   "tags": [
+    "keyboard"
+   ]
+  },
+  {
+   "id": "wcag-2.2.1",
+   "name": "Timing adjustable",
+   "wcag": "2.2.1",
+   "wcag_version": "2.0",
+   "en301549": "9.2.2.1 / 11.2.2.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "axe:meta-refresh; manual",
+   "how_to_test": "Session timeouts, timed offers, auto-advancing steps: the user can turn off, adjust (10x) or extend (warning with at least 20 s to respond). Checkout and booking flows in particular.",
+   "evidence": "S",
+   "note": "Decide session timeout behaviour with the shop backend early.",
+   "tags": [
+    "interaction",
+    "forms"
+   ]
+  },
+  {
+   "id": "wcag-2.2.2",
+   "name": "Pause, stop, hide",
+   "wcag": "2.2.2",
+   "wcag_version": "2.0",
+   "en301549": "9.2.2.2 / 11.2.2.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "axe:blink,marquee; kk:pause-control-missing",
+   "how_to_test": "Anything that moves, blinks or scrolls automatically for more than 5 s alongside other content (carousels, background video, marquee logos, animated counters, Lottie loops) has a visible pause/stop control; auto-updating content can be paused.",
+   "evidence": "S",
+   "note": "Design the pause button as part of the hero/carousel component, not as an afterthought.",
+   "tags": [
+    "motion",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-2.3.1",
+   "name": "Three flashes or below threshold",
+   "wcag": "2.3.1",
+   "wcag_version": "2.0",
+   "en301549": "9.2.3.1 / 11.2.3.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "kk-planned:flash (heuristic, optional)",
+   "how_to_test": "No content flashes more than three times per second above the general and red flash thresholds. Check video edits, GIFs, reels with strobe cuts.",
+   "evidence": "S",
+   "note": "Applies to social reels and slide transitions too.",
+   "tags": [
+    "motion",
+    "media"
+   ]
+  },
+  {
+   "id": "wcag-2.4.1",
+   "name": "Bypass blocks",
+   "wcag": "2.4.1",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": true,
+   "automated": "axe:bypass; best-practice skip-link,region",
+   "how_to_test": "First Tab press reveals a working 'Skip to content' link, and/or landmarks (header, nav, main, footer) exist.",
+   "evidence": "S",
+   "note": "Design the visible-on-focus skip link.",
+   "tags": [
+    "navigation"
+   ]
+  },
+  {
+   "id": "wcag-2.4.2",
+   "name": "Page titled",
+   "wcag": "2.4.2",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.2 / 10.2.4.2 / 11.2.4.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:document-title; kk:title-unique",
+   "how_to_test": "Each page/screen/document has a unique, descriptive title ('Dachsanierung - Dachdeckerei Lange', not 'Home'). PDFs: Title in metadata and 'show document title'.",
+   "evidence": "S",
+   "note": "Write titles in the content model.",
+   "tags": [
+    "navigation",
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-2.4.3",
+   "name": "Focus order",
+   "wcag": "2.4.3",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.3 / 10.2.4.3 / 11.2.4.3",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:focus-order (heuristic); best-practice tabindex",
+   "how_to_test": "Tab order follows reading order and visual layout; no positive tabindex; dialogs move focus in and back.",
+   "evidence": "S",
+   "note": "Visual reordering (CSS order, grid placement) must not break it.",
+   "tags": [
+    "keyboard"
+   ]
+  },
+  {
+   "id": "wcag-2.4.4",
+   "name": "Link purpose (in context)",
+   "wcag": "2.4.4",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.4 / 10.2.4.4 / 11.2.4.4",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:link-name; kk:accessible-name (empty names only)",
+   "how_to_test": "Each link's purpose is clear from its text plus its context (sentence, list item, heading). 'Mehr' and 'Hier' only with context; card links name the card.",
+   "evidence": "S",
+   "note": "Copy rule. Prefer descriptive link text.",
+   "tags": [
+    "copy",
+    "navigation"
+   ]
+  },
+  {
+   "id": "wcag-2.4.5",
+   "name": "Multiple ways",
+   "wcag": "2.4.5",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.5",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": true,
+   "automated": "kk:multiple-ways (heuristic)",
+   "how_to_test": "More than one way to find a page within a set: navigation plus search, sitemap or links from related pages. Exempt: steps of a process.",
+   "evidence": "S",
+   "note": "Small sites: main navigation + footer sitemap is enough.",
+   "tags": [
+    "navigation"
+   ]
+  },
+  {
+   "id": "wcag-2.4.6",
+   "name": "Headings and labels",
+   "wcag": "2.4.6",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.6 / 10.2.4.6 / 11.2.4.6",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual (best-practice empty-heading, heading-order)",
+   "how_to_test": "Headings describe the section; form labels describe the input. No clever headlines without a descriptive heading for the section.",
+   "evidence": "S",
+   "note": "Brand headline + descriptive eyebrow is a common compromise.",
+   "tags": [
+    "copy",
+    "structure"
+   ]
+  },
+  {
+   "id": "wcag-2.4.7",
+   "name": "Focus visible",
+   "wcag": "2.4.7",
+   "wcag_version": "2.0",
+   "en301549": "9.2.4.7 / 10.2.4.7 / 11.2.4.7",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:focus-visible",
+   "how_to_test": "Tab through: every focusable element shows a clearly visible focus indicator. No outline:none without replacement.",
+   "evidence": "S",
+   "note": "Design a --focus token: e.g. 2 px solid outline with 2 px offset, 3:1 against both the component and the ground (aim for 2.4.13 AAA).",
+   "tags": [
+    "keyboard",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-2.4.11",
+   "name": "Focus not obscured (minimum)",
+   "wcag": "2.4.11",
+   "wcag_version": "2.2",
+   "en301549": "9.2.4.11 / 10.2.4.11 / 11.2.4.11",
+   "in_en_v321": false,
+   "level": "AA",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:focus-obscured",
+   "how_to_test": "Tab through with sticky header, sticky CTA bar, chat bubble and cookie banner visible: the focused element is never entirely hidden by author content.",
+   "evidence": "S",
+   "note": "Use scroll-padding-top equal to the sticky header height; keep cookie banners from covering focus targets. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "keyboard",
+    "layout",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-2.5.1",
+   "name": "Pointer gestures",
+   "wcag": "2.5.1",
+   "wcag_version": "2.1",
+   "en301549": "9.2.5.1 / 11.2.5.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Anything operated by multipoint (pinch) or path-based gestures (swipe) also works with a single tap/click (buttons, arrows).",
+   "evidence": "S",
+   "note": "Carousels: arrows or dots in addition to swipe. Maps: zoom buttons.",
+   "tags": [
+    "pointer",
+    "mobile"
+   ]
+  },
+  {
+   "id": "wcag-2.5.2",
+   "name": "Pointer cancellation",
+   "wcag": "2.5.2",
+   "wcag_version": "2.1",
+   "en301549": "9.2.5.2 / 11.2.5.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Actions trigger on up-event (click), not on mousedown/touchstart; or can be aborted by moving away.",
+   "evidence": "S",
+   "note": "Usually fine with native buttons.",
+   "tags": [
+    "pointer"
+   ]
+  },
+  {
+   "id": "wcag-2.5.3",
+   "name": "Label in name",
+   "wcag": "2.5.3",
+   "wcag_version": "2.1",
+   "en301549": "9.2.5.3 / 10.2.5.3 / 11.2.5.3",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:label-content-name-mismatch; kk:label-in-name (visible text contained in the name)",
+   "how_to_test": "The accessible name of a control contains its visible text (voice control: 'click Angebot anfordern' works).",
+   "evidence": "S",
+   "note": "aria-label must start with the visible label.",
+   "tags": [
+    "pointer",
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-2.5.4",
+   "name": "Motion actuation",
+   "wcag": "2.5.4",
+   "wcag_version": "2.1",
+   "en301549": "9.2.5.4 / 11.2.5.4",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Functions triggered by shaking/tilting have a UI alternative and can be disabled.",
+   "evidence": "S",
+   "note": "Mostly apps.",
+   "tags": [
+    "pointer",
+    "mobile"
+   ]
+  },
+  {
+   "id": "wcag-2.5.7",
+   "name": "Dragging movements",
+   "wcag": "2.5.7",
+   "wcag_version": "2.2",
+   "en301549": "9.2.5.7 / 11.2.5.7",
+   "in_en_v321": false,
+   "level": "AA",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:dragging (heuristic)",
+   "how_to_test": "Every drag interaction (sliders, sortable lists, before/after image sliders, maps, kanban) has a single-pointer alternative (buttons, inputs, tap-to-select).",
+   "evidence": "S",
+   "note": "Before/after sliders are popular in trades sites: add buttons or a toggle. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "pointer",
+    "design-token",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-2.5.8",
+   "name": "Target size (minimum)",
+   "wcag": "2.5.8",
+   "wcag_version": "2.2",
+   "en301549": "9.2.5.8 / 10.2.5.8 / 11.2.5.8",
+   "in_en_v321": false,
+   "level": "AA",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:target-size (own 24 px + spacing rule); axe:target-size (disabled by default)",
+   "how_to_test": "Targets at least 24x24 CSS px, or spaced so a 24 px circle around each does not overlap another target. Exempt: inline links in text, browser-native controls, equivalent alternative, essential.",
+   "evidence": "S",
+   "note": "Design 44x44 for primary touch actions (Apple HIG 44 pt, Material 48 dp); 24 px is the legal floor, not the goal. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "pointer",
+    "design-token",
+    "mobile",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-3.1.1",
+   "name": "Language of page",
+   "wcag": "3.1.1",
+   "wcag_version": "2.0",
+   "en301549": "9.3.1.1 / 10.3.1.1 / 11.3.1.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:html-has-lang,html-lang-valid,html-xml-lang-mismatch; kk:lang-mismatch",
+   "how_to_test": "<html lang> is set and matches the main language; PPTX/PDF document language is set.",
+   "evidence": "S",
+   "note": "Template default must not stay 'en' on German sites.",
+   "tags": [
+    "language"
+   ]
+  },
+  {
+   "id": "wcag-3.1.2",
+   "name": "Language of parts",
+   "wcag": "3.1.2",
+   "wcag_version": "2.0",
+   "en301549": "9.3.1.2 / 10.3.1.2",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:valid-lang (only invalid codes); kk:lang-parts (heuristic)",
+   "how_to_test": "Passages in another language (English claims, quotes, product names excepted) carry lang attributes so screen readers switch pronunciation.",
+   "evidence": "S",
+   "note": "Common with English slogans on German sites.",
+   "tags": [
+    "language",
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-3.2.1",
+   "name": "On focus",
+   "wcag": "3.2.1",
+   "wcag_version": "2.0",
+   "en301549": "9.3.2.1 / 10.3.2.1 / 11.3.2.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Focusing an element never triggers a change of context (navigation, opening new windows, submitting).",
+   "evidence": "S",
+   "note": null,
+   "tags": [
+    "predictable"
+   ]
+  },
+  {
+   "id": "wcag-3.2.2",
+   "name": "On input",
+   "wcag": "3.2.2",
+   "wcag_version": "2.0",
+   "en301549": "9.3.2.2 / 10.3.2.2 / 11.3.2.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Changing a setting (select, radio, checkbox) does not automatically submit or navigate unless the user was told before.",
+   "evidence": "S",
+   "note": "Language selects and filters that reload on change need a button or a warning.",
+   "tags": [
+    "predictable",
+    "forms"
+   ]
+  },
+  {
+   "id": "wcag-3.2.3",
+   "name": "Consistent navigation",
+   "wcag": "3.2.3",
+   "wcag_version": "2.0",
+   "en301549": "9.3.2.3 / 10.3.2.3",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:consistent-nav (multi-page)",
+   "how_to_test": "Repeated navigation appears in the same relative order on every page.",
+   "evidence": "S",
+   "note": "System rule: one header, one footer component.",
+   "tags": [
+    "predictable",
+    "navigation"
+   ]
+  },
+  {
+   "id": "wcag-3.2.4",
+   "name": "Consistent identification",
+   "wcag": "3.2.4",
+   "wcag_version": "2.0",
+   "en301549": "9.3.2.4 / 10.3.2.4 / 11.3.2.4",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:consistent-id (multi-page, heuristic)",
+   "how_to_test": "Components with the same function are labelled consistently ('Suche' everywhere, same icon + name).",
+   "evidence": "S",
+   "note": "Write a label glossary in DESIGN.md.",
+   "tags": [
+    "predictable",
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-3.2.6",
+   "name": "Consistent help",
+   "wcag": "3.2.6",
+   "wcag_version": "2.2",
+   "en301549": "9.3.2.6 / 10.3.2.6",
+   "in_en_v321": false,
+   "level": "A",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:consistent-help (multi-page)",
+   "how_to_test": "If help mechanisms exist (phone, email, contact form link, chat, FAQ), they appear in the same relative order on every page where they are offered.",
+   "evidence": "S",
+   "note": "Fix a help block in the footer and/or header and keep its order. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "predictable",
+    "navigation",
+    "design-token",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-3.3.1",
+   "name": "Error identification",
+   "wcag": "3.3.1",
+   "wcag_version": "2.0",
+   "en301549": "9.3.3.1 / 10.3.3.1 / 11.3.3.1",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "kk:form-errors (static heuristic: novalidate forms without described errors or live region); message quality manual",
+   "how_to_test": "Submit forms with errors: the field in error is identified and the error described in text (not only red border), programmatically associated (aria-invalid, aria-describedby).",
+   "evidence": "S",
+   "note": "Design the error state: icon + text + colour, placed next to the field, plus a summary for long forms.",
+   "tags": [
+    "forms",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-3.3.2",
+   "name": "Labels or instructions",
+   "wcag": "3.3.2",
+   "wcag_version": "2.0",
+   "en301549": "9.3.3.2 / 10.3.3.2 / 11.3.3.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "axe:label,form-field-multiple-labels,select-name (partial); kk:form-errors (required fields without a cue, heuristic)",
+   "how_to_test": "Every input has a visible label (placeholder is not a label); required fields and formats are explained before input.",
+   "evidence": "S",
+   "note": "Floating labels only if they stay visible and meet contrast.",
+   "tags": [
+    "forms"
+   ]
+  },
+  {
+   "id": "wcag-3.3.3",
+   "name": "Error suggestion",
+   "wcag": "3.3.3",
+   "wcag_version": "2.0",
+   "en301549": "9.3.3.3 / 10.3.3.3 / 11.3.3.3",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "When an error is detected and a correction is known, it is suggested ('Bitte PLZ mit 5 Ziffern eingeben').",
+   "evidence": "S",
+   "note": "Write the error messages in the content model.",
+   "tags": [
+    "forms",
+    "copy"
+   ]
+  },
+  {
+   "id": "wcag-3.3.4",
+   "name": "Error prevention (legal, financial, data)",
+   "wcag": "3.3.4",
+   "wcag_version": "2.0",
+   "en301549": "9.3.3.4 / 11.3.3.4",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Orders, bookings, legal commitments and data deletion are reversible, checked, or confirmed on a review step.",
+   "evidence": "S",
+   "note": "Checkout review page before 'zahlungspflichtig bestellen'.",
+   "tags": [
+    "forms",
+    "commerce"
+   ]
+  },
+  {
+   "id": "wcag-3.3.7",
+   "name": "Redundant entry",
+   "wcag": "3.3.7",
+   "wcag_version": "2.2",
+   "en301549": "9.3.3.7 / 11.3.3.7",
+   "in_en_v321": false,
+   "level": "A",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:redundant-entry (heuristic: confirm-email fields)",
+   "how_to_test": "Within one process, information already entered is auto-filled or selectable (e.g. 'billing = shipping address'); no 'repeat your email' unless essential or for security.",
+   "evidence": "S",
+   "note": "Decide in the checkout/booking flow design. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "forms",
+    "commerce",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-3.3.8",
+   "name": "Accessible authentication (minimum)",
+   "wcag": "3.3.8",
+   "wcag_version": "2.2",
+   "en301549": "9.3.3.8 / 11.3.3.8",
+   "in_en_v321": false,
+   "level": "AA",
+   "law": "EAA/BFSG (state of the art: WCAG 2.2 AA); BITV 2.0 presumption only once EN 301 549 V4.1.1 is cited in the OJEU",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:auth-paste,captcha-detect",
+   "how_to_test": "Login, registration and checkout do not require a cognitive function test (remembering, transcribing, puzzles) unless an alternative or assistance exists: paste and password managers allowed, OTP fields accept paste and autocomplete=\"one-time-code\", passkeys/email links offered, CAPTCHA has a non-cognitive alternative.",
+   "evidence": "S",
+   "note": "Choose the CAPTCHA/anti-spam approach in design (honeypot, server-side checks) instead of puzzles. New in WCAG 2.2; not part of EN 301 549 V3.2.1 (the version cited in the OJEU), part of V4.1.1 (published 2026-09-02, citation expected around 2026-11-30).",
+   "tags": [
+    "forms",
+    "auth",
+    "wcag22-new"
+   ]
+  },
+  {
+   "id": "wcag-4.1.2",
+   "name": "Name, role, value",
+   "wcag": "4.1.2",
+   "wcag_version": "2.0",
+   "en301549": "9.4.1.2 / 10.4.1.2 / 11.4.1.2",
+   "in_en_v321": true,
+   "level": "A",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "axe:button-name,link-name,aria-*,nested-interactive,frame-title,input-button-name,select-name,summary-name; kk:accessible-name,icon-name (title-only names, exposed decorative svg)",
+   "how_to_test": "Every control exposes name, role and state (expanded, selected, checked, pressed) to assistive technology; custom widgets use native elements or correct ARIA.",
+   "evidence": "S",
+   "note": "Icon-only buttons need a name in the spec.",
+   "tags": [
+    "robust",
+    "aria"
+   ]
+  },
+  {
+   "id": "wcag-4.1.3",
+   "name": "Status messages",
+   "wcag": "4.1.3",
+   "wcag_version": "2.1",
+   "en301549": "9.4.1.3 / 11.4.1.3",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Messages like 'added to cart', '3 results', 'saved', form success are announced by screen readers without moving focus (role=status/alert, aria-live).",
+   "evidence": "S",
+   "note": "Define toast/inline-status components with their live-region role.",
+   "tags": [
+    "robust",
+    "aria",
+    "commerce"
+   ]
+  },
+  {
+   "id": "wcag-2.3.3",
+   "name": "Animation from interactions",
+   "wcag": "2.3.3",
+   "wcag_version": "2.1",
+   "en301549": "9.5 (informative)",
+   "in_en_v321": false,
+   "level": "AAA",
+   "law": "none (recommended practice)",
+   "applies_to": [
+    "web",
+    "slides",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:reduced-motion,reduced-motion-ignored",
+   "how_to_test": "Enable 'reduce motion' (OS setting; Playwright reducedMotion:'reduce'): parallax, scroll-linked, zoom and large movement triggered by interaction is off or reduced; infinite loops stop; autoplay video stays on poster.",
+   "evidence": "S",
+   "note": "Not required at AA, but cheap and expected; WCAG 2.2.2 (AA) still applies to anything that moves >5 s.",
+   "tags": [
+    "motion",
+    "recommended"
+   ]
+  },
+  {
+   "id": "wcag-2.4.13",
+   "name": "Focus appearance",
+   "wcag": "2.4.13",
+   "wcag_version": "2.2",
+   "en301549": "9.5 (informative)",
+   "in_en_v321": false,
+   "level": "AAA",
+   "law": "none (recommended practice)",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:focus-visible (rest vs focus style change only; area and change contrast stay manual)",
+   "how_to_test": "Focus indicator area at least a 2 CSS px perimeter of the component and at least 3:1 change contrast between focused and unfocused pixels.",
+   "evidence": "S",
+   "note": "Use as the spec for the --focus token even though AA only requires 'visible'.",
+   "tags": [
+    "keyboard",
+    "recommended",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-2.5.5",
+   "name": "Target size (enhanced)",
+   "wcag": "2.5.5",
+   "wcag_version": "2.0",
+   "en301549": "9.5 (informative)",
+   "in_en_v321": false,
+   "level": "AAA",
+   "law": "none (recommended practice)",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:target-size-mobile (44 px warning)",
+   "how_to_test": "Targets at least 44x44 CSS px.",
+   "evidence": "S",
+   "note": "Default for primary touch actions; matches Apple HIG 44 pt.",
+   "tags": [
+    "pointer",
+    "recommended",
+    "design-token"
+   ]
+  },
+  {
+   "id": "wcag-3.1.5",
+   "name": "Reading level",
+   "wcag": "3.1.5",
+   "wcag_version": "2.0",
+   "en301549": "9.5 (informative)",
+   "in_en_v321": false,
+   "level": "AAA",
+   "law": "none (recommended practice)",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Text that needs more than lower-secondary reading ability has a simpler version or supplement.",
+   "evidence": "S",
+   "note": "Basis for the EAA/BFSGV 'understandable' requirement and for banking (BFSGV § 17: B2 level). Plain German is the default register for trades clients.",
+   "tags": [
+    "copy",
+    "recommended",
+    "language"
+   ]
+  },
+  {
+   "id": "en-9.6",
+   "name": "WCAG conformance requirements: full pages, complete processes",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "9.6",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Conformance is per full page; for a process (cart -> address -> payment -> confirmation, booking steps) every step conforms, including third-party payment and booking widgets.",
+   "evidence": "S",
+   "note": "Ask early which third-party widgets (payment, booking, chat, maps) are used and test them; you inherit their barriers.",
+   "tags": [
+    "process",
+    "commerce"
+   ]
+  },
+  {
+   "id": "en-9.7",
+   "name": "User preferences for web pages",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "9.7 (V4.1.1 only)",
+   "in_en_v321": false,
+   "level": "AA",
+   "law": "EAA/BFSG via V4.1.1 once cited",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": true,
+   "automated": "kk:forced-colors,forced-color-adjust-scan",
+   "how_to_test": "Do not block or override platform/browser preference modes (forced colours / Windows contrast themes, text size, pointer size) unless essential. Emulate forcedColors:'active': icons, borders, focus and custom checkboxes stay visible; no 'forced-color-adjust: none' without reason.",
+   "evidence": "S",
+   "note": "New in V4.1.1. Use currentColor for icons and real borders instead of box-shadow-only outlines.",
+   "tags": [
+    "preferences",
+    "design-token"
+   ]
+  },
+  {
+   "id": "en-5.3",
+   "name": "Biometrics",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "5.3",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Biometric login (Face ID, fingerprint, WebAuthn platform authenticator) is never the only way to identify or authenticate; another method that does not rely on the same characteristic exists.",
+   "evidence": "S",
+   "note": "Relevant for app logins and passkey-only flows.",
+   "tags": [
+    "auth",
+    "app"
+   ]
+  },
+  {
+   "id": "en-5.10",
+   "name": "Authoring tools (CMS delivered to the client)",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "5.10 (V4.1.1); 11.8 (V3.2.1)",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV where the tool is part of the ICT",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "The editor the agency delivers lets authors produce accessible output: alt text fields, heading levels instead of font sizes, accessible templates, captions upload, warnings for missing alt (repair assistance), output keeps accessibility info.",
+   "evidence": "S",
+   "note": "Clients keep sites conformant only if the CMS makes it easy. Build alt and caption fields as required fields in Directus/Astro content collections.",
+   "tags": [
+    "cms",
+    "handover"
+   ]
+  },
+  {
+   "id": "en-6",
+   "name": "Real-time voice/video/text communication",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "6.1-6.7",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG (telecom services; also where web/app offers two-way voice)",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "If the site/app offers two-way voice or video calls (WebRTC call button, video consultation), it also supports real-time text (RTT) and, for video, total conversation; adequate audio bandwidth and frame rate for sign language.",
+   "evidence": "S",
+   "note": "Rare for brochure sites; relevant for video consultation tools. A text chat alone is not RTT.",
+   "tags": [
+    "communication"
+   ]
+  },
+  {
+   "id": "en-7.1",
+   "name": "Subtitle playback and characteristics (video player)",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "7.1.1-7.1.5",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "The video player displays subtitles, keeps them synchronised, preserves them on conversion, lets users adjust their presentation (size, colour, background) where the platform allows, and supports spoken subtitles where provided.",
+   "evidence": "S",
+   "note": "Self-hosted players: use native <track> or a player with caption styling; check YouTube/Vimeo embeds pass captions through.",
+   "tags": [
+    "media",
+    "video"
+   ]
+  },
+  {
+   "id": "en-7.2",
+   "name": "Audio description playback",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "7.2.1-7.2.3",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Where video has audio description, the player can play it (alternative audio track or described version) and keep it synchronised.",
+   "evidence": "S",
+   "note": null,
+   "tags": [
+    "media",
+    "video"
+   ]
+  },
+  {
+   "id": "en-7.3",
+   "name": "User controls for subtitles and audio description",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "7.3",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Controls to switch subtitles and audio description are at the same level of interaction as the primary media controls (on the player bar, not in a settings sub-menu only).",
+   "evidence": "S",
+   "note": "Design the player bar with a visible CC button.",
+   "tags": [
+    "media",
+    "video",
+    "design-token"
+   ]
+  },
+  {
+   "id": "en-10-pdf",
+   "name": "Accessible PDF and office documents",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "10.1-10.4, 10.7",
+   "in_en_v321": true,
+   "level": "AA",
+   "law": "EAA/BFSG (documents published from 2025-06-28); BITV",
+   "applies_to": [
+    "pdf",
+    "slides"
+   ],
+   "design_decision": true,
+   "automated": "manual (veraPDF PDF/UA, PAC); kk:pdf-link-scan (tagging, language and title basics only)",
+   "how_to_test": "Tagged PDF (PDF/UA-1 ISO 14289-1 or PDF/UA-2 ISO 14289-2), document language and title set, 'display document title', logical reading order, headings, lists and table headers tagged, alt text for figures, artefacts for decoration, bookmarks for long documents, contrast, no scanned text without OCR.",
+   "evidence": "S",
+   "note": "BFSG excludes office files published before 2025-06-28 (§ 1 Abs. 4 Nr. 2), not new ones. Export with tags from the source tool; fixing afterwards is expensive.",
+   "tags": [
+    "documents"
+   ]
+  },
+  {
+   "id": "en-11-app",
+   "name": "Native app: platform accessibility services",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "11.5.2, 11.6.2",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG (apps for in-scope services); BITV (public apps)",
+   "applies_to": [
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual (Xcode Accessibility Inspector, Android Accessibility Scanner)",
+   "how_to_test": "Native controls or custom views expose role, name, state, value, actions and focus to VoiceOver/TalkBack via the platform API; the app does not disrupt platform features (screen reader, switch control, zoom).",
+   "evidence": "S",
+   "note": "WebViews inside apps are tested against clause 11, not clause 9 (EN 301 549 9.0 Note 3).",
+   "tags": [
+    "app"
+   ]
+  },
+  {
+   "id": "en-11.7",
+   "name": "Native app: follow user preferences",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "11.7",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV",
+   "applies_to": [
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "The app follows OS settings: Dynamic Type / font scale up to the largest accessibility sizes, Bold Text, Increase Contrast, Reduce Motion, Reduce Transparency, colour filters, dark mode where offered.",
+   "evidence": "S",
+   "note": "Design screens for the largest text size from the start (app.md).",
+   "tags": [
+    "app",
+    "preferences",
+    "design-token"
+   ]
+  },
+  {
+   "id": "en-12.1-12.2",
+   "name": "Accessible information about products and services",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "12.1, 12.2",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG (BFSGV § 12 Nr. 2)",
+   "applies_to": [
+    "web",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Information about the service (how ordering, delivery, payment, cancellation and support work) is itself accessible per clause 9/10/11; BFSGV § 12 Nr. 2 adds: more than one sensory channel, findable, understandable, text formats usable for assistive formats, adequate font size, contrast and spacing, alternatives for non-text content.",
+   "evidence": "S",
+   "note": "Includes FAQ, shipping and returns pages, AGB and the accessibility information itself.",
+   "tags": [
+    "information",
+    "commerce"
+   ]
+  },
+  {
+   "id": "en-12.3",
+   "name": "Documentation of accessibility features and support",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "12.3",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG",
+   "applies_to": [
+    "web",
+    "app",
+    "pdf"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Where documentation or an official web page exists, it describes the accessibility features, how to use them and how to get support for them (a footer link 'Barrierefreiheit' is the suggested mechanism).",
+   "evidence": "S",
+   "note": null,
+   "tags": [
+    "information",
+    "handover"
+   ]
+  },
+  {
+   "id": "en-4",
+   "name": "Functional performance criteria",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "4.2.1-4.2.10",
+   "in_en_v321": true,
+   "level": "-",
+   "law": "EAA/BFSG/BITV (fallback where no clause fits)",
+   "applies_to": [
+    "web",
+    "slides",
+    "app",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Usable without vision, with limited vision, without colour perception, without hearing, with limited hearing, without vocal capability, with limited manipulation or strength, with limited reach, minimising photosensitive triggers, with limited cognition, language or learning, and with privacy for users of assistive technology.",
+   "evidence": "S",
+   "note": "Use as the checklist for anything novel (3D configurators, canvas tools, games, kiosks) that WCAG does not cover well.",
+   "tags": [
+    "fpc"
+   ]
+  },
+  {
+   "id": "law-bfsg-info",
+   "name": "BFSG accessibility information (Anlage 3)",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "§ 14 Abs. 1 Nr. 2 BFSG, Anlage 3; EAA Annex V",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BFSG/EAA",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "kk:statement-link,statement-content",
+   "how_to_test": "A page 'Informationen zur Barrierefreiheit' (or AGB section, but a separate page linked in the footer is clearer) contains: general description of the service in accessible form, explanations needed to understand how the service is carried out, how the service meets the BFSGV requirements, and the competent market surveillance authority (MLBF). It is itself accessible.",
+   "evidence": "S",
+   "note": "Missing or incomplete information is the 'formal non-conformity' the MLBF checks first and the most visible point for Abmahnungen.",
+   "tags": [
+    "statement",
+    "commerce",
+    "legal"
+   ]
+  },
+  {
+   "id": "law-bfsgv-19",
+   "name": "E-commerce: product accessibility info, accessible payment and identification",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "BFSGV § 19; EAA Annex I Section IV (f)",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BFSG/EAA",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Shop shows accessibility information about the products sold where the manufacturer/supplier provides it; identification, authentication, security and payment functions (including third-party payment widgets) are perceivable, operable, understandable and robust.",
+   "evidence": "S",
+   "note": "Add a product field 'Barrierefreiheit' in the shop data model; test PayPal/Stripe/Mollie overlays with keyboard and screen reader.",
+   "tags": [
+    "commerce",
+    "legal"
+   ]
+  },
+  {
+   "id": "law-support-services",
+   "name": "Accessible support services",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "BFSGV §§ 11, 12 Nr. 4; EAA Annex I",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BFSG/EAA",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "manual",
+   "how_to_test": "Help desk, call centre, chat and training services provide information about accessibility through accessible communication means; offer at least two channels (e.g. phone and email/text) so deaf and speech-impaired customers can reach support.",
+   "evidence": "S",
+   "note": "Phone-only support is a barrier.",
+   "tags": [
+    "support",
+    "legal"
+   ]
+  },
+  {
+   "id": "law-bitv-statement",
+   "name": "Public sector: Erklärung zur Barrierefreiheit with feedback mechanism",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "§ 12b BGG, § 7 BITV 2.0, Implementing Decision (EU) 2018/1523",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BITV/WAD",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": false,
+   "automated": "kk:statement-link",
+   "how_to_test": "Statement reachable from the start page and every page, machine-readable, annual update; contents per EU model: compliance status, non-accessible content with reasons and alternatives, preparation date and method, feedback mechanism, link to enforcement/Schlichtung.",
+   "evidence": "S",
+   "note": "Only for public bodies (Bund: BITV 2.0; Länder/Kommunen: their own Land law, e.g. NBGG for Niedersachsen; check the Land regulation).",
+   "tags": [
+    "statement",
+    "public",
+    "legal"
+   ]
+  },
+  {
+   "id": "law-bitv-leichte-sprache",
+   "name": "Public sector: Leichte Sprache and DGS on the start page",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "§ 4 BITV 2.0, Anlage 2",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BITV",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": true,
+   "automated": "kk:public-sector-links",
+   "how_to_test": "Start page offers explanations in Leichte Sprache and Deutsche Gebärdensprache: main contents, navigation, the essential contents of the accessibility statement, pointers to further Leichte Sprache/DGS content.",
+   "evidence": "S",
+   "note": "Write Leichte Sprache to DIN SPEC 33429 and have it checked by a test group; not a legal duty for private BFSG providers.",
+   "tags": [
+    "language",
+    "public",
+    "legal"
+   ]
+  },
+  {
+   "id": "practice-cookie-banner",
+   "name": "Cookie/consent banner is accessible",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "2.1.1, 2.4.3, 2.4.11, 1.4.3, 4.1.2 (applied)",
+   "in_en_v321": null,
+   "level": "AA",
+   "law": "EAA/BFSG/BITV (via WCAG) + TDDDG/GDPR",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "design_decision": true,
+   "automated": "kk:consent-banner",
+   "how_to_test": "Banner is reachable first by keyboard (or focus moves into it as a dialog), buttons have names and 4.5:1 contrast, 'reject' is on the first layer and as easy as 'accept', it does not trap focus or hide focused content, it can be reopened from the footer.",
+   "evidence": "P",
+   "note": "The banner is part of every page, so a broken banner makes every page non-conformant (EN 9.6 full pages).",
+   "tags": [
+    "consent",
+    "legal"
+   ]
+  },
+  {
+   "id": "practice-no-overlay",
+   "name": "No accessibility overlay as a substitute",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "-",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "-",
+   "applies_to": [
+    "web"
+   ],
+   "design_decision": false,
+   "automated": "kk:overlay-detect",
+   "how_to_test": "Detect overlay widget scripts (toolbar widgets promising automatic compliance). They do not make a site conform and can interfere with assistive technology; fix the source instead.",
+   "evidence": "P",
+   "note": "Practitioner consensus; overlays are often sold as BFSG compliance. Do not recommend them to clients.",
+   "tags": [
+    "practice"
+   ]
+  },
+  {
+   "id": "practice-social-alt",
+   "name": "Social posts: alt text, captions, CamelCase hashtags",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "1.1.1, 1.2.2, 1.4.3, 1.4.5 (applied)",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "not directly regulated (BFSG applies to the service, not marketing posts); WCAG as best practice",
+   "applies_to": [
+    "social"
+   ],
+   "design_decision": true,
+   "automated": "manual",
+   "how_to_test": "Every image post has alt text in the platform field (and in a text file next to the asset); videos have captions (SRT upload where possible, burned-in otherwise); hashtags in CamelCase; emojis sparingly and at the end; essential text also in the caption; text on images at 4.5:1.",
+   "evidence": "P",
+   "note": "Platform UI covers parts of the frame; keep text away from overlays (social.md).",
+   "tags": [
+    "social"
+   ]
+  },
+  {
+   "id": "practice-slides",
+   "name": "Slides: titles, reading order, alt, export with tags",
+   "wcag": null,
+   "wcag_version": null,
+   "en301549": "1.1.1, 1.3.1, 1.3.2, 2.4.2, 3.1.1 (applied)",
+   "in_en_v321": null,
+   "level": "-",
+   "law": "BITV/BFSG when published as documents; otherwise best practice",
+   "applies_to": [
+    "slides",
+    "pdf"
+   ],
+   "design_decision": true,
+   "automated": "manual (PowerPoint/Keynote accessibility checker)",
+   "how_to_test": "Each slide has a unique real title (title placeholder, may be visually hidden), reading order set (Selection pane), alt text on images and charts, no text in images, slide language set, embedded video captioned; PDF export with document structure tags.",
+   "evidence": "P",
+   "note": "Reading decks sent as PDF are documents in the sense of clause 10.",
+   "tags": [
+    "slides"
+   ]
+  }
+ ]
+}

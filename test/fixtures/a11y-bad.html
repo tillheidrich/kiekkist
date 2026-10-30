@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Malerbetrieb Ohlsen, Buchholz</title>
+<!-- Accessibility failures on purpose: one block per P1 check of the a11y passes. Real copy, no slop. -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<style>
+  * { box-sizing: border-box; }
+  html { background: #fbfbf8; }
+  body { margin: 0; background: #fbfbf8; color: #1d2430; font: 1.0625rem/1.6 system-ui, sans-serif; }
+  main, header, footer { padding: 0 1rem; }
+  a { color: #1f5b3a; }
+  a.quiet:focus { outline: none; }
+  .menu-toggle { min-width: 44px; min-height: 44px; }
+  #mobilmenu { display: none; }
+  #mobilmenu.open { display: block; }
+  .mobile-only { display: none; }
+  @media (max-width: 600px) { .mobile-only { display: block; } }
+  .wide { width: 360px; border: 1px solid #ccd; padding: .5rem; } /* fits at 390, not at 320 */
+  .tag { display: inline-block; height: 22px; line-height: 22px; overflow: hidden; padding: 0 .5rem; background: #e8efe9; font-size: 15px; max-width: 14rem; white-space: nowrap; }
+  .tiny a { display: inline-block; width: 16px; height: 16px; margin: 0; background: #1f5b3a; vertical-align: middle; }
+  .card-link { cursor: pointer; padding: 1rem; border: 1px solid #ccd; max-width: 20rem; }
+  .field { border: 1px solid #e4e4e4; background: #fbfbf8; padding: .6rem; font: inherit; }
+  .ticker { width: 140px; height: 60px; background: #c5d6ca; animation: slide 3s linear infinite; }
+  @keyframes slide { from { transform: translateX(0); } to { transform: translateX(40px); } }
+  .ico { display: inline-block; width: 24px; height: 24px; background-color: #1d2430; -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path d='M1 1h8v8H1z' fill='black'/></svg>") center/contain no-repeat; mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'><path d='M1 1h8v8H1z' fill='black'/></svg>") center/contain no-repeat; }
+  .icon-btn { width: 48px; height: 48px; border: 0; background: #e8efe9; display: inline-grid; place-items: center; }
+  .boxcheck { display: inline-block; width: 28px; height: 28px; box-shadow: inset 0 0 0 3px #1d2430; background: #fbfbf8; }
+  .logo-swatch { forced-color-adjust: none; display: inline-block; padding: .3rem .6rem; background: #1f5b3a; color: #fff; }
+  .spacer { height: 900px; }
+  .callbar { position: fixed; left: 0; right: 0; bottom: 0; height: 150px; background: #1d2430; color: #fff; padding: 1rem; }
+  .callbar a { color: #fff; }
+  .widget { border: 2px solid #ccd; padding: 1rem; margin: 1rem 0; }
+</style>
+</head>
+<body>
+<header>
+  <button class="menu-toggle" aria-expanded="false" aria-controls="mobilmenu" onclick="document.getElementById('mobilmenu').classList.toggle('open');this.setAttribute('aria-expanded','true')">Menü</button>
+  <nav id="mobilmenu" aria-label="Mobil"><div role="menuitem">Leistungen</div></nav>
+</header>
+<main>
+  <h1>Malerarbeiten in Buchholz und Umgebung</h1>
+  <p>Wir streichen Fassaden, tapezieren Wohnungen und lackieren Türen und Fenster. Seit 1994 sind wir ein Familienbetrieb mit sieben Leuten und einer Werkstatt in der Nähe vom Bahnhof. Die Angebote sind kostenlos und kommen innerhalb einer Woche.</p>
+
+  <!-- reflow-320: fixed width box -->
+  <div class="wide">Fassadenanstrich mit Gerüst, Silikatfarbe und fünf Jahren Gewährleistung auf die Ausführung.</div>
+
+  <!-- text-spacing: fixed height + overflow hidden -->
+  <p><span class="tag">Meisterbetrieb seit 1994</span></p>
+
+  <!-- target-size: two 16 px targets next to each other -->
+  <p class="tiny"><a href="#a" aria-label="Facebook"></a><a href="#b" aria-label="Instagram"></a></p>
+
+  <!-- focus-visible: outline removed -->
+  <p><a class="quiet" href="#preise">Preise ansehen</a></p>
+
+  <!-- click handler on a div -->
+  <div class="card-link" id="karte">Referenz: Altbau in Jesteburg</div>
+
+  <!-- label-in-name, icon-name, forced colours -->
+  <p>
+    <button type="button" aria-label="Formular abschicken">Senden</button>
+    <button type="button" class="icon-btn" title="Drucken"><span class="ico"></span></button>
+    <span class="boxcheck" role="checkbox" aria-checked="false" aria-label="Rückruf" tabindex="0"></span>
+    <span class="logo-swatch">Ohlsen</span>
+  </p>
+
+  <!-- axe only on mobile: select without label -->
+  <div class="mobile-only"><select><option>Innen</option><option>Außen</option></select></div>
+
+  <!-- motion without pause, audio autoplay -->
+  <div class="ticker"></div>
+  <video autoplay loop width="160" height="90"></video>
+
+  <!-- forms -->
+  <form>
+    <label>E-Mail <input class="field" name="email" type="text"></label>
+    <label>Passwort <input type="password" name="pw" autocomplete="current-password" onpaste="return false"></label>
+    <div class="g-recaptcha" data-sitekey="x"></div>
+  </form>
+
+  <div class="spacer"></div>
+  <p><a href="#unten-1">Fassaden in Tostedt</a></p>
+  <div class="spacer"></div>
+  <p><a href="#unten-2">Treppenhäuser in Hanstedt</a></p>
+
+  <!-- keyboard trap -->
+  <div class="widget" id="trap">
+    <button type="button" id="t1">Farbe wählen</button>
+    <button type="button" id="t2">Muster wählen</button>
+  </div>
+  <p><a href="#impressum">Impressum</a></p>
+</main>
+<div class="callbar">Jetzt anrufen: <a href="tel:+494181000000">04181 000000</a></div>
+<script>
+  document.getElementById('karte').addEventListener('click', () => { location.hash = 'jesteburg'; });
+  const t1 = document.getElementById('t1'), t2 = document.getElementById('t2');
+  document.getElementById('trap').addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+    e.preventDefault();
+    (document.activeElement === t1 ? t2 : t1).focus();
+  });
+</script>
+</body>
+</html>

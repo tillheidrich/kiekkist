@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Kiekkist: erst kieken, dann entwerfen</title>
+<meta name="description" content="Kiekkist sammelt Websites, die dich überzeugen, und lässt Claude daraus drei echte Entwürfe bauen, wie eine Agentur. Mit Gedächtnis für deinen Geschmack und einer Prüfung, die KI-Einheitslook zählt.">
+<meta property="og:title" content="Kiekkist: erst kieken, dann entwerfen">
+<meta property="og:description" content="Sammeln, Moodboard, drei echte Richtungen, Entscheidung, Theme, Prüfung. Der Agentur-Prozess für Claude, selbst gehostet.">
+<meta property="og:image" content="/static/landing/img/og.jpg">
+<meta property="og:type" content="website">
+<link rel="alternate" hreflang="de" href="/produkt">
+<link rel="alternate" hreflang="en" href="/product">
+<link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+<link rel="preload" href="/static/landing/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/static/landing/landing.css">
+</head>
+<body>
+<header class="bar">
+  <a class="word" href="/" aria-label="Kiekkist, Startseite">Kiekkist</a>
+  <nav aria-label="Seite">
+    <a href="#ablauf">Ablauf</a>
+    <a href="#pruefung">Prüfung</a>
+    <a href="#agenten">Für Agenten</a>
+    <a href="/product" hreflang="en" lang="en">English</a>
+  </nav>
+  <a class="login" href="https://github.com/tillheidrich/kiekkist">GitHub</a>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h-hero">
+  <div class="hero-text">
+    <h1 id="h-hero">Erst kieken.<br>Dann entwerfen.</h1>
+    <p class="lead">Claude entwirft hier wie eine kleine Agentur: erst echte Referenzen, dann drei Richtungen als echte Seiten, dann entscheidest du, oder dein Kunde per Link. Kiekkist merkt sich, was gewählt wurde und warum. Für Websites, Folien, Social-Grafiken und App-Screens.</p>
+    <p class="cta"><a class="button" href="#ablauf">So läuft ein Projekt</a> <a class="quiet" href="https://github.com/tillheidrich/kiekkist">Quellcode auf GitHub</a></p>
+    <p class="aside">Plattdeutsch: <i>kieken</i> heißt gucken, <i>Kist</i> ist die Kiste.</p>
+  </div>
+
+  <figure class="sheet" aria-label="Kontaktabzug mit Entwürfen aus Kiekkist">
+    <ol class="frames">
+      <li><img src="/static/landing/img/kanzlei-web.jpg" alt="Startseite Kanzlei Brandt Weller in Buchtypografie" width="960" height="600"><span>Brandt Weller, Startseite</span></li>
+      <li class="pick"><img src="/static/landing/img/harms-web.jpg" alt="Startseite Harms Präzisionstechnik als technische Zeichnung" width="960" height="600"><span>Harms, Startseite</span>
+        <svg class="ring" viewBox="0 0 200 130" aria-hidden="true"><path d="M30 18C80 -2 168 4 188 40c16 30-22 74-92 82C34 128 4 104 8 70 11 44 40 22 96 14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      </li>
+      <li><img src="/static/landing/img/elbe-web.jpg" alt="Startseite Studio Elbe, dunkler Grund, Serifen-These" width="960" height="600"><span>Studio Elbe, Startseite</span></li>
+      <li><img src="/static/landing/img/kanzlei-folie.jpg" alt="Folie Kanzlei Brandt Weller" width="960" height="540"><span>Brandt Weller, Folie</span></li>
+      <li><img src="/static/landing/img/harms-folie.jpg" alt="Folie Harms Präzisionstechnik" width="960" height="540"><span>Harms, Folie</span></li>
+      <li><img src="/static/landing/img/elbe-folie.jpg" alt="Folie Studio Elbe" width="960" height="540"><span>Studio Elbe, Folie</span></li>
+    </ol>
+    <figcaption><span class="pencil">die hier.</span> Beispiel-Themes aus Kiekkist, mit erfundenen Firmen und ausgeschriebenen Inhalten statt Blindtext.</figcaption>
+  </figure>
+</section>
+
+<section class="problem" aria-labelledby="h-problem">
+  <div class="col-text">
+    <h2 id="h-problem">Warum KI-Entwürfe alle gleich aussehen</h2>
+    <p>Ein Sprachmodell greift zum Durchschnitt dessen, was es gesehen hat. Deshalb landet fast jeder Entwurf beim selben Bild: Lila-Verlauf, Glas, drei Karten mit Icon, eine kleine Pille über jeder Überschrift. Ein längerer Prompt hilft dabei oft nur wenig, weil dem Modell nicht der Wunsch fehlt, sondern das Material.</p>
+    <p>Eine Agentur arbeitet anders. Sie guckt sich echte Arbeiten an, legt sich vor dem Kunden auf eine Richtung fest und erinnert sich beim nächsten Projekt daran, was gewählt wurde. Genau diese drei Dinge gibt Kiekkist dem Modell.</p>
+  </div>
+  <figure class="specimen">
+    <img src="/static/landing/img/slop.jpg" alt="Testseite im typischen KI-Look: Lila-Verlauf, Raketen-Emoji, zwei zentrierte Buttons" width="1200" height="750" loading="lazy">
+    <figcaption>
+      <p><strong>0 von 100 Punkten, Note E.</strong> Eine bewusst gebaute Testseite im typischen KI-Look, gemessen mit der Kiekkist-Prüfung: 18 harte Fehler und 17 von 22 Slop-Signalen über der Schwelle.</p>
+      <table>
+        <caption class="sr">Auszug aus dem Prüfbericht: gezählt und Schwelle</caption>
+        <thead><tr><th scope="col">Signal</th><th scope="col">gezählt</th><th scope="col">Schwelle</th></tr></thead>
+        <tbody>
+          <tr><td>Einblenden beim Scrollen</td><td>15</td><td>3</td></tr>
+          <tr><td>Große weiche Schatten</td><td>9</td><td>3</td></tr>
+          <tr><td>Gedankenstriche im Fließtext</td><td>9</td><td>2</td></tr>
+          <tr><td>Verlaufsschrift</td><td>4</td><td>0</td></tr>
+          <tr><td>Emoji in Überschriften</td><td>2</td><td>0</td></tr>
+        </tbody>
+      </table>
+    </figcaption>
+  </figure>
+</section>
+
+<section class="flow" id="ablauf" aria-labelledby="h-flow">
+  <h2 id="h-flow">So läuft ein Projekt</h2>
+  <p class="intro">Der Skill <em>kiekkist-agency</em> führt Claude durch dieselben Schritte, die eine kleine Agentur geht. Jeder Schritt hinterlässt etwas, das du ansehen kannst.</p>
+  <dl class="steps">
+    <div><dt>Gedächtnis</dt><dd>Claude liest dein Geschmacksprofil, frühere Themes und die Markenregeln des Kunden, bevor es überhaupt an Farben denkt.</dd></div>
+    <div><dt>Briefing</dt><dd>Fragen in kurzen Runden: Angebot, Zielgruppe, Versprechen, Belege, Ton, und was es auf keinen Fall werden soll.</dd></div>
+    <div><dt>Recherche</dt><dd>12 bis 20 echte Seiten aus der Branche, von der Konkurrenz und aus Nachbarbranchen. Zu jeder ein Satz, was genau daran funktioniert.</dd></div>
+    <div><dt>Moodboard</dt><dd>Die Funde werden nach Mechanismus sortiert, nicht nach Farbe, mit einer Szene: wer schaut wann auf diese Seite?</dd></div>
+    <div><dt>Drei Richtungen</dt><dd>Sicher, mittel, mutig. Drei echte HTML-Seiten mit den echten Inhalten des Kunden, die sich in mindestens drei von fünf Achsen unterscheiden.</dd></div>
+    <div><dt>Entscheidung</dt><dd>Du wählst, oder dein Kunde wählt über einen Link ohne Login. Grund und Kombinationswunsch werden festgehalten.</dd></div>
+    <div><dt>System und Ausbau</dt><dd>Aus der gewählten Richtung entstehen DESIGN.md, Tokens und alle Medien: Seiten, Folien, Social-Grafiken, App-Screens.</dd></div>
+    <div><dt>Prüfung und Kritik</dt><dd>Erst misst Kiekkist, dann bewertet ein zweiter Agent, der den Bau nicht gesehen hat. Höchstens zwei Korrekturrunden.</dd></div>
+    <div><dt>Ablage</dt><dd>Das Theme kommt in die Galerie, dein Urteil wörtlich ins Profil. Das nächste Projekt startet klüger.</dd></div>
+  </dl>
+</section>
+
+<section class="media" aria-labelledby="h-media">
+  <div class="col-text">
+    <h2 id="h-media">Ein Theme, alle Medien</h2>
+    <p>Was im Entwurf zu sehen ist, ist das Ergebnis. Kein Mockup, das später nachgebaut werden muss, sondern HTML mit selbst gehosteten Schriften und Farben in OKLCH. Website, Folie, Social-Grafik und App-Screen kommen aus denselben Tokens.</p>
+    <p class="small">Beispiel: Nordlicht Immobilien, ein erfundener Makler in den Elbvororten. Fotos: Till Heidrich.</p>
+  </div>
+  <div class="spread">
+    <figure class="s-web"><img src="/static/landing/img/nordlicht-web.jpg" alt="Nordlicht Startseite am Desktop" width="960" height="600" loading="lazy"><figcaption>Website</figcaption></figure>
+    <figure class="s-mob"><img src="/static/landing/img/nordlicht-mobil.jpg" alt="Nordlicht Startseite am Handy" width="360" height="779" loading="lazy"><figcaption>Mobil</figcaption></figure>
+    <figure class="s-app"><img src="/static/landing/img/nordlicht-app.jpg" alt="Nordlicht App-Screen" width="360" height="779" loading="lazy"><figcaption>App</figcaption></figure>
+    <figure class="s-slide"><img src="/static/landing/img/nordlicht-folie.jpg" alt="Nordlicht Folie mit Exposé-Daten" width="960" height="540" loading="lazy"><figcaption>Folie</figcaption></figure>
+    <figure class="s-soc"><img src="/static/landing/img/nordlicht-social.jpg" alt="Nordlicht Social-Grafik im Hochformat" width="540" height="675" loading="lazy"><figcaption>Social</figcaption></figure>
+  </div>
+</section>
+
+<section class="range" aria-labelledby="h-range">
+  <h2 id="h-range">Vier Firmen, vier Haltungen</h2>
+  <p class="intro">Die Beispiel-Themes zeigen, wie weit die Richtungen auseinanderliegen können. Jedes besteht die Prüfung mit Note A.</p>
+  <ul class="themes">
+    <li><img src="/static/landing/img/kanzlei-web.jpg" alt="" width="960" height="600" loading="lazy"><h3>Kanzlei Brandt Weller</h3><p>Rein typografisch. Randnummern und Aktenzeichen statt Bilder.</p></li>
+    <li><img src="/static/landing/img/harms-web.jpg" alt="" width="960" height="600" loading="lazy"><h3>Harms Präzisionstechnik</h3><p>Die Seite als technische Zeichnung, Toleranzen in µm.</p></li>
+    <li><img src="/static/landing/img/elbe-web.jpg" alt="" width="960" height="600" loading="lazy"><h3>Studio Elbe</h3><p>Premium-Beratung mit einer These und einem Entscheidungsprotokoll.</p></li>
+    <li><img src="/static/landing/img/nordlicht-web.jpg" alt="" width="960" height="600" loading="lazy"><h3>Nordlicht Immobilien</h3><p>Magazin-Layout, große Fotos, Exposé als Datenblatt.</p></li>
+  </ul>
+</section>
+
+<section class="check" id="pruefung" aria-labelledby="h-check">
+  <div class="col-text">
+    <h2 id="h-check">Misst, statt zu schmeicheln</h2>
+    <p>Die Prüfung öffnet jede Seite in einem echten Browser bei 390, 768 und 1440 Pixel Breite.</p>
+    <ul class="ticks">
+      <li><strong>Harte Fehler:</strong> seitlicher Überlauf, auch bei langen deutschen Wörtern, Kontrast nach WCAG AA, zu kleine Klickziele, fehlende Alt-Texte.</li>
+      <li><strong>Slop-Signale:</strong> 22 typische Muster, gezählt gegen eine Schwelle statt pauschal verboten. Eine Pille über einer Überschrift ist kein Fehler, sechs sind ein Muster.</li>
+      <li><strong>Token-Drift:</strong> Farben, die am eigenen System vorbei gesetzt wurden, gemessen nach CIEDE2000.</li>
+      <li><strong>Ähnlichkeit:</strong> wie nah ein neues Theme an früheren liegt, damit nicht jedes Projekt gleich aussieht.</li>
+    </ul>
+    <p>Nordlicht bekommt deshalb 92 statt 100: sechs Versal-Labels über Überschriften bei einer Schwelle von zwei, dazu ein einzelnes kursives Wort in der Hauptüberschrift. Die Prüfung sagt, was messbar ist. Ob ein Entwurf gut ist, entscheidest du.</p>
+  </div>
+  <figure class="panel"><img src="/static/landing/img/pruefung.jpg" alt="Prüfbericht in Kiekkist: Note A, 92 von 100, keine harten Fehler, zwei Slop-Signale über der Schwelle" width="720" height="868"></figure>
+</section>
+
+<section class="taste" aria-labelledby="h-taste">
+  <h2 id="h-taste">Dein Geschmack bleibt im Haus</h2>
+  <div class="taste-grid">
+    <p>Zu jeder Referenz, jedem Theme und jeder Richtung gibst du ein Urteil ab: <span class="v">Liebe ich</span>, <span class="v">Gut</span>, <span class="v">Naja</span> oder <span class="v">Nein</span>, und einen Satz, warum. Der Satz wird wörtlich gespeichert, nicht umformuliert.</p>
+    <p>Daraus entsteht ein Profil, das Claude vor jeder Designarbeit liest. Einschätzungen von Agenten werden getrennt markiert und zählen nicht als dein Geschmack.</p>
+    <p>Für Kunden gibt es pro Moodboard einen Link. Sie sehen die drei Richtungen ohne Login und wählen selbst.</p>
+  </div>
+</section>
+
+<section class="agents" id="agenten" aria-labelledby="h-agents">
+  <div class="col-text">
+    <h2 id="h-agents">Für Agenten gebaut</h2>
+    <p>Kiekkist hat eine Weboberfläche für dich und einen MCP-Server für Claude mit 17 Werkzeugen: Referenzen sammeln, Boards anlegen, Richtungen speichern, Themes ablegen, prüfen, urteilen. Dazu eine REST-API, eine Kommandozeile und eine <code>llms.txt</code>.</p>
+    <p>Der Skill funktioniert auch ohne Server. Dann legt er alles im Projektordner unter <code>.kiekkist/</code> ab, im selben Format, und du importierst es später.</p>
+  </div>
+  <pre class="term" aria-label="Beispiel: Kiekkist mit Claude Code verbinden"><code>claude mcp add --transport http kiekkist \
+  https://deine-instanz/mcp \
+  --header "Authorization: Bearer $KK_TOKEN"</code></pre>
+</section>
+
+<section class="own" aria-labelledby="h-own">
+  <h2 id="h-own">Läuft auf deinem Server</h2>
+  <p>Ein Docker-Container, eine SQLite-Datei, ein Ordner für Screenshots. Keine Cloud eines Dritten, kein Abo bei einem Plattformanbieter. Das Werkzeug steht unter AGPL-3.0, der Skill unter MIT.</p>
+  <p class="cta"><a class="button" href="https://github.com/tillheidrich/kiekkist">Quellcode auf GitHub</a></p>
+</section>
+</main>
+
+<footer class="foot">
+  <p>Kiekkist ist ein Werkzeug von <a href="https://heidrich-digital.de">Heidrich Digital</a>, Tostedt.</p>
+  <p><a href="https://heidrich-digital.de/impressum/">Impressum</a> <a href="https://heidrich-digital.de/datenschutz/">Datenschutz</a> <a href="/login">Anmelden</a> <a href="/product" hreflang="en" lang="en">English</a></p>
+</footer>
+</body>
+</html>

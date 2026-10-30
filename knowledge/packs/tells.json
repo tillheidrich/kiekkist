@@ -1,0 +1,4751 @@
+{
+ "id": "tells",
+ "version": "2026-10-30.3",
+ "kind": "detector",
+ "title": "Slop tells and hard failures",
+ "description": "Every hard failure and counted signal the Kiekkist check measures (checker: auto) or the critique checks by hand (checker: manual), with thresholds, evidence class and source. The checker reads thresholds, costs and pattern lists from this pack; references/tells.md is generated from it (scripts/gen-tells-md.mjs). Counted, not banned: a signal over its threshold needs a written reason, not removal.",
+ "license": "MIT",
+ "reviewed": "2026-10-30",
+ "fields": {
+  "kind": "hard (fails the check: error or warn) | counted (slop signal, flagged when count > threshold.max) | info (counted, lower cost) | process (working rule, not measured)",
+  "checker": "auto = measured by kk_check; manual = critique checklist",
+  "threshold": "object read by the checker; null when not measured",
+  "flag": "human-readable threshold",
+  "data": "measured frequency (class D) where known",
+  "cost": "score deduction per finding and cap (hard only)"
+ },
+ "sources": [
+  {
+   "id": "kiekkist",
+   "title": "Kiekkist house thresholds (tells.md, reviewed 29.10.2026)",
+   "url": null,
+   "license": "AGPL-3.0"
+  },
+  {
+   "id": "wcag22",
+   "title": "W3C Web Content Accessibility Guidelines 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "license": "W3C"
+  },
+  {
+   "id": "legal-fonts",
+   "title": "LG München I, 20.01.2022, 3 O 17493/20 (Google Fonts); TDDDG § 25; see legal.md",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "uwg",
+   "title": "UWG § 5 and Annex (misleading commercial practices, fake reviews)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "bringhurst",
+   "title": "Robert Bringhurst, The Elements of Typographic Style",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "mayer",
+   "title": "Mayer & Fiorella, multimedia principles (meta-analyses; spatial contiguity d ≈ 1.10)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "nielseniq",
+   "title": "NielsenIQ 2024 press release on AI-generated ads (no published effect sizes)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "frontiers-2026",
+   "title": "Frontiers 2026, \"AI-generated\" label and product evaluation (n = 200)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "impeccable",
+   "title": "Impeccable detector catalogue (rule names; own implementations)",
+   "url": "https://impeccable.style/slop",
+   "license": "Apache-2.0"
+  },
+  {
+   "id": "taste",
+   "title": "Taste Skill research.md: 248 sites (One Page Love, Awwwards), 05.10.2026, scored by models",
+   "url": "https://github.com/Leonxlnx/taste-skill",
+   "license": "MIT"
+  },
+  {
+   "id": "vercel-wig",
+   "title": "Vercel Web Interface Guidelines, command.md, fetched 30.10.2026",
+   "url": "https://github.com/vercel-labs/web-interface-guidelines",
+   "license": "MIT"
+  },
+  {
+   "id": "frontend-design",
+   "title": "Anthropic frontend-design skill",
+   "url": "https://github.com/anthropics/skills",
+   "license": "see repo"
+  },
+  {
+   "id": "bis",
+   "title": "brand-identity-skill, references/ai-defaults.md (30-brief experiment)",
+   "url": "https://github.com/fatihaydost/brand-identity-skill",
+   "license": "MIT"
+  },
+  {
+   "id": "reflex-fonts",
+   "title": "Kiekkist knowledge pack reflex-fonts",
+   "url": null,
+   "license": "MIT"
+  },
+  {
+   "id": "wiki-rt12",
+   "title": "Maintainer's research notes, sources 19.10.2026, Reddit RT1–RT13 (RT12 r/webdesign \"how to spot AI sites\"; RT1; RT11)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-q37",
+   "title": "Maintainer's research notes, sources 23.10.2026, Q06–Q49 (Q37 @nataindata \"how I can see your design was vibe-coded\"; Q09 comment danithedan; Q12)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-t35",
+   "title": "Maintainer's research notes, sources 19.10.2026, Threads/LinkedIn T1–T36 (T35 friendventure.de counters without JS, own HTML check; T36)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-txt11",
+   "title": "Maintainer's research notes, sources 20.10.2026, TXT1–TXT12 (TXT11 Lenny’s: separate critic, deletion round, third prompt)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-f1",
+   "title": "Maintainer's research notes, source review 16.09.2026 (F1 infographic look)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-monuntal",
+   "title": "Maintainer's research notes, Instagram archive 04.10.2026, no. 19 (monuntal, AI sentence rhythm)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-ig-2909",
+   "title": "Maintainer's research notes, Instagram 29.09.2026, no. 10 (warm colours on SaaS structure)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-101",
+   "title": "Maintainer's research notes, sources 15.–17.10.2026 part 2, no. 101 (Niklas, ETH paper)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "wiki-design-portal",
+   "title": "Maintainer's design portal test runs (research sweep B1 no. 4 and 20; not public)",
+   "url": null,
+   "license": null
+  },
+  {
+   "id": "eth-2602.11988",
+   "title": "ETH Zürich, arXiv 2602.11988, context files for coding agents (checked in part)",
+   "url": "https://arxiv.org/abs/2602.11988",
+   "license": null
+  },
+  {
+   "id": "en301549v4",
+   "title": "ETSI EN 301 549 V4.1.1 (2026), Accessibility requirements for ICT products and services",
+   "url": "https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf",
+   "license": "ETSI"
+  },
+  {
+   "id": "bfsg",
+   "title": "Barrierefreiheitsstärkungsgesetz (BFSG) § 14 and Anlage 3; BITV 2.0 § 4 and § 7",
+   "url": "https://www.gesetze-im-internet.de/bfsg/"
+  },
+  {
+   "id": "axe",
+   "title": "axe-core 4.14 rule set (Deque), tags wcag2a/wcag2aa/wcag21a/wcag21aa/wcag22aa/best-practice",
+   "url": "https://github.com/dequelabs/axe-core",
+   "license": "MPL-2.0"
+  },
+  {
+   "id": "evidence-pack",
+   "title": "Kiekkist knowledge pack evidence (knowledge/packs/evidence.json); item ids in each item's evidence_items",
+   "url": null,
+   "license": "MIT"
+  },
+  {
+   "id": "web-vitals",
+   "title": "web.dev, Web Vitals (thresholds LCP/CLS/INP, 2024)",
+   "url": "https://web.dev/articles/vitals"
+  },
+  {
+   "id": "lighthouse",
+   "title": "Lighthouse docs: Total Blocking Time, Properly size images, Avoid enormous network payloads (2025)",
+   "url": "https://developer.chrome.com/docs/lighthouse/performance/"
+  },
+  {
+   "id": "lh-profile",
+   "title": "Lighthouse / DevTools source: mobile emulation (moto g power 2022) and throttling constants",
+   "url": "https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/models/trace/lantern/simulation/Constants.ts"
+  },
+  {
+   "id": "webdev-lcp-2024",
+   "title": "web.dev, Common misconceptions about how to optimize LCP (Kenny, 2024)",
+   "url": "https://web.dev/blog/common-misconceptions-lcp"
+  },
+  {
+   "id": "web-almanac-2025",
+   "title": "HTTP Archive Web Almanac 2025 (Page Weight, Performance, Fonts, Accessibility)",
+   "url": "https://almanac.httparchive.org/en/2025/"
+  },
+  {
+   "id": "russell-2023",
+   "title": "Alex Russell, The Performance Inequality Gap (2023 edition)",
+   "url": "https://infrequently.org/series/performance-inequality"
+  },
+  {
+   "id": "nngroup",
+   "title": "NN/g: Beware Horizontal Scrolling (2014), Scrolling and Attention (2018), Sticky Headers (2021), How Little Do Users Read? (2008)",
+   "url": "https://www.nngroup.com/articles/"
+  },
+  {
+   "id": "hoober-2017",
+   "title": "Steven Hoober, Design for Fingers, Touch, and People, Part 3, UXmatters 2017",
+   "url": "https://www.uxmatters.com/mt/archives/2017/07/design-for-fingers-touch-and-people-part-3.php"
+  },
+  {
+   "id": "rello-2016",
+   "title": "Rello, Pielot, Marcos, Make It Big! Font size and line spacing on online readability, CHI 2016",
+   "url": "https://doi.org/10.1145/2858036.2858204"
+  },
+  {
+   "id": "dyson-2004",
+   "title": "Dyson, How physical text layout affects reading from screen, Behaviour & IT 23(6), 2004",
+   "url": "https://doi.org/10.1080/01449290410001715714"
+  },
+  {
+   "id": "platform-guides",
+   "title": "Apple Human Interface Guidelines (body 17 pt) and Material Design 3 (16 sp body, 8 dp target spacing)",
+   "url": "https://m3.material.io/foundations/designing/structure"
+  },
+  {
+   "id": "mq4",
+   "title": "W3C Media Queries Level 4 (hover, any-hover)",
+   "url": "https://www.w3.org/TR/mediaqueries-4/",
+   "license": "W3C"
+  },
+  {
+   "id": "statcounter-de",
+   "title": "StatCounter, mobile screen resolution Germany (360x780 in the top six)",
+   "url": "https://gs.statcounter.com/screen-resolution-stats/mobile/germany"
+  }
+ ],
+ "items": [
+  {
+   "id": "contrast",
+   "name": "Text contrast below WCAG AA",
+   "name_de": "Textkontrast unter WCAG AA",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "computed colour of every text node over its effective background (opacity chain, layered backgrounds), every viewport",
+   "flag": "below 4.5:1 (body) or 3:1 (large text ≥ 24 px or bold ≥ 18.66 px)",
+   "threshold": {
+    "body": 4.5,
+    "large": 3
+   },
+   "cost": {
+    "per": 3,
+    "cap": 24
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.3. Dark mode is not yet emulated (open)."
+  },
+  {
+   "id": "contrast-gradient",
+   "name": "Contrast over a gradient not reliably measurable",
+   "name_de": "Kontrast über Verlauf nicht sicher messbar",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "worst gradient stop under the text",
+   "flag": "worst stop below the AA ratio",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ]
+  },
+  {
+   "id": "contrast-unmeasurable",
+   "name": "Contrast over a photo not measurable",
+   "name_de": "Kontrast über Foto nicht messbar",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "text whose background stack ends in an image, video or large SVG",
+   "flag": "any; check by eye or add a scrim",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ]
+  },
+  {
+   "id": "page-overflow",
+   "name": "Horizontal overflow of the page",
+   "name_de": "Seite scrollt seitlich",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`documentElement.scrollWidth > clientWidth` at 390, 768, 1440; the outermost sticking-out element is named",
+   "flag": "more than 1 px",
+   "threshold": {
+    "px": 1
+   },
+   "cost": {
+    "per": 12,
+    "cap": 24
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.10 Reflow"
+  },
+  {
+   "id": "text-overflow",
+   "name": "Text running out of its container",
+   "name_de": "Text läuft aus dem Container",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "text line boxes outside their block (German compounds included); clipped boxes are reported as `content-clipped`",
+   "flag": "more than 1.5 px",
+   "threshold": {
+    "px": 1.5
+   },
+   "cost": {
+    "per": 6,
+    "cap": 18
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "content-clipped",
+   "name": "Text cut off by an overflow:hidden container",
+   "name_de": "Text durch overflow:hidden abgeschnitten",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "text straddling the edge of a clipping container",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "img-alt",
+   "name": "Missing alt text on images",
+   "name_de": "Bilder ohne alt",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`img`, `input[type=image]` without `alt` (empty `alt` is fine for decoration), `role=img` without a name",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "cost": {
+    "per": 3,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.1.1"
+  },
+  {
+   "id": "accessible-name",
+   "name": "Links and buttons without accessible name",
+   "name_de": "Links/Buttons ohne zugänglichen Namen",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "name computed from aria-label, labelledby, text, alt, svg title",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "cost": {
+    "per": 4,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "vercel-wig"
+   ],
+   "note": "WCAG 2.2, 4.1.2; Vercel: icon-only buttons need aria-label"
+  },
+  {
+   "id": "target-size",
+   "name": "Click targets below 24 px and too close",
+   "name_de": "Klickziele unter 24 px und zu eng",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "bounding box of every target; inline links in running text are exempt",
+   "flag": "below 24 × 24 px with a neighbour closer than the spacing exception",
+   "threshold": {
+    "min_px": 24
+   },
+   "cost": {
+    "per": 1.5,
+    "cap": 9
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.5.8"
+  },
+  {
+   "id": "target-size-mobile",
+   "name": "Touch targets below 44 px on mobile",
+   "name_de": "Touch-Ziele unter 44 px mobil",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "targets at viewports under 600 px",
+   "flag": "below 44 × 44 px",
+   "threshold": {
+    "min_px": 44
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.5.5 (AAA); platform guidelines"
+  },
+  {
+   "id": "input-font-size",
+   "name": "Form fields with text under 16 px",
+   "name_de": "Formularfelder unter 16 px",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "computed `font-size` of text inputs, `select`, `textarea` at viewports under 600 px",
+   "flag": "below 16 px",
+   "threshold": {
+    "min_px": 16
+   },
+   "cost": {
+    "per": 3,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "kiekkist",
+    "vercel-wig"
+   ],
+   "note": "iOS zooms the page on focus below 16 px"
+  },
+  {
+   "id": "zoom-disabled",
+   "name": "Zoom disabled in the viewport meta",
+   "name_de": "Zoom im Viewport-Meta gesperrt",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "`user-scalable=no` or `maximum-scale` below 2 in `meta[name=viewport]`",
+   "flag": "present",
+   "threshold": {
+    "min_scale": 2
+   },
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "vercel-wig"
+   ],
+   "note": "WCAG 2.2, 1.4.4 Resize text"
+  },
+  {
+   "id": "focus-visible",
+   "name": "No visible focus",
+   "name_de": "Kein sichtbarer Fokus",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "keyboard walk (Tab, up to 40 steps at the widest viewport, 30 at the narrowest); for the first 15 targets outline, box-shadow, border, background, colour and underline are compared with the rest state",
+   "flag": "focused style equals the rest style",
+   "threshold": {
+    "tabs": 15
+   },
+   "cost": {
+    "per": 4,
+    "cap": 8
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "vercel-wig"
+   ],
+   "note": "WCAG 2.2, 2.4.7. Typical cause: `outline: none` without a `:focus-visible` replacement."
+  },
+  {
+   "id": "reduced-motion",
+   "name": "No reduced-motion handling",
+   "name_de": "Keine Reduced-Motion-Variante",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "elements with CSS animations or transitions ≥ 200 ms; the page is re-measured with `prefers-reduced-motion: reduce` emulated",
+   "flag": "motion present and no element changes under reduce",
+   "threshold": {
+    "min_transition_ms": 200
+   },
+   "cost": {
+    "per": 3,
+    "cap": 3
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "vercel-wig",
+    "impeccable"
+   ],
+   "note": "WCAG 2.2, 2.3.3 (AAA); Vercel: honour prefers-reduced-motion"
+  },
+  {
+   "id": "font-cdn",
+   "name": "Third-party font CDN",
+   "name_de": "Schrift-CDN eines Dritten",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "attempted requests (the checker blocks them and records the host)",
+   "flag": "any request to a listed host",
+   "threshold": {
+    "max": 0
+   },
+   "patterns": [
+    "fonts.googleapis.com",
+    "fonts.gstatic.com",
+    "use.typekit.net",
+    "p.typekit.net",
+    "use.fontawesome.com",
+    "kit.fontawesome.com",
+    "ka-f.fontawesome.com",
+    "fonts.bunny.net",
+    "fast.fonts.net",
+    "cloud.typography.com",
+    "fonts.cdnfonts.com",
+    "api.fontshare.com",
+    "cdn.fontshare.com",
+    "cdn.jsdelivr.net/npm/@fontsource"
+   ],
+   "cost": {
+    "per": 6,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "legal-fonts"
+   ],
+   "note": "legal risk in the EU: IP address sent to a third party without consent (LG München I, 20.01.2022, 3 O 17493/20); see legal.md. Fontsource via jsDelivr counts too."
+  },
+  {
+   "id": "third-party",
+   "name": "Third-party requests without need",
+   "name_de": "Anfragen an Dritte ohne Bedarf",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "attempted requests to other origins than the target (blocked and recorded), font hosts excluded (see font-cdn)",
+   "flag": "any host not passed with --allow-host",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "legal-fonts"
+   ],
+   "note": "consent duty for analytics, embeds, maps (TTDSG/TDDDG § 25, DSGVO); the brief decides which are needed"
+  },
+  {
+   "id": "placeholder",
+   "name": "Placeholder text or images",
+   "name_de": "Platzhaltertext oder -bilder",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "visible text matched against the placeholder list (DE and EN, word boundaries, case-insensitive); image and background URLs against placeholder hosts",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "patterns": {
+    "text": [
+     "lorem ipsum",
+     "dolor sit amet",
+     "your headline",
+     "headline here",
+     "your text here",
+     "insert text",
+     "ihre überschrift",
+     "überschrift hier",
+     "text hier einfügen",
+     "platzhalter",
+     "blindtext",
+     "TBD",
+     "TODO",
+     "FIXME",
+     "Max Mustermann",
+     "Erika Mustermann",
+     "Musterfirma",
+     "Musterstraße",
+     "Mustermann GmbH",
+     "John Doe",
+     "Jane Doe",
+     "Acme",
+     "Lorem GmbH"
+    ],
+    "images": [
+     "picsum.photos",
+     "placeholder.com",
+     "via.placeholder.com",
+     "placehold.co",
+     "placehold.it",
+     "dummyimage.com",
+     "placekitten.com",
+     "placeimg.com",
+     "loremflickr.com",
+     "source.unsplash.com",
+     "fakeimg.pl"
+    ]
+   },
+   "cost": {
+    "per": 4,
+    "cap": 12
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste",
+    "impeccable"
+   ],
+   "note": "Generic names (Acme, Max Mustermann) are invented proof as much as placeholders (§ 5 UWG when shipped)."
+  },
+  {
+   "id": "line-length",
+   "name": "Body line length too long",
+   "name_de": "Zeilen im Fließtext zu lang",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social"
+   ],
+   "detect": "paragraphs, list items and quotes with at least 2 lines at the widest viewport: widest line divided by mean character width",
+   "flag": "above 80 characters; 76 to 80 only with line height ≥ 1.45",
+   "threshold": {
+    "max_ch": 80,
+    "tight_from_ch": 76,
+    "min_line_height": 1.45,
+    "min_chars": 120
+   },
+   "cost": {
+    "per": 3,
+    "cap": 9
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "bringhurst"
+   ],
+   "note": "WCAG 2.2, 1.4.8 (AAA); 45 to 75 characters is the typographic canon"
+  },
+  {
+   "id": "no-js-content",
+   "name": "Content missing without JavaScript",
+   "name_de": "Inhalt fehlt ohne JavaScript",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "second load with JavaScript disabled at the widest viewport; visible text length compared with the JavaScript run",
+   "flag": "below 60 % of the text",
+   "threshold": {
+    "min_ratio": 0.6
+   },
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-t35"
+   ],
+   "note": "Also what crawlers, reader mode and AI agents see. Counters that start at 0 are counted separately (counter-zero-nojs)."
+  },
+  {
+   "id": "multiple-primary",
+   "name": "More than one filled primary button per screen",
+   "name_de": "Mehr als ein gefüllter Hauptbutton pro Bildschirm",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "buttons with an opaque fill that differs from the ground they sit on, grouped by screen-high bands, every viewport",
+   "flag": "more than 1 in one band",
+   "threshold": {
+    "max": 1
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "kiekkist"
+   ],
+   "note": "one primary action per screen; the second is secondary or a link"
+  },
+  {
+   "id": "cta-colours",
+   "name": "More than one primary button colour",
+   "name_de": "Mehr als eine Farbe für Hauptbuttons",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "distinct fill colours of filled buttons on the page (sRGB distance > 30)",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1,
+    "distance": 30
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ],
+   "note": "one CTA colour sitewide; the checker sees one page, so check the other templates too"
+  },
+  {
+   "id": "axe",
+   "name": "axe-core WCAG violations",
+   "name_de": "axe-core-Verstöße (WCAG)",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "axe-core at every viewport and with the mobile menu opened, rules tagged wcag2a/aa, wcag21a/aa, wcag22aa and best-practice (audio-caption and css-orientation-lock enabled), without the rules measured above; WCAG A/AA violations are errors whatever their impact (`axe-critical`, `axe-serious`, `axe-moderate`, `axe-minor`, weighted 1.34/1/0.67/0.34), best-practice ones warnings (`axe-best-practice`); each finding carries its success criterion",
+   "flag": "any WCAG A/AA violation (error); best-practice (warning)",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "axe"
+   ]
+  },
+  {
+   "id": "content-hidden",
+   "name": "Text still invisible after scrolling",
+   "name_de": "Text nach dem Scrollen noch unsichtbar",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "text at opacity 0 before scrolling that stays invisible after a full scroll",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "load-failed",
+   "name": "Page could not be loaded or measured",
+   "name_de": "Seite ließ sich nicht laden",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "navigation or measurement error at a viewport",
+   "flag": "any; a page measured at no viewport scores 0",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "token-drift-color",
+   "name": "Colours outside the palette",
+   "name_de": "Farben außerhalb der Palette",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "rendered colour weight farther than CIEDE2000 6 from every token (needs --tokens)",
+   "flag": "more than 10 % of colour weight",
+   "threshold": {
+    "max_share": 0.1,
+    "delta_e": 6
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ],
+   "note": "also catches raw near-black values that bypass the ink token"
+  },
+  {
+   "id": "token-drift-font",
+   "name": "Fonts outside the tokens",
+   "name_de": "Schriften außerhalb der Tokens",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "font families with at least 20 visible characters that are not in the tokens (needs --tokens)",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "reflow-320",
+   "name": "No reflow at 320 px",
+   "name_de": "Kein Umbruch bei 320 px",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "extra viewport 320×640 (same context as the narrowest width): horizontal scrolling of the page, text cut at the viewport edge or newly clipped by its box; tables, pre/code, maps, figures with media and scroll containers are exempt; fixed/sticky bars covering more than half the height are a warning",
+   "flag": "page wider than 320 px or text cut (error); sticky bars > 50 % of the height (warning)",
+   "threshold": null,
+   "cost": {
+    "per": 8,
+    "cap": 16
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.10 (AA); EN 301 549 9.1.4.10"
+  },
+  {
+   "id": "text-spacing",
+   "name": "Text breaks with WCAG text spacing",
+   "name_de": "Text bricht bei WCAG-Textabständen",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "at the narrowest and widest viewport the WCAG test styles are injected (line-height 1.5, letter-spacing 0.12em, word-spacing 0.16em, paragraph spacing 2em); only clipping, spill, ellipsis or line-clamp that was not there before counts",
+   "flag": "any new clipping",
+   "threshold": null,
+   "cost": {
+    "per": 2,
+    "cap": 8
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.12 (AA). Typical cause: fixed heights or nowrap on buttons, badges, nav items."
+  },
+  {
+   "id": "text-resize-200",
+   "name": "Text-only zoom 200 % not supported",
+   "name_de": "Textzoom 200 % nicht unterstützt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "root font size set to 200 % at the widest viewport: text elements that do not grow (px sizes) and new clipping",
+   "flag": "fewer than half the text elements grow, or new clipping (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.4 (AA), heuristic; real zoom is covered by reflow-320."
+  },
+  {
+   "id": "focus-obscured",
+   "name": "Focused element hidden by sticky content",
+   "name_de": "Fokus von fixierten Elementen verdeckt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "during the keyboard walk at the narrowest and widest viewport, 9 points inside each focused element are hit-tested; points covered by a fixed or sticky element count",
+   "flag": "all 9 points covered (error, 2.4.11); some covered (warning, 2.4.12)",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 9
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.4.11 (AA), 2.4.12 (AAA). Fix with scroll-padding-top/bottom equal to the bar height."
+  },
+  {
+   "id": "focus-order",
+   "name": "Focus order jumps",
+   "name_de": "Fokusreihenfolge springt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "keyboard walk: positive tabindex, or the next focus target lies more than one screen height above the previous one",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.4.3 (A), heuristic"
+  },
+  {
+   "id": "keyboard-trap",
+   "name": "Keyboard trap",
+   "name_de": "Tastaturfalle",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "keyboard walk: focus returns to an element already visited before the end of the page, and neither Shift+Tab (4 steps) nor Escape (for modal dialogs) leaves the cycle while focusable elements remain unreached; iframes holding focus for 15 steps are a warning (not inspectable)",
+   "flag": "any trap",
+   "threshold": {
+    "tabs": 40
+   },
+   "cost": {
+    "per": 12,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.1.2 (A)"
+  },
+  {
+   "id": "click-handler-not-focusable",
+   "name": "Clickable element not reachable by keyboard",
+   "name_de": "Klickbares Element per Tastatur unerreichbar",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "an init script records click, pointer and touch listeners; elements with such a listener or an onclick attribute and cursor:pointer that are not focusable and contain no focusable element",
+   "flag": "any",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 9
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.1.1 (A). Event delegation on a parent is not seen (partial check)."
+  },
+  {
+   "id": "non-text-contrast",
+   "name": "Form field or icon below 3:1",
+   "name_de": "Formularfeld oder Icon unter 3:1",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "border (each side ≥ 1 px), fill or shadow of inputs, selects, textareas and custom checkboxes against the effective background; fill or stroke of icons in icon-only links and buttons",
+   "flag": "best boundary below 3:1",
+   "threshold": null,
+   "cost": {
+    "per": 2,
+    "cap": 10
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.11 (AA)"
+  },
+  {
+   "id": "forced-colors",
+   "name": "Control disappears in forced-colours mode",
+   "name_de": "Bedienelement verschwindet im Kontrastmodus",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "screenshot of the top 2400 px at the widest viewport with and without forced-colors: active; a control or icon whose area has contrast normally and is flat in forced colours",
+   "flag": "any (heuristic, pixel comparison)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "en301549v4"
+   ],
+   "note": "EN 301 549 V4.1.1 clause 9.7 (not yet harmonised). Use currentColor, real borders, SVG fill."
+  },
+  {
+   "id": "forced-color-adjust-scan",
+   "name": "forced-color-adjust: none",
+   "name_de": "forced-color-adjust: none",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "computed forced-color-adjust on visible elements (inherited cases counted once)",
+   "flag": "any outside logos and colour swatches",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "en301549v4"
+   ],
+   "note": "EN 301 549 V4.1.1 clause 9.7"
+  },
+  {
+   "id": "lang-mismatch",
+   "name": "Page language does not match the text",
+   "name_de": "Seitensprache passt nicht zum Text",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "stopword count (German vs English) over the first 3,000 characters of main against <html lang>",
+   "flag": "declared de/en but the text is clearly the other language (≥ 30 words, 2× majority)",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.1.1 (A)"
+  },
+  {
+   "id": "lang-parts",
+   "name": "Passage in another language without lang",
+   "name_de": "Fremdsprachige Passage ohne lang",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "paragraphs, list items, headings, quotes and cells with ≥ 6 words whose stopwords point to the other language and no lang attribute on them or an ancestor",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.1.2 (AA), heuristic, German and English only"
+  },
+  {
+   "id": "label-in-name",
+   "name": "Visible label not in the accessible name",
+   "name_de": "Sichtbare Beschriftung fehlt im zugänglichen Namen",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "links and buttons with aria-label or aria-labelledby: the visible text (normalised) must be contained in the name",
+   "flag": "visible text not contained",
+   "threshold": null,
+   "cost": {
+    "per": 2,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.5.3 (A); best practice: the name starts with the visible text"
+  },
+  {
+   "id": "icon-name",
+   "name": "Icon control named by title only, or icon read twice",
+   "name_de": "Icon-Steuerelement nur per title benannt oder doppelt gelesen",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "icon-only links/buttons whose only name is the title attribute; svg with role=\"img\" or <title> inside a labelled control without aria-hidden",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 4.1.2 (A); title is not shown on touch and announced inconsistently"
+  },
+  {
+   "id": "pause-control-missing",
+   "name": "Moving content without pause",
+   "name_de": "Bewegung ohne Pause-Schalter",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "running animations that are infinite or longer than 5 s on elements ≥ 2,500 px², autoplaying or playing video/audio with loop or longer than 5 s, marquee/blink; a button or link named pause/stop/anhalten/abspielen in the same section (or native controls) counts as control",
+   "flag": "any without control",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.2.2 (A)"
+  },
+  {
+   "id": "reduced-motion-ignored",
+   "name": "Motion continues under reduced motion",
+   "name_de": "Bewegung läuft trotz reduzierter Bewegung",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "after emulating prefers-reduced-motion: reduce, the same scan as pause-control-missing finds moving content",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.3.3 (AAA); house standard in motion.md"
+  },
+  {
+   "id": "autoplay-audio",
+   "name": "Audio plays automatically",
+   "name_de": "Ton startet automatisch",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "video/audio with autoplay (or playing) that is not muted",
+   "flag": "any",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.2 (A); axe no-autoplay-audio covers the timed case"
+  },
+  {
+   "id": "autocomplete-missing",
+   "name": "Personal-data field without autocomplete",
+   "name_de": "Feld für persönliche Daten ohne autocomplete",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "name, id or label of text fields matched against personal-data tokens (name, e-mail, telefon, straße, plz, ort, firma …); missing, on or off autocomplete",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.3.5 (AA); axe autocomplete-valid checks invalid tokens"
+  },
+  {
+   "id": "auth-paste",
+   "name": "Paste blocked in login or code fields",
+   "name_de": "Einfügen in Login- oder Codefeldern blockiert",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "a synthetic paste event on password, one-time-code and single-character fields is cancelled (error); autocomplete=\"off\" on passwords and split code boxes without one-time-code (warnings)",
+   "flag": "paste cancelled",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.3.8 (AA)"
+  },
+  {
+   "id": "captcha-detect",
+   "name": "CAPTCHA found",
+   "name_de": "CAPTCHA gefunden",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "scripts, iframes and markup of reCAPTCHA, hCaptcha, Turnstile, Friendly Captcha, MTCaptcha, slider puzzles; image/text/puzzle challenges are warnings, score-based ones info",
+   "flag": "image, text or puzzle challenge",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.3.8 (AA): verify a non-cognitive alternative by hand"
+  },
+  {
+   "id": "redundant-entry",
+   "name": "Same information asked twice",
+   "name_de": "Gleiche Angabe doppelt verlangt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "fields named or labelled confirm/wiederholen/bestätigen next to e-mail (warning) or password (info, security exception)",
+   "flag": "e-mail confirmation field",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.3.7 (A), heuristic; multi-step flows stay manual"
+  },
+  {
+   "id": "form-errors",
+   "name": "Required fields or error messages unclear",
+   "name_de": "Pflichtfelder oder Fehlermeldungen unklar",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "required fields whose label gives no cue and no explanation of \"*\" in the form; forms with novalidate whose required fields have no aria-describedby/aria-errormessage and no live region",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.3.1 (A), 3.3.2 (A); message quality stays manual"
+  },
+  {
+   "id": "consent-banner",
+   "name": "Consent banner not usable by keyboard",
+   "name_de": "Cookie-Banner nicht per Tastatur bedienbar",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "known CMP roots or a fixed/dialog box about cookies; keyboard walk must reach it (error if never, warning after step 5); first layer needs reject next to accept at ≥ 70 % of its size (warnings, see privacy-eu.md)",
+   "flag": "not reachable by Tab",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "P",
+   "source": [
+    "wcag22"
+   ],
+   "note": "Practice item; WCAG 2.1.1, 2.4.3, 2.4.11 applied to the banner"
+  },
+  {
+   "id": "statement-link",
+   "name": "No accessibility information linked",
+   "name_de": "Keine Barrierefreiheitsinformationen verlinkt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "link text or href matching Barrierefreiheit/Accessibility in the footer or the last quarter of the DOM; in site mode on every page",
+   "flag": "missing (warning; error with profile bfsg/public or when shop or booking signals are found)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "bfsg"
+   ],
+   "note": "BFSG § 14 + Anlage 3; BITV 2.0 § 7. Never read as conformance."
+  },
+  {
+   "id": "statement-content",
+   "name": "Accessibility information incomplete",
+   "name_de": "Barrierefreiheitsinformationen unvollständig",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "same-origin fetch of the linked page: date and contact always; MLBF with profile bfsg; feedback, Schlichtung, compliance status and a date within 13 months with profile public",
+   "flag": "any element missing",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "bfsg"
+   ],
+   "note": "BFSG Anlage 3 lit. d; § 7 BITV 2.0"
+  },
+  {
+   "id": "public-sector-links",
+   "name": "Leichte Sprache or DGS missing (public bodies)",
+   "name_de": "Leichte Sprache oder DGS fehlt (öffentliche Stellen)",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "profile public only: links on the start page to Leichte Sprache and Deutsche Gebärdensprache",
+   "flag": "either missing",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 12
+   },
+   "evidence": "S",
+   "source": [
+    "bfsg"
+   ],
+   "note": "§ 4 BITV 2.0"
+  },
+  {
+   "id": "overlay-detect",
+   "name": "Accessibility overlay widget",
+   "name_de": "Barrierefreiheits-Overlay",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "script hosts and toolbar markup of overlay widgets (accessiBe, UserWay, Eye-Able, EqualWeb, AudioEye and others)",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "wcag22"
+   ],
+   "note": "Overlays do not make a site conform; fix the source"
+  },
+  {
+   "id": "pdf-link-scan",
+   "name": "Linked PDF not tagged",
+   "name_de": "Verlinktes PDF ohne Tags",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "up to 5 same-origin PDFs (≤ 10 MB): MarkInfo Marked, structure tree, /Lang, /Title, DisplayDocTitle (Flate object streams are inflated); creation date reported for the pre-28.06.2025 exemption",
+   "flag": "any marker missing",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "en301549v4"
+   ],
+   "note": "EN 301 549 clause 10; no PDF/UA verdict, use veraPDF or PAC"
+  },
+  {
+   "id": "consistent-nav",
+   "name": "Navigation order differs between pages",
+   "name_de": "Navigationsreihenfolge wechselt zwischen Seiten",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "site mode: relative order of the links shared by the first nav of each page",
+   "flag": "order differs",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.2.3 (AA)"
+  },
+  {
+   "id": "consistent-help",
+   "name": "Help mechanisms in a different order",
+   "name_de": "Hilfe-Angebote in anderer Reihenfolge",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "site mode: order of phone, e-mail, contact page, help/FAQ and chat in header and footer per page",
+   "flag": "order differs (error); missing on some pages (warning)",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.2.6 (A)"
+  },
+  {
+   "id": "consistent-id",
+   "name": "Same target, different name",
+   "name_de": "Gleiches Ziel, anderer Name",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "site mode: links in nav, header and footer to the same path with different text",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 3.2.4 (AA)"
+  },
+  {
+   "id": "title-unique",
+   "name": "Duplicate or generic page titles",
+   "name_de": "Doppelte oder nichtssagende Seitentitel",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "site mode: equal <title> on several pages or titles like Home/Startseite/index",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.4.2 (A); axe document-title covers the missing title"
+  },
+  {
+   "id": "multiple-ways",
+   "name": "Only one way to find pages",
+   "name_de": "Nur ein Weg zu den Seiten",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "site mode (≥ 3 pages): no search, no sitemap link",
+   "flag": "none found (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.4.5 (AA)"
+  },
+  {
+   "id": "dragging",
+   "name": "Dragging without a single-pointer alternative",
+   "name_de": "Ziehen ohne Alternative",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "carousels (Swiper, Splide, Embla, Flickity, Glide, Slick, Owl, Keen) without buttons; before/after sliders without range input or buttons; draggable elements without move buttons",
+   "flag": "any (heuristic)",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 2.5.7 (AA)"
+  },
+  {
+   "id": "hover-content",
+   "name": "Hover content not dismissible or not hoverable",
+   "name_de": "Hover-Inhalt nicht schließbar oder nicht erreichbar",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "up to two nav items with hidden submenus (or tooltip triggers) at the widest viewport: hover, move onto the content (must stay), press Escape (must close)",
+   "flag": "either fails",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.4.13 (AA)"
+  },
+  {
+   "id": "orientation",
+   "name": "Content locked to one orientation",
+   "name_de": "Inhalt auf eine Ausrichtung festgelegt",
+   "kind": "hard",
+   "group": "a11y",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "viewport 844×390 after the 320 px pass: main hidden or a full-screen \"please rotate\" overlay; axe css-orientation-lock covers CSS rotation",
+   "flag": "any",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22"
+   ],
+   "note": "WCAG 2.2, 1.3.4 (AA)"
+  },
+  {
+   "id": "invented-proof",
+   "name": "Invented proof",
+   "name_de": "Erfundene Belege",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "manual",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "statistics, logos, reviews or awards without a source the client confirmed",
+   "flag": "more than 0",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "uwg"
+   ],
+   "note": "misleading commercial practice (UWG § 5; fake reviews are blacklisted)"
+  },
+  {
+   "id": "font-licence",
+   "name": "Fonts without licence file",
+   "name_de": "Schriften ohne Lizenzdatei",
+   "kind": "hard",
+   "group": "hard",
+   "checker": "manual",
+   "severity": "error",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "font files in `assets/fonts/` without matching licence",
+   "flag": "more than 0",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "reflex-font",
+   "name": "Reflex fonts (model defaults)",
+   "name_de": "Reflex-Schriften (Modell-Voreinstellung)",
+   "kind": "info",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "used families against the `reflex-fonts` pack (display-only entries count only in headings); fonts passed as brand fonts are exempt",
+   "flag": "more than 0 without a written reason",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "D",
+   "source": [
+    "reflex-fonts"
+   ],
+   "note": "brand fonts fixed by the client are exempt (--brand-font)"
+  },
+  {
+   "id": "font-families",
+   "name": "Font families in use",
+   "name_de": "Schriftfamilien im Einsatz",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "first family of every text node with at least 20 characters",
+   "flag": "more than 3",
+   "threshold": {
+    "max": 3
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "card-fonts",
+   "name": "Three or more families inside one card",
+   "name_de": "Drei oder mehr Schriften in einer Karte",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "boxes with background, border or shadow; distinct families of the text inside",
+   "flag": "more than 0 cards",
+   "threshold": {
+    "max": 0,
+    "families": 3
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "eyebrow",
+   "name": "Pill / caps eyebrow labels above headings",
+   "name_de": "Pill-/Versal-Eyebrows über Überschriften",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "small uppercase, tracked or pill text directly above a heading",
+   "flag": "more than 2 per page",
+   "threshold": {
+    "max": 2
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "tracked-caps",
+   "name": "Tracked all-caps labels",
+   "name_de": "Gesperrte Versal-Labels",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "text with `text-transform: uppercase` and letter spacing ≥ 0.02 em",
+   "flag": "more than 4 per page",
+   "threshold": {
+    "max": 4
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "tiny uppercase labels on 57 % of weak vs 16 % of top sites (Taste study)"
+  },
+  {
+   "id": "highlight-word",
+   "name": "Single coloured/italic word in the H1",
+   "name_de": "Einzelnes farbiges/kursives Wort in der H1",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "a span of at most three words inside `h1` with different colour, style, family or gradient",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ],
+   "note": "with a serif display face this is the editorial-lane reflex (Playfair with one italic word)"
+  },
+  {
+   "id": "gradient-text",
+   "name": "Gradient text (background-clip:text)",
+   "name_de": "Verlaufsschrift (background-clip:text)",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "`background-clip: text` with a gradient",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "mono-labels",
+   "name": "Monospace micro labels on non-data",
+   "name_de": "Mono-Labels ohne Daten",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "small monospace text (≤ 14.5 px, ≤ 40 characters) that is not data: no code, table, time, price, date, ID or mostly-digit text",
+   "flag": "more than 3",
+   "threshold": {
+    "max": 3
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "monospace labels are MORE common on top sites (44 % vs 24 %, Taste study); only the non-data use is counted"
+  },
+  {
+   "id": "long-centred",
+   "name": "Long centred text",
+   "name_de": "Lange zentrierte Texte",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "centred paragraphs with more than three lines",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1,
+    "lines": 3
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "h1-lines",
+   "name": "Four-line H1",
+   "name_de": "Vierzeilige H1",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "line count of the first visible `h1` at the widest viewport",
+   "flag": "more than 3 lines",
+   "threshold": {
+    "max": 3
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-rt12",
+    "taste"
+   ],
+   "data": "70 % of headlines fit in two lines (Taste study)"
+  },
+  {
+   "id": "first-screen-words",
+   "name": "Text wall before the first scroll",
+   "name_de": "Textwand vor dem ersten Scrollen",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "words of visible text inside the first viewport at the widest viewport",
+   "flag": "more than 200",
+   "threshold": {
+    "max": 200
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-rt12",
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "orphan-heading",
+   "name": "Orphan word in a heading",
+   "name_de": "Einzelnes Wort in der letzten Überschriftenzeile",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`h1` and `h2` with at least four words and two lines whose last line holds one word, widest viewport",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0,
+    "min_words": 4
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "vercel-wig",
+    "wiki-design-portal"
+   ],
+   "note": "fix with `text-wrap: balance` or a non-breaking space"
+  },
+  {
+   "id": "heading-skip",
+   "name": "Skipped heading level",
+   "name_de": "Übersprungene Überschriftenebene",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "visible headings in document order; a level deeper than previous + 1",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "vercel-wig"
+   ],
+   "note": "WCAG 1.3.1 best practice (axe heading-order is moderate and therefore not in the axe pass)"
+  },
+  {
+   "id": "justified-text",
+   "name": "Justified text",
+   "name_de": "Blocksatz",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`text-align: justify` on blocks with at least two lines",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable"
+   ],
+   "note": "rivers on the web without fine hyphenation; WCAG 1.4.8 (AAA) advises against"
+  },
+  {
+   "id": "eyebrow-repeats-heading",
+   "name": "Eyebrow repeating the heading",
+   "name_de": "Eyebrow wiederholt die Überschrift",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "eyebrow text whose words reappear in the heading below",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "display-serif-italic",
+   "name": "Display serif with one italic word",
+   "name_de": "Display-Serif mit einem kursiven Wort",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "Playfair Display (or a similar high-contrast serif) in `h1` with one italic word; partly covered by highlight-word",
+   "flag": "more than 0 without a written reason",
+   "evidence": "D",
+   "source": [
+    "bis",
+    "wiki-rt12",
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "card-radii",
+   "name": "More than one radius inside one card",
+   "name_de": "Mehrere Radien in einer Karte",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "distinct border radii inside one card",
+   "flag": "more than 1",
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "platform-face-only",
+   "name": "Inter or the platform UI face as the only family on a brand surface",
+   "name_de": "Inter oder Systemschrift als einzige Familie auf Markenflächen",
+   "kind": "counted",
+   "group": "typography",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "font stack inspection; product register is exempt",
+   "flag": "more than 0 without a written reason",
+   "evidence": "D",
+   "source": [
+    "bis",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "three-cards",
+   "name": "Three equal cards with icon on top",
+   "name_de": "Drei gleiche Karten mit Icon oben",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "three equal-width siblings in a row, at least two with an icon above their heading",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste",
+    "impeccable"
+   ],
+   "data": "icon-topped feature cards on 28 % of weak vs 1 % of top sites (Taste study)"
+  },
+  {
+   "id": "numbered-sections",
+   "name": "Numbered markers 01 / 02 / 03 on non-sequences",
+   "name_de": "Nummerierte Marker 01 / 02 / 03 ohne Abfolge",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "standalone \"01\" to \"09\" markers outside `ol`, tables and times; markers that sit together in one component (a list of steps or a timeline, not page sections with their own h2) are a real sequence and are not counted",
+   "flag": "more than 2",
+   "threshold": {
+    "max": 2
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "index numbering is MORE common on top sites (38 % vs 21 %, Taste study); only section numbering without a sequence is counted"
+  },
+  {
+   "id": "stat-counters",
+   "name": "Big-number stat counters",
+   "name_de": "Zähler-Statistiken",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "short numeric text ≥ 28 px or count-up markup",
+   "flag": "more than 2 (any without a confirmed source is invented proof)",
+   "threshold": {
+    "max": 2
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-design-portal"
+   ]
+  },
+  {
+   "id": "counter-zero-nojs",
+   "name": "Counters showing 0 without JavaScript",
+   "name_de": "Zähler zeigen ohne JavaScript 0",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "second load with JavaScript disabled: count-up markup or large numbers reading \"0\", \"0+\", \"0 %\"",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-t35"
+   ],
+   "note": "own check in the maintainer's notes (friendventure.de showed \"0 Standorte, 0+ Spezialist:innen\" without JS); crawlers and screenshot tools see the zeros"
+  },
+  {
+   "id": "uniform-radius",
+   "name": "Same border-radius on most boxes",
+   "name_de": "Gleicher Eckenradius auf fast allen Boxen",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "share of boxes (background, border or shadow; pills excluded) using the most frequent radius",
+   "flag": "above 80 % with at least 6 boxes",
+   "threshold": {
+    "max": 80,
+    "unit": "%",
+    "min_boxes": 6
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "uniform-shadow",
+   "name": "One soft shadow on every raised box",
+   "name_de": "Ein weicher Schatten auf jeder Box",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "share of shadowed boxes using the most frequent shadow value",
+   "flag": "above 90 % with at least 6 shadowed boxes",
+   "threshold": {
+    "max": 90,
+    "unit": "%",
+    "min_boxes": 6
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "big-shadow",
+   "name": "Large soft shadows",
+   "name_de": "Große weiche Schatten",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "outer shadows with blur ≥ 16 px, or offset ≥ 8 px with blur ≥ 10 px",
+   "flag": "more than 3",
+   "threshold": {
+    "max": 3
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ],
+   "note": "RT1 counter: 1 px lines and slight surface changes instead of shadows"
+  },
+  {
+   "id": "nested-cards",
+   "name": "Nested cards",
+   "name_de": "Verschachtelte Karten",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "a rounded box with background, border or shadow (≥ 120 × 60 px) inside another such box",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable"
+   ],
+   "note": "impeccable bans them outright; Kiekkist counts (double-bezel may be one direction’s signature with a reason)"
+  },
+  {
+   "id": "side-stripe",
+   "name": "Accent-stripe cards",
+   "name_de": "Karten mit farbiger Randleiste",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "groups of at least two siblings with a coloured left, right or top border ≥ 2 px that differs from their other borders",
+   "flag": "more than 1 group",
+   "threshold": {
+    "max": 1,
+    "min_px": 2
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "wiki-rt12",
+    "wiki-q37"
+   ],
+   "note": "single callouts (a quote, a fact box) are not counted"
+  },
+  {
+   "id": "centred-hero",
+   "name": "Centred hero with two buttons",
+   "name_de": "Zentrierter Hero mit zwei Buttons",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "centred `h1` with at least two buttons below it in the same block",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "centred statement over media on 24 % of weak vs 7 % of top sites (Taste study)"
+  },
+  {
+   "id": "logo-wall",
+   "name": "Logo wall",
+   "name_de": "Logo-Wand",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "a row of at least five image-only children",
+   "flag": "more than 0 without permission and reason",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "testimonial-carousel",
+   "name": "Testimonial carousel",
+   "name_de": "Testimonial-Karussell",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "slider markup or a horizontally scrolling container with quotes",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "captions-everywhere",
+   "name": "A caption under every image",
+   "name_de": "Bildunterschrift unter jedem Bild",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "pages with at least three content images, all inside `figure` with `figcaption`",
+   "flag": "match",
+   "threshold": {
+    "max": 0,
+    "min_images": 3
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-rt12"
+   ],
+   "note": "a caption that names place and work is a good detail; on every image without content it is a reflex"
+  },
+  {
+   "id": "emoji-heading",
+   "name": "Emoji in headings",
+   "name_de": "Emoji in Überschriften",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "pictographic characters in headings",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "emoji on 26 % of weak vs 10 % of top sites (Taste study)"
+  },
+  {
+   "id": "js-errors",
+   "name": "JavaScript errors on load",
+   "name_de": "JavaScript-Fehler beim Laden",
+   "kind": "counted",
+   "group": "quality",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "uncaught exceptions and `console.error` during load and scroll (failed requests the checker blocked are ignored)",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable"
+   ]
+  },
+  {
+   "id": "autoplay-no-controls",
+   "name": "Autoplaying media without controls",
+   "name_de": "Automatisch startende Medien ohne Steuerung",
+   "kind": "counted",
+   "group": "quality",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "`video` or `audio` with `autoplay` and without `controls`",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "vercel-wig"
+   ],
+   "note": "WCAG 2.2, 2.2.2: motion longer than 5 s needs pause, stop or hide"
+  },
+  {
+   "id": "hero-video-no-poster",
+   "name": "Video in the first screen without poster",
+   "name_de": "Video im ersten Bildschirm ohne Poster",
+   "kind": "counted",
+   "group": "quality",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`video` starting inside the first viewport without `poster`",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "vercel-wig"
+   ],
+   "note": "blank box until the video loads; no still for reduced motion"
+  },
+  {
+   "id": "img-dimensions",
+   "name": "Images without width and height",
+   "name_de": "Bilder ohne Breite und Höhe",
+   "kind": "counted",
+   "group": "quality",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "`img` without `width`/`height` attributes and without CSS `aspect-ratio`",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "vercel-wig"
+   ],
+   "note": "layout shift (CLS)"
+  },
+  {
+   "id": "icon-tiles",
+   "name": "Icon tiles",
+   "name_de": "Icon-Kacheln",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "an icon inside a rounded, tinted square",
+   "flag": "more than 3 per page",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "section-rhythm",
+   "name": "Template section rhythm",
+   "name_de": "Vorlagen-Abschnittsfolge",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "hero, three cards, alternating image and text, logo strip, CTA band, footer, in this order (`fingerprint.sections` in the report)",
+   "flag": "full match",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "saas-sequence",
+   "name": "SaaS sequence on a non-SaaS brief",
+   "name_de": "SaaS-Abfolge ohne SaaS-Auftrag",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "hero → social proof → features → testimonials → pricing → FAQ",
+   "flag": "full match on a non-SaaS brief",
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "pill-badges",
+   "name": "Pill badges",
+   "name_de": "Pill-Badges",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "small rounded labels on cards (\"New\", \"Popular\")",
+   "flag": "more than 2 per page",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "device-mockups",
+   "name": "Device mockups, countdowns",
+   "name_de": "Geräte-Mockups, Countdowns",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "phone or laptop frames, timers",
+   "flag": "more than 0 without a written reason",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "decorative-terminal",
+   "name": "Decorative terminal windows",
+   "name_de": "Terminal-Fenster als Deko",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "fake terminal or code windows with traffic-light dots that show no real product",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "fake-demo",
+   "name": "No real demo, only placeholder interfaces",
+   "name_de": "Keine echte Demo, nur Platzhalter-Oberflächen",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "product screens that are generated or mocked instead of the real product",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ],
+   "note": "Q37 calls this the most important tell"
+  },
+  {
+   "id": "accordion-content",
+   "name": "Content hidden in accordions",
+   "name_de": "Inhalt in Akkordeons versteckt",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "body text that only appears after a click, outside FAQ",
+   "flag": "more than 1 group",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "chart-legend",
+   "name": "Legends instead of direct labels",
+   "name_de": "Legenden statt direkter Beschriftung",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social"
+   ],
+   "threshold": null,
+   "detect": "charts with a separate legend box",
+   "flag": "more than 0",
+   "evidence": "M",
+   "source": [
+    "mayer"
+   ]
+  },
+  {
+   "id": "endless-scroll",
+   "name": "Long scroll without content",
+   "name_de": "Endlose Scrollseite ohne Inhalt",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "many sections that each say one generic thing; template 2024 SaaS layout",
+   "flag": "by judgement",
+   "evidence": "P",
+   "source": [
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "numbers-everywhere",
+   "name": "Numbers sprinkled everywhere",
+   "name_de": "Überall eingestreute Zahlen",
+   "kind": "counted",
+   "group": "structure",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "figures in headings, cards and buttons that the brief did not supply",
+   "flag": "more than 0 unsourced",
+   "evidence": "P",
+   "source": [
+    "wiki-design-portal"
+   ],
+   "note": "related to stat-counters, but broader"
+  },
+  {
+   "id": "gradient-surface",
+   "name": "Gradients on large surfaces",
+   "name_de": "Verläufe auf großen Flächen",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "gradient backgrounds covering ≥ 15 % of the viewport or ≥ half its width and 200 px high",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ],
+   "data": "gradients on 52 % of weak vs 22 % of top sites (Taste study)"
+  },
+  {
+   "id": "purple-gradient",
+   "name": "Purple-to-blue gradient",
+   "name_de": "Lila-Blau-Verlauf",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "gradient stops with a violet hue (270 to 335) next to blue or pink",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "D",
+   "source": [
+    "frontend-design",
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "radial-glow",
+   "name": "Radial halo or glow",
+   "name_de": "Radialer Halo/Glow",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "`radial-gradient` backgrounds (pseudo-elements included) that fade to transparent",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "wiki-q37"
+   ],
+   "note": "radial orbs, spotlight backgrounds"
+  },
+  {
+   "id": "dot-grid",
+   "name": "Dot-grid background",
+   "name_de": "Punktraster-Hintergrund",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "repeated radial-gradient background with a tile ≤ 40 px",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0,
+    "tile_px": 40
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "rainbow-gradient",
+   "name": "Rainbow colours",
+   "name_de": "Regenbogenfarben",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "one gradient with at least four chromatic stops spanning more than 180° of hue",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0,
+    "hue_span": 180
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "glass",
+   "name": "Glass / backdrop-filter",
+   "name_de": "Glas / backdrop-filter",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "`backdrop-filter` on visible elements",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "cream-serif-terracotta",
+   "name": "Cream + serif + terracotta cluster (parts present)",
+   "name_de": "Creme + Serif + Terrakotta (Anteile vorhanden)",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "very light warm ground, serif display, orange-red accent (OKLCH ranges)",
+   "flag": "all three parts",
+   "threshold": {
+    "max": 2
+   },
+   "evidence": "D",
+   "source": [
+    "bis",
+    "kiekkist",
+    "wiki-q37"
+   ],
+   "note": "also the look of curated inspiration collections (large serif, cream, floating cards, orbs: Q09 comment)"
+  },
+  {
+   "id": "acid-on-black",
+   "name": "Single acid/vermilion accent on near-black",
+   "name_de": "Acid-/Zinnober-Akzent auf Fast-Schwarz",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "ground lightness under 0.22 with one high-chroma lime or vermilion accent",
+   "flag": "match",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "purple-on-black",
+   "name": "Purple or violet on black",
+   "name_de": "Lila/Violett auf Schwarz",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "ground lightness under 0.22 with a violet accent (hue 270 to 330, chroma ≥ 0.1)",
+   "flag": "match",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "gold-accent",
+   "name": "Gold accent",
+   "name_de": "Goldakzent",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "button, link or heading accent with hue 70 to 95, chroma ≥ 0.08, lightness 0.6 to 0.85",
+   "flag": "match without a written reason",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-rt12",
+    "bis"
+   ],
+   "note": "with navy it is the law/finance sector default"
+  },
+  {
+   "id": "pure-black-text",
+   "name": "Pure black body text",
+   "name_de": "Reinschwarzer Fließtext",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "paragraph text colour #000 on a light ground",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "navy-gold",
+   "name": "Navy and gold for law, finance, property, insurance",
+   "name_de": "Marine und Gold für Recht, Finanzen, Immobilien",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "tokens and industry",
+   "flag": "match without a written reason",
+   "evidence": "D",
+   "source": [
+    "bis"
+   ]
+  },
+  {
+   "id": "indigo-tech",
+   "name": "Indigo or violet primary for a tech brief",
+   "name_de": "Indigo/Violett als Primärfarbe bei Tech",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "tokens and industry",
+   "flag": "match without a written reason",
+   "evidence": "D",
+   "source": [
+    "bis",
+    "frontend-design"
+   ]
+  },
+  {
+   "id": "sector-palettes",
+   "name": "Purple or teal on cream with gold; orange on off-white",
+   "name_de": "Lila/Petrol auf Creme mit Gold; Orange auf Off-White",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "tokens",
+   "flag": "match without a written reason",
+   "evidence": "D",
+   "source": [
+    "bis"
+   ]
+  },
+  {
+   "id": "warm-saas",
+   "name": "Warm colours on SaaS structure",
+   "name_de": "Warme Farben auf SaaS-Struktur",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "tomato, mustard and light blue on cream with bento tiles: still SaaS",
+   "flag": "by judgement",
+   "evidence": "P",
+   "source": [
+    "wiki-ig-2909"
+   ]
+  },
+  {
+   "id": "infographic-look",
+   "name": "AI infographic look",
+   "name_de": "KI-Infografik-Look",
+   "kind": "counted",
+   "group": "colour",
+   "checker": "manual",
+   "applies_to": [
+    "social",
+    "slides"
+   ],
+   "threshold": null,
+   "detect": "dark blue gradient, heavy grotesque, giant periwinkle number, source in monospace",
+   "flag": "match",
+   "evidence": "P",
+   "source": [
+    "wiki-f1"
+   ]
+  },
+  {
+   "id": "scroll-reveal",
+   "name": "Scroll-reveal / opacity-0 start states",
+   "name_de": "Scroll-Reveal / Opacity-0-Startzustände",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "reveal class names and data attributes, and text invisible at rest that appears on scroll",
+   "flag": "more than 3",
+   "threshold": {
+    "max": 3
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "pulsing-dot",
+   "name": "Pulsing dot",
+   "name_de": "Pulsierender Punkt",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "element ≤ 16 px with an infinite animation",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0,
+    "max_px": 16
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable"
+   ]
+  },
+  {
+   "id": "bounce-easing",
+   "name": "Bounce or elastic easing",
+   "name_de": "Bounce-/Elastic-Easing",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`cubic-bezier` timing with y outside 0 to 1 on transitions and animations",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "T",
+   "source": [
+    "impeccable"
+   ],
+   "note": "taste shared by most sources, not a standard"
+  },
+  {
+   "id": "transition-all",
+   "name": "transition: all",
+   "name_de": "transition: all",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "detect": "computed `transition-property: all` with a duration",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "vercel-wig",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "custom-cursor",
+   "name": "Custom cursor",
+   "name_de": "Eigener Mauszeiger",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "`cursor: none` or `cursor: url(...)`",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "hover-lift",
+   "name": "Hover lift on every card",
+   "name_de": "Hover-Anheben auf jeder Karte",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "transforms on hover on repeated elements",
+   "flag": "more than 1 group",
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "hover-everything",
+   "name": "Hover animation on everything, animated arrows",
+   "name_de": "Hover-Animation an allem, animierte Pfeile",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "transitions on every interactive element; arrows that slide on hover",
+   "flag": "by judgement (states themselves are required)",
+   "evidence": "P",
+   "source": [
+    "wiki-q37",
+    "wiki-rt12"
+   ],
+   "note": "not an argument against hover and focus states (WCAG/BFSG)"
+  },
+  {
+   "id": "cursor-follower",
+   "name": "Cursor followers",
+   "name_de": "Dem Cursor folgende Elemente",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "elements or backgrounds bound to pointer position",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "intro-sequence",
+   "name": "Slider, intro sequence, preloader, scroll hijacking",
+   "name_de": "Slider, Intro, Preloader, Scroll-Übernahme",
+   "kind": "counted",
+   "group": "motion",
+   "checker": "manual",
+   "applies_to": [
+    "web"
+   ],
+   "threshold": null,
+   "detect": "carousels in the first screen, splash screens, `wheel` handlers that take over scrolling",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "dashes",
+   "name": "Em dashes in running text",
+   "name_de": "Geviertstriche (—) im Fließtext",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "count of the em dash \"—\" in visible running text (headings, nav, code excluded); the spaced German en dash \"–\" is the normal Gedankenstrich and is not counted",
+   "flag": "more than 2 per page, or more than 1 per 250 words",
+   "threshold": {
+    "max": 2,
+    "per_words": 250
+   },
+   "evidence": "P",
+   "source": [
+    "impeccable",
+    "kiekkist"
+   ],
+   "note": "house rules may set 0"
+  },
+  {
+   "id": "arrow-buttons",
+   "name": "Arrow \"→\" on buttons/links",
+   "name_de": "Pfeil „→“ an Buttons/Links",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "arrow characters at the start or end of link and button text",
+   "flag": "more than 30 % of buttons (at least 2)",
+   "threshold": {
+    "max_share": 0.3,
+    "min": 1
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "middle-dot",
+   "name": "Middle-dot meta strings",
+   "name_de": "Mittelpunkt-Ketten",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "text elements with two or more \" · \" separators",
+   "flag": "more than 2",
+   "threshold": {
+    "max": 2
+   },
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "filler-en",
+   "name": "Filler vocabulary (EN)",
+   "name_de": "Füllwörter (EN)",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "visible text against the list",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1
+   },
+   "patterns": [
+    "unlock",
+    "elevate",
+    "seamless",
+    "seamlessly",
+    "empower",
+    "revolutionize",
+    "revolutionise",
+    "next level",
+    "cutting-edge",
+    "game-changer",
+    "supercharge",
+    "in today's fast-paced world",
+    "unleash",
+    "effortless",
+    "transform your"
+   ],
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "impeccable"
+   ]
+  },
+  {
+   "id": "filler-de",
+   "name": "Filler vocabulary (DE)",
+   "name_de": "Füllwörter (DE)",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "visible text against the list",
+   "flag": "more than 1",
+   "threshold": {
+    "max": 1
+   },
+   "patterns": [
+    "nahtlos",
+    "maßgeschneidert",
+    "ganzheitlich",
+    "innovative Lösungen",
+    "auf das nächste Level",
+    "aufs nächste Level",
+    "Mehrwert schaffen",
+    "Ihr Partner für",
+    "Ihr zuverlässiger Partner",
+    "Rundum-sorglos",
+    "neu gedacht",
+    "die Zukunft der"
+   ],
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "not-x-but-y",
+   "name": "\"It's not X, it's Y\" pattern",
+   "name_de": "Satzmuster „Nicht X, sondern Y“-Pointe",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "EN \"it's not …, it's …\" / \"this isn't …, it's …\"; DE \"Es ist nicht …, es ist …\" / \"Das ist kein …, das ist …\"",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "patterns": [
+    "\\b(it'?s|this is|this isn'?t|that'?s) not [^.!?]{1,60}[,;:—–-]\\s*(it'?s|this is|that'?s)\\b",
+    "\\b(it isn'?t|this isn'?t) [^.!?]{1,60}[,;:—–-]\\s*(it'?s|this is)\\b",
+    "\\b(es|das) ist (nicht|kein[a-z]*) [^.!?]{1,60}[,;:—–-]\\s*(es|das) ist\\b"
+   ],
+   "evidence": "P",
+   "source": [
+    "wiki-q37",
+    "wiki-monuntal"
+   ],
+   "note": "plain \"nicht nur …, sondern auch\" is normal German and not counted"
+  },
+  {
+   "id": "ellipsis-dots",
+   "name": "Three dots instead of the ellipsis",
+   "name_de": "Drei Punkte statt Auslassungszeichen",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "\"...\" in visible text",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "vercel-wig"
+   ]
+  },
+  {
+   "id": "hedging",
+   "name": "Hedging copy",
+   "name_de": "Absichernde Formulierungen",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "\"could\", \"might\", \"potentially\" stacked in claims (DE: \"könnte\", \"eventuell\", \"in vielen Fällen\")",
+   "flag": "more than 2 per page",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "emoji-icons",
+   "name": "Emoji as icons",
+   "name_de": "Emoji als Icons",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "emoji characters used as list or feature icons (partly caught by three-cards)",
+   "flag": "more than 0",
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "taste"
+   ]
+  },
+  {
+   "id": "confident-rhythm",
+   "name": "Confident opener + short emphasis sentence",
+   "name_de": "Selbstsicherer Einstieg + kurzer Betonungssatz",
+   "kind": "counted",
+   "group": "copy",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "a strong claim followed by a two-to-four-word sentence, repeated",
+   "flag": "more than 1",
+   "evidence": "P",
+   "source": [
+    "wiki-monuntal"
+   ]
+  },
+  {
+   "id": "icon-library",
+   "name": "Default icon library as decoration",
+   "name_de": "Standard-Icon-Bibliothek als Deko",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "SVG or icon-font class names of Lucide, Feather, Heroicons, Tabler, Phosphor, Material, Font Awesome",
+   "flag": "more than 0 on brand surfaces without a written reason",
+   "threshold": {
+    "max": 0
+   },
+   "patterns": [
+    "lucide",
+    "feather",
+    "heroicon",
+    "tabler-icon",
+    "ti-",
+    "ph-",
+    "phosphor",
+    "material-icons",
+    "material-symbols",
+    "fa-",
+    "bi-"
+   ],
+   "evidence": "P",
+   "source": [
+    "wiki-q37",
+    "kiekkist"
+   ],
+   "note": "product register: one coherent library is expected; Q37 names Lucide as tell number one"
+  },
+  {
+   "id": "sparkle-icon",
+   "name": "Sparkle icon for \"AI\"",
+   "name_de": "Funkel-Icon für „KI“",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "auto",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "detect": "\"✨\" or a sparkles icon class",
+   "flag": "more than 0",
+   "threshold": {
+    "max": 0
+   },
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "generated-people",
+   "name": "Generated photos of people or places presented as real",
+   "name_de": "Generierte Fotos von Menschen/Orten als echt",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "provenance check of every photo; glossy people \"who never had a bad day\", wrong hands",
+   "flag": "more than 0",
+   "evidence": "M",
+   "source": [
+    "nielseniq",
+    "frontiers-2026",
+    "wiki-rt12"
+   ],
+   "note": "legal risk; AI Act Art. 50 for photorealistic output"
+  },
+  {
+   "id": "stock-cliche",
+   "name": "Stock clichés",
+   "name_de": "Stock-Klischees",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "handshake, team pointing at a laptop, headset smile, lightbulb, puzzle pieces",
+   "flag": "more than 0 without a written reason",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "stock-illustration",
+   "name": "Stock illustration sets",
+   "name_de": "Stock-Illustrationen",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "unDraw, Humaaans, Open Peeps",
+   "flag": "more than 0 on brand surfaces without a written reason",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "generated-asset",
+   "name": "Generated image used as asset",
+   "name_de": "Generiertes Bild als Asset",
+   "kind": "counted",
+   "group": "imagery",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "an image-to-site or generated mockup shipped as a page image",
+   "flag": "more than 0 (generated images are references only)",
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "repeat-structure",
+   "name": "Repeats a recent structure",
+   "name_de": "Wiederholt eine frühere Struktur",
+   "kind": "counted",
+   "group": "memory",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "same topology and type pair as any of the last three entries in `.kiekkist/log.json` or Kiekkist themes (kk_compare)",
+   "flag": "match",
+   "evidence": "H",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "repeat-rejected",
+   "name": "Repeats a rejected mechanism",
+   "name_de": "Wiederholt einen abgelehnten Mechanismus",
+   "kind": "counted",
+   "group": "memory",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "mechanism named under \"Rejects\" in the profile",
+   "flag": "match without the brief demanding it",
+   "evidence": "H",
+   "source": [
+    "kiekkist"
+   ]
+  },
+  {
+   "id": "human-context-files",
+   "name": "DESIGN.md short and written by a human",
+   "name_de": "DESIGN.md kurz und von Menschen geschrieben",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "keep DESIGN.md and house rules short; a human writes or edits them; do not let the model generate the rule file",
+   "flag": "model-generated context file",
+   "evidence": "M",
+   "source": [
+    "eth-2602.11988",
+    "wiki-101"
+   ],
+   "note": "ETH study (arXiv 2602.11988, verified in part): model-written context files lowered agent success by 0.5 to 2 %, human-written ones raised it by about 4 %, at about 20 % more cost. Measured on coding agents, not on design."
+  },
+  {
+   "id": "screenshot-critic",
+   "name": "Critic sees only screenshots, in a fresh session",
+   "name_de": "Kritik nur mit Screenshots in frischer Sitzung",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "the critique sub-agent gets brief, decision, screenshots and check report, never the build conversation or the original prompt",
+   "flag": "critic saw the build context",
+   "evidence": "P",
+   "source": [
+    "wiki-txt11",
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "deletion-pass",
+   "name": "Deliberate deletion pass",
+   "name_de": "Bewusste Streichrunde",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "one round that only removes: sections without a claim, decoration, repeated proof, filler copy",
+   "flag": "no deletion round before delivery",
+   "evidence": "P",
+   "source": [
+    "wiki-txt11"
+   ],
+   "note": "\"AI adds, it rarely removes\""
+  },
+  {
+   "id": "pass-fail-gate",
+   "name": "Pass/fail acceptance before delivery",
+   "name_de": "Abnahme mit Bestanden/Nicht bestanden",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "review the AI diff like a pull request from a stranger; hard failures block delivery",
+   "flag": "delivered without a recorded gate",
+   "evidence": "P",
+   "source": [
+    "wiki-q37"
+   ]
+  },
+  {
+   "id": "third-prompt",
+   "name": "Still right after the third prompt",
+   "name_de": "Stimmt es nach dem dritten Prompt noch?",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "check spacing, states (error, empty, edit) and mobile after iterations, not only the first screen",
+   "flag": "only the first screen reviewed",
+   "evidence": "P",
+   "source": [
+    "wiki-txt11"
+   ]
+  },
+  {
+   "id": "questions-first",
+   "name": "Let the model ask first",
+   "name_de": "Erst Fragen stellen lassen",
+   "kind": "process",
+   "group": "process",
+   "checker": "manual",
+   "applies_to": [
+    "web",
+    "slides",
+    "social",
+    "app"
+   ],
+   "threshold": null,
+   "detect": "briefing questions before building; otherwise gaps are filled with \"good enough\"",
+   "flag": "built without a confirmed brief",
+   "evidence": "P",
+   "source": [
+    "wiki-rt12"
+   ]
+  },
+  {
+   "id": "lab-lcp",
+   "name": "Lab LCP on a throttled phone",
+   "name_de": "Labor-LCP auf gedrosseltem Handy",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "lab run at 412x823, DPR 1.75, isMobile, CDP throttling latency 562.5 ms, 188,743 B/s down, 86,400 B/s up, CPU 4x; quiet = 1 s without requests and long tasks (max 15 s); median of the runs (1 by default, 3 with --perf); third-party hosts blocked; last largest-contentful-paint entry",
+   "flag": "warn above 2.5 s, error above 4.0 s",
+   "threshold": {
+    "warn_ms": 2500,
+    "error_ms": 4000
+   },
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "web-vitals",
+    "lh-profile",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "cwv-lcp",
+    "lh-mobile-profile"
+   ],
+   "note": "Core Web Vitals thresholds applied to a lab value; never reported as field data"
+  },
+  {
+   "id": "lab-cls",
+   "name": "Lab CLS on a throttled phone",
+   "name_de": "Labor-CLS auf gedrosseltem Handy",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "lab run at 412x823, DPR 1.75, isMobile, CDP throttling latency 562.5 ms, 188,743 B/s down, 86,400 B/s up, CPU 4x; quiet = 1 s without requests and long tasks (max 15 s); median of the runs (1 by default, 3 with --perf); third-party hosts blocked; largest session window of layout shifts (gap < 1 s, window ≤ 5 s); a second value after scrolling is info (--perf)",
+   "flag": "warn above 0.1, error above 0.25",
+   "threshold": {
+    "warn": 0.1,
+    "error": 0.25
+   },
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "web-vitals",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "cwv-cls"
+   ],
+   "note": "Core Web Vitals thresholds applied to a lab value"
+  },
+  {
+   "id": "lab-tbt",
+   "name": "Lab Total Blocking Time on a throttled phone",
+   "name_de": "Labor-TBT auf gedrosseltem Handy",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "lab run at 412x823, DPR 1.75, isMobile, CDP throttling latency 562.5 ms, 188,743 B/s down, 86,400 B/s up, CPU 4x; quiet = 1 s without requests and long tasks (max 15 s); median of the runs (1 by default, 3 with --perf); third-party hosts blocked; Σ max(0, duration − 50 ms) of long tasks between FCP and the quiet point",
+   "flag": "warn above 200 ms, error above 600 ms",
+   "threshold": {
+    "warn_ms": 200,
+    "error_ms": 600
+   },
+   "cost": {
+    "per": 4,
+    "cap": 4
+   },
+   "evidence": "S",
+   "source": [
+    "lighthouse",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "tbt-lab"
+   ],
+   "note": "Lighthouse mobile scoring bands"
+  },
+  {
+   "id": "transfer-total",
+   "name": "Transfer weight of the first load",
+   "name_de": "Übertragung beim ersten Laden",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "encodedDataLength of all first-party responses of the lab load (CDP), file and HTML targets via a gzip loopback server",
+   "flag": "warn above 1,000 KB (H), stronger above 2,500 KB (Web Almanac median, D)",
+   "threshold": {
+    "warn_kb": 1000,
+    "strong_kb": 2500
+   },
+   "evidence": "D",
+   "source": [
+    "web-almanac-2025",
+    "lighthouse",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "weight-median",
+    "weight-lh-flag",
+    "cwv-pass-mobile"
+   ],
+   "note": "deliberately below the median: the median mobile page fails CWV (48 % pass); Lighthouse flags > 5,000 KiB (S); first-party only"
+  },
+  {
+   "id": "transfer-js",
+   "name": "JavaScript transfer",
+   "name_de": "JavaScript-Übertragung",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "encodedDataLength of Script responses of the lab load",
+   "flag": "warn above 150 KB (H), stronger above 350 KB",
+   "threshold": {
+    "warn_kb": 150,
+    "strong_kb": 350
+   },
+   "evidence": "P",
+   "source": [
+    "russell-2023",
+    "web-almanac-2025",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "budget-russell",
+    "weight-median"
+   ],
+   "note": "Russell 2023: 300-350 KiB JS is the ceiling for p75 devices; Web Almanac 2025 median 632 KB (D)"
+  },
+  {
+   "id": "transfer-critical",
+   "name": "HTML, CSS and fonts on the critical path",
+   "name_de": "HTML, CSS und Schriften im kritischen Pfad",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "encodedDataLength of Document, Stylesheet and Font responses of the lab load",
+   "flag": "warn above 150 KB, stronger above 250 KB",
+   "threshold": {
+    "warn_kb": 150,
+    "strong_kb": 250
+   },
+   "evidence": "P",
+   "source": [
+    "russell-2023",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "budget-russell"
+   ],
+   "note": "Russell 2023 budget"
+  },
+  {
+   "id": "font-files",
+   "name": "Too many or too heavy font files",
+   "name_de": "Zu viele oder zu schwere Schriftdateien",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "Font responses of the lab load: count and bytes",
+   "flag": "warn above 4 files or 150 KB, stronger above 6 files or 250 KB",
+   "threshold": {
+    "warn_files": 4,
+    "warn_kb": 150,
+    "strong_files": 6,
+    "strong_kb": 250
+   },
+   "evidence": "H",
+   "source": [
+    "web-almanac-2025",
+    "kiekkist",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "fonts-usage",
+    "weight-median"
+   ],
+   "note": "Web Almanac 2025 median fonts 122 KB (D); font CDNs are already a hard failure (font-cdn)"
+  },
+  {
+   "id": "font-format",
+   "name": "Font files not in WOFF2 or without font-display",
+   "name_de": "Schriften nicht als WOFF2 oder ohne font-display",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "font responses whose MIME type or file name is not WOFF2; @font-face rules (same-origin sheets) without font-display",
+   "flag": "any",
+   "threshold": null,
+   "evidence": "D",
+   "source": [
+    "web-almanac-2025",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "fonts-usage"
+   ],
+   "note": "65 % of font requests are WOFF2; half of the pages use font-display: swap"
+  },
+  {
+   "id": "lcp-image-lazy",
+   "name": "LCP image lazy-loaded",
+   "name_de": "LCP-Bild mit loading=\"lazy\"",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "LCP element of the lab run is an img with loading=\"lazy\"",
+   "flag": "present",
+   "threshold": null,
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "webdev-lcp-2024",
+    "web-almanac-2025",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "lcp-load-delay",
+    "lcp-lazy"
+   ],
+   "note": "web.dev guidance; 16-17 % of mobile pages do it (D)"
+  },
+  {
+   "id": "lcp-image-priority",
+   "name": "LCP image without fetchpriority",
+   "name_de": "LCP-Bild ohne fetchpriority",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "LCP img without fetchpriority=\"high\" and without a matching link rel=preload as=image",
+   "flag": "present",
+   "threshold": null,
+   "evidence": "S",
+   "source": [
+    "webdev-lcp-2024",
+    "web-almanac-2025",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "lcp-lazy",
+    "lcp-load-delay"
+   ],
+   "note": "only 17.3 % of mobile pages set it (D)"
+  },
+  {
+   "id": "lcp-image-discoverable",
+   "name": "LCP image not in the initial HTML",
+   "name_de": "LCP-Bild nicht im ersten HTML",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "LCP image is a CSS background, or neither its src/srcset nor its file name occurs in the raw HTML response",
+   "flag": "present",
+   "threshold": null,
+   "evidence": "D",
+   "source": [
+    "webdev-lcp-2024",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "lcp-load-delay"
+   ],
+   "note": "median resource load delay on poor-LCP sites 1,290 ms"
+  },
+  {
+   "id": "lcp-image-bytes",
+   "name": "Heavy LCP image",
+   "name_de": "Schweres LCP-Bild",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "encodedDataLength of the LCP image in the lab load",
+   "flag": "warn above 200 KB, stronger above 400 KB",
+   "threshold": {
+    "warn_kb": 200,
+    "strong_kb": 400
+   },
+   "evidence": "H",
+   "source": [
+    "kiekkist",
+    "webdev-lcp-2024",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "lcp-load-delay"
+   ],
+   "note": "download is under 10 % of LCP on most poor sites (D): discovery and TTFB first"
+  },
+  {
+   "id": "img-oversized",
+   "name": "Images larger than needed",
+   "name_de": "Bilder größer als nötig",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "visible img at 390 (after scrolling once): wasted ≈ bytes × (1 − (w×3 · h×3) / (naturalWidth · naturalHeight)); bytes from the lab load, Resource Timing or the file",
+   "flag": "per image ≥ 4 KiB wasted; page total above 300 KB (H)",
+   "threshold": {
+    "min_waste_kib": 4,
+    "dpr_mobile": 3,
+    "total_kb": 300
+   },
+   "evidence": "S",
+   "source": [
+    "lighthouse",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "img-oversized"
+   ],
+   "note": "DPR 3 keeps it lenient: what is flagged is oversized even for the sharpest phones; images without width/height are counted by img-dimensions"
+  },
+  {
+   "id": "font-swap-shift",
+   "name": "Layout shift when web fonts arrive",
+   "name_de": "Layout-Sprung beim Schriftwechsel",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "extra run (with --perf) with font responses delayed 1,500 ms: sum of layout shifts within 200 ms after a document.fonts loadingdone event",
+   "flag": "warn above 0.02, stronger above 0.05",
+   "threshold": {
+    "warn": 0.02,
+    "strong": 0.05,
+    "window_ms": 200,
+    "delay_ms": 1500
+   },
+   "evidence": "H",
+   "source": [
+    "web-vitals",
+    "kiekkist",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "cwv-cls"
+   ],
+   "note": "share of the 0.1 CLS budget (S) is a house line; fix with size-adjust/ascent-override or font-display: optional"
+  },
+  {
+   "id": "hscroll-container",
+   "name": "Horizontal scroller without cue or keyboard access",
+   "name_de": "Seitlicher Scroller ohne Hinweis oder Tastatur",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "elements at 390 with overflow-x auto/scroll (or scroll-snap x) and scrollWidth > clientWidth: next item 15-85 % visible or arrows; tabindex or focusable content; phone link, form field, prices or navigation inside",
+   "flag": "no peek and no arrows, no keyboard access, or essential content inside",
+   "threshold": {
+    "peek_min": 0.15,
+    "peek_max": 0.85
+   },
+   "evidence": "P",
+   "source": [
+    "nngroup",
+    "wcag22",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "hscroll-missed"
+   ],
+   "note": "NN/g 2014; keyboard part WCAG 2.1.1 (axe scrollable-region-focusable reports it too); data tables in a scroll wrapper are skipped"
+  },
+  {
+   "id": "hover-only",
+   "name": "Content only reachable by hover",
+   "name_de": "Inhalt nur per Hover erreichbar",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "CSSOM: :hover rules that reveal (display, visibility, opacity, height, clip-path) an element hidden at rest, with no :focus/:focus-within/:focus-visible twin, no click toggle (aria-expanded, details) and not scoped to @media (hover: hover)",
+   "flag": "error when the revealed content holds links or buttons; warn otherwise",
+   "threshold": null,
+   "cost": {
+    "per": 3,
+    "cap": 9
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "mq4",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "hover-content"
+   ],
+   "note": "WCAG 2.1.1 and 1.4.13; touch screens have no hover. Complements hover-content (dismissible/hoverable) from the accessibility pass"
+  },
+  {
+   "id": "sticky-share",
+   "name": "Sticky chrome takes too much of the phone screen",
+   "name_de": "Fixe Leisten nehmen zu viel Handy-Bildschirm",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "at 390x844, scrolled to 40 % of the page: union of fixed/sticky bars (≥ 40 % wide) glued to the top or bottom edge; consent dialogs reported apart; hide-on-scroll-down noted",
+   "flag": "top above 15 % (127 px), stronger above 25 % (211 px); top + bottom above 30 %",
+   "threshold": {
+    "warn_share": 0.15,
+    "strong_share": 0.25,
+    "total_share": 0.3,
+    "scroll_at": 0.4
+   },
+   "evidence": "P",
+   "source": [
+    "nngroup",
+    "kiekkist",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "sticky-chrome"
+   ],
+   "note": "NN/g 2021 content-to-chrome ratio; the percentages are house lines (H). Focus under sticky bars: focus-obscured"
+  },
+  {
+   "id": "cta-first-screen",
+   "name": "No primary action in the first phone screen",
+   "name_de": "Keine Hauptaktion im ersten Handy-Bildschirm",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "at 390x844 and 360x780 without scrolling: a filled button, tel:/mailto: link or a link reading Kontakt/Anfrage/Termin/Angebot/anrufen fully inside the screen above any bottom bar",
+   "flag": "none found",
+   "threshold": null,
+   "evidence": "M",
+   "source": [
+    "nngroup",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "fold-57"
+   ],
+   "note": "NN/g 2018: 57 % of viewing time above the fold, 74 % in two screens (desktop; the mobile transfer is an assumption)"
+  },
+  {
+   "id": "cta-reach",
+   "name": "Primary action only at the screen edge",
+   "name_de": "Hauptaktion nur am Bildschirmrand",
+   "kind": "info",
+   "group": "mobile",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "vertical centre of the primary actions at 390x844 as share of the screen height",
+   "flag": "all of them in the top 12 % or bottom 5 %",
+   "threshold": {
+    "max": 0,
+    "top_share": 0.12,
+    "bottom_share": 0.05
+   },
+   "evidence": "M",
+   "source": [
+    "hoober-2017",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "touch-accuracy",
+    "thumb-zone-myth"
+   ],
+   "note": "info only: centre and lower middle are tapped most accurately; the thumb-zone heat map is a myth"
+  },
+  {
+   "id": "first-screen-words-mobile",
+   "name": "Too few or too many words in the first phone screen",
+   "name_de": "Zu wenige oder zu viele Wörter im ersten Handy-Bildschirm",
+   "kind": "info",
+   "group": "mobile",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "words of visible text nodes intersecting the first 390x844 screen (no aria-hidden, no consent dialog)",
+   "flag": "below 8 or above 90",
+   "threshold": {
+    "max": 90,
+    "min": 8
+   },
+   "evidence": "H",
+   "source": [
+    "kiekkist",
+    "nngroup",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "read-20pct"
+   ],
+   "note": "house range; people read about 20 % of the words (M). Desktop text wall: first-screen-words"
+  },
+  {
+   "id": "h1-first-screen",
+   "name": "H1 not fully in the first phone screen",
+   "name_de": "H1 nicht ganz im ersten Handy-Bildschirm",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "first visible h1 at 390x844 and 360x780: rect inside the screen above any bottom bar; line boxes via Range.getClientRects",
+   "flag": "not fully visible, or more than 4 lines",
+   "threshold": {
+    "max_lines": 4
+   },
+   "evidence": "H",
+   "source": [
+    "kiekkist",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "fold-57"
+   ],
+   "note": "derived from fold-57; desktop line count: h1-lines"
+  },
+  {
+   "id": "body-size-mobile",
+   "name": "Body text too small on the phone",
+   "name_de": "Fließtext auf dem Handy zu klein",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "median computed font-size of visible p, li, dd, td with at least 40 characters at 390",
+   "flag": "below 16 px, stronger below 14 px",
+   "threshold": {
+    "warn_px": 16,
+    "strong_px": 14,
+    "min_chars": 40
+   },
+   "evidence": "P",
+   "source": [
+    "platform-guides",
+    "rello-2016",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "body-16",
+    "font-size-18"
+   ],
+   "note": "browser default 16 px, Apple body 17 pt, Material 16 sp; Rello 2016 (M, desktop): comprehension improved up to 18 pt"
+  },
+  {
+   "id": "line-length-mobile",
+   "name": "Line length off on the phone",
+   "name_de": "Zeilenlänge auf dem Handy daneben",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "median characters per line at 390 of paragraphs with at least 120 characters: content width / average glyph width (canvas measureText in the computed font)",
+   "flag": "median below 30 or above 75",
+   "threshold": {
+    "min": 30,
+    "max": 75,
+    "min_chars": 120
+   },
+   "evidence": "M",
+   "source": [
+    "dyson-2004",
+    "bringhurst",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "line-length"
+   ],
+   "note": "Dyson 2004 (contested); at 390 with 16 px gutters and 17 px type expect 38-45. Desktop: the hard line-length rule (above 80) already covers the widest viewport"
+  },
+  {
+   "id": "target-spacing",
+   "name": "Large touch targets packed too tightly",
+   "name_de": "Große Touch-Ziele zu dicht",
+   "kind": "info",
+   "group": "mobile",
+   "checker": "auto",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "targets ≥ 44x44 at 390 whose edges are closer than 8 px to another target",
+   "flag": "more than 0 pairs",
+   "threshold": {
+    "max": 0,
+    "min_gap_px": 8,
+    "min_size_px": 44
+   },
+   "evidence": "S",
+   "source": [
+    "platform-guides",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "target-material"
+   ],
+   "note": "info only: WCAG 2.5.8 (target-size) is the hard rule"
+  },
+  {
+   "id": "overflow-360",
+   "name": "Horizontal overflow at 360 px",
+   "name_de": "Seitlicher Überlauf bei 360 px",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "error",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "the 390 page resized to 360x780: documentElement.scrollWidth > clientWidth",
+   "flag": "above 1 px",
+   "threshold": {
+    "px": 1
+   },
+   "cost": {
+    "per": 6,
+    "cap": 6
+   },
+   "evidence": "S",
+   "source": [
+    "wcag22",
+    "statcounter-de",
+    "evidence-pack"
+   ],
+   "evidence_items": [
+    "de-viewports"
+   ],
+   "note": "WCAG 2.2, 1.4.10; 360x780 is 4.5 % of German phone traffic"
+  },
+  {
+   "id": "vh-hero",
+   "name": "First-screen block sized with 100vh",
+   "name_de": "Erster Block mit 100vh",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "elements in the first 390 screen at least 90 % of its height whose matched rules or inline style set height/min-height in vh without an svh/dvh/lvh value",
+   "flag": "present",
+   "threshold": {
+    "min_height_share": 0.9
+   },
+   "evidence": "P",
+   "source": [
+    "vercel-wig",
+    "kiekkist"
+   ],
+   "evidence_items": [],
+   "note": "mobile address bar: use 100svh or 100dvh (web.md format traps)"
+  },
+  {
+   "id": "phone-not-tappable",
+   "name": "Phone number without tel: link",
+   "name_de": "Telefonnummer ohne tel:-Link",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "German phone pattern ((+49|0049|0) and 7-15 digits, not after IBAN/BIC/USt/Fax) in the page text and no a[href^=\"tel:\"] on the page",
+   "flag": "present",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist"
+   ],
+   "evidence_items": [],
+   "note": "web.md format traps"
+  },
+  {
+   "id": "input-type",
+   "name": "E-mail or phone field with a text keyboard",
+   "name_de": "E-Mail- oder Telefonfeld mit Textastatur",
+   "kind": "hard",
+   "group": "mobile",
+   "checker": "auto",
+   "severity": "warn",
+   "applies_to": [
+    "web"
+   ],
+   "detect": "input type text/search whose name, id, label, placeholder or autocomplete says e-mail or phone (not both)",
+   "flag": "present",
+   "threshold": null,
+   "evidence": "P",
+   "source": [
+    "kiekkist",
+    "wcag22"
+   ],
+   "evidence_items": [
+    "input-purpose"
+   ],
+   "note": "autocomplete tokens themselves: autocomplete-missing (WCAG 1.3.5)"
+  }
+ ]
+}

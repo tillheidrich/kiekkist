@@ -1,0 +1,18 @@
+{
+  "color": {
+    "$type": "color",
+    "paper": { "$value": "oklch(0.975 0.006 230)" },
+    "surface": { "$value": "oklch(0.94 0.012 150)" },
+    "ink": { "$value": "oklch(0.24 0.02 250)" },
+    "muted": { "$value": "oklch(0.45 0.02 250)" },
+    "line": { "$value": "oklch(0.85 0.01 230)" },
+    "accent": { "$value": { "colorSpace": "oklch", "components": [0.46, 0.1, 150] } },
+    "on-accent": { "$value": "oklch(0.99 0.004 150)" },
+    "link": { "$value": "{color.accent}" }
+  },
+  "font": {
+    "$type": "fontFamily",
+    "text": { "$value": ["Atkinson Hyperlegible", "Noto Sans", "sans-serif"] },
+    "display": { "$value": ["Literata", "Georgia", "serif"] }
+  }
+}

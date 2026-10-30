@@ -1,0 +1,29 @@
+{
+  "slug": "beratung-studio-elbe",
+  "name": "Studio Elbe Strategieberatung",
+  "summary": "Premium theme for a small strategy consultancy for the Mittelstand: a serif thesis, one real photograph, services as a ruled list and a decision log as signature.",
+  "industry": [
+    "beratung",
+    "consulting",
+    "strategy",
+    "professional-services"
+  ],
+  "media": [
+    "web",
+    "slides",
+    "social"
+  ],
+  "mood": [
+    "premium",
+    "confident",
+    "reduced",
+    "dark"
+  ],
+  "fonts": [
+    "Newsreader",
+    "Familjen Grotesk"
+  ],
+  "license": "CC-BY-4.0 (code and copy); fonts OFL-1.1; photos © Till Heidrich, use only within this example",
+  "author": "Heidrich Digital (example theme, fictional company)",
+  "created": "2026-10-29"
+}

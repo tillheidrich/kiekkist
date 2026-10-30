@@ -1,0 +1,49 @@
+/* Kanzlei Brandt Weller – design tokens. Colours in OKLCH. Generated together with tokens.json and DESIGN.md. */
+:root {
+  color-scheme: light;
+  --c-paper: oklch(97.5% 0.002 95); /* Page background, neutral paper */
+  --c-margin: oklch(94.5% 0.003 95); /* Margin column and table heads */
+  --c-ink: oklch(21% 0.008 260); /* Text, graphite */
+  --c-ink-2: oklch(42% 0.01 260); /* Secondary text, margin notes */
+  --c-rule: oklch(80% 0.004 95); /* Rules */
+  --c-rule-strong: oklch(21% 0.008 260); /* Section rules, 2px */
+  --c-green: oklch(41% 0.07 162); /* Accent: file-folder green, links and case references */
+  --c-green-soft: oklch(93% 0.02 162); /* Highlight behind a case reference */
+  --font-serif: 'Source Serif 4 Variable', 'Source Serif 4', Georgia, serif;
+  --font-sans: 'Public Sans Variable', 'Public Sans', system-ui, sans-serif;
+  --fs-display: clamp(2.25rem, 1.5rem + 3.2vw, 4.5rem);
+  --fw-display: 420;
+  --lh-display: 1.06;
+  --ls-display: -0.012em;
+  --fs-heading: clamp(1.5rem, 1.2rem + 1vw, 2.125rem);
+  --fw-heading: 500;
+  --lh-heading: 1.15;
+  --ls-heading: -0.005em;
+  --fs-lead: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
+  --fw-lead: 400;
+  --lh-lead: 1.45;
+  --ls-lead: 0;
+  --fs-body: 1.125rem;
+  --fw-body: 400;
+  --lh-body: 1.62;
+  --ls-body: 0;
+  --fs-meta: 0.8125rem;
+  --fw-meta: 500;
+  --lh-meta: 1.45;
+  --ls-meta: 0.01em;
+  --fs-smallcaps: 0.75rem;
+  --fw-smallcaps: 650;
+  --lh-smallcaps: 1.3;
+  --ls-smallcaps: 0.12em;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1.25rem;
+  --space-5: 2rem;
+  --space-6: 3.5rem;
+  --space-7: 5.5rem;
+  --radius-none: 0;
+  --measure: 38rem;
+  --margin-col: 11rem;
+  --max: 76rem;
+}

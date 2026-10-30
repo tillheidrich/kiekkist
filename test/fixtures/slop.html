@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap">
+<title>Nexus AI – Die Zukunft der Arbeit</title>
+<!-- Deliberately sloppy fixture: every generator default at once. -->
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Inter", "Helvetica Neue", Arial, sans-serif; color: #1f1f2e; background: #ffffff; }
+  .nav { position: sticky; top: 0; z-index: 10; display: flex; justify-content: space-between; align-items: center; padding: 14px 32px;
+         background: rgba(255,255,255,.6); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-bottom: 1px solid rgba(0,0,0,.06); }
+  .nav a { color: #6b6b80; text-decoration: none; font-size: 13px; margin-left: 6px; }
+  .nav .icon-btn { display: inline-block; width: 18px; height: 18px; border-radius: 4px; background: #7c3aed; vertical-align: middle; }
+  .hero { min-height: 90vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px;
+          background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #3b82f6 100%); color: #fff; }
+  .pill { display: inline-block; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; font-weight: 600; padding: 6px 14px;
+          border-radius: 999px; background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); margin-bottom: 18px; }
+  .hero h1 { font-size: 64px; line-height: 1.05; margin: 0 0 20px; max-width: 900px; }
+  .hero h1 .grad { background: linear-gradient(90deg, #f0abfc, #93c5fd); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
+  .hero p { font-size: 20px; max-width: 640px; opacity: .9; }
+  .btns { display: flex; gap: 12px; margin-top: 28px; }
+  .btn { display: inline-block; padding: 14px 26px; border-radius: 16px; background: #fff; color: #4f46e5; font-weight: 600; text-decoration: none; box-shadow: 0 20px 40px rgba(0,0,0,.15);
+         transition: all .4s cubic-bezier(.68,-0.55,.27,1.55); }
+  .btn.ghost { background: #22d3ee; color: #0b0b14; border: 1px solid rgba(255,255,255,.5); }
+  a:focus, button:focus, input:focus { outline: none; }
+  .live-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e; margin-left: 8px; animation: pulse 1.6s ease-in-out infinite; }
+  @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.8); opacity: .4; } }
+  .hero video { width: 480px; max-width: 100%; height: 200px; margin-top: 28px; border-radius: 16px; background: #312e81; }
+  .plans { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-top: 24px; }
+  .plan { background: #fff; border-radius: 16px; padding: 24px; box-shadow: 0 24px 48px rgba(17,12,46,.12); border: 1px solid #eee; border-left: 4px solid #22d3ee; }
+  .plan-box { background: #f5f3ff; border-radius: 12px; padding: 20px; min-height: 80px; }
+  .about p { font-size: 16px; line-height: 1.5; text-align: justify; }
+  section { padding: 96px 32px; max-width: 1200px; margin: 0 auto; }
+  .eyebrow { display: inline-block; text-transform: uppercase; letter-spacing: .14em; font-size: 12px; color: #7c3aed; background: #f3e8ff; padding: 5px 12px; border-radius: 999px; }
+  h2 { font-size: 40px; margin: 14px 0 12px; }
+  .num { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 13px; color: #a855f7; }
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .card { background: #fff; border-radius: 16px; padding: 28px; box-shadow: 0 24px 48px rgba(17,12,46,.12); border: 1px solid #eee; border-left: 4px solid #a855f7; }
+  .card .ico { font-size: 32px; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; border-radius: 16px; background: #f5f3ff; }
+  .card h3 { font-size: 22px; margin: 18px 0 8px; }
+  .card p { color: #a0a0b4; font-size: 15px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; text-align: center; }
+  .stat .big { font-size: 56px; font-weight: 800; background: linear-gradient(90deg,#6366f1,#a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .stat .lbl { font-family: "JetBrains Mono", monospace; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: #8a8aa0; }
+  .logos { display: flex; gap: 40px; justify-content: center; align-items: center; flex-wrap: nowrap; opacity: .6; }
+  .logos svg { width: 120px; height: 36px; flex: none; }
+  .swiper { display: flex; overflow: hidden; gap: 24px; }
+  .swiper-slide { flex: 0 0 420px; background: #fafaff; border-radius: 16px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,.1); }
+  .glow { position: relative; }
+  .glow::before { content: ""; position: absolute; inset: -40px; width: 600px; height: 400px; background: radial-gradient(circle, rgba(168,85,247,.35), transparent 70%); z-index: -1; }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .3s, transform .3s; }
+  .reveal.is-visible { opacity: 1; transform: none; }
+  .narrow { width: 160px; }
+  .wide-banner { width: 1100px; height: 40px; background: #ede9fe; border-radius: 16px; }
+  form input { font-size: 13px; padding: 10px 14px; border-radius: 16px; border: 1px solid #ddd; }
+  footer { padding: 48px 32px; background: #0b0b14; color: #4a4a5c; font-size: 13px; }
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <strong>Nexus✨AI<span class="live-dot" aria-hidden="true"></span></strong>
+    <div>
+      <a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#about">About</a>
+      <a href="#search" class="icon-btn"></a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <span class="pill">Neu · KI-Plattform · 2026</span>
+    <h1>Arbeit neu gedacht – mit <span class="grad">magischer</span> KI 🚀</h1>
+    <p>Nexus verbindet Ihre Tools — nahtlos, sicher und blitzschnell. Unlock your potential – und skalieren Sie ohne Grenzen.</p>
+    <div class="btns">
+      <a class="btn" href="#start">Jetzt starten →</a>
+      <a class="btn ghost" href="#demo">Demo ansehen →</a>
+    </div>
+    <video autoplay muted loop playsinline src="hero.mp4"></video>
+  </header>
+
+  <section id="features" class="glow">
+    <span class="eyebrow">Features</span>
+    <div class="num">01 / Plattform</div>
+    <h2>Alles, was Ihr Team braucht ✨</h2>
+    <div class="cards">
+      <div class="card reveal"><div class="ico">⚡</div><h3>Blitzschnell</h3><p>Ergebnisse in Sekunden – nicht in Stunden. Unsere Engine skaliert automatisch.</p></div>
+      <div class="card reveal"><div class="ico">🔒</div><h3>Sicher</h3><p>Enterprise-Sicherheit — DSGVO-konform und zertifiziert nach allen Standards.</p></div>
+      <div class="card reveal"><div class="ico">🎯</div><h3 class="narrow">Donaudampfschifffahrtsgesellschaftskapitän</h3><p>Präzise Antworten – genau dann, wenn Sie sie brauchen.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <span class="eyebrow">Zahlen</span>
+    <div class="num">02 / Wirkung</div>
+    <h2>Vertraut von Teams weltweit</h2>
+    <div class="stats">
+      <div class="stat reveal"><div class="big">10x</div><div class="lbl">schneller</div></div>
+      <div class="stat reveal"><div class="big" data-count="50">0k+</div><div class="lbl">Teams</div></div>
+      <div class="stat reveal"><div class="big">99.9%</div><div class="lbl">Uptime</div></div>
+    </div>
+    <div class="logos">
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#ccc"/></svg>
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#bbb"/></svg>
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#aaa"/></svg>
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#999"/></svg>
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#888"/></svg>
+      <svg viewBox="0 0 120 36"><rect width="120" height="36" rx="6" fill="#777"/></svg>
+    </div>
+    <div class="wide-banner"></div>
+  </section>
+
+  <section class="testimonials">
+    <span class="eyebrow">Stimmen</span>
+    <div class="num">03 / Kunden</div>
+    <h2>Was unsere Kunden über uns<br>sagen</h2>
+    <div class="swiper">
+      <blockquote class="swiper-slide">„Nexus hat unser Team transformiert – wir sind 10x produktiver.“ <cite>Jane Doe, CEO</cite></blockquote>
+      <blockquote class="swiper-slide">„Seamless Integration — einfach magisch.“ <cite>John Smith, CTO</cite></blockquote>
+      <blockquote class="swiper-slide">„Nie wieder ohne – absolute Empfehlung.“ <cite>Acme Corp</cite></blockquote>
+    </div>
+    <img src="team.png" width="320" height="120">
+    <img src="https://picsum.photos/600/400" alt="Unser Team bei der Arbeit">
+  </section>
+
+  <section class="plans-wrap">
+    <h2>Preise</h2>
+    <h4>Für jedes Team das richtige Paket</h4>
+    <div class="plans">
+      <div class="plan"><h3>Starter</h3><div class="plan-box"><p>Bis 5 Nutzer, alle Basisfunktionen und E-Mail-Support. Lorem ipsum dolor sit amet.</p></div></div>
+      <div class="plan"><h3>Pro</h3><div class="plan-box"><p>Unbegrenzte Nutzer, Prioritäts-Support und alle Integrationen.</p></div></div>
+    </div>
+  </section>
+
+  <section class="about" id="about"></section>
+
+  <section>
+    <h2>Bereit loszulegen?</h2>
+    <form><input type="email" placeholder="E-Mail"> <button type="submit" class="btn">Kostenlos testen →</button></form>
+  </section>
+
+  <footer>© 2026 Nexus AI — Alle Rechte vorbehalten · Impressum · Datenschutz</footer>
+
+  <script>
+    const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) e.target.classList.add('is-visible'); }));
+    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+    document.querySelectorAll('[data-count]').forEach((el) => { el.textContent = el.dataset.count + 'k+'; });
+    // content injected by script: missing without JavaScript
+    document.getElementById('about').innerHTML = '<h2>Über Nexus</h2><p>' + [
+      'Nexus wurde gegründet, um Teams jeder Größe die Werkzeuge an die Hand zu geben, die sie für moderne Zusammenarbeit brauchen.',
+      'Unsere Plattform verbindet Kommunikation, Planung und Auswertung an einem Ort und lernt mit jeder Nutzung dazu.',
+      'Ob Start-up oder Konzern: Wir begleiten Sie vom ersten Tag an mit persönlicher Beratung, verständlichen Schulungen und einem Support, der wirklich zuhört.',
+      'Dabei setzen wir auf europäische Rechenzentren, offene Schnittstellen und eine Preisgestaltung ohne versteckte Kosten.',
+      'Mehr als tausend Unternehmen vertrauen bereits auf Nexus, und jeden Monat kommen neue Branchen hinzu, von der Logistik bis zum Gesundheitswesen.',
+      'Unser Ziel ist einfach: weniger Reibung, mehr Zeit für die Arbeit, die wirklich zählt, und ein Arbeitsalltag, der sich leichter anfühlt als gestern.',
+      'Lernen Sie unser Team kennen, sehen Sie sich die Demo an oder sprechen Sie direkt mit einer unserer Beraterinnen über Ihre Anforderungen.'
+    ].join(' ') + '</p>';
+  </script>
+  <script>window.nexusTrack.init();</script>
+</body>
+</html>

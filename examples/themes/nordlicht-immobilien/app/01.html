@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta name="kk:size" content="390x844">
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>App: Exposé-Ansicht · Nordlicht Immobilien</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  html, body { margin: 0; }
+  body { width: 390px; height: 844px; overflow: hidden; background: var(--c-paper); color: var(--c-ink); font-family: var(--font-text); font-size: 15px; }
+  .screen { position: relative; height: 844px; display: flex; flex-direction: column; }
+  .status { height: 44px; display: flex; justify-content: space-between; align-items: center; padding: 0 24px; font-size: 14px; font-weight: 600; background: var(--c-deep); color: var(--c-on-deep); }
+  .bar { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px 10px; background: var(--c-deep); color: var(--c-on-deep); }
+  .bar a { color: inherit; text-decoration: none; min-width: 44px; min-height: 44px; display: inline-grid; place-items: center; font-size: 15px; }
+  .bar .ref { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; }
+  .scroll { overflow: hidden; flex: 1; }
+  .hero { position: relative; }
+  .hero img { width: 100%; height: 240px; object-fit: cover; object-position: 70% 50%; display: block; }
+  .hero span { position: absolute; right: 10px; bottom: 8px; font-size: 11px; color: #fff; text-shadow: 0 1px 4px rgb(0 0 0 / .6); }
+  .pad { padding: 20px 20px 0; }
+  .label { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600; color: var(--c-brass-text); margin: 0; }
+  h1 { font-family: var(--font-display); font-weight: 400; font-size: 34px; line-height: 1.02; margin: 8px 0 0; letter-spacing: -.01em; }
+  h1 em { font-style: italic; }
+  .keys { display: grid; grid-template-columns: repeat(3, 1fr); margin: 18px 0 0; border-top: 1px solid var(--c-ink); border-bottom: 1px solid var(--c-line); }
+  .keys div { padding: 10px 0; }
+  .keys dt { font-size: 11px; color: var(--c-ink-2); }
+  .keys dd { margin: 2px 0 0; font-family: var(--font-display); font-size: 26px; line-height: 1; font-variant-numeric: lining-nums; }
+  dl.list { margin: 4px 0 0; }
+  dl.list div { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--c-line); }
+  dl.list dt { color: var(--c-ink-2); font-size: 13px; }
+  dl.list dd { margin: 0; text-align: right; font-variant-numeric: tabular-nums; }
+  .cta { position: absolute; left: 0; right: 0; bottom: 0; background: var(--c-paper); border-top: 1px solid var(--c-line); padding: 12px 20px 30px; display: flex; gap: 12px; align-items: center; }
+  .cta .price { font-family: var(--font-display); font-size: 26px; line-height: 1; }
+  .cta .price small { display: block; font-family: var(--font-text); font-size: 11px; color: var(--c-ink-2); margin-top: 4px; }
+  .cta a { margin-left: auto; background: var(--c-ink); color: var(--c-paper); text-decoration: none; min-height: 48px; padding: 0 18px; display: inline-flex; align-items: center; border-radius: 2px; font-weight: 600; }
+  :focus-visible { outline: 2px solid var(--c-brass); outline-offset: 3px; }
+</style>
+</head>
+<body>
+<main class="screen">
+  <div class="status" aria-hidden="true"><span>9:41</span><span>5G</span></div>
+  <nav class="bar" aria-label="Exposé"><a href="#" aria-label="Zurück zur Liste">Liste</a><span class="ref">Exposé NL-2611</span><a href="#" aria-label="Exposé merken">Merken</a></nav>
+  <div class="scroll">
+    <figure class="hero" style="margin:0"><img src="../assets/img/elbe-abend-1000.jpg" alt="Elbe am Abend."><span>Platzhalter, nicht das Objekt · Foto: Till Heidrich</span></figure>
+    <div class="pad">
+      <p class="label">Blankenese · Treppenviertel</p>
+      <h1>Kapitänshaus <em>von 1912</em></h1>
+      <dl class="keys">
+        <div><dt>Wohnfläche</dt><dd>186 m²</dd></div>
+        <div><dt>Zimmer</dt><dd>6</dd></div>
+        <div><dt>Grundstück</dt><dd>742 m²</dd></div>
+      </dl>
+      <dl class="list">
+        <div><dt>Energieausweis</dt><dd>Bedarf, 98,4 kWh/(m²·a), C</dd></div>
+        <div><dt>Heizung</dt><dd>Wärmepumpe, 2019</dd></div>
+        <div><dt>Frei ab</dt><dd>01.04.2027</dd></div>
+        <div><dt>Provision Käufer</dt><dd>2,975 % inkl. USt.</dd></div>
+      </dl>
+    </div>
+  </div>
+  <div class="cta"><p class="price">2.450.000 €<small>Kaufpreis</small></p><a href="#">Besichtigung anfragen</a></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,57 @@
+/* Nordlicht Immobilien – design tokens. Colours in OKLCH. Generated together with tokens.json and DESIGN.md. */
+:root {
+  color-scheme: light;
+  --c-paper: oklch(98% 0.004 240); /* Page background, cool paper white */
+  --c-paper-2: oklch(95.5% 0.006 240); /* Data sheet and quiet panels */
+  --c-ink: oklch(23% 0.025 255); /* Primary text, near-black harbour navy */
+  --c-ink-2: oklch(45% 0.02 250); /* Secondary text, captions */
+  --c-line: oklch(86% 0.008 245); /* Hairlines */
+  --c-brass: oklch(66% 0.085 78); /* Accent for rules and markers only (not text on paper) */
+  --c-brass-text: oklch(47% 0.08 68); /* Accent when used as text on paper (6.6:1) */
+  --c-deep: oklch(26% 0.03 245); /* Dark contact band */
+  --c-on-deep: oklch(98% 0.004 240); /* Text on deep */
+  --font-display: 'Cormorant Variable', 'Cormorant', Georgia, serif;
+  --font-text: 'Hanken Grotesk Variable', 'Hanken Grotesk', system-ui, sans-serif;
+  --fs-display-xl: clamp(3.25rem, 2rem + 6vw, 8.5rem);
+  --fw-display-xl: 300;
+  --lh-display-xl: 0.92;
+  --ls-display-xl: -0.02em;
+  --fs-display-lg: clamp(2.4rem, 1.6rem + 3.4vw, 4.75rem);
+  --fw-display-lg: 350;
+  --lh-display-lg: 1;
+  --ls-display-lg: -0.015em;
+  --fs-display-md: clamp(1.75rem, 1.3rem + 1.6vw, 2.75rem);
+  --fw-display-md: 400;
+  --lh-display-md: 1.08;
+  --ls-display-md: -0.01em;
+  --fs-body-lg: 1.1875rem;
+  --fw-body-lg: 400;
+  --lh-body-lg: 1.6;
+  --ls-body-lg: 0;
+  --fs-body: 1rem;
+  --fw-body: 400;
+  --lh-body: 1.6;
+  --ls-body: 0;
+  --fs-label: 0.75rem;
+  --fw-label: 600;
+  --lh-label: 1.3;
+  --ls-label: 0.14em;
+  --fs-data: 0.9375rem;
+  --fw-data: 450;
+  --lh-data: 1.4;
+  --ls-data: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2.5rem;
+  --space-6: 4rem;
+  --space-7: 7rem;
+  --space-8: 11rem;
+  --radius-none: 0;
+  --radius-hairline: 1px;
+  --radius-button: 2px;
+  --measure: 34rem;
+  --gutter: clamp(1rem, 4vw, 4rem);
+  --max: 90rem;
+}

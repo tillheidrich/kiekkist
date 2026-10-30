@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta name="kk:size" content="1920x1080">
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920">
+<title>Folie: Kennwerte · Harms Präzisionstechnik</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  html, body { margin: 0; }
+  body { width: 1920px; height: 1080px; overflow: hidden; background: var(--c-sheet); color: var(--c-ink); font-family: var(--font-sans); padding: 28px; box-sizing: border-box; }
+  .sheet { height: 100%; border: 2px solid var(--c-ink); display: grid; grid-template-rows: 28px 1fr auto; }
+  .ruler { display: grid; grid-template-columns: repeat(8, 1fr); border-bottom: 1px solid var(--c-ink); font-family: var(--font-mono); font-size: 14px; color: var(--c-ink-2); }
+  .ruler span { text-align: center; border-right: 1px solid var(--c-grid); line-height: 28px; }
+  .body { display: grid; grid-template-columns: 720px 1fr; }
+  .left { padding: 56px 64px; border-right: 1px solid var(--c-ink); display: flex; flex-direction: column; }
+  .lbl { font-family: var(--font-mono); font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: var(--c-ink-2); }
+  h1 { font-size: 132px; font-weight: 850; font-stretch: 66%; line-height: .88; text-transform: uppercase; margin: 32px 0 0; }
+  h1 span { background: var(--c-signal); padding: 0 8px; text-transform: none; }
+  .left p { font-size: 28px; line-height: 1.4; margin-top: auto; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr); }
+  .cell { border-right: 1px solid var(--c-grid); border-bottom: 1px solid var(--c-grid); padding: 32px 40px; display: flex; flex-direction: column; background: var(--c-panel); }
+  .cell:nth-child(2n) { border-right: 0; }
+  .v { font-family: var(--font-mono); font-weight: 500; font-size: 64px; letter-spacing: -.03em; margin-top: 14px; line-height: 1; }
+  .cell p { font-size: 22px; color: var(--c-ink-2); margin: 12px 0 0; }
+  .tb { display: grid; grid-template-columns: 2fr 1.4fr 1fr 1fr; border-top: 2px solid var(--c-ink); background: var(--c-panel); }
+  .tb div { padding: 12px 20px; border-right: 1px solid var(--c-ink); }
+  .tb div:last-child { border-right: 0; }
+  .tb b { display: block; font-size: 30px; font-weight: 850; font-stretch: 68%; text-transform: uppercase; }
+  .tb .m { display: block; font-family: var(--font-mono); font-size: 22px; margin-top: 4px; }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="ruler" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+  <div class="body">
+    <div class="left">
+      <p class="lbl" style="margin:0">Lieferantenvorstellung · Kennwerte 2026</p>
+      <h1>Was wir halten, in <span>µm</span></h1>
+      <p>Alle Werte serienfähig über ein Los von mindestens 50 Teilen, gemessen bei 20 °C.</p>
+    </div>
+    <div class="grid">
+      <div class="cell"><span class="lbl">Rundschleifen</span><span class="v">±2 µm</span><p>Ø 3 bis 200 mm</p></div>
+      <div class="cell"><span class="lbl">Langdrehen</span><span class="v">±3 µm</span><p>Ø 1 bis 32 mm</p></div>
+      <div class="cell"><span class="lbl">Oberfläche</span><span class="v">Ra 0,2</span><p>geschliffen, Tastschnitt</p></div>
+      <div class="cell"><span class="lbl">Prozessfähigkeit</span><span class="v">Cpk 1,67</span><p>Steuerkolben, Merkmal 1</p></div>
+      <div class="cell"><span class="lbl">Erstmuster</span><span class="v">8 AT</span><p>mit Messprotokoll und 3.1</p></div>
+      <div class="cell"><span class="lbl">Reklamationsquote</span><span class="v">212 ppm</span><p>Geschäftsjahr 2025</p></div>
+    </div>
+  </div>
+  <div class="tb"><div><span class="lbl">Hersteller</span><b>Harms Präzisionstechnik</b></div><div><span class="lbl">Zeichnungs-Nr.</span><span class="m">HPT-PRS-2026-04</span></div><div><span class="lbl">Blatt</span><span class="m">4 / 12</span></div><div><span class="lbl">Datum</span><span class="m">29.10.2026</span></div></div>
+</main>
+</body>
+</html>

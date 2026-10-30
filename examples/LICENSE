@@ -1,0 +1,16 @@
+Kiekkist example themes (examples/themes/*)
+
+Code, markup, styles, tokens and copy
+  Copyright (c) 2026 Till Heidrich.
+  Licensed under the Creative Commons Attribution 4.0 International licence (CC BY 4.0):
+  https://creativecommons.org/licenses/by/4.0/
+  Attribution: "Kiekkist example theme by Till Heidrich (Heidrich Digital)".
+  The companies, people, addresses and numbers in the examples are invented.
+
+Photographs (examples/themes/*/assets/img/*)
+  Photos (c) Till Heidrich. Licensed only for use within these examples; not for other use.
+  They are not covered by CC BY 4.0. Replace them before you use a theme for a real site.
+
+Fonts (examples/themes/*/assets/fonts/*.woff2)
+  SIL Open Font License 1.1; each family's licence file sits next to its fonts
+  (LICENSE-<family>.txt). The fonts keep their own copyright holders.

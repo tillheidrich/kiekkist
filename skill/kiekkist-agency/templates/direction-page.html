@@ -1,0 +1,166 @@
+<!doctype html>
+<!--
+  Direction page skeleton. Replace every {{PLACEHOLDER}}.
+  This file deliberately carries no look of its own: every visual value comes from the tokens below.
+  Change the structure freely; the topology is part of the direction. Delete this comment before saving.
+-->
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{CLIENT_NAME}}: {{PAGE_TITLE}}</title>
+  <meta name="description" content="{{ONE_SENTENCE_REAL_DESCRIPTION}}">
+  <style>
+    /* Self-hosted fonts only. One @font-face per file and subset. */
+    @font-face {
+      font-family: "{{VOICE_FAMILY}}";
+      src: url("{{VOICE_FONT_FILE}}.woff2") format("woff2");
+      font-weight: {{VOICE_WEIGHT_RANGE}};
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "{{READING_FAMILY}}";
+      src: url("{{READING_FONT_FILE}}.woff2") format("woff2");
+      font-weight: {{READING_WEIGHT_RANGE}};
+      font-display: swap;
+    }
+
+    :root {
+      /* Colour roles in OKLCH */
+      --ground: {{OKLCH_GROUND}};
+      --surface: {{OKLCH_SURFACE}};
+      --ink: {{OKLCH_INK}};
+      --ink-muted: {{OKLCH_INK_MUTED}};
+      --accent: {{OKLCH_ACCENT}};
+      --accent-ink: {{OKLCH_ON_ACCENT}};
+      --line: {{OKLCH_LINE}};
+      --focus: {{OKLCH_FOCUS}};
+
+      /* Type roles */
+      --font-voice: "{{VOICE_FAMILY}}", {{VOICE_FALLBACK_STACK}};
+      --font-reading: "{{READING_FAMILY}}", {{READING_FALLBACK_STACK}};
+      --size-display: {{CLAMP_DISPLAY}};
+      --size-h2: {{CLAMP_H2}};
+      --size-h3: {{SIZE_H3}};
+      --size-body: {{SIZE_BODY}};
+      --size-small: {{SIZE_SMALL}};
+      --leading-display: {{LEADING_DISPLAY}};
+      --leading-body: {{LEADING_BODY}};
+      --measure: {{MEASURE_CH}};
+
+      /* Spacing scale and shape */
+      --space-1: {{SPACE_1}};
+      --space-2: {{SPACE_2}};
+      --space-3: {{SPACE_3}};
+      --space-4: {{SPACE_4}};
+      --space-5: {{SPACE_5}};
+      --space-6: {{SPACE_6}};
+      --space-margin: {{PAGE_MARGIN}};
+      --content-max: {{CONTENT_MAX_WIDTH}};
+      --radius: {{RADIUS}};
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background: var(--ground);
+      color: var(--ink);
+      font-family: var(--font-reading);
+      font-size: var(--size-body);
+      line-height: var(--leading-body);
+      hyphens: auto;
+      overflow-wrap: break-word;
+    }
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+    .skip { position: absolute; left: -9999px; }
+    .skip:focus { left: var(--space-2); top: var(--space-2); }
+    .wrap { width: min(100% - 2 * var(--space-margin), var(--content-max)); margin-inline: auto; }
+    h1, h2, h3 { font-family: var(--font-voice); line-height: var(--leading-display); margin: 0; text-wrap: balance; }
+    h1 { font-size: var(--size-display); }
+    h2 { font-size: var(--size-h2); }
+    h3 { font-size: var(--size-h3); }
+    p { max-width: var(--measure); text-wrap: pretty; }
+
+    /* Placeholder for a photo the client still has to deliver */
+    .photo-needed {
+      aspect-ratio: {{PHOTO_RATIO}};
+      background: var(--surface);
+      border: 1px dashed var(--line);
+      display: grid;
+      place-items: center;
+      padding: var(--space-3);
+      color: var(--ink-muted);
+      font-size: var(--size-small);
+      text-align: center;
+    }
+
+    /* Direction-specific layout goes here: topology, grid, signature element. */
+    {{DIRECTION_CSS}}
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">{{SKIP_LINK_TEXT}}</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a href="#" class="brand">{{CLIENT_LOGO_OR_WORDMARK}}</a>
+      <nav aria-label="{{NAV_LABEL}}">
+        <ul>
+          <li><a href="#{{SECTION_1_ID}}">{{NAV_ITEM_1}}</a></li>
+          <li><a href="#{{SECTION_2_ID}}">{{NAV_ITEM_2}}</a></li>
+          <li><a href="#{{SECTION_3_ID}}">{{NAV_ITEM_3}}</a></li>
+        </ul>
+      </nav>
+      <a href="{{PRIMARY_CONTACT_HREF}}" class="contact">{{PRIMARY_CONTACT_LABEL}}</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- First screen: the thesis of this direction, with the client's real core promise. -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <h1 id="hero-title">{{REAL_HEADLINE}}</h1>
+        <p>{{REAL_SUPPORTING_LINE}}</p>
+        <a href="{{PRIMARY_ACTION_HREF}}" class="action">{{PRIMARY_ACTION_LABEL}}</a>
+        {{HERO_VISUAL_OR_PHOTO_NEEDED}}
+      </div>
+    </section>
+
+    <!-- Two or three sections with real content: offer, proof, how it works, or what the brief requires. -->
+    <section id="{{SECTION_1_ID}}" aria-labelledby="{{SECTION_1_ID}}-title">
+      <div class="wrap">
+        <h2 id="{{SECTION_1_ID}}-title">{{SECTION_1_HEADING}}</h2>
+        {{SECTION_1_CONTENT}}
+      </div>
+    </section>
+
+    <section id="{{SECTION_2_ID}}" aria-labelledby="{{SECTION_2_ID}}-title">
+      <div class="wrap">
+        <h2 id="{{SECTION_2_ID}}-title">{{SECTION_2_HEADING}}</h2>
+        {{SECTION_2_CONTENT}}
+      </div>
+    </section>
+
+    <section id="{{SECTION_3_ID}}" aria-labelledby="{{SECTION_3_ID}}-title">
+      <div class="wrap">
+        <h2 id="{{SECTION_3_ID}}-title">{{SECTION_3_HEADING}}</h2>
+        {{SECTION_3_CONTENT_OR_DELETE}}
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      {{REAL_CONTACT_BLOCK}}
+      <p><small>{{LEGAL_LINKS}}</small></p>
+    </div>
+  </footer>
+</body>
+</html>

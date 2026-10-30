@@ -1,0 +1,7 @@
+body { margin: 0; background: var(--c-ground); color: var(--c-ink); font-family: var(--font-sans); font-size: 1rem; line-height: 1.6; }
+.wrap { max-width: 40rem; margin: 0 auto; padding: 2rem 1rem; }
+a { color: var(--c-ink); }
+.js .only-js { display: inline; }
+.only-js { display: none; }
+.site-footer .legal a { font-size: 0.8125rem; }
+.site-footer .legal { display: flex; gap: 0.75rem; flex-wrap: wrap; }

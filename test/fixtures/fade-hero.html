@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fade-in hero (settle regression)</title>
+<!-- Regression fixture for the checker's settle step: a CSS fade-in hero, a typing effect driven by timers that ends
+     in a Web Animations reveal (like the gallery specimen), and an infinite pulse. Measured mid-animation, the hero and
+     the revealed rows have an effective opacity around 0.4 and fail contrast; at rest everything passes. The pulse must
+     still be found by the motion check (WCAG 2.2.2), so the checker has to restart what it froze for measuring. -->
+<style>
+  * { box-sizing: border-box; }
+  html { background: #fbfaf7; }
+  body { margin: 0; background: #fbfaf7; color: #1b1f24; font: 1.0625rem/1.6 Arial, sans-serif; }
+  main { max-width: 42rem; margin: 0 auto; padding: 24px 16px 48px; }
+  h1 { font-size: 2rem; line-height: 1.2; margin: 0 0 12px; }
+  .hero > * { animation: rise 1600ms cubic-bezier(.2,.6,.3,1) both; }
+  .hero > p { animation-delay: 300ms; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .term { position: relative; font-family: "Courier New", monospace; background: #fff; border: 1px solid #c9cbd0; padding: 12px; min-height: 3em; }
+  table { border-collapse: collapse; margin-top: 12px; width: 100%; }
+  td { border-top: 1px solid #c9cbd0; padding: 6px 4px; }
+  .live { display: inline-block; padding: 8px 14px; margin-top: 24px; background: #1b1f24; color: #fff; font-weight: 700; animation: pulse 1.2s ease-in-out infinite; }
+  @keyframes pulse { 50% { opacity: 0.3; } }
+  a { color: #0d4a6b; }
+  @media (prefers-reduced-motion: reduce) { .hero > *, .live { animation: none; } }
+</style>
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="t">
+      <h1 id="t">Opening hours for the workshop</h1>
+      <p>Monday to Friday from 7 to 17 o'clock. Saturdays by appointment, call us the day before.</p>
+    </section>
+    <section aria-labelledby="q">
+      <h2 id="q">Query</h2>
+      <div class="term"><span id="typed" aria-hidden="true"></span><span class="sr">orders where status is open</span></div>
+      <table><tbody>
+        <tr><td>Order 1042</td><td>open</td></tr>
+        <tr><td>Order 1043</td><td>open</td></tr>
+        <tr><td>Order 1047</td><td>open</td></tr>
+      </tbody></table>
+    </section>
+    <p class="live">Live now</p>
+    <p><a href="#t">Back to top</a></p>
+  </main>
+  <style>.sr { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }</style>
+  <script>
+    // typing by timer, then a reveal with Web Animations after a pause longer than one frame
+    const text = 'orders where status is open', out = document.getElementById('typed');
+    const rows = [...document.querySelectorAll('tbody tr')];
+    let i = 0;
+    const reveal = () => rows.forEach((r, n) => r.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 900, delay: n * 120, fill: 'backwards' }));
+    const step = () => { out.textContent = text.slice(0, ++i); if (i < text.length) setTimeout(step, 35); else setTimeout(reveal, 280); };
+    setTimeout(step, 200);
+  </script>
+</body>
+</html>

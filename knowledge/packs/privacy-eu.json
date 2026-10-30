@@ -1,0 +1,386 @@
+{
+ "id": "privacy-eu",
+ "version": "2026-10-30.1",
+ "kind": "rule",
+ "title": "Privacy by default (EU, Germany)",
+ "license": "MIT",
+ "description": "Build rules so that a visitor's browser talks only to the site's own origin until the visitor decides otherwise; consent only when needed; forms, logs, processors, AI Act labelling, and the honest wording rule. Not legal advice; status 2026-10-30; uncertain items marked.",
+ "sources": [
+  {
+   "title": "LG München I, 20.01.2022, 3 O 17493/20 (Google Fonts)",
+   "url": "https://www.ra-plutte.de/lg-muenchen-dynamische-einbindung-google-web-fonts-ist-dsgvo/",
+   "date": "2022-01-20"
+  },
+  {
+   "title": "BGH referral VI ZR 258/24 to CJEU (TCI)",
+   "url": "https://www.tcilaw.de/en/damages-for-google-fonts-now-the-ecj-must-decide/",
+   "date": "2025-08-28"
+  },
+  {
+   "title": "CJEU C-21/23 Lindenapotheke (IT-Recht Kanzlei)",
+   "url": "https://www.it-recht-kanzlei.de/eugh-bejaht-abmahnung-mitbewerber-dsgvo.html",
+   "date": "2024-10-04"
+  },
+  {
+   "title": "Cookieless tracking and § 25 (dr-datenschutz.de)",
+   "url": "https://www.dr-datenschutz.de/cookieless-tracking-ohne-einwilligung-und-google-analytics/",
+   "date": "2022-07-18"
+  },
+  {
+   "title": "YouTube/Vimeo embeds (e-recht24)",
+   "url": "https://www.e-recht24.de/tracking-cookies/13149-cookies-beim-einbinden-von-bildern-und-videos.html"
+  },
+  {
+   "title": "EinwVO guide (activeMind)",
+   "url": "https://www.activemind.legal/de/guides/einwvo/",
+   "date": "2025-09-16"
+  },
+  {
+   "title": "AI Act Art. 50 go-live (Baker Botts)",
+   "url": "https://www.bakerbotts.com/thought-leadership/publications/2026/september/eu-ai-act-article-50-transparency-obligations-go-live",
+   "date": "2026-09"
+  },
+  {
+   "title": "BFSG statement guide (IT-Recht Kanzlei)",
+   "url": "https://www.it-recht-kanzlei.de/bfsg-erklaerung-barrierefreiheit-fuer-mandanten.html"
+  },
+  {
+   "title": "Werbung mit Selbstverständlichkeiten (IT-Recht Kanzlei)",
+   "url": "https://www.it-recht-kanzlei.de/werbung-mit-selbstverstaendlichkeiten-was-ist-erlaubt.html"
+  },
+  {
+   "title": "ODR platform shut down 20.07.2025 (WBS Legal)",
+   "url": "https://www.wbs.legal/it-und-internet-recht/eu-streitbeilegungsplattform-os-plattform-eingestellt-jetzt-impressum-aktualisieren-83428/"
+  },
+  {
+   "title": "ALTCHA",
+   "url": "https://altcha.org/"
+  },
+  {
+   "title": "Maintainer's research notes: Was Art. 50 für Marketing heißt",
+   "url": null,
+   "note": "maintainer's research notes, not public",
+   "date": "2026-08-11"
+  }
+ ],
+ "items": [
+  {
+   "id": "P01",
+   "name": "No third-party request on load",
+   "tags": [
+    "requests",
+    "fonts",
+    "cdn"
+   ],
+   "rule": "First load requests only the site's own origin (plus data:/blob:).",
+   "check": "auto",
+   "check_id": "privacy.third-party-requests",
+   "severity": "error",
+   "evidence": "S",
+   "basis": "Art. 6 GDPR; LG München I 3 O 17493/20",
+   "uncertainty": "whether a dynamic IP is personal data for the operator is pending at the CJEU (VI ZR 258/24)"
+  },
+  {
+   "id": "P02",
+   "name": "Self-hosted fonts",
+   "tags": [
+    "fonts"
+   ],
+   "rule": "woff2 from the site; no Google Fonts, Adobe kit, or font mirror at runtime.",
+   "check": "auto",
+   "check_id": "privacy.fonts-self-hosted",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P03",
+   "name": "No runtime CDN for scripts and styles",
+   "tags": [
+    "cdn",
+    "scripts"
+   ],
+   "rule": "Bundle or copy libraries, icons and CSS; never cdnjs, jsDelivr, unpkg at runtime.",
+   "check": "auto",
+   "check_id": "privacy.third-party-requests",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P04",
+   "name": "Two-click video facade",
+   "tags": [
+    "embeds",
+    "video"
+   ],
+   "rule": "Local poster, provider name, one-sentence notice, iframe inserted only after click; youtube-nocookie alone is not enough. Prefer self-hosted video.",
+   "check": "auto",
+   "check_id": "privacy.iframe-before-click",
+   "severity": "error",
+   "evidence": "P",
+   "basis": "e-recht24; § 25 TDDDG"
+  },
+  {
+   "id": "P05",
+   "name": "Maps without tile requests",
+   "tags": [
+    "embeds",
+    "maps"
+   ],
+   "rule": "Static local map image with attribution plus address text and an outbound link; interactive map only behind two-click or with self-hosted tiles.",
+   "check": "auto",
+   "check_id": "privacy.third-party-requests",
+   "severity": "error",
+   "evidence": "P"
+  },
+  {
+   "id": "P06",
+   "name": "No social widgets",
+   "tags": [
+    "embeds",
+    "social"
+   ],
+   "rule": "Plain profile links; feeds, like and share buttons only behind two-click.",
+   "check": "auto",
+   "check_id": "privacy.third-party-requests",
+   "severity": "error",
+   "evidence": "P"
+  },
+  {
+   "id": "P07",
+   "name": "Captcha without third party",
+   "tags": [
+    "forms",
+    "spam"
+   ],
+   "rule": "Honeypot + minimum fill time + rate limit; ALTCHA self-hosted if needed; Friendly Captcha as processor with DPA; reCAPTCHA/hCaptcha only with consent.",
+   "check": "auto",
+   "check_id": "privacy.captcha-host",
+   "severity": "warn",
+   "evidence": "P"
+  },
+  {
+   "id": "P08",
+   "name": "No banner when nothing needs consent",
+   "tags": [
+    "consent"
+   ],
+   "rule": "If nothing is stored on the device and nothing foreign loads, ship no cookie banner.",
+   "check": "auto",
+   "check_id": "privacy.storage-before-interaction",
+   "severity": "info",
+   "evidence": "S",
+   "basis": "§ 25 TDDDG"
+  },
+  {
+   "id": "P09",
+   "name": "Proper consent when needed",
+   "tags": [
+    "consent"
+   ],
+   "rule": "Equal accept and reject on the first layer, nothing before consent, easy withdrawal link in footer, banner designed and checked at 390 px.",
+   "check": "partial",
+   "check_id": "privacy.consent-before-load",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P10",
+   "name": "Cookie-free first-party analytics",
+   "tags": [
+    "analytics"
+   ],
+   "rule": "Only if wanted: self-hosted or EU tool from own origin, no device storage, no cross-day recognition, IPs not stored, no third-party sharing; named in the policy with opt-out.",
+   "check": "auto",
+   "check_id": "privacy.analytics-first-party",
+   "severity": "warn",
+   "evidence": "P",
+   "uncertainty": "authority views differ when IPs are processed transiently; DSK OH Telemedien 2021 p. 8"
+  },
+  {
+   "id": "P11",
+   "name": "Form data minimisation",
+   "tags": [
+    "forms"
+   ],
+   "rule": "Only fields needed to answer; no consent checkbox for a simple enquiry; policy link next to submit; newsletter needs separate opt-in and double opt-in.",
+   "check": "partial",
+   "check_id": "forms.fields",
+   "severity": "warn",
+   "evidence": "S",
+   "basis": "Art. 5 (1) (c), Art. 6 (1) (b)/(f) GDPR"
+  },
+  {
+   "id": "P12",
+   "name": "Form retention and uploads",
+   "tags": [
+    "forms",
+    "retention"
+   ],
+   "rule": "Set and implement deletion periods for stored enquiries; uploads size- and type-checked, EXIF location stripped.",
+   "check": "manual",
+   "severity": "warn",
+   "evidence": "S"
+  },
+  {
+   "id": "P13",
+   "name": "Special categories only with explicit need",
+   "tags": [
+    "forms",
+    "health"
+   ],
+   "rule": "Health, religion, union data only with explicit consent and need (e.g. allergy fields are health data).",
+   "check": "manual",
+   "severity": "error",
+   "evidence": "S",
+   "basis": "Art. 9 GDPR"
+  },
+  {
+   "id": "P14",
+   "name": "Short server log retention",
+   "tags": [
+    "logs",
+    "retention"
+   ],
+   "rule": "Keep access logs with IPs short (common practice 7 to 14 days), state the period in the policy, configure the host to match.",
+   "check": "manual",
+   "severity": "warn",
+   "evidence": "P",
+   "uncertainty": "no statutory period"
+  },
+  {
+   "id": "P15",
+   "name": "Processors list with DPAs",
+   "tags": [
+    "processors",
+    "avv"
+   ],
+   "rule": "Every processor listed with provider, country, data, purpose, DPA date, transfer basis; every one named in the privacy policy.",
+   "check": "partial",
+   "check_id": "legal.processors-in-policy",
+   "severity": "error",
+   "evidence": "S",
+   "basis": "Art. 28, 44 ff. GDPR"
+  },
+  {
+   "id": "P16",
+   "name": "Legal pages linked everywhere",
+   "tags": [
+    "legal",
+    "impressum"
+   ],
+   "rule": "Impressum (§ 5 DDG) and privacy policy linked from every page footer; no EU ODR platform link (shut down 20.07.2025).",
+   "check": "auto",
+   "check_id": "legal.links",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P17",
+   "name": "Accessibility statement when BFSG applies",
+   "tags": [
+    "legal",
+    "bfsg",
+    "a11y"
+   ],
+   "rule": "B2C sites with contract conclusion (shop, booking) publish § 14 BFSG information; micro-enterprises providing services are exempt; presentation sites are not covered.",
+   "check": "partial",
+   "check_id": "legal.a11y-statement",
+   "severity": "warn",
+   "evidence": "S"
+  },
+  {
+   "id": "P18",
+   "name": "AI chatbot notice",
+   "tags": [
+    "ai-act"
+   ],
+   "rule": "Visible notice before the first message that the user talks to an AI.",
+   "check": "auto",
+   "check_id": "ai.chatbot-notice",
+   "severity": "error",
+   "evidence": "S",
+   "basis": "Art. 50 (1) AI Act, applicable since 2026-08-02"
+  },
+  {
+   "id": "P19",
+   "name": "Label photorealistic AI images",
+   "tags": [
+    "ai-act",
+    "images"
+   ],
+   "rule": "Photorealistic AI-generated or AI-manipulated images/video/audio that could pass as real get a visible label near them; avoid them as proof of real work.",
+   "check": "partial",
+   "check_id": "ai.image-label",
+   "severity": "error",
+   "evidence": "S",
+   "basis": "Art. 50 (4) AI Act; Commission guidelines July 2026",
+   "uncertainty": "generative fill/expansion is a borderline case"
+  },
+  {
+   "id": "P20",
+   "name": "No blanket AI banner",
+   "tags": [
+    "ai-act",
+    "copy"
+   ],
+   "rule": "Label only the cases Art. 50 covers; service and product texts with human review need no label; public-interest news gets author and editor.",
+   "check": "manual",
+   "severity": "info",
+   "evidence": "S"
+  },
+  {
+   "id": "P21",
+   "name": "Keep provenance on AI images",
+   "tags": [
+    "ai-act",
+    "images"
+   ],
+   "rule": "Do not strip C2PA/IPTC provenance on purpose from AI images; the default optimiser strips metadata, so keep a linked original or rely on the visible label. Strip EXIF location from real photos.",
+   "check": "auto",
+   "check_id": "ai.provenance",
+   "severity": "warn",
+   "evidence": "H"
+  },
+  {
+   "id": "P22",
+   "name": "Honest wording: what was checked, never guaranteed",
+   "tags": [
+    "copy",
+    "marketing",
+    "uwg"
+   ],
+   "rule": "Say 'built privacy-by-default, checked on <date> for X, Y, Z (report)'; never 'DSGVO-konform garantiert', '100 % rechtssicher', 'abmahnsicher', 'DSGVO-zertifiziert'.",
+   "why": "§ 5 UWG misleading claim; advertising self-evident legal duties as an advantage; competitors can enforce GDPR via UWG (CJEU C-21/23); guarantee can become a contractual warranty.",
+   "check": "auto",
+   "check_id": "copy.compliance-claims",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P23",
+   "name": "Same wording rule for accessibility",
+   "tags": [
+    "copy",
+    "a11y"
+   ],
+   "rule": "'Built to WCAG 2.2 AA, checked with axe-core and keyboard on <date>' yes; 'barrierefrei zertifiziert' or 'BFSG-konform garantiert' no.",
+   "check": "auto",
+   "check_id": "copy.compliance-claims",
+   "severity": "error",
+   "evidence": "S"
+  },
+  {
+   "id": "P24",
+   "name": "Do not design around PIMS yet",
+   "tags": [
+    "consent",
+    "einwv"
+   ],
+   "rule": "The EinwVO (in force 2025-04-01) foresees recognised consent services; none was in common use as of the last check. Keep the build consent-free instead.",
+   "check": "manual",
+   "severity": "info",
+   "evidence": "S",
+   "uncertainty": "evaluation due April 2027"
+  }
+ ]
+}

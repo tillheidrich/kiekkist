@@ -1,0 +1,1901 @@
+{
+ "id": "evidence",
+ "version": "2026-10-30.1",
+ "kind": "evidence",
+ "title": "Evidence base: mobile, behaviour, performance, persuasion",
+ "license": "MIT",
+ "reviewed": "2026-10-30",
+ "description": "Numbers and findings behind Kiekkist's rules on mobile, performance, reading, first impressions, trust, forms, persuasion and dark patterns. Every item names its source, year, evidence class and replication status. references/evidence.md is the prose companion. Myths are listed as items with status 'myth' so they can be refuted with a source.",
+ "fields": {
+  "claim": "one sentence you may repeat, with the limits stated in context",
+  "value": "the headline number (null when the finding is qualitative); unit says what it measures",
+  "context": "sample, method, date of data, limits, how to use it",
+  "evidence": "S standard or norm | M measured effect in a published study | D measured telemetry/defaults (crawls, analytics panels) | P practitioner consensus | H our hypothesis | V vendor claim or vendor-published case study",
+  "status": "replicated = independent studies or repeated measurement series agree, or a binding standard | single-study = one study, dataset or test | contested = replications disagree or effect much smaller than first claimed | myth = no traceable evidence or contradicted by evidence",
+  "applies_to": "web | app | mobile"
+ },
+ "items": [
+  {
+   "id": "de-mobile-share",
+   "name": "Mobile share of web traffic, Germany",
+   "claim": "Phones generate about 60 % of page views in Germany, desktop about 38 %, tablets under 2 %.",
+   "value": 59.85,
+   "unit": "% page views (mobile)",
+   "context": "September 2026, all sites in StatCounter's network; desktop 38.31 %, tablet 1.84 %. Sector mix unknown; use the client's own analytics where they exist.",
+   "source": "StatCounter Global Stats, Germany",
+   "url": "https://gs.statcounter.com/platform-market-share/desktop-mobile-tablet/germany",
+   "year": 2026,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "traffic",
+    "germany"
+   ]
+  },
+  {
+   "id": "de-android-share",
+   "name": "Android share of mobile, Germany",
+   "claim": "About 72 % of mobile page views in Germany come from Android, 28 % from iOS.",
+   "value": 72.37,
+   "unit": "% mobile page views",
+   "context": "StatCounter, September 2026. Design and test on mid-range Android, not only on the team's iPhones.",
+   "source": "StatCounter, mobile OS Germany",
+   "url": "https://gs.statcounter.com/os-market-share/mobile/germany",
+   "year": 2026,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "tags": [
+    "mobile",
+    "devices",
+    "germany"
+   ]
+  },
+  {
+   "id": "de-viewports",
+   "name": "Common mobile viewports, Germany",
+   "claim": "The six most common mobile resolutions in Germany are 414×896, 384×832, 393×873, 390×844, 360×780 and 412×915; together about 49 %.",
+   "value": "360-414",
+   "unit": "CSS px width",
+   "context": "StatCounter, September 2026. 360 px is still in the top six, so a layout must hold at 360 px, not only at 390.",
+   "source": "StatCounter, mobile screen resolution Germany",
+   "url": "https://gs.statcounter.com/screen-resolution-stats/mobile/germany",
+   "year": 2026,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "viewport"
+   ]
+  },
+  {
+   "id": "de-smartphone-users",
+   "name": "Smartphone users, Germany",
+   "claim": "82 % of people in Germany aged 16+ use a smartphone (about 56 million); average daily use 155 minutes.",
+   "value": 82,
+   "unit": "% of 16+",
+   "context": "Bitkom Research, telephone survey n=1,004, January/February 2025.",
+   "source": "Bitkom press release 20.02.2025 (n=1,004, 16+)",
+   "url": "https://www.bitkom.org/Presse/Presseinformation/mehr-als-40-Mrd.-Euro-Umsatz-Smartphones",
+   "year": 2025,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "tags": [
+    "mobile",
+    "germany"
+   ]
+  },
+  {
+   "id": "de-device-age",
+   "name": "Average age of phones, Germany",
+   "claim": "The average privately bought smartphone in Germany is 24 months old; 47 % of users have had theirs for more than two years.",
+   "value": 24,
+   "unit": "months",
+   "context": "Bitkom 2025. Performance budgets must assume two-to-three-year-old mid-range devices.",
+   "source": "Bitkom press release 20.02.2025 (n=1,004, 16+)",
+   "url": "https://www.bitkom.org/Presse/Presseinformation/mehr-als-40-Mrd.-Euro-Umsatz-Smartphones",
+   "year": 2025,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "tags": [
+    "mobile",
+    "devices",
+    "performance"
+   ]
+  },
+  {
+   "id": "sector-b2b-mobile",
+   "name": "Mobile share, B2B vs B2C sites",
+   "claim": "On a typical B2B site about 28-31 % of sessions are mobile; on B2C sites about 57-62 %.",
+   "value": "28-31 (B2B) / 57-62 (B2C)",
+   "unit": "% sessions",
+   "context": "Siege Media first-party data, 13.4 bn sessions from 120 brands, 2023 to mid-2026, region not stated. A content agency's own client set: vendor data, not representative of German SMEs.",
+   "source": "Siege Media, mobile vs desktop traffic share (13.4 bn sessions, 120 brands)",
+   "url": "https://siegemedia.com/research/mobile-vs-desktop-traffic-share",
+   "year": 2026,
+   "evidence": "V",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "traffic",
+    "b2b",
+    "sector"
+   ]
+  },
+  {
+   "id": "sector-mobile-by-industry",
+   "name": "Mobile share by industry",
+   "claim": "Mobile share of sessions: home services about 62-65 %, financial and property services 66-76 %, health and beauty 72 %, SaaS 24-28 %.",
+   "value": "24-76",
+   "unit": "% sessions",
+   "context": "Siege Media 2026, vendor data. Craft and local-service sites skew mobile; software and procurement skew desktop. No public per-sector data exists for Germany.",
+   "source": "Siege Media, mobile vs desktop traffic share (13.4 bn sessions, 120 brands)",
+   "url": "https://siegemedia.com/research/mobile-vs-desktop-traffic-share",
+   "year": 2026,
+   "evidence": "V",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "traffic",
+    "sector"
+   ]
+  },
+  {
+   "id": "ecom-mobile-share",
+   "name": "Mobile share in e-commerce",
+   "claim": "About 70 % of e-commerce traffic is mobile (luxury 85 %, fashion 83 %) while mobile conversion rate is far below desktop (desktop 3.4 %).",
+   "value": 70,
+   "unit": "% traffic",
+   "context": "Contentsquare 2026 benchmark on 2025 data; vendor, sample size not stated.",
+   "source": "Contentsquare 2026 Digital Experience Benchmark (blog)",
+   "url": "https://contentsquare.com/de-de/blog/mobile-vs-desktop-traffic/",
+   "year": 2026,
+   "evidence": "V",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "conversion",
+    "ecommerce"
+   ]
+  },
+  {
+   "id": "de-network",
+   "name": "Mobile network speed, Germany",
+   "claim": "Average mobile download speed in Germany ranges from 47 Mbps (O2) to 69 Mbps (Telekom); 5G is available 15-22 % of the time.",
+   "value": "47-69",
+   "unit": "Mbps",
+   "context": "Opensignal, data July-September 2025. Averages hide indoor, rural and train conditions; latency, not bandwidth, dominates small-page loads.",
+   "source": "Opensignal Germany Mobile Network Experience, Nov 2025",
+   "url": "https://insights.opensignal.com/reports/2025/11/germany/mobile-network-experience",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "mobile",
+    "network",
+    "performance"
+   ]
+  },
+  {
+   "id": "lh-mobile-profile",
+   "name": "Lighthouse mobile lab profile",
+   "claim": "Lighthouse emulates a Moto G Power (412×823, DPR 1.75) on 'slow 4G': 150 ms RTT, 1.6 Mbps down, 750 kbps up, CPU slowed 4x.",
+   "value": "150 ms / 1.6 Mbps / 4x",
+   "unit": "RTT / throughput / CPU",
+   "context": "Meant to approximate a p75 4G connection on a mid-tier phone. DevTools equivalent with request-level throttling: 562.5 ms latency, 1,474.56 kbps down, 675 kbps up.",
+   "source": "Lighthouse source: screen emulation and throttling constants",
+   "url": "https://github.com/ChromeDevTools/devtools-frontend/blob/main/front_end/models/trace/lantern/simulation/Constants.ts",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "lab",
+    "checker"
+   ]
+  },
+  {
+   "id": "hold-one-hand",
+   "name": "How people hold phones",
+   "claim": "Of 780 people observed touching a phone in public, 49 % used one hand, 36 % cradled it, 15 % used two hands; about 75 % of touches were made with a thumb.",
+   "value": 49,
+   "unit": "% one-handed",
+   "context": "Hoober 2013, 1,333 observations in public places, US. Snapshot of grips that change constantly; not homes or offices.",
+   "source": "Hoober, How Do Users Really Hold Mobile Devices? UXmatters 2013",
+   "url": "https://www.uxmatters.com/mt/archives/2013/02/how-do-users-really-hold-mobile-devices.php",
+   "year": 2013,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "mobile"
+   ],
+   "tags": [
+    "mobile",
+    "touch",
+    "ergonomics"
+   ]
+  },
+  {
+   "id": "touch-accuracy",
+   "name": "Touch accuracy by screen region",
+   "claim": "Touch accuracy is about 7 mm at the centre of the screen and about 12 mm at the corners; people prefer to tap in the centre.",
+   "value": "7 (centre) / 12 (corners)",
+   "unit": "mm",
+   "context": "Hoober 2017 summarising millions of logged touches and lab studies (Henze et al. 2011 and others). Supports: primary actions in the middle half of the screen, generous targets at edges.",
+   "source": "Hoober, Design for Fingers, Touch, and People, Part 3, UXmatters 2017",
+   "url": "https://www.uxmatters.com/mt/archives/2017/07/design-for-fingers-touch-and-people-part-3.php",
+   "year": 2017,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "mobile",
+    "app"
+   ],
+   "tags": [
+    "mobile",
+    "touch",
+    "targets"
+   ]
+  },
+  {
+   "id": "touch-error-small",
+   "name": "Error rate of small targets",
+   "claim": "Touch error rises sharply below about 15 mm and exceeds 40 % for targets under 8 mm; 10 mm buttons reached 98-99 % accuracy.",
+   "value": 10,
+   "unit": "mm target for ~99 % accuracy",
+   "context": "Henze et al. 2011 and Lee & Zhai, as summarised by Hoober 2017. 10 mm is roughly 38-48 CSS px depending on the phone.",
+   "source": "Hoober, Design for Fingers, Touch, and People, Part 3, UXmatters 2017",
+   "url": "https://www.uxmatters.com/mt/archives/2017/07/design-for-fingers-touch-and-people-part-3.php",
+   "year": 2017,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "mobile",
+    "app"
+   ],
+   "tags": [
+    "mobile",
+    "touch",
+    "targets"
+   ]
+  },
+  {
+   "id": "thumb-zone-myth",
+   "name": "Thumb-zone heat maps",
+   "claim": "Precise 'thumb zone' heat maps that tell you to put everything at the bottom are not supported: grips change constantly and people tap the centre most accurately.",
+   "value": null,
+   "unit": null,
+   "context": "Hoober himself later said some of his 2013 reach diagrams were misleading. Use 'centre and lower-middle for primary actions, edges for secondary', not a thumb map.",
+   "source": "Hoober, Design for Fingers, Touch, and People, Part 3, UXmatters 2017",
+   "url": "https://www.uxmatters.com/mt/archives/2017/07/design-for-fingers-touch-and-people-part-3.php",
+   "year": 2017,
+   "evidence": "P",
+   "status": "myth",
+   "applies_to": [
+    "mobile"
+   ],
+   "tags": [
+    "mobile",
+    "touch",
+    "myth"
+   ]
+  },
+  {
+   "id": "target-wcag-min",
+   "name": "WCAG minimum target size",
+   "claim": "Pointer targets must be at least 24×24 CSS px, or be spaced so a 24 px circle on each does not overlap another target (WCAG 2.2 SC 2.5.8, level AA).",
+   "value": 24,
+   "unit": "CSS px",
+   "context": "Inline text links and targets whose size is set by the user agent are exempt. AAA (2.5.5) is 44×44.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "app"
+   ],
+   "tags": [
+    "targets",
+    "accessibility",
+    "checker"
+   ]
+  },
+  {
+   "id": "target-apple",
+   "name": "Apple minimum hit target",
+   "claim": "Apple's HIG asks for hit targets of at least 44×44 pt.",
+   "value": 44,
+   "unit": "pt",
+   "context": "Platform guideline for iOS/iPadOS; on the web 1 pt ≈ 1 CSS px.",
+   "source": "Apple Human Interface Guidelines: Accessibility / Buttons",
+   "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "app",
+    "mobile"
+   ],
+   "tags": [
+    "targets"
+   ]
+  },
+  {
+   "id": "target-material",
+   "name": "Material minimum touch target",
+   "claim": "Material Design asks for touch targets of at least 48×48 dp, separated by at least 8 dp.",
+   "value": 48,
+   "unit": "dp",
+   "context": "Android guideline; 48 dp ≈ 9 mm.",
+   "source": "Material Design 3: Accessibility, touch targets",
+   "url": "https://m3.material.io/foundations/designing/structure",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "app",
+    "mobile"
+   ],
+   "tags": [
+    "targets"
+   ]
+  },
+  {
+   "id": "reflow-320",
+   "name": "Reflow at 320 px",
+   "claim": "Content must be usable at 320 CSS px width without two-dimensional scrolling (WCAG 2.2 SC 1.4.10).",
+   "value": 320,
+   "unit": "CSS px",
+   "context": "Equivalent to 1280 px at 400 % zoom. Data tables, maps and diagrams are exempt.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "accessibility",
+    "overflow",
+    "checker"
+   ]
+  },
+  {
+   "id": "zoom-disabled",
+   "name": "Sites that disable zoom",
+   "claim": "19 % of mobile sites still block pinch zoom (user-scalable=no or a low maximum-scale).",
+   "value": 19,
+   "unit": "% mobile sites",
+   "context": "Web Almanac 2025. Blocking zoom violates WCAG 1.4.4 in practice.",
+   "source": "HTTP Archive Web Almanac 2025, Accessibility",
+   "url": "https://almanac.httparchive.org/en/2025/accessibility",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "accessibility",
+    "checker"
+   ]
+  },
+  {
+   "id": "cwv-lcp",
+   "name": "LCP threshold",
+   "claim": "Largest Contentful Paint is 'good' at ≤ 2.5 s and 'poor' above 4.0 s, judged at the 75th percentile of page loads, mobile and desktop separately.",
+   "value": 2.5,
+   "unit": "s",
+   "context": "Google Core Web Vitals definition.",
+   "source": "web.dev: Web Vitals",
+   "url": "https://web.dev/articles/vitals",
+   "year": 2024,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "cwv",
+    "checker"
+   ]
+  },
+  {
+   "id": "cwv-inp",
+   "name": "INP threshold",
+   "claim": "Interaction to Next Paint is 'good' at ≤ 200 ms and 'poor' above 500 ms (p75).",
+   "value": 200,
+   "unit": "ms",
+   "context": "Replaced FID in March 2024.",
+   "source": "web.dev: Web Vitals",
+   "url": "https://web.dev/articles/vitals",
+   "year": 2024,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "cwv"
+   ]
+  },
+  {
+   "id": "cwv-cls",
+   "name": "CLS threshold",
+   "claim": "Cumulative Layout Shift is 'good' at ≤ 0.1 and 'poor' above 0.25 (p75).",
+   "value": 0.1,
+   "unit": "score",
+   "context": "Google Core Web Vitals definition.",
+   "source": "web.dev: Web Vitals",
+   "url": "https://web.dev/articles/vitals",
+   "year": 2024,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "cwv",
+    "checker"
+   ]
+  },
+  {
+   "id": "tbt-lab",
+   "name": "Total Blocking Time (lab)",
+   "claim": "Lighthouse scores mobile TBT as fast at ≤ 200 ms, moderate up to 600 ms, slow above 600 ms.",
+   "value": 200,
+   "unit": "ms",
+   "context": "Lab proxy for INP; not a Core Web Vital itself.",
+   "source": "Lighthouse docs: Total Blocking Time",
+   "url": "https://developer.chrome.com/docs/lighthouse/performance/lighthouse-total-blocking-time",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "lab",
+    "checker"
+   ]
+  },
+  {
+   "id": "cwv-pass-mobile",
+   "name": "Share of sites passing CWV on mobile",
+   "claim": "48 % of websites pass all three Core Web Vitals on mobile vs 56 % on desktop; good LCP 62 % mobile vs 74 % desktop.",
+   "value": 48,
+   "unit": "% sites (mobile)",
+   "context": "Web Almanac 2025, CrUX data July 2025. CrUX 202509 reports 53.7 % of all origins (both device types) with good CWV.",
+   "source": "HTTP Archive Web Almanac 2025, Performance",
+   "url": "https://almanac.httparchive.org/en/2025/performance",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "cwv",
+    "benchmark"
+   ]
+  },
+  {
+   "id": "lcp-is-image",
+   "name": "LCP element is an image",
+   "claim": "On 76 % of mobile pages the LCP element is an image.",
+   "value": 76,
+   "unit": "% mobile pages",
+   "context": "Web Almanac 2025. The hero image is usually what LCP measures.",
+   "source": "HTTP Archive Web Almanac 2025, Performance",
+   "url": "https://almanac.httparchive.org/en/2025/performance",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "images",
+    "lcp"
+   ]
+  },
+  {
+   "id": "lcp-lazy",
+   "name": "Lazy-loaded LCP images",
+   "claim": "About 16-17 % of mobile pages lazy-load their LCP image; only 17.3 % mark it fetchpriority=high.",
+   "value": 16,
+   "unit": "% mobile pages",
+   "context": "Web Almanac 2025. Lazy-loading the LCP image delays it; fetchpriority=high is cheap.",
+   "source": "HTTP Archive Web Almanac 2025, Performance",
+   "url": "https://almanac.httparchive.org/en/2025/performance",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "images",
+    "lcp",
+    "checker"
+   ]
+  },
+  {
+   "id": "lcp-load-delay",
+   "name": "Where LCP time goes",
+   "claim": "For sites with poor LCP, the median p75 breakdown is TTFB 2,270 ms, resource load delay 1,290 ms, image download 350 ms, render delay 360 ms; most spend under 10 % of LCP time downloading the image.",
+   "value": 1290,
+   "unit": "ms resource load delay",
+   "context": "Google CrUX analysis 2024. Discoverability and priority of the hero image matter more than squeezing its bytes.",
+   "source": "web.dev: Common misconceptions about how to optimize LCP (Kenny, 2024)",
+   "url": "https://web.dev/blog/common-misconceptions-lcp",
+   "year": 2024,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "lcp",
+    "images"
+   ]
+  },
+  {
+   "id": "ttfb-good",
+   "name": "Good TTFB share",
+   "claim": "Only 44 % of mobile sites have good TTFB (< 0.8 s); 17 % are poor (> 1.8 s).",
+   "value": 44,
+   "unit": "% mobile sites",
+   "context": "Web Almanac 2025. Static hosting near the user solves most of this.",
+   "source": "HTTP Archive Web Almanac 2025, Performance",
+   "url": "https://almanac.httparchive.org/en/2025/performance",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "ttfb"
+   ]
+  },
+  {
+   "id": "weight-median",
+   "name": "Median mobile page weight",
+   "claim": "The median mobile home page transfers 2,559 KB: images 911 KB, JavaScript 632 KB, fonts 122 KB, CSS 77 KB, HTML 22 KB; the 90th percentile page is 8.3 MB.",
+   "value": 2559,
+   "unit": "KB",
+   "context": "Web Almanac 2025, July 2025 crawl. The median is not a target; it is what a mid-range phone already struggles with.",
+   "source": "HTTP Archive Web Almanac 2025, Page Weight",
+   "url": "https://almanac.httparchive.org/en/2025/page-weight",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "weight",
+    "benchmark"
+   ]
+  },
+  {
+   "id": "weight-lh-flag",
+   "name": "Lighthouse payload flag",
+   "claim": "Lighthouse flags pages whose total transfer exceeds 5,000 KiB.",
+   "value": 5000,
+   "unit": "KiB",
+   "context": "A failure line, not a budget.",
+   "source": "Lighthouse docs: Avoid enormous network payloads",
+   "url": "https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "weight",
+    "checker"
+   ]
+  },
+  {
+   "id": "budget-russell",
+   "name": "Critical-path budget",
+   "claim": "For the global p75 device and network, budget about 150 KiB of HTML/CSS/fonts plus 300-350 KiB of JavaScript (compressed) on the critical path.",
+   "value": "150 + 300-350",
+   "unit": "KiB compressed",
+   "context": "Alex Russell (Microsoft Edge, formerly Chrome), 2023 edition. Practitioner model, not a measured effect; for brochure sites far less JS is realistic.",
+   "source": "Alex Russell, The Performance Inequality Gap (2023 edition)",
+   "url": "https://infrequently.org/series/performance-inequality",
+   "year": 2023,
+   "evidence": "P",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "budget",
+    "javascript"
+   ]
+  },
+  {
+   "id": "img-oversized",
+   "name": "Oversized images",
+   "claim": "Lighthouse flags an image when serving it at its rendered size (× device pixel ratio) would save at least 4 KiB.",
+   "value": 4,
+   "unit": "KiB",
+   "context": "Use srcset/sizes; compare natural size with rendered size × DPR.",
+   "source": "Lighthouse docs: Properly size images",
+   "url": "https://developer.chrome.com/docs/lighthouse/performance/uses-responsive-images",
+   "year": 2025,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "images",
+    "checker"
+   ]
+  },
+  {
+   "id": "fonts-usage",
+   "name": "Web font usage",
+   "claim": "88 % of pages use web fonts; 72 % self-host at least one; 65 % of font requests are WOFF2; about 50 % use font-display: swap; 12 % preload a font.",
+   "value": 88,
+   "unit": "% pages",
+   "context": "Web Almanac 2025. Median font file is in the mid-to-upper 30s of KB.",
+   "source": "HTTP Archive Web Almanac 2025, Fonts",
+   "url": "https://almanac.httparchive.org/en/2025/fonts",
+   "year": 2025,
+   "evidence": "D",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "fonts"
+   ]
+  },
+  {
+   "id": "speed-vodafone",
+   "name": "Vodafone LCP A/B test",
+   "claim": "A 31 % faster LCP (8.3 s to 5.7 s) in a 50/50 A/B test produced 8 % more sales, 15 % better lead-to-visit and 11 % better cart-to-visit.",
+   "value": 8,
+   "unit": "% sales",
+   "context": "Published by Google on web.dev (2021). Real A/B test but a vendor case study; very slow baseline.",
+   "source": "web.dev case study: Vodafone (2021)",
+   "url": "https://web.dev/case-studies/vodafone",
+   "year": 2021,
+   "evidence": "V",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "conversion",
+    "case-study"
+   ]
+  },
+  {
+   "id": "speed-deloitte",
+   "name": "Milliseconds make millions",
+   "claim": "A 0.1 s faster mobile site was associated with +8.4 % conversions in retail and +10.1 % in travel; lead-gen form submission +21.6 %.",
+   "value": 8.4,
+   "unit": "% conversion per 0.1 s",
+   "context": "Deloitte/55, commissioned by Google, 37 brands, 30 days, 2019. Observational, no randomisation, no confidence intervals. Do not quote as a causal law.",
+   "source": "web.dev / Deloitte & 55: Milliseconds make millions (2020)",
+   "url": "https://web.dev/case-studies/milliseconds-make-millions",
+   "year": 2020,
+   "evidence": "V",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "conversion",
+    "case-study"
+   ]
+  },
+  {
+   "id": "speed-53pct",
+   "name": "'53 % leave after 3 seconds'",
+   "claim": "The claim that 53 % of mobile visits are abandoned if a page takes over 3 s comes from a 2016 DoubleClick/Google publication without published method.",
+   "value": 53,
+   "unit": "%",
+   "context": "Ad-network data, not an experiment; widely repeated without source. Use CWV thresholds instead.",
+   "source": "DoubleClick / Google 'The need for mobile speed' (2016), as reported by MarketingDive",
+   "url": "https://www.marketingdive.com/news/google-53-of-mobile-users-abandon-sites-that-take-over-3-seconds-to-load/426070/",
+   "year": 2016,
+   "evidence": "V",
+   "status": "myth",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "performance",
+    "myth"
+   ]
+  },
+  {
+   "id": "fold-57",
+   "name": "Attention above the fold",
+   "claim": "57 % of page-viewing time is spent above the fold, 74 % within the first two screenfuls and 81 % within three.",
+   "value": 57,
+   "unit": "% viewing time",
+   "context": "NN/g eyetracking 2018, 120 participants, 130,000+ fixations, desktop 1920×1080. Down from 80 % in 2010: people scroll more, attention still drops steeply. Mobile not measured in this study.",
+   "source": "NN/g, Scrolling and Attention (Fessenden, 2018)",
+   "url": "https://www.nngroup.com/articles/scrolling-and-attention/",
+   "year": 2018,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "reading",
+    "fold",
+    "scrolling"
+   ]
+  },
+  {
+   "id": "left-80",
+   "name": "Attention leans left",
+   "claim": "About 80 % of fixations fall on the left half of the page (69 % in 2010).",
+   "value": 80,
+   "unit": "% fixations",
+   "context": "NN/g eyetracking 2017, 120+ participants, desktop; left-to-right languages.",
+   "source": "NN/g, Horizontal Attention Leans Left (2017)",
+   "url": "https://www.nngroup.com/articles/horizontal-attention-leans-left/",
+   "year": 2017,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "reading",
+    "layout"
+   ]
+  },
+  {
+   "id": "read-20pct",
+   "name": "How much text people read",
+   "claim": "On an average visit people have time to read at most about 28 % of the words on a page; about 20 % is realistic.",
+   "value": 20,
+   "unit": "% of words",
+   "context": "Weinreich et al. 2008, 25 instrumented users, 45,237 page views (2005 data). Old and small but consistent with all later eyetracking.",
+   "source": "NN/g, How Little Do Users Read? (2008) on Weinreich et al., ACM TWEB 2008",
+   "url": "https://www.nngroup.com/articles/how-little-do-users-read/",
+   "year": 2008,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "reading",
+    "copy"
+   ]
+  },
+  {
+   "id": "scan-layercake",
+   "name": "Layer-cake scanning",
+   "claim": "Scanning headings and subheadings first (layer-cake pattern) is the most effective way to scan; the F-pattern is a failure mode caused by pages without structure.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g eyetracking, synthesis 2006-2019. Design for layer-cake: descriptive subheadings, short sections, bold key terms.",
+   "source": "NN/g, Text Scanning Patterns: Eyetracking Evidence (2019)",
+   "url": "https://www.nngroup.com/articles/text-scanning-patterns-eyetracking/",
+   "year": 2019,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "reading",
+    "scanning"
+   ]
+  },
+  {
+   "id": "mobile-comprehension",
+   "name": "Reading comprehension on mobile",
+   "claim": "Comprehension on phones was no worse than on computers (276 participants); hard articles were read about 30 ms per word slower on mobile.",
+   "value": 0,
+   "unit": "practical difference",
+   "context": "NN/g 2016. Contradicts the 2011 'twice as difficult' claim; long, linear text is fine on mobile if it is well written.",
+   "source": "NN/g, Reading Content on Mobile Devices (2016)",
+   "url": "https://www.nngroup.com/articles/mobile-content/",
+   "year": 2016,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "mobile"
+   ],
+   "tags": [
+    "reading",
+    "mobile"
+   ]
+  },
+  {
+   "id": "font-size-18",
+   "name": "Larger type reads better",
+   "claim": "Readability and comprehension improved with font size up to 18 pt; small sizes (10-14 pt) were read slower and understood worse; line spacing had little effect.",
+   "value": 18,
+   "unit": "pt",
+   "context": "Rello et al. CHI 2016, n=104, eyetracking, Wikipedia articles on a desktop screen.",
+   "source": "Rello, Pielot, Marcos, Make It Big! Font size and line spacing on online readability, CHI 2016",
+   "url": "https://doi.org/10.1145/2858036.2858204",
+   "year": 2016,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "typography",
+    "reading"
+   ]
+  },
+  {
+   "id": "body-16",
+   "name": "Body text at least 16 px",
+   "claim": "Use at least 16 px for body text and form inputs; iOS Safari zooms into inputs under 16 px.",
+   "value": 16,
+   "unit": "CSS px",
+   "context": "Browser default size; Apple HIG body style is 17 pt, Material body-large 16 sp. iOS zoom behaviour is observed browser behaviour.",
+   "source": "Apple Human Interface Guidelines: Accessibility / Buttons",
+   "url": "https://developer.apple.com/design/human-interface-guidelines/accessibility",
+   "year": 2025,
+   "evidence": "P",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "mobile"
+   ],
+   "tags": [
+    "typography",
+    "checker"
+   ]
+  },
+  {
+   "id": "line-length",
+   "name": "Line length",
+   "claim": "Longer lines (up to about 100 characters) can be read faster on screen, but readers prefer and often comprehend better at medium lengths (about 45-75 characters).",
+   "value": "45-75",
+   "unit": "characters",
+   "context": "Dyson & Haselgrove 2001, Dyson 2004 review. Results are mixed; on phones the viewport usually forces 30-45 characters.",
+   "source": "Dyson, How physical text layout affects reading from screen, Behaviour & IT 23(6), 2004",
+   "url": "https://doi.org/10.1080/01449290410001715714",
+   "year": 2004,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "typography",
+    "reading"
+   ]
+  },
+  {
+   "id": "hamburger-hidden",
+   "name": "Hidden navigation on mobile",
+   "claim": "Hiding the main navigation behind a menu icon reduces discoverability on mobile and desktop; on mobile the effect is smaller and varies by site.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g 2016, 179 users, 6 sites. On mobile a hamburger is acceptable; label it 'Menü', make it salient, and expose the 2-4 key destinations in the page.",
+   "source": "NN/g, Hamburger menus and hidden navigation, mobile (2016)",
+   "url": "https://www.nngroup.com/articles/find-navigation-mobile-even-hamburger/",
+   "year": 2016,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "mobile"
+   ],
+   "tags": [
+    "navigation",
+    "mobile"
+   ]
+  },
+  {
+   "id": "carousel-clicks",
+   "name": "Carousel clicks",
+   "claim": "On the University of Notre Dame home page 1.07 % of visits clicked a carousel feature, and 89 % of those clicks went to the first slide.",
+   "value": 1.07,
+   "unit": "% of visits",
+   "context": "Runyon 2013, five university sites, Jan-Jun 2013 (1-9 % clicked). Old, sector-specific, but no contrary data published.",
+   "source": "Erik Runyon, Carousel interaction stats (2013)",
+   "url": "https://erikrunyon.com/2013/07/carousel-interaction-stats/",
+   "year": 2013,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "carousel",
+    "layout"
+   ]
+  },
+  {
+   "id": "hscroll-missed",
+   "name": "Horizontal scrolling is missed",
+   "claim": "Content in horizontal scrollers is often overlooked; partially visible next items and visible controls help.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g 2014, qualitative usability observations.",
+   "source": "NN/g, Beware Horizontal Scrolling (2014)",
+   "url": "https://www.nngroup.com/articles/horizontal-scrolling/",
+   "year": 2014,
+   "evidence": "P",
+   "status": "single-study",
+   "applies_to": [
+    "web",
+    "mobile"
+   ],
+   "tags": [
+    "layout",
+    "mobile",
+    "scrolling"
+   ]
+  },
+  {
+   "id": "sticky-chrome",
+   "name": "Sticky headers on mobile",
+   "claim": "Keep sticky headers as small as possible and maximise the content-to-chrome ratio; partially persistent headers (reappear on scroll-up) suit mobile.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g 2021 guidelines. A 15 % viewport share as warning threshold is our house rule (H).",
+   "source": "NN/g, Sticky Headers: 5 Ways to Make Them Better (2021)",
+   "url": "https://www.nngroup.com/articles/sticky-headers/",
+   "year": 2021,
+   "evidence": "P",
+   "status": "single-study",
+   "applies_to": [
+    "mobile"
+   ],
+   "tags": [
+    "mobile",
+    "header",
+    "checker"
+   ]
+  },
+  {
+   "id": "focus-obscured",
+   "name": "Focus not hidden by sticky elements",
+   "claim": "A focused element must not be entirely hidden by author-created content such as sticky headers or cookie banners (WCAG 2.2 SC 2.4.11, AA).",
+   "value": null,
+   "unit": null,
+   "context": "Use scroll-padding-top equal to the sticky header height.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "accessibility",
+    "header",
+    "sticky"
+   ]
+  },
+  {
+   "id": "hover-content",
+   "name": "Content on hover or focus",
+   "claim": "Content that appears on hover or focus must be dismissible, hoverable and persistent (WCAG 2.2 SC 1.4.13); touch screens have no hover at all, so hover-only content is unreachable on phones.",
+   "value": null,
+   "unit": null,
+   "context": "Use (hover: hover) media queries for hover polish only; every hover reveal needs a tap and focus equivalent.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "mobile"
+   ],
+   "tags": [
+    "mobile",
+    "hover",
+    "checker"
+   ]
+  },
+  {
+   "id": "autoplay-pause",
+   "name": "Moving content must be pausable",
+   "claim": "Moving or auto-updating content that starts automatically and lasts more than 5 s needs a pause, stop or hide control (WCAG 2.2 SC 2.2.2).",
+   "value": 5,
+   "unit": "s",
+   "context": "Applies to auto-rotating sliders and background video.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "accessibility",
+    "motion",
+    "carousel"
+   ]
+  },
+  {
+   "id": "first-50ms",
+   "name": "50 ms visual-appeal judgement",
+   "claim": "Visual-appeal ratings after 50 ms exposure correlated highly with ratings after longer exposure.",
+   "value": 50,
+   "unit": "ms",
+   "context": "Lindgaard et al. 2006, three small lab studies. Measures visual appeal only, not trust, usability or purchase; says nothing about whether people leave.",
+   "source": "Lindgaard et al., Attention web designers: You have 50 milliseconds..., Behaviour & IT 25(2), 2006",
+   "url": "https://doi.org/10.1080/01449290500330448",
+   "year": 2006,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "first-impression",
+    "aesthetics"
+   ]
+  },
+  {
+   "id": "first-50ms-overreach",
+   "name": "'Users decide in 50 ms whether to stay'",
+   "claim": "The claim that users decide to stay or leave within 50 ms (or 0.05 s) is an overreach of Lindgaard 2006, which measured appeal ratings of screenshots, not behaviour.",
+   "value": null,
+   "unit": null,
+   "context": "Use the finding as 'gut impressions of looks form fast and stick', nothing more.",
+   "source": "Lindgaard et al., Attention web designers: You have 50 milliseconds..., Behaviour & IT 25(2), 2006",
+   "url": "https://doi.org/10.1080/01449290500330448",
+   "year": 2006,
+   "evidence": "P",
+   "status": "myth",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "first-impression",
+    "myth"
+   ]
+  },
+  {
+   "id": "complexity-proto",
+   "name": "Simple and prototypical wins first impressions",
+   "claim": "Sites with low visual complexity and high prototypicality (looks like its category) were rated most beautiful; effects appeared at 17-50 ms exposure.",
+   "value": 17,
+   "unit": "ms",
+   "context": "Tuch et al. 2012 (Google/Basel). Tension with distinctiveness: break category conventions in style, not in structure.",
+   "source": "Tuch et al., The role of visual complexity and prototypicality regarding first impression of websites, IJHCS 2012",
+   "url": "https://research.google/pubs/pub38315/",
+   "year": 2012,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "first-impression",
+    "aesthetics",
+    "prototypicality"
+   ]
+  },
+  {
+   "id": "colorfulness-demo",
+   "name": "Preferences differ by group",
+   "claim": "Predicted appeal from colourfulness and complexity differed by age, gender, education and country.",
+   "value": null,
+   "unit": null,
+   "context": "Reinecke et al. CHI 2013 (model of colourfulness and complexity) and Reinecke & Gajos CHI 2014 (about 40,000 online participants). Audience matters; there is no universal optimum.",
+   "source": "Reinecke & Gajos, Quantifying visual preferences around the world, CHI 2014",
+   "url": "https://iis.seas.harvard.edu/papers/reinecke14visual.pdf",
+   "year": 2014,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "first-impression",
+    "aesthetics",
+    "audience"
+   ]
+  },
+  {
+   "id": "fogg-design-look",
+   "name": "Design look drives credibility comments",
+   "claim": "'Design look' was the most mentioned factor (46.1 % of comments) when 2,684 people judged a site's credibility.",
+   "value": 46.1,
+   "unit": "% of comments",
+   "context": "Fogg et al. 2002, Consumer WebWatch. Comments, not behaviour; old, but consistent with NN/g trust research.",
+   "source": "Fogg et al., How do people evaluate a web site's credibility? Consumer WebWatch 2002 (n=2,684)",
+   "url": "https://advocacy.consumerreports.org/research/how-do-people-evaluate-a-web-sites-credibility",
+   "year": 2002,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "first-impression"
+   ]
+  },
+  {
+   "id": "trust-4-factors",
+   "name": "Four trust factors",
+   "claim": "Trust rests on design quality, upfront disclosure (contact, prices, fees), comprehensive and current content, and connection to the rest of the web (reviews, press).",
+   "value": null,
+   "unit": null,
+   "context": "NN/g, first stated 1999, re-checked 2016 with Western and Asian users. Qualitative.",
+   "source": "NN/g, Trustworthiness in Web Design: 4 Credibility Factors (2016)",
+   "url": "https://www.nngroup.com/articles/trustworthy-design/",
+   "year": 2016,
+   "evidence": "P",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "b2b"
+   ]
+  },
+  {
+   "id": "real-photos",
+   "name": "Real people photos get attention",
+   "claim": "Users ignore generic stock photos of people but look at photos of real employees and at product photos that help them decide.",
+   "value": 10,
+   "unit": "% more time on portraits than on bios",
+   "context": "NN/g eyetracking 2010 (FreshBooks: portraits got 10 % more viewing time than bios that took 316 % more space).",
+   "source": "NN/g, Photos as Web Content (2010)",
+   "url": "https://www.nngroup.com/articles/photos-as-web-content/",
+   "year": 2010,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "images"
+   ]
+  },
+  {
+   "id": "truthiness-photo",
+   "name": "Photos make claims feel truer",
+   "claim": "Adding a related but non-probative photo makes people more likely to judge a claim true.",
+   "value": null,
+   "unit": null,
+   "context": "Newman et al. 2012 and follow-ups. Robust lab effect; for honest proof only. Illustrative stock 'proof' is deceptive.",
+   "source": "Newman et al., Nonprobative photographs (or words) inflate truthiness, Psychon Bull Rev 2012",
+   "url": "https://doi.org/10.3758/s13423-012-0292-0",
+   "year": 2012,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "images",
+    "persuasion"
+   ]
+  },
+  {
+   "id": "b2b-prices",
+   "name": "Show sample prices",
+   "claim": "B2B buyers research price early to build a shortlist; when exact prices are impossible, show prices for typical scenarios.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g B2B studies (2006 report; hidden prices named top design mistake 2002). Qualitative.",
+   "source": "NN/g, Show Prices for Common Scenarios (2006)",
+   "url": "https://www.nngroup.com/articles/show-prices-for-common-scenarios/",
+   "year": 2006,
+   "evidence": "P",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "pricing",
+    "b2b"
+   ]
+  },
+  {
+   "id": "reviews-5",
+   "name": "Reviews and conversion",
+   "claim": "Product pages with five reviews converted about 270 % better than pages without; purchase likelihood peaked at 4.0-4.7 stars, not 5.0.",
+   "value": 270,
+   "unit": "% relative lift",
+   "context": "Spiegel Research Center 2017 with PowerReviews (review vendor), three retailers. Retail products, not B2B services.",
+   "source": "Spiegel Research Center (Northwestern) with PowerReviews, How online reviews influence sales, 2017",
+   "url": "https://www.marketingprofs.com/charts/2017/32629/the-measurable-impact-that-reviews-and-ratings-have-on-sales",
+   "year": 2017,
+   "evidence": "V",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "social-proof",
+    "reviews"
+   ]
+  },
+  {
+   "id": "third-party-reviews",
+   "name": "Third-party reviews over testimonials",
+   "claim": "Users trust third-party reviews and recommendations more than testimonials on the company's own site.",
+   "value": null,
+   "unit": null,
+   "context": "NN/g 2016 qualitative study. Link to Google/ProvenExpert profiles rather than only quoting.",
+   "source": "NN/g, Trustworthiness in Web Design: 4 Credibility Factors (2016)",
+   "url": "https://www.nngroup.com/articles/trustworthy-design/",
+   "year": 2016,
+   "evidence": "P",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "trust",
+    "reviews"
+   ]
+  },
+  {
+   "id": "cart-abandon",
+   "name": "Cart abandonment rate",
+   "claim": "Average documented online cart abandonment is 70.22 % (50 studies).",
+   "value": 70.22,
+   "unit": "%",
+   "context": "Baymard 2025. Reasons (excluding 'just browsing'): extra costs 40 %, distrust with card data 19 %, forced account 18 %, too long/complicated checkout 17 %.",
+   "source": "Baymard Institute, Cart abandonment rate (updated 2025)",
+   "url": "https://baymard.com/lists/cart-abandonment-rate",
+   "year": 2025,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "forms",
+    "checkout",
+    "conversion"
+   ]
+  },
+  {
+   "id": "checkout-fields",
+   "name": "Checkout form length",
+   "claim": "The average US checkout shows 23.48 form elements (14.88 fields); Baymard's tests show 12-14 elements (7-8 fields) are enough.",
+   "value": 7.5,
+   "unit": "fields (ideal)",
+   "context": "Baymard 2025 benchmark. Transfer to lead forms: every field must earn its place.",
+   "source": "Baymard Institute, Cart abandonment rate (updated 2025)",
+   "url": "https://baymard.com/lists/cart-abandonment-rate",
+   "year": 2025,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "forms",
+    "checkout"
+   ]
+  },
+  {
+   "id": "mobile-ux-mediocre",
+   "name": "Mobile e-commerce UX quality",
+   "claim": "75 % of 150+ leading US/EU e-commerce sites have 'mediocre' mobile UX; 93 % lack adaptive validation error messages.",
+   "value": 75,
+   "unit": "% sites",
+   "context": "Baymard 2026 mobile benchmark; large sites, so SMEs likely do worse.",
+   "source": "Baymard Institute, Mobile UX Trends 2026 (150+ sites)",
+   "url": "https://baymard.com/blog/mobile-ux-ecommerce",
+   "year": 2026,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "mobile"
+   ],
+   "tags": [
+    "forms",
+    "mobile",
+    "benchmark"
+   ]
+  },
+  {
+   "id": "inline-validation",
+   "name": "Inline validation",
+   "claim": "Inline validation raised success by 22 %, cut errors by 22 % and completion time by 42 % in one usability test.",
+   "value": 22,
+   "unit": "% more success",
+   "context": "Wroblewski/Etre 2009, about 22 participants, one form. Direction plausible and widely adopted; numbers are single-study. Validate on blur, not on every keystroke.",
+   "source": "Wroblewski, Inline Validation in Web Forms, A List Apart 2009",
+   "url": "https://alistapart.com/article/inline-validation-in-web-forms/",
+   "year": 2009,
+   "evidence": "M",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "forms"
+   ]
+  },
+  {
+   "id": "input-purpose",
+   "name": "Identify input purpose",
+   "claim": "Fields collecting user data must expose their purpose programmatically (WCAG 2.2 SC 1.3.5): use autocomplete tokens such as name, email, tel, postal-code.",
+   "value": null,
+   "unit": null,
+   "context": "Also the cheapest mobile win: autofill and the right keyboard (type=email/tel, inputmode).",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web",
+    "mobile"
+   ],
+   "tags": [
+    "forms",
+    "mobile",
+    "checker"
+   ]
+  },
+  {
+   "id": "redundant-entry",
+   "name": "No redundant entry, accessible authentication",
+   "claim": "Do not make users re-enter information already given in the same process (SC 3.3.7) and do not require cognitive tests or block paste for login (SC 3.3.8).",
+   "value": null,
+   "unit": null,
+   "context": "WCAG 2.2 AA.",
+   "source": "W3C WCAG 2.2",
+   "url": "https://www.w3.org/TR/WCAG22/",
+   "year": 2023,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "forms",
+    "accessibility"
+   ]
+  },
+  {
+   "id": "three-click",
+   "name": "Three-click rule",
+   "claim": "The number of clicks did not predict task success or satisfaction; users did not quit after three clicks.",
+   "value": null,
+   "unit": null,
+   "context": "Porter/UIE 2003: 44 users, 620 tasks, 8,000+ clicks. Findability and clear scent matter, not click count.",
+   "source": "Porter, Testing the Three-Click Rule, UIE 2003",
+   "url": "https://articles.centercentre.com/?p=17",
+   "year": 2003,
+   "evidence": "M",
+   "status": "myth",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "navigation",
+    "myth"
+   ]
+  },
+  {
+   "id": "hick-limits",
+   "name": "Hick's law in menus",
+   "claim": "Hick-Hyman predicts choice time only for practised users with familiar, ordered items; novices scan menus visually, which grows linearly with item count.",
+   "value": null,
+   "unit": null,
+   "context": "Cockburn, Gutwin, Greenberg CHI 2007 menu model. 'Fewer options = more conversions' does not follow from Hick's law.",
+   "source": "Cockburn, Gutwin, Greenberg, A predictive model of menu performance, CHI 2007",
+   "url": "https://doi.org/10.1145/1240624.1240723",
+   "year": 2007,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "navigation",
+    "cognitive-load",
+    "myth"
+   ]
+  },
+  {
+   "id": "anchoring",
+   "name": "Anchoring",
+   "claim": "Anchoring of numeric estimates is among the most robust effects in psychology (replicated with large effects in Many Labs 1, 36 samples).",
+   "value": null,
+   "unit": null,
+   "context": "Klein et al. 2014. Anchoring of willingness to pay with arbitrary anchors replicates much more weakly (Maniadis et al. 2014). Use honest reference points (package next to package), never fake ones.",
+   "source": "Klein et al., Investigating variation in replicability (Many Labs 1), Social Psychology 2014",
+   "url": "https://osf.io/wx7ck/",
+   "year": 2014,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "pricing",
+    "anchoring"
+   ]
+  },
+  {
+   "id": "anchoring-wtp",
+   "name": "Arbitrary anchors and willingness to pay",
+   "claim": "Arbitrary anchors (e.g. digits of a social security number) shift willingness to pay much less than the original studies suggested.",
+   "value": null,
+   "unit": null,
+   "context": "Maniadis, Tufano, List 2014 AER replication.",
+   "source": "Maniadis, Tufano, List, One swallow doesn't make a summer, American Economic Review 2014",
+   "url": "https://doi.org/10.1257/aer.104.1.277",
+   "year": 2014,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "pricing",
+    "anchoring"
+   ]
+  },
+  {
+   "id": "decoy",
+   "name": "Decoy (attraction) effect",
+   "claim": "Adding an inferior 'decoy' option to steer choice works with abstract numeric stimuli but largely disappeared with realistic, perceptual or descriptive product presentations.",
+   "value": null,
+   "unit": null,
+   "context": "Frederick, Lee, Baskin 2014 (dozens of failed attempts) vs Huber, Payne, Puto 2014 (works when dominance is obvious). Do not promise a decoy uplift on a pricing page.",
+   "source": "Frederick, Lee, Baskin, The limits of attraction, J Marketing Research 2014",
+   "url": "https://marketing.wharton.upenn.edu/wp-content/uploads/2016/10/The-Limits-of-Attraction.pdf",
+   "year": 2014,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "pricing",
+    "decoy"
+   ]
+  },
+  {
+   "id": "choice-overload",
+   "name": "Choice overload",
+   "claim": "Across 50 studies the mean choice-overload effect was virtually zero; it appears only under specific conditions (complex options, unclear preferences).",
+   "value": 0,
+   "unit": "mean effect size (d)",
+   "context": "Scheibehenne et al. 2010 meta-analysis; Chernev et al. 2015 found moderators. The jam study is not a general law.",
+   "source": "Scheibehenne, Greifeneder, Todd, Can there ever be too many options? J Consumer Research 2010",
+   "url": "https://ideas.repec.org/a/oup/jconrs/v37y2010i3p409-425.html",
+   "year": 2010,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "choice",
+    "myth"
+   ]
+  },
+  {
+   "id": "scarcity-meta",
+   "name": "Scarcity messages",
+   "claim": "Scarcity cues increase purchase intention with a small-to-medium effect (d ≈ 0.28); demand-based scarcity ('popular') works better than supply-based ('only 3 left').",
+   "value": 0.28,
+   "unit": "Cohen's d",
+   "context": "Ladeira et al. 2023 meta-analysis, 37 articles, 335 effects, high heterogeneity, no formal bias test. Only true scarcity is legal (UCPD Annex I no. 7).",
+   "source": "Ladeira et al., Scarcity in marketing: meta-analysis, Psychology & Marketing 2023 (37 articles, 335 effects)",
+   "url": "https://radar.brookes.ac.uk/radar/file/609e47cf-0367-4af7-82ac-9ab7154e2a2c/1/Psychology%20and%20Marketing%20-%202023%20-%20Ladeira.pdf",
+   "year": 2023,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "scarcity"
+   ]
+  },
+  {
+   "id": "defaults",
+   "name": "Defaults",
+   "claim": "Defaults shift choices with a medium average effect (d ≈ 0.68 across 58 studies), but nudge effects overall shrink towards zero after correcting for publication bias.",
+   "value": 0.68,
+   "unit": "Cohen's d",
+   "context": "Jachimowicz et al. 2019; Maier et al. 2022 PNAS. Pre-ticked consent or add-ons are illegal in the EU anyway.",
+   "source": "Jachimowicz et al., When and why defaults influence decisions: a meta-analysis, Behavioural Public Policy 2019",
+   "url": "https://ideas.repec.org/a/cup/bpubpo/v3y2019i02p159-186_00.html",
+   "year": 2019,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "defaults"
+   ]
+  },
+  {
+   "id": "hotel-towel",
+   "name": "Descriptive social norm messages",
+   "claim": "The famous hotel-towel social-norm effect did not replicate in two German hotel field studies.",
+   "value": null,
+   "unit": null,
+   "context": "Bohner & Schlüter 2014. Social proof in general is plausible; specific 'most guests do X' messages are not a reliable lever.",
+   "source": "Bohner & Schlüter, A room with a viewpoint revisited, PLOS ONE 2014",
+   "url": "https://doi.org/10.1371/journal.pone.0104086",
+   "year": 2014,
+   "evidence": "M",
+   "status": "contested",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "social-proof"
+   ]
+  },
+  {
+   "id": "left-digit",
+   "name": "Left-digit (charm) pricing",
+   "claim": "Buyers over-weight the left digit: used-car prices drop discontinuously at each 10,000-mile threshold across 22 million transactions.",
+   "value": null,
+   "unit": null,
+   "context": "Lacetera, Pope, Sydnor 2012 AER, plus lab evidence. Real for price perception; uplift for services and B2B quotes is unmeasured, and .99 prices can read as cheap.",
+   "source": "Lacetera, Pope, Sydnor, Heuristic thinking and limited attention in the car market, AER 2012",
+   "url": "https://doi.org/10.1257/aer.102.5.2206",
+   "year": 2012,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "persuasion",
+    "pricing"
+   ]
+  },
+  {
+   "id": "button-color",
+   "name": "Best-converting button colour",
+   "claim": "There is no best-converting button colour; the often-cited 'red beats green, +21 %' is a single 2011 vendor test on one page.",
+   "value": 21,
+   "unit": "% (claimed)",
+   "context": "HubSpot/Performable 2011. What generalises is contrast and visual hierarchy of the primary action, not a hue.",
+   "source": "HubSpot blog, The button color A/B test: red beats green (2011)",
+   "url": "https://blog.hubspot.com/blog/tabid/6307/bid/20566/the-button-color-a-b-test-red-beats-green.aspx",
+   "year": 2011,
+   "evidence": "V",
+   "status": "myth",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "cta",
+    "myth",
+    "color"
+   ]
+  },
+  {
+   "id": "attention-8s",
+   "name": "'8-second attention span'",
+   "claim": "The claim that human attention span fell to 8 seconds (shorter than a goldfish) has no traceable study behind it.",
+   "value": 8,
+   "unit": "s (claimed)",
+   "context": "Popularised by a 2015 Microsoft Canada ad report citing a secondary website; debunked by BBC More or Less and others. Attention depends on task and motivation.",
+   "source": "BBC More or Less / Goldfish myth-busting (Univ. Wisconsin teaching material)",
+   "url": "https://internet.psych.wisc.edu/wp-content/uploads/532-Master/532-UnitPages/Unit-09/Goldfish_MythBusting.pdf",
+   "year": 2017,
+   "evidence": "P",
+   "status": "myth",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "myth",
+    "attention"
+   ]
+  },
+  {
+   "id": "dp-eu-sweep",
+   "name": "Dark patterns in EU shops",
+   "claim": "148 of 399 EU online shops (37 %) used at least one manipulative practice: fake countdown timers (42), hidden information (70), steering design (54).",
+   "value": 148,
+   "unit": "of 399 shops",
+   "context": "European Commission/CPC sweep, January 2023.",
+   "source": "European Commission press release IP/23/418, sweep of 399 online shops, 30.01.2023",
+   "url": "https://ec.europa.eu/commission/presscorner/detail/en/ip_23_418",
+   "year": 2023,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "legal"
+   ]
+  },
+  {
+   "id": "dp-mathur",
+   "name": "Dark patterns at scale",
+   "claim": "A crawl of about 11,000 shopping sites found 1,818 dark-pattern instances; 183 sites used clearly deceptive ones; 22 third-party vendors sold them as plug-ins.",
+   "value": 1818,
+   "unit": "instances",
+   "context": "Mathur et al. CSCW 2019.",
+   "source": "Mathur et al., Dark patterns at scale: 11K shopping websites, CSCW 2019",
+   "url": "https://arxiv.org/abs/1907.07032",
+   "year": 2019,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns"
+   ]
+  },
+  {
+   "id": "dp-effect",
+   "name": "Dark patterns work and carry risk",
+   "claim": "Mild dark patterns more than doubled acceptance of a dubious offer and aggressive ones almost quadrupled it; aggressive ones caused backlash, mild ones did not.",
+   "value": 2,
+   "unit": "x acceptance (mild)",
+   "context": "Luguri & Strahilevitz 2021, representative US samples. Effectiveness is exactly why regulators target them.",
+   "source": "Luguri & Strahilevitz, Shining a light on dark patterns, J Legal Analysis 2021",
+   "url": "https://papers.ssrn.com/abstract=3431205",
+   "year": 2021,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "persuasion"
+   ]
+  },
+  {
+   "id": "dp-consent",
+   "name": "Consent banner design",
+   "claim": "Only 11.8 % of consent banners on 680 UK sites met minimal GDPR requirements; removing 'reject' from the first layer raised consent by 22-23 points.",
+   "value": 11.8,
+   "unit": "% compliant",
+   "context": "Nouwens et al. CHI 2020. German authorities and courts require an equivalent reject option on the first layer.",
+   "source": "Nouwens et al., Dark patterns after the GDPR, CHI 2020",
+   "url": "https://arxiv.org/abs/2001.02479",
+   "year": 2020,
+   "evidence": "M",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "consent",
+    "legal"
+   ]
+  },
+  {
+   "id": "dp-ucpd",
+   "name": "UCPD blacklist and guidance",
+   "claim": "The UCPD bans, among others, false 'only available for a very limited time' claims (Annex I no. 7) and fake reviews; Commission guidance 2021 applies it explicitly to dark patterns.",
+   "value": null,
+   "unit": null,
+   "context": "Applies to every B2C website in the EU (UWG in Germany).",
+   "source": "European Commission, Guidance on the UCPD 2021/C 526/01 (section 4.2.7 data-driven practices and dark patterns)",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:52021XC1229(05)",
+   "year": 2021,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "legal"
+   ]
+  },
+  {
+   "id": "dp-dsa",
+   "name": "DSA Art. 25",
+   "claim": "Online platforms must not design interfaces that deceive, manipulate or materially distort users' free decisions (DSA Art. 25).",
+   "value": null,
+   "unit": null,
+   "context": "Applies to online platforms (marketplaces, social networks), not to ordinary company websites; UCPD and GDPR cover those.",
+   "source": "Regulation (EU) 2022/2065 (Digital Services Act), Art. 25",
+   "url": "https://eur-lex.europa.eu/eli/reg/2022/2065/oj",
+   "year": 2022,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "legal"
+   ]
+  },
+  {
+   "id": "dp-ftc",
+   "name": "FTC dark patterns report",
+   "claim": "The US FTC lists fake urgency/scarcity, hidden costs (drip pricing), sneaking items into the basket, obstruction to cancel and disguised ads as practices it pursues.",
+   "value": null,
+   "unit": null,
+   "context": "FTC staff report, September 2022. Relevant for clients selling to US customers.",
+   "source": "FTC staff report, Bringing Dark Patterns to Light, Sept 2022",
+   "url": "https://www.ftc.gov/system/files/ftc_gov/pdf/P214800%20Dark%20Patterns%20Report%209.14.2022%20-%20FINAL.pdf",
+   "year": 2022,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "dark-patterns",
+    "legal"
+   ]
+  },
+  {
+   "id": "dp-de-buttons",
+   "name": "German button rules",
+   "claim": "German law requires an order button labelled 'zahlungspflichtig bestellen' or equivalent (§ 312j BGB) and a cancellation button for online subscriptions (§ 312k BGB, since 1 July 2022).",
+   "value": null,
+   "unit": null,
+   "context": "Wording and placement are legal requirements, not design choices.",
+   "source": "BGB §§ 312j, 312k (Button-Lösung, Kündigungsbutton)",
+   "url": "https://www.gesetze-im-internet.de/bgb/__312k.html",
+   "year": 2022,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "legal",
+    "forms",
+    "germany"
+   ]
+  },
+  {
+   "id": "dp-pangv",
+   "name": "Strike-through prices",
+   "claim": "A price reduction must be shown against the lowest price of the previous 30 days (§ 11 PAngV).",
+   "value": 30,
+   "unit": "days",
+   "context": "Germany, since 28 May 2022. Fake anchors are illegal, not just unethical.",
+   "source": "Preisangabenverordnung § 11 (price reductions, 30-day lowest price)",
+   "url": "https://www.gesetze-im-internet.de/pangv_2022/__11.html",
+   "year": 2022,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "legal",
+    "pricing",
+    "anchoring"
+   ]
+  },
+  {
+   "id": "dp-reviews-law",
+   "name": "Review provenance",
+   "claim": "If reviews are shown, the trader must say whether and how it checks that they come from real customers; buying or faking reviews is banned (UWG § 5b(3), Annex no. 23b/23c).",
+   "value": null,
+   "unit": null,
+   "context": "Germany since 28 May 2022 (Omnibus Directive).",
+   "source": "UWG § 5b(3) and Annex no. 23b/23c (reviews)",
+   "url": "https://www.gesetze-im-internet.de/uwg_2004/__5b.html",
+   "year": 2022,
+   "evidence": "S",
+   "status": "replicated",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "legal",
+    "reviews",
+    "trust"
+   ]
+  },
+  {
+   "id": "dp-dfa",
+   "name": "Digital Fairness Act",
+   "claim": "The EU Digital Fairness Act (dark patterns, addictive design, subscription traps, fake reviews) is announced as a Q4 2026 proposal; it is not law yet.",
+   "value": null,
+   "unit": null,
+   "context": "Status 22 July 2026; check before quoting.",
+   "source": "PinMeTo news on the Digital Fairness Act timeline, 22.07.2026",
+   "url": "https://www.pinmeto.com/news/eu-digital-fairness-act-scope-split-2026/",
+   "year": 2026,
+   "evidence": "S",
+   "status": "single-study",
+   "applies_to": [
+    "web"
+   ],
+   "tags": [
+    "legal",
+    "dark-patterns"
+   ]
+  }
+ ]
+}

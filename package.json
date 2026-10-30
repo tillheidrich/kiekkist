@@ -1,0 +1,41 @@
+{
+  "name": "kiekkist",
+  "version": "0.1.0",
+  "description": "Agency-style design process for Claude and Codex: brief, references, three directions as real pages, a human decision, a checked build. Self-hosted studio with MCP server, checker (WCAG 2.2 AA automatable parts, EN 301 549, privacy, mobile lab), exports and launch checks.",
+  "type": "module",
+  "license": "AGPL-3.0-only",
+  "author": "Till Heidrich (https://heidrich-digital.de)",
+  "homepage": "https://kiekkist.heidrich-digital.de",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tillheidrich/kiekkist.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tillheidrich/kiekkist/issues"
+  },
+  "bin": {
+    "kk": "cli/kk.js"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node seed/seed.js",
+    "check": "node src/check/cli.js",
+    "test": "node --test \"test/**/*.test.js\"",
+    "skill:zip": "node scripts/skill-zip.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.5",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "axe-core": "^4.14.0",
+    "better-sqlite3": "^13.0.3",
+    "culori": "^4.0.2",
+    "hono": "^4.13.14",
+    "jszip": "^3.10.2",
+    "playwright": "^1.63.0",
+    "zod": "^4.6.7"
+  }
+}

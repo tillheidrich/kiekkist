@@ -1,0 +1,28 @@
+{
+  "slug": "nordlicht-immobilien",
+  "name": "Nordlicht Immobilien",
+  "summary": "Editorial theme for a high-end estate agency in the Hamburg Elbvororte: magazine layout, large photography, generous white space and a printed exposé data sheet.",
+  "industry": [
+    "immobilien",
+    "real-estate"
+  ],
+  "media": [
+    "web",
+    "slides",
+    "social",
+    "app"
+  ],
+  "mood": [
+    "editorial",
+    "calm",
+    "premium",
+    "airy"
+  ],
+  "fonts": [
+    "Cormorant",
+    "Hanken Grotesk"
+  ],
+  "license": "CC-BY-4.0 (code and copy); fonts OFL-1.1; photos © Till Heidrich, use only within this example",
+  "author": "Heidrich Digital (example theme, fictional company)",
+  "created": "2026-10-29"
+}

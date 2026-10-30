@@ -1,0 +1,210 @@
+{
+ "id": "topologies",
+ "version": "2026-10-30.1",
+ "kind": "pattern",
+ "title": "Page topologies",
+ "license": "MIT",
+ "description": "Page skeletons for direction building; each direction picks a different one.",
+ "items": [
+  {
+   "id": "T01",
+   "name": "split-hero",
+   "note": "the convention",
+   "sketch_1440": "[ H1 + lead + CTA ][   image   ]\n[ card ][ card ][ card ]",
+   "suits": "almost anything; that is the problem.",
+   "phone": "image under text.",
+   "fails": "indistinguishable from every template. Allowed only as `safe`, and then executed better than the category.",
+   "evidence": "P"
+  },
+  {
+   "id": "T02",
+   "name": "full-bleed statement",
+   "note": null,
+   "sketch_1440": "[        H1 over full-width photo        ]\n[ narrow text column ]",
+   "suits": "one strong photo, hospitality, places.",
+   "phone": "crop the photo deliberately (art direction, not centre crop).",
+   "fails": "stock photo, text contrast on busy image.",
+   "evidence": "P"
+  },
+  {
+   "id": "T03",
+   "name": "broadsheet front page",
+   "note": null,
+   "sketch_1440": "[ masthead / date line                    ]\n[ lead story 2/3      ][ column of briefs ]\n[ story ][ story ][ story ]  ruled columns",
+   "suits": "clients with many news or offers, editorial voice.",
+   "phone": "lead story, then briefs as a list.",
+   "fails": "becomes a card grid with rules.",
+   "evidence": "P"
+  },
+  {
+   "id": "T04",
+   "name": "index / table of contents",
+   "note": null,
+   "sketch_1440": "[ 01  Service ........................ → ]\n[ 02  Service ........................ → ]\n[ 03  Service ........................ → ]",
+   "suits": "clear catalogue of services, consultancies, archives.",
+   "phone": "natural.",
+   "fails": "no hierarchy if every line weighs the same; give one line a reason.",
+   "evidence": "P"
+  },
+  {
+   "id": "T05",
+   "name": "timetable / sequence",
+   "note": null,
+   "sketch_1440": "[ 08:00 | Stop name | what happens ]\n[ 09:30 | Stop name | what happens ]",
+   "suits": "processes, onboarding, courses, events.",
+   "phone": "time above stop.",
+   "fails": "fake times; use real steps.",
+   "evidence": "P"
+  },
+  {
+   "id": "T06",
+   "name": "annotated document",
+   "note": null,
+   "sketch_1440": "[ document image / page  ][ margin notes ]\n   ① ② ③ markers on the document",
+   "suits": "auditors, consultants, reviewers, before/after.",
+   "phone": "document full width, notes below with numbers.",
+   "fails": "unreadable crop; notes as decoration.",
+   "evidence": "P"
+  },
+  {
+   "id": "T07",
+   "name": "single column essay",
+   "note": null,
+   "sketch_1440": "      [ 60-70ch column, H1 as first line ]\n      [ pull quote ] [ inline figure ]",
+   "suits": "personal brands, thinkers, writers, lawyers.",
+   "phone": "natural.",
+   "fails": "wall of text without entry points.",
+   "evidence": "P"
+  },
+  {
+   "id": "T08",
+   "name": "ledger / table-first",
+   "note": null,
+   "sketch_1440": "[ column heads: item | for whom | result | time ]\n[ row ]\n[ row ]",
+   "suits": "price lists (where allowed), comparisons, technical products.",
+   "phone": "rows become stacked definition lists.",
+   "fails": "tables that scroll sideways.",
+   "evidence": "P"
+  },
+  {
+   "id": "T09",
+   "name": "catalogue grid with specimen",
+   "note": null,
+   "sketch_1440": "[ specimen large ][ meta list ]\n[ tile ][ tile ][ tile ][ tile ]",
+   "suits": "products, portfolios, fonts, real estate.",
+   "phone": "specimen then two-up grid.",
+   "fails": "equal tiles, no specimen.",
+   "evidence": "P"
+  },
+  {
+   "id": "T10",
+   "name": "asymmetric poster",
+   "note": null,
+   "sketch_1440": "[ HUGE word ]\n              [ small text block ]\n       [ image offset into margin ]",
+   "suits": "brand surfaces with few words, culture, events.",
+   "phone": "poster scales down, small text stays legible.",
+   "fails": "H1 overflow, no information.",
+   "evidence": "P"
+  },
+  {
+   "id": "T11",
+   "name": "question-led / FAQ as structure",
+   "note": null,
+   "sketch_1440": "[ The question your audience asks (H1) ]\n[ answer ][ answer ][ answer ]  as Q → A blocks",
+   "suits": "advisers, health, legal, B2B with fears.",
+   "phone": "natural.",
+   "fails": "generic questions.",
+   "evidence": "P"
+  },
+  {
+   "id": "T12",
+   "name": "map / place-led",
+   "note": null,
+   "sketch_1440": "[ map or floor plan with numbered points ]\n[ 1 place  2 place  3 place ]",
+   "suits": "local businesses, estates, campuses, tourism.",
+   "phone": "list first, map toggle.",
+   "fails": "map tiles from US SaaS without consent; use a static drawn map.",
+   "evidence": "P"
+  },
+  {
+   "id": "T13",
+   "name": "pegboard / tool wall",
+   "note": null,
+   "sketch_1440": "[ outlined tools on a grid, each labelled ]",
+   "suits": "trades, agencies with clear tools, software features.",
+   "phone": "one tool per row.",
+   "fails": "icon grid in disguise.",
+   "evidence": "P"
+  },
+  {
+   "id": "T14",
+   "name": "conversation / transcript",
+   "note": null,
+   "sketch_1440": "Kunde:  question\nTill:   answer\nKunde:  objection",
+   "suits": "services sold through trust, coaching.",
+   "phone": "natural.",
+   "fails": "invented quotes; use real or clearly labelled sample dialogue.",
+   "evidence": "P"
+  },
+  {
+   "id": "T15",
+   "name": "split screen two worlds",
+   "note": null,
+   "sketch_1440": "[ before / problem ][ after / solution ]  scroll in sync",
+   "suits": "transformation offers.",
+   "phone": "alternating blocks.",
+   "fails": "cliché before/after slider.",
+   "evidence": "P"
+  },
+  {
+   "id": "T16",
+   "name": "dossier / stacked sheets",
+   "note": null,
+   "sketch_1440": "[ sheet 1: cover ]\n  [ sheet 2: finding ]\n    [ sheet 3: plan ]   offset, layered",
+   "suits": "consulting, investigations, reports.",
+   "phone": "sheets stack vertically, offset reduced.",
+   "fails": "skeuomorphic kitsch.",
+   "evidence": "P"
+  },
+  {
+   "id": "T17",
+   "name": "numbers-first board",
+   "note": null,
+   "sketch_1440": "[ 1 big real figure ][ what it means ]\n[ figure ][ figure ][ figure ]",
+   "suits": "clients with real, sourced numbers only.",
+   "phone": "one figure per screen.",
+   "fails": "invented statistics. Never with placeholder numbers.",
+   "evidence": "P"
+  },
+  {
+   "id": "T18",
+   "name": "gallery wall / exhibition",
+   "note": null,
+   "sketch_1440": "[ work ]   [ work ]\n     [ wall text ]\n[ work ]        [ work ]",
+   "suits": "photographers, architects, makers.",
+   "phone": "one work at a time with wall text.",
+   "fails": "masonry grid.",
+   "evidence": "P"
+  },
+  {
+   "id": "T19",
+   "name": "letter",
+   "note": null,
+   "sketch_1440": "[ place, date ]\n[ Salutation, ]\n[ letter body in the client's voice ]\n[ signature ]",
+   "suits": "personal services, founders, local trades.",
+   "phone": "natural.",
+   "fails": "too long; keep a P.S. as the CTA.",
+   "evidence": "P"
+  },
+  {
+   "id": "T20",
+   "name": "programme / bill",
+   "note": null,
+   "sketch_1440": "[ TONIGHT / THIS SEASON ]\n[ act  ·  time  ·  place ]\n[ act  ·  time  ·  place ]",
+   "suits": "events, venues, workshops, courses.",
+   "phone": "natural.",
+   "fails": "theatre costume for a non-event business.",
+   "evidence": "P"
+  }
+ ]
+}

@@ -1,0 +1,38 @@
+name: Knowledge-pack correction
+description: A rule, threshold, legal statement or number in a knowledge pack is wrong or outdated.
+labels: [knowledge-pack]
+body:
+  - type: input
+    id: pack
+    attributes:
+      label: Pack and item
+      description: For example knowledge/packs/a11y-eu.json, item wcag-1.4.3
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: Quote the current text or value.
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: Link to the standard, law, study or dataset, with date or version. Primary sources first. Corrections without a source cannot be merged.
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Evidence class of the source
+      options: ["S standard or law", "M published study", "D measured default or telemetry", "P practitioner consensus", "V vendor claim", "not sure"]
+    validations:
+      required: true

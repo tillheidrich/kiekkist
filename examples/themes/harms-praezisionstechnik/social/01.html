@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de" data-size="1080x1350">
+<head>
+<meta name="kk:size" content="1080x1350">
+<meta charset="utf-8">
+<meta name="viewport" content="width=1080">
+<title>Social 4:5: ±2 µm · Harms Präzisionstechnik</title>
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../assets/fonts/fonts.css">
+<style>
+  html, body { margin: 0; }
+  body { width: 1080px; height: 1350px; overflow: hidden; background: var(--c-sheet); color: var(--c-ink); font-family: var(--font-sans); padding: 24px; box-sizing: border-box; }
+  .sheet { height: 100%; border: 2px solid var(--c-ink); display: flex; flex-direction: column; }
+  .top { display: flex; justify-content: space-between; padding: 22px 32px; border-bottom: 1px solid var(--c-ink); font-family: var(--font-mono); font-size: 20px; color: var(--c-ink-2); text-transform: uppercase; letter-spacing: .06em; }
+  .big { padding: 40px 32px 0; }
+  .big .n { font-family: var(--font-mono); font-weight: 500; font-size: 250px; letter-spacing: -.06em; line-height: 1; display: inline-block; background: var(--c-signal); padding: 0 16px; }
+  h1 { font-size: 124px; font-weight: 850; font-stretch: 66%; text-transform: uppercase; line-height: .9; margin: 40px 0 0; }
+  .draw { margin-top: auto; border-top: 1px solid var(--c-ink); background: var(--c-panel); padding: 20px 32px; }
+  svg { display: block; width: 100%; color: var(--c-line); }
+  .part { fill: var(--c-panel); stroke: var(--c-ink); stroke-width: 3; }
+  .thin { fill: none; stroke: currentColor; stroke-width: 1.5; }
+  .axis { stroke: currentColor; stroke-width: 1.5; stroke-dasharray: 24 6 4 6; }
+  text { font-family: var(--font-mono); font-size: 22px; fill: currentColor; }
+  .foot { display: flex; justify-content: space-between; padding: 20px 32px; border-top: 1px solid var(--c-ink); font-size: 26px; font-weight: 700; }
+  .foot span:last-child { font-family: var(--font-mono); font-weight: 500; font-size: 22px; }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="top"><span>Harms Präzisionstechnik</span><span>Rundschleifen</span></div>
+  <div class="big"><span class="n">±2 µm</span><h1>Ein Haar ist 35-mal dicker.</h1></div>
+  <div class="draw">
+    <svg viewBox="0 0 960 300" aria-hidden="true">
+      <path class="axis" d="M20 150H940"/>
+      <path class="part" d="M60 100H160V80H330V100H420V112H560V100H650V80H820V100H900V200H820V220H650V200H560V188H420V200H330V220H160V200H60Z"/>
+      <path class="thin" d="M245 80L200 30H60"/><text x="62" y="24">Ø12 g5 · Ra 0,2</text>
+      <path class="thin" d="M60 200V280M900 200V280M60 270H900"/>
+      <text x="480" y="262" text-anchor="middle">64 ±0,01</text>
+    </svg>
+  </div>
+  <div class="foot"><span>Serie ab 50 Stück, Erstmuster in 8 Tagen</span><span>HPT-SOC-07</span></div>
+</main>
+</body>
+</html>

@@ -1,0 +1,149 @@
+@import url("fonts/fonts.css");
+
+/* Kanzlei Brandt Weller – book typography. Requires ../tokens.css */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--c-paper); color: var(--c-ink);
+  font-family: var(--font-serif); font-size: var(--fs-body); line-height: var(--lh-body);
+  font-optical-sizing: auto; font-kerning: normal; hyphens: auto; -webkit-hyphens: auto; hyphenate-limit-chars: 10 4 4;
+}
+h1, h2, h3, p, dl, dd, ul, ol, table, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: var(--c-green); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--c-green); outline-offset: 3px; }
+.skip { position: absolute; left: 1rem; top: -4rem; background: var(--c-ink); color: var(--c-paper); padding: 0.5rem 1rem; z-index: 5; }
+.skip:focus { top: 1rem; }
+
+.sans { font-family: var(--font-sans); }
+.meta { hyphens: manual; font-family: var(--font-sans); font-size: var(--fs-meta); font-weight: var(--fw-meta); line-height: var(--lh-meta); letter-spacing: var(--ls-meta); color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
+.sc { font-family: var(--font-sans); font-size: var(--fs-smallcaps); font-weight: var(--fw-smallcaps); letter-spacing: var(--ls-smallcaps); text-transform: uppercase; line-height: 1.3; }
+
+.page { max-width: var(--max); margin-inline: auto; padding-inline: clamp(1rem, 4vw, 3.5rem); }
+.book { display: grid; grid-template-columns: var(--margin-col) minmax(0, 1fr); column-gap: clamp(1.5rem, 4vw, 3.5rem); }
+.margin { grid-column: 1; }
+.main { grid-column: 2; min-width: 0; }
+.measure { max-width: var(--measure); }
+
+/* Header */
+.topline { border-bottom: 1px solid var(--c-rule); }
+.topline .page { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1.5rem; padding-block: 0.6rem; }
+.masthead .page { padding-block: clamp(1.25rem, 3vw, 2rem); }
+.masthead .book { align-items: baseline; row-gap: 1rem; }
+.wordmark { font-family: var(--font-serif); font-size: 1.625rem; font-weight: 600; letter-spacing: 0.01em; color: var(--c-ink); text-decoration: none; line-height: 1.1; font-variation-settings: "opsz" 40; }
+.wordmark span { display: block; font-family: var(--font-sans); font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: var(--c-ink-2); margin-top: 0.35rem; }
+.nav { display: flex; flex-wrap: wrap; gap: 0.2rem 1.75rem; font-family: var(--font-sans); font-size: 0.9375rem; font-weight: 500; }
+.nav a { color: var(--c-ink); text-decoration: none; padding-block: 0.3rem; display: inline-block; }
+.nav a:hover, .nav a[aria-current] { color: var(--c-green); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
+
+/* Intro */
+.intro { padding-block: clamp(2.5rem, 7vw, 6.5rem) clamp(2.5rem, 6vw, 5rem); border-top: 2px solid var(--c-ink); }
+.intro h1 { font-size: var(--fs-display); font-weight: var(--fw-display); line-height: var(--lh-display); letter-spacing: var(--ls-display); max-width: 21ch; font-variation-settings: "opsz" 60; hyphens: manual; }
+.intro .lead { margin-top: var(--space-5); font-size: var(--fs-lead); line-height: var(--lh-lead); max-width: 34rem; }
+.margin-note { display: flex; flex-direction: column; gap: 0.35rem; padding-top: 0.6rem; }
+.margin-note .sc { color: var(--c-green); }
+.margin-note .meta { overflow-wrap: break-word; }
+
+/* Sections with Randnummer */
+.sec { padding-block: clamp(2.5rem, 5vw, 4.5rem); border-top: 2px solid var(--c-ink); }
+.rn { font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.04em; color: var(--c-green); display: block; padding-top: 0.45rem; font-variant-numeric: tabular-nums; }
+.rn + .meta { margin-top: 0.5rem; display: block; max-width: 11rem; }
+.sec h2 { font-size: var(--fs-heading); font-weight: var(--fw-heading); line-height: var(--lh-heading); letter-spacing: var(--ls-heading); font-variation-settings: "opsz" 32; margin-bottom: var(--space-4); max-width: 30ch; }
+.sec p + p { margin-top: 0.9em; }
+.sec .main > p { max-width: var(--measure); }
+
+/* Practice table */
+.practice { width: 100%; border-collapse: collapse; margin-top: var(--space-5); font-size: 1rem; }
+.practice caption { text-align: left; }
+.practice th, .practice td { text-align: left; vertical-align: top; padding: 0.85rem 1rem 0.95rem 0; border-bottom: 1px solid var(--c-rule); }
+.practice thead th { hyphens: none;  font-family: var(--font-sans); font-size: 0.75rem; font-weight: 650; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-ink-2); border-bottom: 1px solid var(--c-ink); padding-block: 0.5rem; }
+.practice td.code { font-family: var(--font-sans); font-weight: 650; font-size: 0.8125rem; letter-spacing: 0.08em; color: var(--c-green); width: 4.5rem; padding-top: 1.05rem; }
+.practice td.field { font-weight: 600; width: 14rem; font-variation-settings: "opsz" 20; }
+.practice td.who { font-family: var(--font-sans); font-size: 0.875rem; color: var(--c-ink-2); width: 12rem; padding-top: 1.05rem; }
+.practice tbody tr:hover td { background: var(--c-margin); }
+
+/* Case references */
+.az { display: inline-block; font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 650; letter-spacing: 0.04em; color: var(--c-green); background: var(--c-green-soft); padding: 0.15rem 0.5rem; font-variant-numeric: tabular-nums; }
+.cases { margin-top: var(--space-4); }
+.case { display: grid; grid-template-columns: minmax(0, 1fr) 10rem; column-gap: 2rem; padding: 1.4rem 0 1.6rem; border-top: 1px solid var(--c-rule); }
+.case:last-child { border-bottom: 1px solid var(--c-rule); }
+.case h3 { font-size: 1.25rem; font-weight: 600; line-height: 1.3; margin: 0.6rem 0 0.5rem; font-variation-settings: "opsz" 24; }
+.case p { max-width: var(--measure); }
+.case dl { font-family: var(--font-sans); font-size: 0.8125rem; color: var(--c-ink-2); padding-top: 0.2rem; }
+.case dt { font-weight: 650; letter-spacing: 0.1em; text-transform: uppercase; font-size: 0.6875rem; margin-top: 0.6rem; }
+.case dt:first-child { margin-top: 0; }
+.case dd { color: var(--c-ink); font-variant-numeric: tabular-nums; }
+
+/* Fees */
+.fees { margin-top: var(--space-4); border-top: 1px solid var(--c-ink); max-width: 46rem; }
+.fee { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--c-rule); align-items: baseline; }
+.fee span:last-child { font-family: var(--font-sans); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fee small { display: block; font-family: var(--font-sans); font-size: 0.8125rem; color: var(--c-ink-2); }
+
+/* People */
+.people { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(1.5rem, 4vw, 3rem); margin-top: var(--space-4); }
+.person { padding: 1rem 0 1.2rem; border-top: 1px solid var(--c-rule); }
+.person h3 { font-size: 1.1875rem; font-weight: 600; line-height: 1.3; font-variation-settings: "opsz" 20; }
+.person p { font-size: 1rem; margin-top: 0.3rem; }
+.person .meta { margin-top: 0.4rem; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-5); margin-top: var(--space-4); }
+.contact address { font-style: normal; }
+.contact h3 { margin-bottom: 0.4rem; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0.6rem 1.1rem; background: var(--c-green); color: var(--c-paper); text-decoration: none; font-family: var(--font-sans); font-weight: 600; font-size: 0.9375rem; }
+.btn:hover { background: var(--c-ink); }
+
+/* Steps on sub page */
+.steps { counter-reset: none; margin-top: var(--space-4); }
+.step { display: grid; grid-template-columns: 3.5rem minmax(0, 1fr); padding: 1rem 0 1.2rem; border-top: 1px solid var(--c-rule); }
+.step .n { font-family: var(--font-sans); font-weight: 650; color: var(--c-green); font-size: 0.875rem; padding-top: 0.3rem; font-variant-numeric: tabular-nums; }
+.step h3 { font-size: 1.1875rem; font-weight: 600; line-height: 1.3; }
+.step p { margin-top: 0.3rem; max-width: var(--measure); }
+.gantt { margin-top: var(--space-5); }
+.months, .bars { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.months { font-family: var(--font-sans); font-size: 0.75rem; color: var(--c-ink-2); font-variant-numeric: tabular-nums; }
+.months span { border-left: 1px solid var(--c-rule); padding: 0 0 0.4rem 0.35rem; }
+.bars { row-gap: 0.35rem; }
+.bars span { grid-column: var(--from) / var(--to); height: 2.25rem; display: flex; align-items: center; padding-inline: 0.6rem; font-family: var(--font-sans); font-size: 0.8125rem; font-weight: 600; background: var(--c-margin); border-left: 2px solid var(--c-green); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qa dt { font-weight: 600; margin-top: 1.4rem; font-variation-settings: "opsz" 20; }
+.qa dd { margin-top: 0.3rem; max-width: var(--measure); }
+
+.footer { border-top: 2px solid var(--c-ink); padding-block: 1.5rem 3rem; }
+.footer .book { row-gap: 0.75rem; }
+.footer ul { display: flex; flex-wrap: wrap; gap: 0.3rem 1.5rem; }
+.footer a { color: var(--c-ink-2); display: inline-block; min-height: 24px; }
+
+@media (max-width: 860px) {
+  .book { grid-template-columns: minmax(0, 1fr); }
+  .margin, .main { grid-column: 1; }
+  .margin-note { flex-direction: row; flex-wrap: wrap; gap: 0.25rem 1rem; padding-top: 0; margin-bottom: 1rem; }
+  .rn { padding-top: 0; }
+  .rn + .meta { display: inline; margin: 0 0 0 0.75rem; }
+  .sec .margin { margin-bottom: 0.75rem; }
+  .practice thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .practice tr { display: grid; grid-template-columns: 4rem minmax(0, 1fr); border-bottom: 1px solid var(--c-rule); padding: 0.75rem 0; }
+  .practice td { border: 0; padding: 0.1rem 0; width: auto !important; }
+  .practice td.code { grid-row: 1 / span 3; padding-top: 0.25rem; }
+  .case { grid-template-columns: minmax(0, 1fr); }
+  .case dl { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; margin-top: 0.75rem; }
+  .case dt { margin-top: 0; }
+  .people, .contact { grid-template-columns: minmax(0, 1fr); }
+  .bars span { font-size: 0.75rem; padding-inline: 0.35rem; }
+  .months span { padding-left: 0.2rem; }
+}
+
+@media (max-width: 760px) { .nav a { min-height: 44px; display: inline-flex; align-items: center; } .skip { min-height: 44px; } }
+
+/* Legal pages (Impressum, Datenschutz, Barrierefreiheit) */
+.legal { max-width: var(--measure); margin-inline: auto; padding: var(--space-6) 1.25rem var(--space-7); }
+.legal-kicker { font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--c-ink-2); }
+.legal h1 { font-size: var(--fs-display); font-weight: var(--fw-display); line-height: var(--lh-display); letter-spacing: var(--ls-display); margin: 0.5rem 0 1.5rem; }
+.legal h2 { font-size: var(--fs-heading); font-weight: var(--fw-heading); line-height: var(--lh-heading); margin: 2rem 0 0.5rem; }
+.legal h1, .legal h2 { overflow-wrap: break-word; }
+.legal p, .legal address { font-style: normal; margin: 0 0 0.75rem; }
+.legal-note { padding: 0.9rem 1rem; border-top: 1px solid var(--c-rule-strong); border-bottom: 1px solid var(--c-rule-strong); font-family: var(--font-sans); font-size: 1rem; }
+.legal .meta-line { margin-top: 2rem; font-family: var(--font-sans); font-size: var(--fs-meta); color: var(--c-ink-2); }
+.fill { background: none; color: inherit; border-bottom: 2px dashed var(--c-green); padding: 0 0.15em; }

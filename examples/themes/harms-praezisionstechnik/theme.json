@@ -1,0 +1,30 @@
+{
+  "slug": "harms-praezisionstechnik",
+  "name": "Harms Präzisionstechnik",
+  "summary": "Dense, technical B2B theme for a CNC and precision-engineering supplier: drawing-frame grid, tolerance callouts in µm, spec tables, certificates and an order-status app screen.",
+  "industry": [
+    "industrie",
+    "manufacturing",
+    "b2b",
+    "maschinenbau"
+  ],
+  "media": [
+    "web",
+    "slides",
+    "social",
+    "app"
+  ],
+  "mood": [
+    "technical",
+    "precise",
+    "dense",
+    "industrial"
+  ],
+  "fonts": [
+    "Archivo",
+    "IBM Plex Mono"
+  ],
+  "license": "CC-BY-4.0 (code and copy); fonts OFL-1.1; photos © Till Heidrich, use only within this example",
+  "author": "Heidrich Digital (example theme, fictional company)",
+  "created": "2026-10-29"
+}
