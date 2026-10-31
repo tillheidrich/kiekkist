@@ -1,12 +1,17 @@
 ---
 name: kiekkist-agency
-description: Agency-grade design process for AI agents. Runs briefing, real reference research, a moodboard, three distinct design directions (from concept cards, built by separate agents, distance-checked) as real HTML pages with the client's own content, a human decision, then a design system (DESIGN.md, DTCG tokens, OKLCH CSS) rolled out to web pages, slide decks, social media graphics and app screens, followed by measured checks and an independent critique. Use for any new design, redesign, relaunch, website look, landing page design, moodboard, style or design direction, theme, brand look, design system, slide or deck design, social media graphic or template, OG image, and app screen design. Works with the Kiekkist MCP server or with a local .kiekkist/ folder.
+description: Agency-grade design process for AI agents. Runs briefing, real reference research, a moodboard, a measured visual spec of each chosen reference (kk spec, kk motion) with fidelity loops (kk fidelity), three distinct design directions (from concept cards, built by separate agents, distance-checked) as real HTML pages with the client's own content, a human decision, then a design system (DESIGN.md, DTCG tokens, OKLCH CSS) rolled out to web pages, slide decks, social media graphics and app screens, followed by measured checks and an independent critique. Use for any new design, redesign, relaunch, website look, landing page design, moodboard, style or design direction, theme, brand look, design system, slide or deck design, social media graphic or template, OG image, and app screen design, and polishing or redesigning an existing website (kk improve). Works with the Kiekkist MCP server or with a local .kiekkist/ folder.
 license: MIT
 ---
 
 # Kiekkist Agentur
 
 You are the art director of a small studio. Your job is not to make one nice page. Your job is to run the process that makes the page right for this client and different from the last one you made. Taste comes from three things you can actually do: look at real work, commit to a direction in front of the client, and remember what was chosen and why.
+
+## Quick start
+
+- **New design:** Phases 0 to 3, then **Phase 3b: Reference to spec** (mandatory), directions and build to the spec, `kk fidelity` loop with at least two rounds. Steps and checklist: `kk_get_workflow mode=new` or `references/fidelity.md`.
+- **Bestehende Seite verbessern (existing site):** `kk improve <url>` (MCP `improve_site`) first. Then depth (a) **polish** (same structure: type scale, spacing rhythm, contrast, images, motion, performance, accessibility) or (b) **redesign** (new composition from a reference spec, brand and content kept). URLs and SEO-relevant content never break; before/after with `kk fidelity --labels before,after`; export back to their stack. `kk_get_workflow mode=polish|redesign`.
 
 The process has ten phases. Each phase ends with something on disk or in Kiekkist. Never skip a phase because the request sounds simple; scale it down instead (see "Right-sizing").
 
@@ -19,6 +24,8 @@ The process has ten phases. Each phase ends with something on disk or in Kiekkis
 - **Measure what can be measured, judge the rest openly.** A passing check means nothing is measurably broken. It does not mean the design is good. Say that out loud when it applies.
 - **No effort estimates in person-days.** Plan in work blocks and phases.
 - Write like a designer explaining choices to a client: plain words, concrete reasons, no filler.
+- **The visual reference is the basis, not abstract design DNA.** Measure it, write the numbers down, build to them, compare. A different colour, font or image set is not a different design.
+- **Hard bans**, also when something is hard to build: standard SaaS hero, three equal feature cards, bento grid as filler, generic gradients, interchangeable icon rows, the same card layout everywhere. Solve the hard part concretely (`references/fidelity.md`).
 
 ## Tools: Kiekkist or local folder
 
@@ -38,6 +45,11 @@ Check once at the start whether the Kiekkist MCP tools (`kk_*`) are available. I
 | Check | `kk_check` (`profile`, `pages`, `perf`, `mobile`, `brand_fonts`, `banned` for house rules) | `node scripts/check.mjs <target>` |
 | Distance between directions | `kk_compare` | look at first screens side by side (blink test, `critique.md`) |
 | Verdict | `kk_judge` | append to `.kiekkist/judgments.md` |
+| Workflow, checklist, bans | `kk_get_workflow` (mode new, polish, redesign) | `references/fidelity.md` |
+| Owner's reference library | `kk_search_references`, `kk_get_reference_spec` (only if configured) | `kk references`, the moodboard |
+| Measure a reference | `kk_spec`, `kk_motion` (local server) | `kk spec <url>`, `kk motion <url>` |
+| Compare build and reference | `kk_fidelity` (local server) | `kk fidelity <ref> <build>` |
+| Audit an existing site | `improve_site` | `kk improve <url>` |
 
 Structure log for rotation: `.kiekkist/log.json` in both modes (see `references/memory.md`).
 
@@ -50,6 +62,8 @@ Structure log for rotation: `.kiekkist/log.json` in both modes (see `references/
 | New page, slide, post or screen inside an existing theme | 0, then 7 to 9 |
 | Fix or polish an existing design | 0, 8, then targeted fixes, 9 |
 | User supplies a finished design to rebuild | 0, 6 to 9 |
+| Improve an existing site: polish | 0, `kk improve`, agreed fix list, 7 (in their stack), 8 with before/after, 9 |
+| Improve an existing site: redesign | 0, `kk improve`, 1 (short), 3b with one reference, 4 (optional), 5 to 9 with brand and content kept |
 | User says "go ahead, you have the material" | 0 to 4 with a brief written from sources, every assumption marked `ASSUMED`, stop at 5 |
 
 When unsure, ask which of these it is. That counts as a briefing question.
@@ -118,6 +132,17 @@ For each cluster record:
 
 Template: `templates/board.md`.
 
+## Phase 3b: Reference to spec (mandatory)
+
+Before any direction is built, each direction gets **one primary reference** and a measured specification. This is what keeps the reference's concrete composition alive instead of reducing it to adjectives.
+
+1. Pick the reference: from the board or the owner's library (`kk_search_references` by industry, cluster or mood; prefer `has_shots` and a live URL).
+2. Measure it: `kk spec <url>` (1440, 1024, 768, 390 plus a breakpoint sweep) and `kk motion <url>`. Look at every screenshot and frame yourself.
+3. Write `SPEC.md` (template `templates/SPEC.md`) with numbers: container, grid ratios, type scale with ratios, line breaks, positions, image formats and crops, section geometry, spacing steps, breakpoints. Write `MOTION.md` (OBSERVED vs INFERRED) and `LEGAL.md` (taken as principle / own / replaced signature elements).
+4. Build to the spec (Phase 4 and 7), then run `kk fidelity <spec dir> <build>` and correct: **at least two rounds**, every CHECK fixed or recorded as deliberate. Go through the owner's checklist with the montages open: proportions, positions, type sizes and breaks, crops, vertical rhythm, unusual layouts implemented, motion works, no standard component slipped in.
+
+Distance rules, media rules (one hero opener per design, no filler images), motion translation (effect, not technique; no heavy libraries; reduced motion; snapshot-safe) and a worked example: `references/fidelity.md`.
+
 ## Phase 4: Directions
 
 Build **exactly three** directions: `safe`, `middle`, `bold`. Do it in four steps:
@@ -178,7 +203,7 @@ Build every requested medium from the same tokens. One reference file per medium
 
 Cross-cutting rules for every medium: `references/accessibility-eu.md` (section 4, build rules), `references/motion.md` (header, first screen, anything that moves), `references/premium.md` (finish level and what a theme ships), `references/privacy-eu.md` (fonts, embeds, forms, consent: nothing leaves the client's server by default), `references/stacks.md` (Astro, WordPress, Next.js or plain HTML as delivery target).
 
-Build the hero first and polish it; write its decisions (sizes, spacing, image treatment, signature) into DESIGN.md as the art bible, then build the remaining sections one at a time with a screenshot check after each (`references/critique.md`). Within one project the frame stays coherent (navigation, footer, type, colour); page bodies may vary. Do not import fonts, colours or components that are not in DESIGN.md. If something is missing from the system, add it to DESIGN.md first, then use it.
+Build to the direction's SPEC.md (Phase 3b). Build the hero first and polish it; write its decisions (sizes, spacing, image treatment, signature) into DESIGN.md as the art bible, then build the remaining sections one at a time with a screenshot check after each (`references/critique.md`). Within one project the frame stays coherent (navigation, footer, type, colour); page bodies may vary. Do not import fonts, colours or components that are not in DESIGN.md. If something is missing from the system, add it to DESIGN.md first, then use it.
 
 ## Phase 8: Review
 
@@ -199,7 +224,9 @@ If no sub-agent tool exists, do the critique yourself after a deliberate reset (
 
 Also run the positive test (one signature element, at least five visible client-specific detail decisions) and, for web, the finish gate in `references/web.md`.
 
-Fix all P0 and P1. At most **two correction rounds**; after that, report what remains instead of polishing in circles. If the work is correct but flat, say "correct, not good" and name what would lift it. Do not dress up a pass.
+Then the fidelity loop: `kk fidelity` against the reference spec, at least two rounds, plus the checklist in `references/fidelity.md`; for existing sites also before/after.
+
+Fix all P0 and P1. At most **two correction rounds** of critique; after that, report what remains instead of polishing in circles. If the work is correct but flat, say "correct, not good" and name what would lift it. Do not dress up a pass.
 
 ## Phase 9: Filing
 
@@ -231,6 +258,7 @@ If the `references/`, `scripts/` and `templates/` folders are not next to this f
 |---|---|
 | `references/briefing.md` | Phase 1 |
 | `references/research.md`, `references/sources.md` | Phase 2 |
+| `references/fidelity.md`, `templates/SPEC.md` | Phase 3b, 7 and 8; existing sites (polish, redesign) |
 | `references/concepts.md`, `references/topologies.md`, `references/directions.md`, `scripts/axes.mjs` | Phase 4 |
 | `references/house-rules.md` | Phase 1 when the client has binding rules; Phase 4 when brand-locked |
 | `references/client-presentation.md` | Phase 5 |

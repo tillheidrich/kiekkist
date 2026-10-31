@@ -72,7 +72,18 @@ The CLI is `kk` (`node cli/kk.js`, or run `npm link` once in the checkout to get
 | `kk launch <url\|export-dir>` | Pre-launch checks: DNS and mail records, TLS, security headers, privacy (third-party requests, cookies before consent), legal pages and placeholders, search basics, lab performance, forms, accessibility, handover. Prepares and verifies; never registers, pays, signs or changes DNS. |
 | `kk add`, `kk refs`, `kk judge`, `kk new-board`, `kk direction`, `kk decide`, `kk themes`, `kk save-theme`, `kk profile`, `kk gallery` *server* | Collect references, run boards, record verdicts and decisions, keep themes, read the taste profile, search the gallery. |
 | `kk tokens <theme-dir> --format css\|theme.json\|tailwind\|elementor` | Token file for an existing project. |
+| `kk spec <url\|file\|dir>` | Measures a reference at 1440/1024/768/390 plus a breakpoint sweep: container, grid ratios, type scale with ratios, line breaks, section geometry, image formats, colours. Writes `SPEC.draft.md`, `spec.json` and screenshots to `.kiekkist/fidelity/`. Never stores the page's HTML. |
+| `kk motion <url\|file\|dir>` | What moves: getAnimations, keyframes, transitions, scroll and view timelines, hover diffs, libraries; OBSERVED vs INFERRED; frame strips and translation hints. |
+| `kk fidelity <ref url\|spec dir> <build>` | Reference and build side by side at 1440 and 390 (montages), px deltas per section, type role and key element; `FIDELITY.md` with the checklist; exit 1 while values are off. `--labels before,after` for existing sites. |
+| `kk improve <url\|file\|dir>` | Audits an existing site (measurement, check, motion, slop tells) into `IMPROVE.md`: keep / fix / redesign with numbers, a suggested depth (polish or redesign) and a target spec that keeps brand and content. |
+| `kk workflow [new\|polish\|redesign]`, `kk references`, `kk reference <id>` | The visual-fidelity workflow and checklist; an optional private reference library (`KK_REFS_FILE`, built with `scripts/refs-catalogue.mjs`). |
 | `kk mcp` | Local MCP server over stdio. |
+
+## Visual fidelity and existing sites
+
+The visual reference is the basis of a design, not an abstract summary of it. The skill makes "Reference to spec" a mandatory phase: pick a reference, `kk spec` and `kk motion` it, write SPEC.md with numbers, build, then `kk fidelity` for at least two correction rounds. For existing sites ("Bestehende Seite verbessern") `kk improve` comes first, then polish (same structure) or redesign (new composition, brand and content kept), with before/after montages; URLs and SEO-relevant content never break.
+
+The tools measure boxes, computed styles and timings and take screenshots into a private working folder; they never store a page's HTML, CSS or scripts. Public pages load through the egress guard; local builds are served on 127.0.0.1 and may load only from there. MCP: `kk_get_workflow`, `improve_site` (a hosted instance accepts public URLs only), `kk_search_references` and `kk_get_reference_spec` (only with `KK_REFS_FILE`), and on the local `kk mcp` server `kk_spec`, `kk_motion`, `kk_fidelity`. A reference library holds third-party screenshots: keep it private.
 
 ## Knowledge packs
 

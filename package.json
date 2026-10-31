@@ -1,6 +1,6 @@
 {
   "name": "kiekkist",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Agency-style design process for Claude and Codex: brief, references, three directions as real pages, a human decision, a checked build. Self-hosted studio with MCP server, checker (WCAG 2.2 AA automatable parts, EN 301 549, privacy, mobile lab), exports and launch checks.",
   "type": "module",
   "license": "AGPL-3.0-only",

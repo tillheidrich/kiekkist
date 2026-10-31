@@ -389,3 +389,7 @@ addEventListener('scroll', () => {
   scale: 0 1; transform-origin: left; transition: scale .2s ease-in-out; }
 .nav a:is(:hover, :focus-visible, [aria-current="page"])::after { scale: 1 1; }
 ```
+
+## Measured motion from a reference
+
+`kk motion <url>` reads what actually moves on a reference (getAnimations, keyframes, transitions, scroll and view timelines, hover diffs, libraries) and marks each row OBSERVED or INFERRED. Rebuild the effect, not the technique: `fidelity.md`, section "Motion translation".

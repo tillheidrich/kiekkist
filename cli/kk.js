@@ -14,7 +14,7 @@ const URL_ = (process.env.KK_URL || 'http://localhost:4410').replace(/\/$/, '');
 const TOKEN = process.env.KK_TOKEN || '';
 const [cmd, ...rest] = process.argv.slice(2);
 const flags = {}; const args = [];
-const BOOL = new Set(['free', 'paid', 'force', 'json', 'build', 'no-check', 'processors', 'recheck', 'form-test', 'tailwind', 'no-perf', 'no-a11y', 'list', 'perf', 'no-mobile']);
+const BOOL = new Set(['free', 'paid', 'force', 'json', 'build', 'no-check', 'processors', 'recheck', 'form-test', 'tailwind', 'no-perf', 'no-a11y', 'list', 'perf', 'no-mobile', 'frames', 'no-sweep', 'no-motion', 'no-refs', 'has-spec', 'full']);
 for (let i = 0; i < rest.length; i++) { const a = rest[i]; if (a.startsWith('--')) { const k = a.slice(2); const v = !BOOL.has(k) && rest[i + 1] && !rest[i + 1].startsWith('--') ? rest[++i] : true; flags[k] = v; } else args.push(a); }
 const list = (v) => (v ? String(v).split(',').map((s) => s.trim()).filter(Boolean) : undefined);
 
@@ -62,6 +62,17 @@ Local, no server needed:
   kk launch-sheet init|get|tick <site> [--item id --by "Name" --note "…"] [--sheet file]
   kk dns-plan <domain> [--web host|ip] [--mail all-inkl|brevo|microsoft|google|strato|ionos] [--ca letsencrypt.org]
   Prepares and verifies; never registers, pays, signs or changes DNS.
+
+Visual fidelity (local; measures and screenshots into .kiekkist/fidelity/<slug>/, never stores a page's HTML):
+  kk spec <url|file|dir> [--out dir] [--viewports 1440,1024,768,390] [--frames] [--no-sweep]
+                                                                                 SPEC.draft.md + spec.json + shots
+  kk motion <url|file|dir> [--out dir] [--width 1440] [--hovers 8]                MOTION.draft.md + motion.json + strips
+  kk fidelity <ref url|spec dir> <build url|file|dir> [--out dir] [--widths 1440,390] [--labels before,after] [--round n]
+                                                                                 FIDELITY.md, montages, deltas; exit 1 if values are off
+  kk improve <url|file|dir> [--out dir] [--profile bfsg] [--perf] [--no-motion] [--industry x] [--mood y]
+                                                                                 IMPROVE.md: keep / fix / redesign + target spec (existing sites)
+  kk workflow [new|polish|redesign]                                              steps, checklist, bans, distance and media rules
+  kk references [query] [--industry x] [--cluster C07] [--has-spec] | kk reference <id>   private library (KK_REFS_FILE)
 `;
 
 const run = {
@@ -174,6 +185,64 @@ const run = {
     } catch (e) { console.error(e.message); process.exit(2); }
   },
   async 'dns-plan'() { const { dnsPlan } = await import('../src/launch/plan.js'); if (!args[0]) { console.error('kk dns-plan <domain>'); process.exit(2); } console.log(dnsPlan({ domain: args[0], web_target: flags.web, mail_provider: flags.mail, ca: flags.ca }).md); },
+  async spec() {
+    const { runSpec } = await import('../src/fidelity/spec.js');
+    if (!args[0]) { console.error('kk spec <url|file|dir>'); process.exit(2); }
+    try {
+      const { dir, spec } = await runSpec({ target: args[0], out: flags.out, viewports: list(flags.viewports)?.map(Number), frames: !!flags.frames, sweep: !flags['no-sweep'], log: (m) => process.stderr.write(m + '\n') });
+      if (flags.json) return out(spec);
+      const ws = Object.keys(spec.viewports).sort((a, b) => b - a);
+      console.log(`spec written to ${dir}`); for (const w of ws) { const v = spec.viewports[w]; console.log(`  ${w}px  doc ${v.doc_h}  content ${v.container.width ?? '-'} at x ${v.container.left ?? '-'}  h1 ${v.roles.h1?.fs ?? '-'}px/${v.roles.h1?.lines ?? '-'} lines  ${v.sections.length} sections  ${v.grids.length} grids  ${v.media.length} media`); }
+      if (spec.breakpoints) console.log('  breakpoints: ' + (spec.breakpoints.map((b) => b.between.join('-')).join(', ') || 'none detected'));
+      console.log('  next: read SPEC.draft.md and the shots, write SPEC.md with numbers (references/fidelity.md)');
+    } catch (e) { console.error(e.message); process.exit(2); }
+  },
+  async motion() {
+    const { runMotion, translationHints } = await import('../src/fidelity/motion.js');
+    if (!args[0]) { console.error('kk motion <url|file|dir>'); process.exit(2); }
+    try {
+      const { dir, motion: m } = await runMotion({ target: args[0], out: flags.out, width: flags.width ? +flags.width : 1440, hovers: flags.hovers ? +flags.hovers : 8, log: (x) => process.stderr.write(x + '\n') });
+      if (flags.json) return out(m);
+      console.log(`motion written to ${dir}`);
+      console.log(`  libraries ${m.probe.libs.join(', ') || 'none'}; ${m.probe.running.length} running animation(s), ${m.probe.keyframes.length} @keyframes, ${m.probe.transitions.length} transition group(s), ${m.probe.scroll_timelines.length + m.probe.view_timelines.length} scroll/view timeline rule(s), reduced-motion blocks ${m.probe.reduced_motion_blocks}`);
+      console.log(`  scroll changes ${m.sweep.length}, hover diffs ${m.hovers.length}${m.nav_hide.length ? ', nav hides on scroll' : ''}${m.cursor_follower ? ', cursor follower' : ''}`);
+      for (const h of translationHints(m)) console.log('  - ' + h);
+    } catch (e) { console.error(e.message); process.exit(2); }
+  },
+  async fidelity() {
+    const { runFidelity } = await import('../src/fidelity/fidelity.js');
+    if (!args[0] || !args[1]) { console.error('kk fidelity <ref url|spec dir> <build url|file|dir>'); process.exit(2); }
+    try {
+      const { dir, result } = await runFidelity({ ref: args[0], build: args[1], out: flags.out, widths: list(flags.widths)?.map(Number) || [1440, 390], labels: list(flags.labels) || ['reference', 'build'], round: flags.round ? +flags.round : undefined, log: (x) => process.stderr.write(x + '\n') });
+      process.exitCode = result.diff.flags ? 1 : 0;
+      if (flags.json) return out(result);
+      console.log(`round ${result.round}: ${result.diff.flags} value(s) outside tolerance  ->  ${dir}/FIDELITY.md`);
+      for (const [w, r] of Object.entries(result.diff.per)) {
+        console.log(`  ${w}px  doc ${r.doc.ref} -> ${r.doc.build} (${r.doc.delta > 0 ? '+' : ''}${r.doc.delta})  content ${r.container.ref ?? '-'} -> ${r.container.build ?? '-'}`);
+        for (const x of r.sections.filter((y) => y.flag).slice(0, 8)) console.log(`    CHECK section ${x.i}: h ${x.h_ref ?? '-'} -> ${x.h_build ?? '-'} (${x.dh ?? '-'})`);
+        for (const x of r.roles.filter((y) => y.flag)) console.log(`    CHECK ${x.role}: ${x.fs_ref ?? '-'} -> ${x.fs_build ?? '-'} px, lines ${x.lines_ref ?? '-'} -> ${x.lines_build ?? '-'}`);
+        for (const x of r.positions.filter((y) => y.flag)) console.log(`    CHECK ${x.what}: dx ${x.dx ?? '-'} dy ${x.dy ?? '-'} dw ${x.dw ?? '-'} dh ${x.dh ?? '-'}`);
+      }
+      console.log('  montages: ' + Object.values(result.montages).join(', '));
+    } catch (e) { console.error(e.message); process.exit(2); }
+  },
+  async improve() {
+    const { runImprove } = await import('../src/fidelity/improve.js');
+    if (!args[0]) { console.error('kk improve <url|file|dir>'); process.exit(2); }
+    try {
+      const { dir, result } = await runImprove({ target: args[0], out: flags.out, profile: flags.profile || 'bfsg', perf: !!flags.perf, motion: !flags['no-motion'], refs: !flags['no-refs'], industry: flags.industry, mood: flags.mood, log: (x) => process.stderr.write(x + '\n') });
+      if (flags.json) return out(result);
+      console.log(`IMPROVE.md written to ${dir}  (suggested depth: ${result.depth})`);
+      for (const [k, xs] of [['KEEP', result.keep], ['FIX', result.fix], ['REDESIGN', result.redesign]]) for (const x of xs) console.log(`  ${k.padEnd(8)} ${x.area}: ${x.text}`);
+      if (result.references?.length) console.log('  references: ' + result.references.map((r) => r.id).join(', '));
+    } catch (e) { console.error(e.message); process.exit(2); }
+  },
+  async workflow() { const { getWorkflow } = await import('../src/fidelity/workflow.js'); try { const w = getWorkflow(args[0] || 'new'); if (flags.json) return out(w); console.log(`${w.phase} (${w.version})`); w.steps.forEach((s, i) => console.log(`${i + 1}. ${s.title}: ${s.do}`)); console.log('\nChecklist:'); for (const c of w.checklist) console.log('  - ' + c.q); console.log('\nHard bans:'); for (const b of w.hard_bans) console.log('  - ' + b); } catch (e) { console.error(e.message); process.exit(2); } },
+  async references() {
+    const L = await import('../src/refs.js');
+    try { const r = L.searchRefs({ query: args.join(' ') || undefined, industry: flags.industry, cluster: flags.cluster, tag: flags.tag, has_spec: !!flags['has-spec'], limit: flags.limit ? +flags.limit : 20 }); if (flags.json) return out(r); for (const i of r.items) console.log(`${i.id.padEnd(46)} ${(i.cluster?.id || '-').padEnd(4)} ${i.has_spec ? 'spec ' : '     '}${i.live_url || i.url}`); console.log(`(${r.total} of ${r.library})`); } catch (e) { console.error(e.message); process.exit(2); }
+  },
+  async reference() { const L = await import('../src/refs.js'); try { out(L.getRefSpec(args[0], { full: !!flags.full })); } catch (e) { console.error(e.message); process.exit(2); } },
   async mcp() {
     const { StdioServerTransport } = await import('@modelcontextprotocol/sdk/server/stdio.js');
     const { buildMcpServer } = await import('../src/mcp.js');
@@ -183,3 +252,4 @@ const run = {
 };
 if (!cmd || !run[cmd]) { console.log(HELP); process.exit(cmd ? 1 : 0); }
 await run[cmd]();
+if (['spec', 'motion', 'fidelity', 'improve'].includes(cmd)) { const { closeBrowser } = await import('../src/browser.js'); const { closeLocalBrowser } = await import('../src/fidelity/targets.js'); await closeBrowser(); await closeLocalBrowser(); }

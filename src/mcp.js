@@ -1,7 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
 import * as S from './services.js';
-import { readFileSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { DATA_DIR } from './db.js';
 import { fileURLToPath } from 'node:url';
@@ -10,7 +10,8 @@ const SKILL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'skill', '
 const INSTRUCTIONS = `Kiekkist is a design studio memory for agents. Before ANY design work call kk_profile (the owner's taste) and kk_list_themes.
 Work like an agency: research real references (kk_list_sources, then kk_add_ref with a one-line mechanism each), cluster them on a board (kk_create_board, kk_add_to_board),
 build exactly three clearly different directions as REAL HTML pages with real content (kk_add_direction), let the human choose (kk_decide), then build the theme (kk_save_theme) and measure it (kk_check).
-Never save someone else's design as a theme; themes are own work. Ask the owner for a verdict (kk_judge: love/like/meh/no + why) and store the note verbatim.`;
+Never save someone else's design as a theme; themes are own work.
+Visual fidelity (mandatory before building): kk_get_workflow (mode new | polish | redesign), pick a reference (kk_search_references when the owner's library is configured), measure it (kk_spec, kk_motion), write SPEC.md with numbers, build, then kk_fidelity for at least two correction rounds. Existing sites: improve_site first. Ask the owner for a verdict (kk_judge: love/like/meh/no + why) and store the note verbatim.`;
 
 const text = (v) => ({ content: [{ type: 'text', text: typeof v === 'string' ? v : JSON.stringify(v) }] });
 const slimTokens = (tk) => (tk ? { bg: tk.colors?.backgrounds?.slice(0, 3).map((c) => c.oklch), text: tk.colors?.text?.slice(0, 2).map((c) => c.oklch), fonts: tk.fonts?.slice(0, 3).map((f) => f.family + ' ' + f.weight), sizes: tk.fontSizes, h1: tk.h1 ? { family: tk.h1.family?.split(',')[0], size: tk.h1.size } : null } : null);
@@ -19,7 +20,7 @@ const slimRef = (r, full = true) => ({ id: r.id, url: r.url, title: r.title, sta
 const safe = (fn) => async (args) => { try { return text(await fn(args || {})); } catch (e) { return { isError: true, content: [{ type: 'text', text: String(e.message || e) }] }; } };
 
 export function buildMcpServer({ baseUrl = '', local = false } = {}) {
-  const server = new McpServer({ name: 'kiekkist', version: '0.1.0' }, { instructions: INSTRUCTIONS });
+  const server = new McpServer({ name: 'kiekkist', version: '0.2.0' }, { instructions: INSTRUCTIONS });
   const abs = (o) => JSON.parse(JSON.stringify(o).replace(/"\/(v|s)\//g, `"${baseUrl}/$1/`));
 
   server.registerTool('kk_profile', { description: "The owner's taste profile (markdown) built from verdicts, notes and decided directions. Read before any design work.", inputSchema: {} },
@@ -78,6 +79,56 @@ export function buildMcpServer({ baseUrl = '', local = false } = {}) {
       if (!list.includes(n)) throw new Error('unknown file. Available: ' + list.join(', '));
       return readFileSync(join(SKILL_DIR, n), 'utf8');
     }));
+  // ---- visual fidelity: reference library (private; only when KK_REFS_FILE is set), workflow, measuring tools
+  const R = () => import('./refs.js');
+  const W = () => import('./fidelity/workflow.js');
+  const img = (file) => { try { const st = statSync(file); if (st.size > 900_000) return null; return { type: 'image', data: readFileSync(file).toString('base64'), mimeType: /\.png$/i.test(file) ? 'image/png' : 'image/jpeg' }; } catch { return null; } };
+  server.registerTool('kk_get_workflow', { description: "The visual-fidelity workflow as steps plus the owner's checklist, hard bans, distance rules, media rules and motion translation. mode: new (reference to spec before building, default), polish (existing site, same structure) or redesign (existing site, new composition from a reference spec, brand and content kept). Read it before building or changing any page.", inputSchema: { mode: z.enum(['new', 'polish', 'redesign']).optional() }, annotations: { readOnlyHint: true } },
+    safe(async ({ mode }) => (await W()).getWorkflow(mode || 'new')));
+  server.registerTool('kk_search_references', { description: "Search the owner's private reference library (curated inspiration sites with desktop/phone screenshots and measured facts: fonts, h1 size, colours, page height). Filters: query (free text: industry, mood, font, domain), industry, cluster (id like C07 or name), tag, has_spec (only references with a measured SPEC). Returns ids, live URLs, facts and whether a spec exists; with_images adds up to 4 desktop thumbnails. Available only when the instance has KK_REFS_FILE configured. Screenshots are private research material: never publish them.", inputSchema: { query: z.string().max(200).optional(), industry: z.string().max(60).optional(), cluster: z.string().max(80).optional(), tag: z.string().max(40).optional(), has_spec: z.boolean().optional(), limit: z.number().int().min(1).max(30).optional(), with_images: z.number().int().min(0).max(4).optional() }, annotations: { readOnlyHint: true } },
+    async (a) => {
+      try {
+        const L = await R(); if (!L.refsConfigured()) throw new Error('reference library not configured on this instance (KK_REFS_FILE)');
+        const r = L.searchRefs({ ...a, limit: a.limit || 10 });
+        const content = [{ type: 'text', text: JSON.stringify(r) }];
+        for (const it of r.items.slice(0, a.with_images || 0)) { const p = L.thumbPath(L.getRefEntry(it.id), 'desktop'); const im = p && img(p); if (im) content.push({ type: 'text', text: it.id + ' (desktop first screen):' }, im); }
+        return { content };
+      } catch (e) { return { isError: true, content: [{ type: 'text', text: String(e.message || e) }] }; }
+    });
+  server.registerTool('kk_get_reference_spec', { description: 'One reference from the private library: facts and, if measured, its SPEC.md, spec.json summary, MOTION.md and LEGAL.md (full=true returns the whole spec.json). with_images adds the desktop and phone screenshots. Available only with KK_REFS_FILE.', inputSchema: { id: z.string().max(100), full: z.boolean().optional(), with_images: z.boolean().optional() }, annotations: { readOnlyHint: true } },
+    async ({ id, full, with_images }) => {
+      try {
+        const L = await R(); if (!L.refsConfigured()) throw new Error('reference library not configured on this instance (KK_REFS_FILE)');
+        const content = [{ type: 'text', text: JSON.stringify(L.getRefSpec(id, { full: !!full })) }];
+        if (with_images) for (const v of ['desktop', 'mobile']) { const p = L.thumbPath(L.getRefEntry(id), v); const im = p && img(p); if (im) content.push({ type: 'text', text: v + ':' }, im); }
+        return { content };
+      } catch (e) { return { isError: true, content: [{ type: 'text', text: String(e.message || e) }] }; }
+    });
+  const fidOut = (kind, label, out) => { if (out) { if (!local) throw new Error('out is only available on the local MCP server'); return out; } return local ? undefined : join(DATA_DIR, 'fidelity', kind, String(label).replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/gi, '-').slice(0, 60) + '-' + Date.now().toString(36)); };
+  server.registerTool('improve_site', { description: "Audit an EXISTING website before polishing or redesigning it (kk improve): measures it at 1440 and 390 (geometry, type scale, colours, sections), motion, runs kk check (accessibility profile, privacy and third parties, mobile lab) and writes IMPROVE.md with keep / fix / redesign lists with numbers, a target spec draft that keeps the brand and content, a suggested depth (polish or redesign) and, with the reference library, 2-3 matching references (industry, mood). Then follow kk_get_workflow mode=polish|redesign. On the local server url may also be a file, folder or localhost URL; on a hosted instance public URLs only. Measures only; changes nothing on the site.", inputSchema: { url: z.string().max(2000), profile: z.enum(['none', 'bfsg', 'public']).optional(), perf: z.boolean().optional(), motion: z.boolean().optional(), industry: z.string().max(60).optional(), mood: z.string().max(60).optional(), out: z.string().optional() } },
+    safe(async (a) => {
+      const { runImprove } = await import('./fidelity/improve.js');
+      const { dir, result } = await runImprove({ target: a.url, out: fidOut('improve', a.url, a.out), profile: a.profile || 'bfsg', perf: !!a.perf, motion: a.motion !== false, industry: a.industry, mood: a.mood, allowLoopback: local, allowFiles: local });
+      return { dir, report: join(dir, 'IMPROVE.md'), depth: result.depth, keep: result.keep, fix: result.fix, redesign: result.redesign, target_spec: result.target_spec, references: result.references, check: result.check, next: `kk_get_workflow mode=${result.depth}` };
+    }));
+  if (local) {
+    server.registerTool('kk_spec', { description: 'Measure a reference or build at several viewports (default 1440, 1024, 768, 390) plus a breakpoint sweep (320-1920): container, grid columns and gaps, type scale table with ratios, line breaks (counts and widths), section geometry, image formats and crops, colours, fixed/sticky layers, declared media queries. Writes spec.json, SPEC.draft.md and screenshots (first screen, full page, frames=true for viewport frames) to out (default .kiekkist/fidelity/<slug>/spec). Never stores the page HTML. target: public URL, localhost URL, HTML file or folder.', inputSchema: { target: z.string().max(2000), out: z.string().optional(), viewports: z.array(z.number().int().min(320).max(2560)).max(6).optional(), frames: z.boolean().optional(), sweep: z.boolean().optional() } },
+      safe(async (a) => { const { runSpec, renderSpecMd } = await import('./fidelity/spec.js'); const { dir, spec } = await runSpec({ target: a.target, out: a.out, viewports: a.viewports, frames: !!a.frames, sweep: a.sweep !== false }); return { dir, files: ['spec.json', 'SPEC.draft.md', 'shots/'], draft: renderSpecMd(spec) }; }));
+    server.registerTool('kk_motion', { description: 'Analyse motion at one width (default 1440): document.getAnimations() with keyframes and timing, @keyframes, computed transitions, scroll/view timelines, libraries named in scripts, load frames (100-4000 ms), a scroll sweep (what changes opacity/transform/colour with scroll; scrubbed vs triggered), hover diffs via page.hover(), cursor followers. Rows marked OBSERVED vs INFERRED plus translation hints (effect, not technique). Writes motion.json, MOTION.draft.md, frame strips.', inputSchema: { target: z.string().max(2000), out: z.string().optional(), width: z.number().int().min(320).max(2560).optional(), hovers: z.number().int().min(0).max(20).optional() } },
+      safe(async (a) => { const { runMotion, renderMotionMd } = await import('./fidelity/motion.js'); const { dir, motion } = await runMotion({ target: a.target, out: a.out, width: a.width || 1440, hovers: a.hovers ?? 8 }); return { dir, files: ['motion.json', 'MOTION.draft.md', 'strip-load.jpg', 'shots/'], draft: renderMotionMd(motion) }; }));
+    server.registerTool('kk_fidelity', { description: 'Compare a build with its reference (or after with before): side-by-side montages at 1440 and 390 (first screen + full page), section geometry diff with px deltas, type role deltas (size, line height, line count), position deltas (h1, navigation, button, first-screen media). ref: URL or a kk spec folder (no new request to the reference); build: URL, localhost URL, file or folder. Writes FIDELITY.md (with the checklist), fidelity.json, FIDELITY-log.md (one line per round). Run at least two correction rounds. labels: ["before","after"] for existing sites. with_image=true adds the 1440 first-screen montage.', inputSchema: { ref: z.string().max(2000), build: z.string().max(2000), out: z.string().optional(), widths: z.array(z.number().int().min(320).max(2560)).max(4).optional(), labels: z.array(z.string().max(20)).length(2).optional(), round: z.number().int().min(1).max(99).optional(), with_image: z.boolean().optional() } },
+      async (a) => {
+        try {
+          const { runFidelity } = await import('./fidelity/fidelity.js');
+          const { dir, result } = await runFidelity({ ref: a.ref, build: a.build, out: a.out, widths: a.widths || [1440, 390], labels: a.labels || ['reference', 'build'], round: a.round });
+          const per = Object.fromEntries(Object.entries(result.diff.per).map(([w, r]) => [w, { doc: r.doc, container: r.container, flags: r.flags, sections_off: r.sections.filter((x) => x.flag).map((x) => ({ i: x.i, dy: x.dy, dh: x.dh })), roles_off: r.roles.filter((x) => x.flag).map((x) => ({ role: x.role, fs: [x.fs_ref, x.fs_build], lines: [x.lines_ref, x.lines_build] })), positions_off: r.positions.filter((x) => x.flag).map((x) => ({ what: x.what, dx: x.dx, dy: x.dy, dw: x.dw, dh: x.dh })) }]));
+          const content = [{ type: 'text', text: JSON.stringify({ dir, report: join(dir, 'FIDELITY.md'), round: result.round, flags: result.diff.flags, per, montages: result.montages, next: 'Open the montages, go through the checklist in FIDELITY.md, fix, run again (at least two rounds).' }) }];
+          const m = result.montages['first-1440'] || Object.values(result.montages)[0];
+          if (a.with_image && m) { const im = img(m); if (im) content.push(im); }
+          return { content };
+        } catch (e) { return { isError: true, content: [{ type: 'text', text: String(e.message || e) }] }; }
+      });
+  }
   // ---- export and launch (run locally; prepare and verify, never register, pay, sign or change DNS)
   const PREP = ' Prepares and verifies; never registers, pays, signs or changes DNS.';
   const themeFolder = (a) => {

@@ -1,0 +1,13 @@
+# Changelog
+
+## 0.2.0 (31.10.2026): visual fidelity and existing sites
+
+- `kk spec <url|file|dir>`: multi-viewport measurement (1440, 1024, 768, 390 + breakpoint sweep 320-1920): container and gutters, grid columns, widths, ratios and gaps, type scale table with ratios, role sizes per viewport, line breaks (line counts and widths, no text), section geometry (y, height, vh, paddings, sticky, media), image formats (named ratio, crop vs file, fit, bleed), colours (OKLCH), fixed and sticky layers, declared media queries. Writes `spec.json`, `SPEC.draft.md`, first-screen and full-page shots (`--frames` for viewport frames).
+- `kk motion <url|file|dir>`: getAnimations with keyframes, timing and easing, @keyframes, computed transitions, scroll and view timelines, libraries named in scripts, load frames, a scroll sweep (scrubbed vs triggered changes, hide-on-scroll navigation), hover diffs via page.hover, cursor followers; OBSERVED vs INFERRED; translation hints (effect, not technique). Writes `motion.json`, `MOTION.draft.md`, frame strips.
+- `kk fidelity <ref url|spec dir> <build>`: side-by-side montages at 1440 and 390 (first screen and full page), section geometry, type role and position deltas with tolerances, `FIDELITY.md` with the owner's checklist, `FIDELITY-log.md` per round; exit 1 while values are off. `--labels before,after` for existing sites.
+- `kk improve <url|file|dir>`: audit of an existing site (measurement, kk check, kk motion, slop tells) into `IMPROVE.md`: keep / fix / redesign with numbers, suggested depth (polish or redesign), target spec that keeps brand and content, matching references from the library.
+- `kk workflow [new|polish|redesign]`, `kk references`, `kk reference <id>`.
+- Reference library: `scripts/refs-catalogue.mjs` builds a private `refs.json` (facts without third-party headline text, clusters, tags, thumbnails, specs); read only when `KK_REFS_FILE` is set.
+- MCP: `kk_get_workflow` (mode), `kk_search_references`, `kk_get_reference_spec`, `improve_site` (hosted: public URLs only), and on the local server `kk_spec`, `kk_motion`, `kk_fidelity`. Server version 0.2.0.
+- Security: public targets through the egress guard; local builds on 127.0.0.1 with a same-origin policy in a separate browser; loopback URLs and files only from the CLI and the local MCP server; other private ranges always refused; failed loads raise an error instead of a blank measurement. No page HTML, CSS or scripts are stored.
+- Skill: mandatory Phase 3b "Reference to spec", hard bans, fidelity loop with at least two rounds, mode "Bestehende Seite verbessern" (polish, redesign), `references/fidelity.md` (workflow, checklist, distance, media and motion rules, worked example), `templates/SPEC.md`.

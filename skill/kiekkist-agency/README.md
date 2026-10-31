@@ -37,6 +37,10 @@ mkdir -p ~/.claude/skills && cp -r kiekkist-agency ~/.claude/skills/
 
 The skill triggers on design, redesign, moodboard, theme, design system, slide, social graphic and app screen requests.
 
+## Visual fidelity and existing sites
+
+New designs start from a measured reference: `kk spec` and `kk motion` turn the reference into numbers (SPEC.md, MOTION.md), the build follows them, and `kk fidelity` compares both side by side for at least two rounds. Existing sites start with `kk improve <url>` (keep / fix / redesign), then either polish (same structure) or redesign (new composition, brand and content kept), with before/after montages. Details: `references/fidelity.md`.
+
 ## With or without Kiekkist
 
 The skill works in two modes with the same file formats:
