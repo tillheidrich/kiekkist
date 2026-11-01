@@ -148,7 +148,7 @@ Adapter contract: `export const meta = {id, tier, status, label, versions, edita
 
 ## Launch (`src/launch/`, 30.10.2026)
 
-`kk launch <url|export-dir>` runs the automatic checks of `skill/kiekkist-agency/references/launch.md` and writes `launch-report.json` + `.md` next to the launch sheet (`.kiekkist/launch/<host>.md`). Exit 0 = no automatic errors, 1 = errors, 2 = unreachable or not public.
+`kk launch <url|export-dir>` runs the automatic checks of `skill/web-design-studio/references/launch.md` and writes `launch-report.json` + `.md` next to the launch sheet (`.kiekkist/launch/<host>.md`). Exit 0 = no automatic errors, 1 = errors, 2 = unreachable or not public.
 
 ```js
 import { runLaunch } from './src/launch/index.js';

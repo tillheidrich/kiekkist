@@ -63,6 +63,7 @@ If a design must change for legal reasons, design a deliberate alternative of th
 ## Distance rules
 
 - Layout principles, proportions, rhythm and interaction ideas may follow the reference closely: measure them and hit the numbers.
+- Copy is own in words and in shape: never reuse the reference's headline formula or rhetorical pattern.
 - Always own: brand name, logo, copy, images, colours, icons and illustrations, and every distinctive signature element (custom artwork, a logo-like device, a unique illustration). Replace each with an alternative of equal quality and record it in LEGAL.md.
 - Commercial templates (Webflow, Framer, Showit, Squarespace and similar are sold products): composition-level inspiration only. Change the hero composition and the section order; `kk check --compare` against the template must say distinct.
 - Fonts: OFL or licensed for the client, self-hosted. Pick the closest match by measuring (x-height, width, contrast) and record the choice.

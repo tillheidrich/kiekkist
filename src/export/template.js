@@ -26,10 +26,16 @@ export function renderHtml(node, data, ctx = {}) {
 
 /** Rewrite href/src/srcset URLs inside a raw HTML string (rich props, fixed markup). */
 export function mapUrlsInHtml(html, mapUrl) {
-  return String(html).replace(/\b(href|src|srcset|poster|action)=("([^"]*)"|'([^']*)')/g, (m, name, q, a, b) => `${name}="${escapeAttr(mapUrl(a ?? b, name))}"`);
+  // imagesrcset (image preloads) is a srcset list too
+  return String(html).replace(/\b(href|src|srcset|imagesrcset|poster|action)=("([^"]*)"|'([^']*)')/g, (m, name, q, a, b) => `${name}="${escapeAttr(mapUrl(a ?? b, name === 'imagesrcset' ? 'srcset' : name))}"`);
 }
 
 const braceSafe = (s) => s.replace(/\{/g, '&#123;').replace(/\}/g, '&#125;');
+
+// DOM attributes typed as string-literal unions in astro/types (HTMLInputTypeAttribute etc.): content fields are
+// `string | null`, so a bound value needs a cast or `astro check` fails with ts(2322)
+const ASTRO_UNION_ATTRS = new Set(['type', 'inputmode', 'enterkeyhint', 'autocomplete', 'autocapitalize', 'loading', 'decoding', 'fetchpriority', 'crossorigin', 'referrerpolicy', 'dir', 'method', 'enctype', 'wrap', 'kind', 'preload', 'scope', 'popovertargetaction', 'popover', 'hidden', 'translate', 'draggable', 'spellcheck', 'contenteditable']);
+const astroBind = (name, expr) => (ASTRO_UNION_ATTRS.has(String(name).toLowerCase()) || /^aria-/i.test(name) ? `{${expr} as any}` : `{${expr}}`);
 
 /** Astro template: props object `p`, collection items `item`. */
 export function renderAstro(node, ctx = {}) {
@@ -41,10 +47,10 @@ export function renderAstro(node, ctx = {}) {
   if (node.kkAttrs || /^(script|style)$/.test(node.tag)) {
     const parts = [];
     for (const a of node.attrs) {
-      if (node.kkAttrs && a.name in node.kkAttrs) parts.push(`${a.orig || a.name}={${scope}.${node.kkAttrs[a.name]}}`);
+      if (node.kkAttrs && a.name in node.kkAttrs) parts.push(`${a.orig || a.name}=${astroBind(a.name, `${scope}.${node.kkAttrs[a.name]}`)}`);
       else parts.push(braceSafe(mapLiteral(a.raw, mapUrl)));
     }
-    if (node.kkAttrs) for (const [n, k] of Object.entries(node.kkAttrs)) if (!node.attrs.some((a) => a.name === n)) parts.push(`${n}={${scope}.${k}}`);
+    if (node.kkAttrs) for (const [n, k] of Object.entries(node.kkAttrs)) if (!node.attrs.some((a) => a.name === n)) parts.push(`${n}=${astroBind(n, `${scope}.${k}`)}`);
     if (/^(script|style)$/.test(node.tag)) parts.push('is:inline');
     open = `<${node.tag}${parts.length ? ' ' + parts.join(' ') : ''}${node.selfClosing ? ' />' : '>'}`;
   } else open = raw(node.openRaw);
@@ -63,7 +69,7 @@ export const camelItems = (name) => String(name).replace(/[^a-zA-Z0-9]+(.)/g, (m
 function mapLiteral(s, mapUrl) { return /\b(href|src|srcset)=/.test(s) ? mapUrlsInHtml(s, mapUrl) : s; }
 
 // ---------- JSX (React) ----------
-const JSX_ATTR = { class: 'className', for: 'htmlFor', tabindex: 'tabIndex', readonly: 'readOnly', maxlength: 'maxLength', minlength: 'minLength', colspan: 'colSpan', rowspan: 'rowSpan', srcset: 'srcSet', crossorigin: 'crossOrigin', datetime: 'dateTime', autocomplete: 'autoComplete', enctype: 'encType', 'xlink:href': 'xlinkHref', 'xml:lang': 'xmlLang', 'xml:space': 'xmlSpace', fetchpriority: 'fetchPriority', referrerpolicy: 'referrerPolicy', allowfullscreen: 'allowFullScreen', novalidate: 'noValidate', contenteditable: 'contentEditable', spellcheck: 'spellCheck', accesskey: 'accessKey', inputmode: 'inputMode', enterkeyhint: 'enterKeyHint', 'accept-charset': 'acceptCharset', 'http-equiv': 'httpEquiv', itemprop: 'itemProp', itemscope: 'itemScope', itemtype: 'itemType' };
+const JSX_ATTR = { playsinline: 'playsInline', autoplay: 'autoPlay', autofocus: 'autoFocus', nomodule: 'noModule', formnovalidate: 'formNoValidate', formaction: 'formAction', formmethod: 'formMethod', srclang: 'srcLang', hreflang: 'hrefLang', usemap: 'useMap', charset: 'charSet', controlslist: 'controlsList', disablepictureinpicture: 'disablePictureInPicture', popovertarget: 'popoverTarget', popovertargetaction: 'popoverTargetAction', class: 'className', for: 'htmlFor', tabindex: 'tabIndex', readonly: 'readOnly', maxlength: 'maxLength', minlength: 'minLength', colspan: 'colSpan', rowspan: 'rowSpan', srcset: 'srcSet', crossorigin: 'crossOrigin', datetime: 'dateTime', autocomplete: 'autoComplete', enctype: 'encType', 'xlink:href': 'xlinkHref', 'xml:lang': 'xmlLang', 'xml:space': 'xmlSpace', fetchpriority: 'fetchPriority', referrerpolicy: 'referrerPolicy', allowfullscreen: 'allowFullScreen', novalidate: 'noValidate', contenteditable: 'contentEditable', spellcheck: 'spellCheck', accesskey: 'accessKey', inputmode: 'inputMode', enterkeyhint: 'enterKeyHint', 'accept-charset': 'acceptCharset', 'http-equiv': 'httpEquiv', itemprop: 'itemProp', itemscope: 'itemScope', itemtype: 'itemType' };
 export function jsxAttrName(a) {
   const n = a.name;
   if (JSX_ATTR[n]) return JSX_ATTR[n];
@@ -79,9 +85,14 @@ export function styleObject(css) {
     const key = prop.startsWith('--') ? JSON.stringify(prop) : prop.replace(/^-ms-/, 'ms-').replace(/-([a-z])/g, (m, c) => c.toUpperCase());
     out.push(`${key}: ${JSON.stringify(val)}`);
   }
-  return `{{ ${out.join(', ')} }}`;
+  // custom properties are not in React.CSSProperties: cast, or tsc --noEmit fails with ts(2353)
+  return out.some((d) => d.startsWith('"--')) ? `{{ ${out.join(', ')} } as React.CSSProperties}` : `{{ ${out.join(', ')} }}`;
 }
+// attributes React types as number (tabIndex, rows …): a literal "5" must become {5} for tsc
+const JSX_NUMERIC = new Set(['tabIndex', 'rows', 'cols', 'colSpan', 'rowSpan', 'span', 'size', 'maxLength', 'minLength', 'start', 'high', 'low', 'optimum']);
 const jsxText = (s) => s.replace(/[{}]/g, (c) => `{'${c}'}`);
+const SVG_TAGS = Object.fromEntries(['altGlyph', 'altGlyphDef', 'altGlyphItem', 'animateColor', 'animateMotion', 'animateTransform', 'clipPath', 'feBlend', 'feColorMatrix', 'feComponentTransfer', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap', 'feDistantLight', 'feDropShadow', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile', 'feTurbulence', 'foreignObject', 'glyphRef', 'linearGradient', 'radialGradient', 'textPath'].map((t) => [t.toLowerCase(), t]));
+export const jsxTag = (tag) => SVG_TAGS[tag] || tag;
 export function renderJsx(node, ctx = {}) {
   const { scope = 'p', mapUrl = (v) => v } = ctx;
   if (node.type === 'text') return jsxText(node.raw);
@@ -90,24 +101,27 @@ export function renderJsx(node, ctx = {}) {
   const parts = [];
   const seen = new Set();
   for (const a of node.attrs) {
+    if (seen.has(a.name)) continue; // duplicate attribute in the source: browsers keep the first one, JSX refuses both (ts17001)
     seen.add(a.name);
     const nm = jsxAttrName(a);
-    if (node.kkAttrs && a.name in node.kkAttrs) { parts.push(a.name === 'style' ? `style={kkStyle(${scope}.${node.kkAttrs[a.name]})}` : `${nm}={${scope}.${node.kkAttrs[a.name]} ?? undefined}`); continue; }
+    if (node.kkAttrs && a.name in node.kkAttrs) { parts.push(a.name === 'style' ? `style={kkStyle(${scope}.${node.kkAttrs[a.name]})}` : (JSX_NUMERIC.has(nm) ? `${nm}={(${scope}.${node.kkAttrs[a.name]} ?? undefined) as any}` : `${nm}={${scope}.${node.kkAttrs[a.name]} ?? undefined}`)); continue; }
     if (!a.hasValue) { parts.push(nm); continue; }
     if (a.name === 'style') { parts.push(`style=${styleObject(a.value)}`); continue; }
     const v = ['href', 'src', 'srcset', 'poster', 'action'].includes(a.name) ? mapUrl(a.value, a.name) : a.value;
+    if (JSX_NUMERIC.has(nm) && /^-?\d+(\.\d+)?$/.test(String(v).trim())) { parts.push(`${nm}={${String(v).trim()}}`); continue; }
     parts.push(/["\\&{}]/.test(v) || /\n/.test(v) ? `${nm}={${JSON.stringify(v)}}` : `${nm}="${v}"`);
   }
   if (node.kkAttrs) for (const [n, k] of Object.entries(node.kkAttrs)) if (!seen.has(n)) parts.push(n === 'style' ? `style={kkStyle(${scope}.${k})}` : `${jsxAttrName({ name: n })}={${scope}.${k} ?? undefined}`);
   if (node.kkInner?.kind === 'rich') parts.push(`dangerouslySetInnerHTML={{ __html: ${scope}.${node.kkInner.key} }}`);
   if (ctx.keyAttr) parts.unshift(`key={${ctx.keyAttr}}`);
-  const open = `<${node.tag}${parts.length ? ' ' + parts.join(' ') : ''}`;
+  const tag = jsxTag(node.tag);
+  const open = `<${tag}${parts.length ? ' ' + parts.join(' ') : ''}`;
   if (VOID.has(node.tag) || node.kkInner?.kind === 'rich' || (node.selfClosing && !node.children.length)) return open + ' />';
   let body;
   if (node.kkInner) body = `{${scope}.${node.kkInner.key}}`;
   else if (node.kkEach) { const c = node.kkEach; body = `{${camelItems(c.collection)}.map((item) => (\n${renderJsx(c.item, { ...ctx, scope: 'item', keyAttr: 'item.id' })}\n))}`; }
   else body = node.children.map((c) => renderJsx(c, { ...ctx, keyAttr: undefined })).join('');
-  return `${open}>${body}</${node.tag}>`;
+  return `${open}>${body}</${tag}>`;
 }
 
 /** Runtime helper for style values that are props (inserted into TSX components that need it). */

@@ -15,7 +15,7 @@ import {
 } from './a11y.js';
 import { mobileScan } from './mobile-probe.js';
 import { perfPass, serveLocal, mobileFindings, mobileSection, imageBytes } from './mobile.js';
-import { buildCounters, tokenDrift, score, summarize, loadConfig, probeConfig, textFindings } from './rules.js';
+import { buildCounters, tokenDrift, score, summarize, loadConfig, probeConfig, textFindings, slotFindings } from './rules.js';
 import { loadPalette } from './tokens.js';
 import { oklchOf } from './color.js';
 
@@ -98,7 +98,7 @@ async function checkPage({ url, html, file, fileRoot, tokens, viewports = [390, 
   const fontCdn = new Set();
   const jsErrors = new Set();
   const hard = [];
-  let slop = null, usage = null, fingerprint = null;
+  let slop = null, usage = null, fingerprint = null, renderedHtml = '';
   const stats = {};
   const shotFiles = [];
   const axeFile = axe ? axePath() : null;
@@ -250,7 +250,7 @@ async function checkPage({ url, html, file, fileRoot, tokens, viewports = [390, 
             await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
           } catch (e) { mobileStats.scanError = String(e.message || e).slice(0, 200); }
         }
-        if (last) { slop = res.slop; usage = res.usage; fingerprint = res.fingerprint; }
+        if (last) { slop = res.slop; usage = res.usage; fingerprint = res.fingerprint; renderedHtml = await page.content().catch(() => ''); }
         if (shots) {
           const name = (mode === 'html' ? 'page' : basename(target).replace(/\.[a-z]+$/i, '').replace(/[^\w.-]+/g, '-') || 'page') + '-' + vw + '.jpg';
           const p = join(shots, name);
@@ -340,6 +340,7 @@ async function checkPage({ url, html, file, fileRoot, tokens, viewports = [390, 
   if (axe) stats.axe = axeStats.ran ? { ran: true, violations: axeStats.violations, viewports: axeStats.viewports, incomplete: axeStats.incomplete } : { ran: false, error: axeStats.error || 'not run' };
   if (slop) slop.jsErrors = [...jsErrors];
   for (const f of textFindings(slop, cfg)) hard.push({ ...f, viewport: viewports[viewports.length - 1] });
+  for (const f of slotFindings(renderedHtml)) hard.push({ ...f, viewport: viewports[viewports.length - 1] });
   for (const h of fontCdn) hard.push({ rule: 'font-cdn', severity: 'error', detail: `Font loaded from a third-party CDN: ${h} (blocked by the check). Self-host the files; in the EU this sends the visitor's IP address without consent (see legal.md).`, value: h });
   const thirdParty = [...blocked].filter((h) => h !== 'file:' && !fontCdn.has(h) && !/^[a-z-]+:$/.test(h));
   for (const h of thirdParty.slice(0, 8)) hard.push({ rule: 'third-party', severity: 'warn', detail: `Request to a third-party host: ${h} (blocked by the check). Only load what the brief needs, with consent where required.`, value: h });

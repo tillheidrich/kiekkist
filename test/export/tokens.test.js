@@ -70,3 +70,23 @@ test('clamp() is flattened to breakpoint sizes for Elementor', () => {
   assert.equal(lengthAt('clamp(3.25rem, 2rem + 6vw, 8.5rem)', 3000), 136);
   assert.equal(lengthAt('1.5rem', 1440), 24);
 });
+
+test('elementor kit: global fonts from font-family tokens when tokens.json has no typography roles', async () => {
+  const { toElementorSettings } = await import('../../src/export/tokens/elementor.js');
+  const dtcg = { color: { ink: { $type: 'color', $value: '#111111' } }, font: { 'family-0': { $type: 'fontFamily', $value: ['Inter Variable', 'system-ui', 'sans-serif'] }, display: { $type: 'fontFamily', $value: ['Fraunces', 'Georgia', 'serif'] } }, size: { mono: { $type: 'dimension', $value: '"IBM Plex Mono", ui-monospace, monospace' } } };
+  const s = toElementorSettings(dtcg).settings;
+  assert.deepEqual(s.system_typography.map((t) => t._id), ['primary', 'secondary', 'text', 'accent']);
+  assert.equal(s.system_typography[0].typography_font_family, 'Fraunces');
+  assert.equal(s.system_typography[2].typography_font_family, 'Inter Variable');
+  assert.ok(s.custom_typography.some((t) => t.typography_font_family === 'IBM Plex Mono'), 'mis-typed font stack is still found');
+  const two = toElementorSettings({ font: { 'family-0': { $type: 'fontFamily', $value: ['Sora', 'sans-serif'] }, 'family-1': { $type: 'fontFamily', $value: ['JetBrains Mono', 'monospace'] } } }).settings;
+  assert.equal(two.system_typography[2].typography_font_family, 'Sora', 'a mono family is never the body font');
+});
+
+test('elementor kit: system colours filled from unknown token names (darkest = primary, most chromatic = accent)', async () => {
+  const { toElementorSettings } = await import('../../src/export/tokens/elementor.js');
+  const s = toElementorSettings({ color: { linen: { $type: 'color', $value: '#f4efe6' }, walnut: { $type: 'color', $value: '#2a1d14' }, madder: { $type: 'color', $value: '#b0362a' } } }).settings;
+  const by = Object.fromEntries(s.system_colors.map((c) => [c._id, c.color]));
+  assert.equal(by.primary, '#2a1d14');
+  assert.equal(by.accent, '#b0362a');
+});

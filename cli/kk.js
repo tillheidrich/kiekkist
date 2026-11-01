@@ -14,7 +14,7 @@ const URL_ = (process.env.KK_URL || 'http://localhost:4410').replace(/\/$/, '');
 const TOKEN = process.env.KK_TOKEN || '';
 const [cmd, ...rest] = process.argv.slice(2);
 const flags = {}; const args = [];
-const BOOL = new Set(['free', 'paid', 'force', 'json', 'build', 'no-check', 'processors', 'recheck', 'form-test', 'tailwind', 'no-perf', 'no-a11y', 'list', 'perf', 'no-mobile', 'frames', 'no-sweep', 'no-motion', 'no-refs', 'has-spec', 'full']);
+const BOOL = new Set(['free', 'paid', 'force', 'json', 'build', 'no-check', 'processors', 'recheck', 'form-test', 'tailwind', 'no-perf', 'no-a11y', 'list', 'perf', 'no-mobile', 'frames', 'no-sweep', 'no-motion', 'no-refs', 'has-spec', 'full', 'keep']);
 for (let i = 0; i < rest.length; i++) { const a = rest[i]; if (a.startsWith('--')) { const k = a.slice(2); const v = !BOOL.has(k) && rest[i + 1] && !rest[i + 1].startsWith('--') ? rest[++i] : true; flags[k] = v; } else args.push(a); }
 const list = (v) => (v ? String(v).split(',').map((s) => s.trim()).filter(Boolean) : undefined);
 
@@ -56,6 +56,10 @@ Local, no server needed:
             [--cms none|sveltia|decap|pages|keystatic|directus|storyblok] [--site-url https://…] [--lang de] [--name "Client"]
             [--force] [--build] [--no-check] [--json]                            exit 0 ok, 1 post-export check failed, 2 bad input
   kk export --list                                                               targets (ready and planned)
+  kk verify-exports <theme-dir>|--theme slug [--targets astro,react,wordpress,elementor,html] [--keep] [--json]
+            release gate: exports and runs astro check + build, tsc --noEmit + vite build, php -l + Theme Check
+            (WordPress Playground), Elementor kit shape, html post-export check   exit 0 all passed, 1 a gate failed, 2 bad input
+            offline: KK_VERIFY_NODE_MODULES=<dir with astro/ and react/ tool installs>, KK_THEME_CHECK_DIR, KK_PLAYGROUND_CLI
   kk tokens <theme-dir>|--theme slug [--format css|theme.json|tailwind|elementor] token file for an existing project
   kk launch <url|export-dir> [--sheet file] [--pages 20] [--only dns,tls,privacy,legal,search,perf,forms,a11y,ops,handover]
             [--form <endpoint> --form-test] [--processors] [--recheck] [--json]  exit 0 no automatic errors, 1 errors, 2 unreachable
@@ -152,6 +156,18 @@ const run = {
       for (const g of r.check.regressions) console.log('  REGRESSION ' + g);
       if (r.check.baseline_rules.length) console.log('  already in the theme: ' + r.check.baseline_rules.join(', '));
     }
+  },
+  async 'verify-exports'() {
+    const { verifyExports } = await import('../src/export/verify.js');
+    const themeDir = themeDirOf(flags.theme || args[0]);
+    let r;
+    try { r = await verifyExports({ themeDir, targets: list(flags.targets), keep: !!flags.keep, work: flags.work }); }
+    catch (e) { console.error(e.message); process.exit(e.code === 'BAD_INPUT' ? 2 : 1); }
+    process.exitCode = r.ok ? 0 : 1;
+    if (flags.json) return out(r);
+    for (const t of r.results) { console.log(`${t.ok ? 'PASS' : 'FAIL'}  ${t.target}`); for (const g of t.gates) console.log(`  ${g.ok ? 'ok  ' : 'FAIL'} ${g.gate}: ${String(g.detail).split('\n').join('\n        ')}`); }
+    console.log(r.ok ? `all gates passed for ${r.slug || themeDir}` : `gate failed for ${r.slug || themeDir}`);
+    if (r.work) console.log(`work folder kept: ${r.work}`);
   },
   async tokens() { const { exportTokens } = await import('../src/export/index.js'); process.stdout.write(exportTokens(themeDirOf(flags.theme || args[0]), flags.format || 'css')); },
   async launch() {

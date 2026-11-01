@@ -15,7 +15,7 @@ import { toTailwindTheme } from './tokens/tailwind.js';
 import { toElementorSettings } from './tokens/elementor.js';
 
 export { listTargets };
-export const EXPORT_VERSION = '2026-10-30.1';
+export const EXPORT_VERSION = '2026-11-01.1';
 
 /** Token file for agents working inside an existing project (kk_export_tokens). */
 export function exportTokens(themeDir, format = 'css') {
@@ -108,6 +108,21 @@ function exportMd({ ir, target, adapter, notes, validation, check, out, opts }) 
   return L.join('\n');
 }
 
+const INSTALL_FIRST = {
+  wordpress: { de: (s) => `Beta: Menü und Texte werden im Website-Editor gepflegt. Design → Themes → Theme hinzufügen → Theme hochladen: \`${s}.zip\` wählen, installieren, aktivieren. Für jede Unterseite eine Seite mit demselben Kurznamen anlegen (z. B. \`kontakt\`), dann greift die passende Vorlage.`, en: (s) => `Beta: menu and texts are edited in the Site Editor. Appearance → Themes → Add New → Upload Theme: choose \`${s}.zip\`, install, activate. Create one page per inner page with the same slug (e.g. \`contact\`) so its template applies.` },
+  elementor: { de: (s) => `Zuerst das Theme Hello Elementor und das Plugin Elementor installieren. Dann \`${s}-child.zip\` unter Design → Themes → Theme hochladen installieren und aktivieren, danach \`${s}-kit.zip\` unter Elementor → Werkzeuge → Import/Export importieren.`, en: (s) => `Install the Hello Elementor theme and the Elementor plugin first. Then upload and activate \`${s}-child.zip\` under Appearance → Themes → Upload Theme, and import \`${s}-kit.zip\` under Elementor → Tools → Import/Export.` },
+  astro: { de: () => 'Im Ordner `npm install`, dann `npm run dev` (Vorschau) oder `npm run build` (fertige Seite in `dist/`). Node.js 22.12 oder neuer.', en: () => 'In this folder run `npm install`, then `npm run dev` (preview) or `npm run build` (finished site in `dist/`). Node.js 22.12 or newer.' },
+  html: { de: () => 'Den Ordnerinhalt auf den Webspace laden (FTP oder Datei-Manager), `index.html` ist die Startseite. `.htaccess` gilt für Apache, `_headers` für Netlify/Cloudflare Pages.', en: () => 'Upload the folder contents to your web space (FTP or file manager); `index.html` is the home page. `.htaccess` is for Apache, `_headers` for Netlify/Cloudflare Pages.' },
+  react: { de: () => '`styles/`, `components/` und `public/assets/` in dein Projekt kopieren und die CSS-Reihenfolge aus `AGENTS.md` übernehmen. Kein Framework-Gerüst: Next.js, Vite, TanStack Start oder v0 bringst du mit.', en: () => 'Copy `styles/`, `components/` and `public/assets/` into your project and use the CSS order from `AGENTS.md`. No framework scaffold: bring Next.js, Vite, TanStack Start or v0.' },
+};
+/** Short INSTALL.md (DE + EN) for an export folder, pointing to the step-by-step guides. */
+export function installMd(target, ir) {
+  const first = INSTALL_FIRST[target];
+  if (!first) return null;
+  const s = ir.site.slug;
+  return `# ${ir.site.name}: ${target}\n\n## Deutsch\n\n${first.de(s)}\n\nSchritt für Schritt, mit Fehlerbehebung: https://kiekkist.de/de/anleitung/${target}/\n\nHinweise zu diesem Export stehen in \`EXPORT.md\`.\n\n## English\n\n${first.en(s)}\n\nStep by step, with troubleshooting: https://kiekkist.de/install/${target}/\n\nNotes on this export are in \`EXPORT.md\`.\n`;
+}
+
 /**
  * @param {object} o { themeDir, target, out, siteUrl, lang, name, cms, tailwind, force, check=true, build=false }
  * @returns {Promise<{ ok, code, out_dir, files, notes, validation, check }>}
@@ -146,6 +161,8 @@ export async function exportTheme(o) {
     } else notes.push('post-export check skipped: this target has no static preview');
   }
   writeFileSync(join(out, 'EXPORT.md'), exportMd({ ir, target: o.target, adapter, notes, validation, check, out, opts: o }));
+  const install = installMd(o.target, ir);
+  if (install && !res.files.has('INSTALL.md')) writeFileSync(join(out, 'INSTALL.md'), install);
   const ok = !check || check.ok;
   return { ok, code: ok && (!build || build.code === 0) ? 0 : 1, out_dir: out, files: count + 1, notes, validation, check, build: build ? { code: build.code } : null };
 }

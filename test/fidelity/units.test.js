@@ -33,10 +33,10 @@ test('breakpoints: discrete changes between neighbouring widths', () => {
 test('workflow: three modes; checklist and bans are written in the skill reference', () => {
   for (const m of ['new', 'polish', 'redesign']) assert.ok(getWorkflow(m).steps.length >= 5, m);
   assert.throws(() => getWorkflow('fast'));
-  const md = readFileSync(join(ROOT, 'skill/kiekkist-agency/references/fidelity.md'), 'utf8');
+  const md = readFileSync(join(ROOT, 'skill/web-design-studio/references/fidelity.md'), 'utf8');
   for (const c of CHECKLIST) assert.ok(md.includes(c.q.split(':')[0]), 'checklist item missing in fidelity.md: ' + c.id);
   for (const b of BANS) assert.ok(md.toLowerCase().includes(b.split(/[ (.]/).slice(0, 2).join(' ').toLowerCase()), 'ban missing in fidelity.md: ' + b);
-  const skill = readFileSync(join(ROOT, 'skill/kiekkist-agency/SKILL.md'), 'utf8');
+  const skill = readFileSync(join(ROOT, 'skill/web-design-studio/SKILL.md'), 'utf8');
   assert.match(skill, /Reference to spec/); assert.match(skill, /Bestehende Seite verbessern/);
 });
 

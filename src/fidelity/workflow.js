@@ -1,5 +1,5 @@
 // The visual-fidelity workflow as data: served by get_workflow / kk_get_workflow and written into FIDELITY.md.
-// Source of truth for the wording is skill/kiekkist-agency/references/fidelity.md; test/fidelity/workflow.test.js
+// Source of truth for the wording is skill/web-design-studio/references/fidelity.md; test/fidelity/workflow.test.js
 // keeps both in step. The gallery server (kiekkist-site server/workflow.js) carries a copy of this file.
 
 export const WORKFLOW_VERSION = '2026-10-31';

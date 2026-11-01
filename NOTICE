@@ -2,7 +2,7 @@ Kiekkist
 Copyright (c) 2026 Till Heidrich (Heidrich Digital)
 
 The tool is licensed under the GNU Affero General Public License v3.0 only (LICENSE).
-The skill in skill/kiekkist-agency is licensed under the MIT License (skill/kiekkist-agency/LICENSE).
+The skill in skill/web-design-studio is licensed under the MIT License (skill/web-design-studio/LICENSE).
 The knowledge packs in knowledge/packs carry the licence declared in each file (knowledge/README.md).
 The example themes in examples/themes are licensed as described in examples/LICENSE. Their photos
 are (c) Till Heidrich and licensed only for use within these examples; not for other use.
@@ -16,4 +16,4 @@ Third-party components installed as dependencies (not included; see package.json
 - Playwright (Apache-2.0), Microsoft; with Chromium (BSD-style licences).
 - Hono, @hono/node-server, @modelcontextprotocol/sdk, better-sqlite3, culori, jszip, zod (MIT, or MIT/GPL-3.0 dual for jszip).
 
-Ideas credited in skill/kiekkist-agency/references/credits.md; no text was copied.
+Ideas credited in skill/web-design-studio/references/credits.md; no text was copied.

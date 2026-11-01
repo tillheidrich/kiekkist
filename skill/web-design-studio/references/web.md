@@ -73,3 +73,20 @@ One orchestrated moment beats scattered effects. Motion that answers a user's ac
 - No third-party requests the privacy page does not name.
 
 Each page passes the check without hard failures, looks intentional at 390, 768 and 1440, and contains no content the client has not confirmed.
+
+## Conversion pages (landing pages, one-pagers, funnels, pop-ups, calls to action)
+
+A conversion page has one job. Design it so the visitor always knows the next step and never feels tricked.
+
+- **One main action per screen.** The first screen states the offer in one sentence and shows the main action. Secondary actions are text links, not a second equal button.
+- **Funnels ask before they collect.** Questions about the need come first, contact details last. One question per step on mobile; group related questions on desktop. Show progress as text ("Step 2 of 4"). Never jump to the next step automatically on selection (WCAG 3.2.2); the visitor presses Next.
+- **Summary before sending.** The last step shows everything entered, with links back to change each answer.
+- **One POST at the end** to the client's own endpoint (their form handler, a self-hosted form backend or mail). No partial submissions while the visitor is still answering.
+- **Works without JavaScript.** Without JS the funnel is one long form with fieldsets in the same order; with JS it becomes steps. Errors are shown at the field (`aria-describedby`) and summarised at the top on submit.
+- **No tracking by default.** No cookies, no storage on the device (not even for step state; keep it in the form), no pixels, no third-party scripts. If the client adds analytics later, the privacy page and consent come with it.
+- **No pressure tricks.** No countdowns, timers, "only 3 left", streaked prices or fake activity notices. Real deadlines are written as plain dates.
+- **Pop-ups:** never on load, never full-screen on mobile, at most once per visit, triggered by a clear action or a late, non-blocking moment (end of an article). Built as `<dialog>` opened with `showModal()`, focus moves in and returns on close, closable with Esc and a visible close button of at least 44 × 44 px. The page behind stays fully usable without ever seeing the pop-up.
+- **Thank-you page** says what happens next and when, and offers one useful link (not a second sales pitch).
+- **Legal:** consent text for the form is short and links to the privacy page; never a pre-ticked box; newsletter sign-up is separate from the enquiry and never a condition.
+
+Add to the finish gate for conversion pages: the funnel completed by keyboard only, with and without JavaScript, at 390 px, and with 200 % text size.

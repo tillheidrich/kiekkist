@@ -140,7 +140,7 @@ app.get('/health', (c) => c.json({ ok: true, queue: queueLength() }));
 
 // ---------- static
 app.use('/static/*', serveStatic({ root: relative(process.cwd(), join(ROOT, 'public')) || '.', rewriteRequestPath: (p) => p.replace(/^\/static/, '') }));
-app.use('/skill/*', serveStatic({ root: relative(process.cwd(), join(ROOT, 'skill', 'kiekkist-agency')) || '.', rewriteRequestPath: (p) => p.replace(/^\/skill/, '') }));
+app.use('/skill/*', serveStatic({ root: relative(process.cwd(), join(ROOT, 'skill', 'web-design-studio')) || '.', rewriteRequestPath: (p) => p.replace(/^\/skill/, '') }));
 // stored files via capability URLs (/v/<kind>/<id>/<mac>/<path>); stored HTML runs sandboxed in an opaque origin
 const MIME = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.avif': 'image/avif', '.gif': 'image/gif', '.woff2': 'font/woff2', '.woff': 'font/woff', '.ttf': 'font/ttf', '.otf': 'font/otf', '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8', '.mp4': 'video/mp4', '.webm': 'video/webm' };
 app.get('/v/:kind/:id/:mac/*', (c) => {

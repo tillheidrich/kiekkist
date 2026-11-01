@@ -5,7 +5,7 @@ import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { DATA_DIR } from './db.js';
 import { fileURLToPath } from 'node:url';
-const SKILL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'skill', 'kiekkist-agency');
+const SKILL_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'skill', 'web-design-studio');
 
 const INSTRUCTIONS = `Kiekkist is a design studio memory for agents. Before ANY design work call kk_profile (the owner's taste) and kk_list_themes.
 Work like an agency: research real references (kk_list_sources, then kk_add_ref with a one-line mechanism each), cluster them on a board (kk_create_board, kk_add_to_board),
@@ -71,7 +71,7 @@ export function buildMcpServer({ baseUrl = '', local = false } = {}) {
     safe(async (a) => { const r = await S.runCompare(a); return { ok: r.ok, summary: r.summary, ignored: r.ignored, pairs: r.pairs }; }));
   server.registerTool('kk_knowledge', { description: 'Design knowledge as versioned data packs (topologies, concept forms, slop tells, styles, palettes, font pairings, motion values, UX rules …). Call without pack to list packs and versions; then query a pack by text, tag, industry or evidence class, or fetch one item by id. Prefer this over remembered defaults: packs are updated centrally.', inputSchema: { pack: z.string().optional(), query: z.string().optional(), tag: z.string().optional(), industry: z.string().optional(), evidence: z.string().optional(), id: z.string().optional(), limit: z.number().int().max(200).optional() } },
     safe(async ({ query: q, ...a }) => (await import('./knowledge.js')).query({ ...a, q })));
-  server.registerTool('kk_skill_file', { description: 'Read a file of the kiekkist-agency skill (references/*.md, templates/*). Use when the skill is installed without its reference folder. Call without name to list files.', inputSchema: { name: z.string().optional() } },
+  server.registerTool('kk_skill_file', { description: 'Read a file of the web-design-studio skill (references/*.md, templates/*). Use when the skill is installed without its reference folder. Call without name to list files.', inputSchema: { name: z.string().optional() } },
     safe(({ name }) => {
       const list = ['SKILL.md', ...['references', 'templates', 'scripts'].flatMap((d) => existsSync(join(SKILL_DIR, d)) ? readdirSync(join(SKILL_DIR, d)).map((f) => `${d}/${f}`) : [])];
       if (!name) return list;

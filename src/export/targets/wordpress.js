@@ -6,8 +6,41 @@ import JSZip from 'jszip';
 import { parse, elements, attr, classes, inner, serialize, textContent, cleanText } from '../html.js';
 import { renderHtml } from '../template.js';
 import { INLINE, isTextBlock } from '../ir.js';
-import { urlMapper, mapIR, readBin, LEGAL_TEXT, pageTitle, legalRoutes, headAssets } from './common.js';
+import { urlMapper, mapIR, readBin, LEGAL_TEXT, pageTitle, legalRoutes, headAssets, relocateCssUrls } from './common.js';
 import { toThemeJson } from '../tokens/theme-json.js';
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import { serveDir } from '../serve.js';
+
+// SPDX id -> licence URI (Theme Check requires "License URI" next to "License" in style.css)
+const LICENSE_URIS = [
+  [/GPL-2\.0|GPLv2|GPL v2|GNU General Public License v2/i, 'https://www.gnu.org/licenses/gpl-2.0.html'],
+  [/GPL-3\.0|GPLv3|GPL v3|GNU General Public License v3/i, 'https://www.gnu.org/licenses/gpl-3.0.html'],
+  [/^\s*MIT\b/i, 'https://opensource.org/license/mit'],
+];
+/** License URI for style.css: explicit meta.licenseUri, a known SPDX licence, else the bundled LICENSE.md. */
+export function licenseUri(license, meta = {}, hasLicenseFile = false) {
+  if (meta.licenseUri || meta.license_uri) return meta.licenseUri || meta.license_uri;
+  if (hasLicenseFile && /[;,(]/.test(String(license))) return 'LICENSE.md'; // compound licence: the bundled file explains all parts
+  for (const [re, uri] of LICENSE_URIS) if (re.test(license)) return uri;
+  return hasLicenseFile ? 'LICENSE.md' : 'https://www.gnu.org/licenses/gpl-2.0.html';
+}
+/** True when the licence string is one WordPress.org accepts for a whole theme (GPL or GPL-compatible). */
+export const gplCompatible = (license) => /\bGPL|GNU General Public|^\s*MIT\b|^\s*(Apache-2\.0|BSD|ISC)\b/i.test(String(license || '')) && !/design licence|paid|proprietary|all rights reserved/i.test(String(license || ''));
+
+/** screenshot.png 1200x900 (what Theme Check and Appearance > Themes expect) from the theme's own index page. */
+export async function themeScreenshot(themeDir) {
+  const { chromium } = await import('playwright');
+  const srv = await serveDir(themeDir);
+  const browser = await chromium.launch();
+  try {
+    const page = await browser.newPage({ viewport: { width: 1200, height: 900 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
+    await page.goto(srv.url + '/pages/index.html', { waitUntil: 'load', timeout: 60000 });
+    await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
+    await page.waitForTimeout(500);
+    return await page.screenshot({ type: 'png', clip: { x: 0, y: 0, width: 1200, height: 900 } });
+  } finally { await browser.close(); await srv.close(); }
+}
 
 export const meta = { id: 'wordpress', tier: 1, status: 'first version', label: 'WordPress block theme (theme.json v3, patterns)', versions: 'WordPress >= 6.6 (tested schema: theme.json v3), PHP >= 7.4', editable: 'Texts, images, menus and pages in the Site Editor; colours and type only from the locked palette and scale; section layouts are locked (contentOnly).' };
 
@@ -100,7 +133,8 @@ export async function exportTarget(ir, opts = {}) {
   const base = urlMapper(ir, 'routes');
   const routes = { ...legalRoutes(ir, '/impressum/', '/datenschutz/'), home: '/' };
   const withPrefix = (prefix) => (v, name) => { const m = base(v, name); return name === 'srcset' ? m.split(', ').map((s) => s.replace(/^\/assets\//, prefix + 'assets/')).join(', ') : String(m).replace(/^\/assets\//, prefix + 'assets/'); };
-  const phpAsset = "<?php echo esc_url( get_theme_file_uri( '/' ) ); ?>";
+  // get_theme_file_uri( '/' ) has no trailing slash ("…/themes/slug"), so "assets/…" must not be glued onto it directly
+  const phpAsset = "<?php echo esc_url( trailingslashit( get_theme_file_uri() ) ); ?>";
   const T = (rel) => `${slug}/${rel}`;
   const stats = { blocks: 0, html: 0, htmlTags: new Map() };
   const renderSection = (sec, mapUrl) => { const data = mapIR(ir, mapUrl, routes); return renderHtml(sec.node, data.sections[sec.name], { collections: data.collections, mapUrl: (v) => v }); };
@@ -146,7 +180,7 @@ export async function exportTarget(ir, opts = {}) {
   // the theme's own tokens.css stays the base (semantic layer, dark/light media queries); the bridge maps token names onto the presets
   files.set(T('assets/css/tokens.css'), ir.tokens.css);
   for (const a of ir.assets) {
-    if (a.path === 'assets/site.css') files.set(T('assets/css/site.css'), String(readBin(opts.themeDir, a.path)).replace(/@import\s+url\(["']?fonts\/fonts\.css["']?\);?\s*/g, '/* fonts: registered in theme.json (fontFace) */\n'));
+    if (a.path === 'assets/site.css') files.set(T('assets/css/site.css'), relocateCssUrls(String(readBin(opts.themeDir, a.path)).replace(/@import\s+url\(["']?(\.\/)?fonts\/fonts\.css["']?\);?\s*/g, '/* fonts: registered in theme.json (fontFace) */\n')));
     else if (a.path === 'assets/fonts/fonts.css') continue;
     else files.set(T(a.path), readBin(opts.themeDir, a.path));
   }
@@ -164,7 +198,14 @@ export async function exportTarget(ir, opts = {}) {
   });
   scripts.forEach((x, i) => enq.push(`\twp_enqueue_script( '${slug}-js-${i}', get_theme_file_uri( '${x.path}' ), array(), $v, array( 'strategy' => '${x.async ? 'async' : 'defer'}', 'in_footer' => false ) );`));
   const editorCss = order.map((h) => `'${wpPath(h)}'`).concat(["'assets/css/tokens-bridge.css'"]);
-  files.set(T('style.css'), `/*\nTheme Name: ${ir.site.name}\nDescription: ${ir.site.description.replace(/\*\//g, '')}\nVersion: 0.1.0\nRequires at least: 6.6\nTested up to: 7.0\nRequires PHP: 7.4\nText Domain: ${slug}\nLicense: ${ir.meta.license || 'GPL-2.0-or-later'}\n${opts.author || ir.meta.author ? `Author: ${opts.author || ir.meta.author}\n` : ''}*/\n`);
+  const license = ir.meta.license || 'GPL-2.0-or-later';
+  const hasLicenseFile = !!opts.themeDir && existsSync(join(opts.themeDir, 'LICENSE.md'));
+  if (hasLicenseFile) files.set(T('LICENSE.md'), readBin(opts.themeDir, 'LICENSE.md'));
+  const licUri = licenseUri(license, ir.meta, hasLicenseFile);
+  const author = opts.author || ir.meta.author || '';
+  const year = new Date().getFullYear();
+  files.set(T('style.css'), `/*\nTheme Name: ${ir.site.name}\nDescription: ${ir.site.description.replace(/\*\//g, '')}\nVersion: 0.1.0\nRequires at least: 6.6\nTested up to: 7.1\nRequires PHP: 7.4\nText Domain: ${slug}\nLicense: ${license}\nLicense URI: ${licUri}\n${author ? `Author: ${author}\n` : ''}*/\n`);
+  if (!gplCompatible(license)) notes.push(`licence: style.css says "${license}". WordPress.org only lists themes whose code is GPL-compatible; outside the directory the theme works the same, but PHP, block markup and theme.json are usually licensed GPL-2.0-or-later (split licence: design assets under the design licence)`);
   files.set(T('functions.php'), `<?php
 /**
  * ${ir.site.name}: block theme functions. Generated by kk export. No external requests.
@@ -203,7 +244,13 @@ add_filter( 'wp_resource_hints', function ( $urls, $relation ) {
 // no Gravatar requests
 add_filter( 'option_show_avatars', '__return_false' );
 `);
-  files.set(T('readme.txt'), `=== ${ir.site.name} ===\nRequires at least: 6.6\nRequires PHP: 7.4\n\nBlock theme generated from a design system. Patterns: ${Object.values(ir.sections).filter((s) => s.kind === 'section').map((s) => s.name).join(', ')}.\nFonts are bundled (see assets/fonts/LICENSE-*.txt). No external requests.\n`);
+  files.set(T('readme.txt'), `=== ${ir.site.name} ===\nRequires at least: 6.6\nTested up to: 7.1\nRequires PHP: 7.4\nLicense: ${license}\nLicense URI: ${licUri}\n\nBlock theme generated from a design system. Patterns: ${Object.values(ir.sections).filter((s) => s.kind === 'section').map((s) => s.name).join(', ')}.\nFonts are bundled (see assets/fonts/LICENSE-*.txt). No external requests.\n\n== Copyright ==\n\n${ir.site.name}, Copyright ${year}${author ? ' ' + author : ''}.\nLicence: ${license}${hasLicenseFile ? ' (details in LICENSE.md)' : ''}.\nBundled fonts: see assets/fonts/LICENSE-*.txt.\n`);
+  // screenshot.png 1200x900 (Theme Check: required)
+  if (opts.screenshotImage?.data) files.set(T(`screenshot.${opts.screenshotImage.ext || 'png'}`), opts.screenshotImage.data); // ready image (servers without a browser)
+  else if (opts.screenshot !== false && opts.themeDir) {
+    try { files.set(T('screenshot.png'), await themeScreenshot(opts.themeDir)); }
+    catch (e) { notes.push(`screenshot.png not generated (${String(e.message || e).split('\n')[0]}): add a 1200x900 PNG, Theme Check requires it`); }
+  } else if (opts.screenshot === false) notes.push('screenshot.png skipped (--no-screenshot): add a 1200x900 PNG, Theme Check requires it');
   // ZIP + Playground blueprint
   const zip = new JSZip();
   for (const [p, c] of files) zip.file(p, c);
@@ -215,7 +262,7 @@ add_filter( 'option_show_avatars', '__return_false' );
   notes.push(`block conversion: ${stats.blocks} blocks, ${stats.html} core/html (${share} %)${stats.htmlTags.size ? ': ' + [...stats.htmlTags].map(([t, n]) => `${n}x <${t}>`).join(', ') : ''}. core/html blocks are not comfortable to edit for the client; the spec target is < 10 %.`);
   if (stats.srcsetDropped) notes.push(`${stats.srcsetDropped} image(s) lost their srcset in the image block (WordPress builds srcset only for media-library images): upload the images to the media library for responsive sizes`);
   if (stats.ariaDropped) notes.push(`${stats.ariaDropped} group(s) lost aria-labelledby/aria-label (the Group block cannot store it); headings still label the content`);
-  notes.push(`preview without a server: host ${slug}.zip and blueprint.json at public URLs, put the ZIP URL into blueprint.json and open https://playground.wordpress.net/?blueprint-url=<blueprint URL>. The post-export check is skipped for this target until a Playground or wp-env run is wired in.`);
+  notes.push(`preview without a server: host ${slug}.zip and blueprint.json at public URLs, put the ZIP URL into blueprint.json and open https://playground.wordpress.net/?blueprint-url=<blueprint URL>. kk export itself does not render WordPress; kk verify-exports <theme> --targets wordpress runs php -l and Theme Check in WordPress Playground.`);
   notes.push('first version: validate the patterns in the editor ("This block contains unexpected content" means the converter needs a fix) and compare screenshots with kk compare before handing over');
   return { files, notes, postCheck: { pages: [], sourcePages: ir.pages.map((p) => p.file) }, stats: { blocks: stats.blocks, html: stats.html, share } };
 }

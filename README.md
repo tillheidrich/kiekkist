@@ -2,7 +2,7 @@
 
 Kiekkist makes Claude and Codex design the way a small agency does: first a brief and real references, then three distinct directions built as real pages with the client's own content, then a human decision, then a checked build. It has two parts that work together or alone:
 
-- **The skill** (`skill/kiekkist-agency`, MIT) walks an agent through the process: briefing, research, moodboard, three directions, decision, design system, roll-out to web pages, slides, social graphics and app screens, measured checks and an independent critique.
+- **The skill** (`skill/web-design-studio`, MIT) walks an agent through the process: briefing, research, moodboard, three directions, decision, design system, roll-out to web pages, slides, social graphics and app screens, measured checks and an independent critique.
 - **The tool** (this repository, AGPL-3.0) is a self-hosted studio with an MCP server: reference capture with screenshots and measured tokens, boards, directions, decisions, a theme library, a taste profile built from your verdicts, a browser-based checker, exports to HTML, Astro, React, WordPress and Elementor, and launch checks.
 
 *Kiekkist* is Low German for "look-box": *kieken* means to look, *Kist* is a box.
@@ -18,8 +18,8 @@ Ask a model for a website and you get the same page every time: centred hero, th
 Pick the first option that fits where you work.
 
 1. **Remote MCP server (gallery).** Add `https://kiekkist.heidrich-digital.de/mcp-gallery` as a remote MCP connector in Claude (claude.ai: Settings, Connectors; Claude Code: `claude mcp add --transport http kiekkist-gallery https://kiekkist.heidrich-digital.de/mcp-gallery`). It searches the gallery and hands out free designs and licensed ones. It does not run your own references or checks; for that, self-host the tool (option 4).
-2. **Skill ZIP for claude.ai.** Download `dist/kiekkist-agency-skill.zip` from this repository (or rebuild it with `npm run skill:zip`) and upload it under Settings, Capabilities, Skills.
-3. **Skill folder in your repository** (Claude Code, including cloud sessions). Copy `skill/kiekkist-agency` to `.claude/skills/kiekkist-agency` in the project, or to `~/.claude/skills/` for all projects. Without a Kiekkist server the skill keeps its state in a `.kiekkist/` folder in the project.
+2. **Skill ZIP for claude.ai.** Download `dist/web-design-studio-skill.zip` from this repository (or rebuild it with `npm run skill:zip`) and upload it under Settings, Capabilities, Skills.
+3. **Skill folder in your repository** (Claude Code, including cloud sessions). Copy `skill/web-design-studio` to `.claude/skills/web-design-studio` in the project, or to `~/.claude/skills/` for all projects. Without a Kiekkist server the skill keeps its state in a `.kiekkist/` folder in the project.
 4. **Self-hosted tool, local or Docker.** Gives the agent the full MCP tool set (`kk_*`), the web UI, the checker and exports.
 
 ```bash
@@ -81,7 +81,7 @@ The CLI is `kk` (`node cli/kk.js`, or run `npm link` once in the checkout to get
 
 ## Visual fidelity and existing sites
 
-The visual reference is the basis of a design, not an abstract summary of it. The skill makes "Reference to spec" a mandatory phase: pick a reference, `kk spec` and `kk motion` it, write SPEC.md with numbers, build, then `kk fidelity` for at least two correction rounds. For existing sites ("Bestehende Seite verbessern") `kk improve` comes first, then polish (same structure) or redesign (new composition, brand and content kept), with before/after montages; URLs and SEO-relevant content never break.
+The visual reference is the basis of a design, not an abstract summary of it. The skill makes "Reference to spec" a mandatory phase: pick a reference, `kk spec` and `kk motion` it, write SPEC.md with numbers, build, then `kk fidelity` until its report says FIDELITY COMPLETE (no value outside tolerance after at least two rounds). For existing sites ("Bestehende Seite verbessern") `kk improve` comes first, then polish (same structure) or redesign (new composition, brand and content kept), with before/after montages; URLs and SEO-relevant content never break.
 
 The tools measure boxes, computed styles and timings and take screenshots into a private working folder; they never store a page's HTML, CSS or scripts. Public pages load through the egress guard; local builds are served on 127.0.0.1 and may load only from there. MCP: `kk_get_workflow`, `improve_site` (a hosted instance accepts public URLs only), `kk_search_references` and `kk_get_reference_spec` (only with `KK_REFS_FILE`), and on the local `kk mcp` server `kk_spec`, `kk_motion`, `kk_fidelity`. A reference library holds third-party screenshots: keep it private.
 
@@ -115,7 +115,7 @@ Every rule and number says how much it rests on:
 | **T** | Taste shared by several sources, not a rule (design signals only). |
 | **V** | Vendor claim or vendor case study (evidence pack only). |
 
-The evidence pack also records a status per finding: replicated, single-study, contested or myth. Thresholds are house values; change them for your own house rules and write the change down. Definitions: `skill/kiekkist-agency/references/tells.md` and `knowledge/packs/evidence.json`.
+The evidence pack also records a status per finding: replicated, single-study, contested or myth. Thresholds are house values; change them for your own house rules and write the change down. Definitions: `skill/web-design-studio/references/tells.md` and `knowledge/packs/evidence.json`.
 
 ## What is checked
 
@@ -149,7 +149,7 @@ Please report vulnerabilities privately to security@heidrich-digital.de, not in 
 ## Licence
 
 - Tool (everything outside the folders below): AGPL-3.0-only, see `LICENSE`.
-- Skill `skill/kiekkist-agency`: MIT, see its `LICENSE`.
+- Skill `skill/web-design-studio`: MIT, see its `LICENSE`.
 - Knowledge packs: the licence declared in each pack (MIT, `a11y-eu.json` CC BY 4.0), see `knowledge/README.md`.
 - Example themes: code and copy CC BY 4.0; **photos © Till Heidrich, licensed only for use within these examples, not for other use**; fonts under the SIL Open Font License 1.1 with their licence files. See `examples/LICENSE`.
 

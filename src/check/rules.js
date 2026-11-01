@@ -113,6 +113,46 @@ export function textFindings(S, cfg = loadConfig()) {
   return out;
 }
 
+/**
+ * Image-slot leftovers in the rendered HTML (rule `placeholder`, severity error): working notes for missing photos that
+ * reach the visitor, e.g. "Foto folgt: brand/hero", "siehe docs/IMAGE-PROMPTS.md", "Image slot brand/room-1 can replace
+ * this photo", a baked label "img: brand/food-1", or an alt text / aria-label that starts with "Platzhalter" or "Image slot".
+ * Scripts, styles, templates and comments are ignored; text in any other element counts, hidden or not, because a slot
+ * note must not ship at all.
+ */
+export const SLOT_PATTERNS = [
+  { id: 'image-prompts', re: /siehe\s+(?:docs\/)?IMAGE-PROMPTS/i, label: 'reference to IMAGE-PROMPTS' },
+  { id: 'image-prompts-file', re: /\bIMAGE-PROMPTS\.md\b/i, label: 'reference to IMAGE-PROMPTS.md' },
+  { id: 'foto-folgt', re: /\bFoto folgt\b/i, label: '"Foto folgt"' },
+  { id: 'image-slot', re: /\bImage slot\b/i, label: '"Image slot"' },
+  { id: 'img-label', re: /\bimg:\s*[a-z0-9][a-z0-9-]*\/[a-z0-9-]+/i, label: 'slot label "img: <slug>/…"' },
+  { id: 'bild-label', re: /\bBild:\s*[a-z0-9][a-z0-9-]*\/[a-z0-9-]+/, label: 'slot label "Bild: <slug>/…"' },
+];
+const SLOT_ATTR_RE = /\b(alt|aria-label)\s*=\s*(["'])\s*((?:Platzhalter|Image slot)[^"']*)\2/gi;
+const decodeEntities = (t) => t.replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+export function slotFindings(html) {
+  const out = [];
+  if (!html || typeof html !== 'string') return out;
+  const body = html
+    .replace(/<!--[\s\S]*?-->/g, ' ')
+    .replace(/<(script|style|template|noscript)\b[^>]*>[\s\S]*?<\/\1\s*>/gi, ' ');
+  for (const m of body.matchAll(SLOT_ATTR_RE)) {
+    out.push({ rule: 'placeholder', severity: 'error', detail: `Image slot left in ${m[1]}: "${decodeEntities(m[3]).slice(0, 90)}". Write a real description of the photo or remove the slot.`, value: `${m[1].toLowerCase()}-placeholder` });
+  }
+  const text = decodeEntities(body.replace(/<[^>]*>/g, ' ')).replace(/\s+/g, ' ');
+  const hit = new Set();
+  for (const p of SLOT_PATTERNS) {
+    if (p.id === 'image-prompts-file' && hit.has('image-prompts')) continue;
+    const m = p.re.exec(text);
+    if (!m) continue;
+    hit.add(p.id);
+    const ctx = text.slice(Math.max(0, m.index - 25), m.index + m[0].length + 35).trim();
+    out.push({ rule: 'placeholder', severity: 'error', detail: `Image slot note visible (${p.label}): …${ctx}…. Replace it with the photo or leave a calm block without text.`, value: p.id });
+  }
+  return out;
+}
+
 /** Turn the browser's slop measurements into Counter[] (+ examples). */
 export function buildCounters(S, cfg = loadConfig(), { brandFonts = [] } = {}) {
   const C = [];

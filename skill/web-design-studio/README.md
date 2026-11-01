@@ -1,4 +1,4 @@
-# kiekkist-agency
+# web-design-studio
 
 A Claude Code skill that makes AI agents work like a small design studio: brief, research, moodboard, three directions, a human decision, a design system, roll-out to web, slides, social graphics and app screens, then measured checks and an independent critique. Everything that was decided is remembered, so the next project does not look like the last one.
 
@@ -21,7 +21,7 @@ Most design skills are lists of rules that steer the model away from its default
 
 ## Install
 
-On claude.ai: upload `dist/kiekkist-agency-skill.zip` from the Kiekkist repository (or build it there with `npm run skill:zip`) under Settings, Capabilities, Skills.
+On claude.ai: upload `dist/web-design-studio-skill.zip` from the Kiekkist repository (or build it there with `npm run skill:zip`) under Settings, Capabilities, Skills.
 
 In Claude Code:
 
@@ -29,13 +29,15 @@ Copy the folder into your skills directory:
 
 ```bash
 # for one project
-mkdir -p .claude/skills && cp -r kiekkist-agency .claude/skills/
+mkdir -p .claude/skills && cp -r web-design-studio .claude/skills/
 
 # for all projects
-mkdir -p ~/.claude/skills && cp -r kiekkist-agency ~/.claude/skills/
+mkdir -p ~/.claude/skills && cp -r web-design-studio ~/.claude/skills/
 ```
 
 The skill triggers on design, redesign, moodboard, theme, design system, slide, social graphic and app screen requests.
+
+**SKILL.md only** (uploaded in a chat app, installed through skills.sh, or a single copied file): the skill still works. For a single page it follows "One page in one pass" and the built-in craft rules (type, colour, layout, navigation and forms, honest content, defaults to avoid, a manual check). The folders add research, measuring and the automated check on top.
 
 ## Visual fidelity and existing sites
 

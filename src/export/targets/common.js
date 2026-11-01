@@ -222,3 +222,9 @@ export const bodyClass = (page) => /\bclass="([^"]*)"/.exec(page.bodyOpen || '')
 export const serializeNode = serialize;
 
 export const ogLocale = (lang) => ({ de: 'de_DE', en: 'en_US', nl: 'nl_NL', fr: 'fr_FR', es: 'es_ES', it: 'it_IT', da: 'da_DK', pl: 'pl_PL' }[String(lang).toLowerCase()] || String(lang).replace('-', '_'));
+
+/** CSS moved one folder deeper (assets/site.css -> assets/css/site.css): relative url() references get "../" so fonts and
+ * images still resolve (data:, absolute, root-relative and fragment URLs stay as they are). */
+export function relocateCssUrls(css, prefix = '../') {
+  return String(css).replace(/url\(\s*(['"]?)(?!data:|[a-z][a-z0-9+.-]*:|\/|#)([^'")]+)\1\s*\)/gi, (m, q, u) => `url(${q}${prefix}${u.replace(/^\.\//, '')}${q})`);
+}

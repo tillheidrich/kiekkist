@@ -38,6 +38,12 @@ export function toElementorSettings(dtcg, { breakpoints = { desktop: 1440, table
   const systemIds = ['primary', 'secondary', 'text', 'accent'];
   const pick = (re) => colors.find((c) => re.test(c.path));
   const systemMap = { primary: pick(/\.(ink|text|primary)$/), text: pick(/\.(ink-2|ink-muted|mute|muted|text-2)/), accent: pick(/\.(accent|brass|signal|buoy|green)$/), secondary: pick(/\.(deep|night|steel|secondary|line)$/) };
+  // names the patterns do not know: darkest colour as primary/text, most chromatic as accent (all still token colours)
+  const lab = (t) => { const h = hexOf(resolveToken(flat, t.value)); const c = h && converter('oklch')(h); return c ? { l: c.l, c: c.c || 0 } : { l: 1, c: 0 }; };
+  const byDark = [...colors].sort((a, b) => lab(a).l - lab(b).l), byChroma = [...colors].sort((a, b) => lab(b).c - lab(a).c);
+  systemMap.primary ||= byDark[0];
+  systemMap.text ||= byDark.find((t) => t !== systemMap.primary && lab(t).l < 0.55) || systemMap.primary;
+  systemMap.accent ||= byChroma.find((t) => t !== systemMap.primary && lab(t).c > 0.04);
   const used = new Set();
   const colorEntry = (id, t) => { used.add(t.path); return { _id: id, title: t.path.split('.').slice(1).join('-'), color: hexOf(resolveToken(flat, t.value)) }; };
   const system_colors = systemIds.filter((id) => systemMap[id]).map((id) => colorEntry(id, systemMap[id]));
@@ -54,11 +60,28 @@ export function toElementorSettings(dtcg, { breakpoints = { desktop: 1440, table
     if (v.letterSpacing !== undefined) { const ls = String(resolveToken(flat, v.letterSpacing)); const n = parseFloat(ls) || 0; e.typography_letter_spacing = /em$/.test(ls) ? { unit: 'em', size: n, sizes: [] } : { unit: 'px', size: n, sizes: [] }; }
     return e;
   };
-  const system_typography = typo.slice(0, 4).map((t, i) => typoEntry(systemIds[i], t));
-  const custom_typography = typo.slice(4).map((t, i) => typoEntry('t' + String(i).padStart(3, '0'), t));
+  let system_typography = typo.slice(0, 4).map((t, i) => typoEntry(systemIds[i], t));
+  let custom_typography = typo.slice(4).map((t, i) => typoEntry('t' + String(i).padStart(3, '0'), t));
+  const reasons = ['colours stored as sRGB hex (gamut-mapped token hex), not OKLCH', `fluid clamp() sizes flattened to ${breakpoints.desktop}/${breakpoints.tablet}/${breakpoints.mobile} px`];
+  if (!typo.length) {
+    // no typography composites in tokens.json: global fonts from the font-family tokens (family only, no sizes),
+    // also font stacks filed under another $type (e.g. "size.serif": "\"Newsreader\", Georgia, serif")
+    const stack = (v) => typeof v === 'string' && /(^|,)\s*(serif|sans-serif|monospace|system-ui|ui-[a-z-]+|cursive)\s*$/i.test(v);
+    const fams = flat.filter((t) => t.type === 'fontFamily' || stack(resolveToken(flat, t.value)));
+    const uniq = [...new Map(fams.map((t) => [familyName(t.value), t])).values()];
+    const isMono = (t) => /mono|tech|code/i.test(t.path) || /mono|code|courier/i.test(familyName(t.value)) || /monospace\s*$/i.test(String(resolveToken(flat, t.value)));
+    const display = uniq.find((t) => /display|head|serif|title/i.test(t.path) && !/sans/i.test(t.path) && !isMono(t)) || uniq.find((t) => !isMono(t)) || uniq[0];
+    const body = uniq.find((t) => t !== display && !isMono(t)) || display;
+    const fam = (id, title, t) => ({ _id: id, title, typography_typography: 'custom', typography_font_family: familyName(t.value) });
+    if (display) {
+      system_typography = [fam('primary', 'display', display), fam('secondary', 'display-2', display), fam('text', 'body', body), fam('accent', 'accent', body)];
+      custom_typography = uniq.filter((t) => t !== display && t !== body).map((t, i) => fam('t' + String(i).padStart(3, '0'), roleOf(t.path), t));
+      reasons.push('tokens.json has no typography roles: global fonts carry the font family only (sizes stay in the theme CSS)');
+    }
+  }
   return {
     lossy: true,
-    lossy_reasons: ['colours stored as sRGB hex (gamut-mapped token hex), not OKLCH', `fluid clamp() sizes flattened to ${breakpoints.desktop}/${breakpoints.tablet}/${breakpoints.mobile} px`],
+    lossy_reasons: reasons,
     settings: { system_colors, custom_colors, system_typography, custom_typography },
   };
 }

@@ -12,7 +12,7 @@ Versioned JSON files the skill and the checker read. Each pack declares its own 
 | `packs/topologies.json` | MIT |
 | `packs/a11y-eu.json` | CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/), attribution "Kiekkist knowledge pack a11y-eu by Till Heidrich" |
 
-Copyright (c) 2026 Till Heidrich. The MIT terms are those in `skill/kiekkist-agency/LICENSE`.
+Copyright (c) 2026 Till Heidrich. The MIT terms are those in `skill/web-design-studio/LICENSE`.
 
 Sources cited inside a pack keep their own licences; the packs only name and link them. Entries marked "maintainer's research notes, not public" refer to the maintainer's private notes and have no public URL. Standards (WCAG, EN 301 549) and laws are referenced, not reproduced.
 

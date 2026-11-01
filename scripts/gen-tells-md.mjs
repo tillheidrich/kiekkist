@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Renders the knowledge packs `tells` and `reflex-fonts` into everything derived from them:
-//   skill/kiekkist-agency/references/tells.md       tables between <!-- tells:start --> and <!-- tells:end -->
-//   skill/kiekkist-agency/references/typography.md  table between <!-- reflex:start --> and <!-- reflex:end -->
+//   skill/web-design-studio/references/tells.md       tables between <!-- tells:start --> and <!-- tells:end -->
+//   skill/web-design-studio/references/typography.md  table between <!-- reflex:start --> and <!-- reflex:end -->
 //   src/check/fallback.js                           built-in copy the checker uses when a pack is missing
 // Prose outside the markers is kept. Usage: node scripts/gen-tells-md.mjs [--check]
 // --check writes nothing and exits 1 when a derived file is out of date (used by the tests).
@@ -125,8 +125,8 @@ function splice(file, start, end, body) {
 }
 
 const jobs = [
-  [P('skill', 'kiekkist-agency', 'references', 'tells.md'), (f) => splice(f, '<!-- tells:start -->', '<!-- tells:end -->', renderTells(tells))],
-  [P('skill', 'kiekkist-agency', 'references', 'typography.md'), (f) => splice(f, '<!-- reflex:start -->', '<!-- reflex:end -->', renderReflex(reflex))],
+  [P('skill', 'web-design-studio', 'references', 'tells.md'), (f) => splice(f, '<!-- tells:start -->', '<!-- tells:end -->', renderTells(tells))],
+  [P('skill', 'web-design-studio', 'references', 'typography.md'), (f) => splice(f, '<!-- reflex:start -->', '<!-- reflex:end -->', renderReflex(reflex))],
   [P('src', 'check', 'fallback.js'), () => renderFallback(tells, reflex)],
 ];
 

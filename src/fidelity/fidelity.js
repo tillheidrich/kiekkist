@@ -93,7 +93,8 @@ export async function runFidelity({ ref, build, out, widths = [1440, 390], label
   const logFile = join(dir, 'FIDELITY-log.md');
   const prev = existsSync(logFile) ? readFileSync(logFile, 'utf8').split('\n').filter((l) => /^\| \d/.test(l)).length : 0;
   const r = round ?? prev + 1;
-  const result = { tool: 'kiekkist', kind: 'fidelity', version: 1, measured_at: new Date().toISOString(), round: r, labels, ref: refLabel, build: buildSpec.target, diff, montages };
+  const complete = diff.flags === 0 && r >= 2;
+  const result = { tool: 'kiekkist', kind: 'fidelity', version: 1, measured_at: new Date().toISOString(), round: r, labels, ref: refLabel, build: buildSpec.target, complete, diff, montages };
   writeFileSync(join(dir, 'fidelity.json'), JSON.stringify(result, null, 1));
   writeFileSync(join(dir, 'FIDELITY.md'), renderFidelityMd(result));
   if (!existsSync(logFile)) writeFileSync(logFile, `# Fidelity rounds: ${slugOf(buildSpec.target)}\n\n| round | date | flags | ${ws.map((w) => `doc height delta ${w}`).join(' | ')} |\n|---|---|---|${ws.map(() => '---').join('|')}|\n`);
@@ -108,6 +109,7 @@ const table = (head, rows) => (rows.length ? [`| ${head.join(' | ')} |`, `|${hea
 export function renderFidelityMd(res) {
   const [A, B] = res.labels; const L = [];
   L.push(`# Fidelity round ${res.round}: ${A} vs ${B}`, '');
+  L.push(res.complete ? '**FIDELITY COMPLETE**: no value outside tolerance, at least two rounds.' : `**NOT COMPLETE**: ${res.diff.flags} CHECK value(s), round ${res.round} (done means 0 CHECK values after at least 2 rounds; a remaining CHECK counts as done only if it is listed under "Deliberately different" with its reason).`, '');
   L.push(`${A}: ${res.ref}  `, `${B}: ${res.build}  `, `Measured ${res.measured_at.slice(0, 16).replace('T', ' ')} UTC. ${res.diff.flags} value(s) outside tolerance (marked **CHECK**; sections: height off by more than 16 px and 5 %, type: size off by more than 6 % or a different line count, positions: more than 12 px).`, '');
   L.push('Montages (left ' + A + ', right ' + B + '): ' + Object.entries(res.montages).map(([k, f]) => `${k}: ${f}`).join(', '), '');
   for (const w of res.diff.widths) {

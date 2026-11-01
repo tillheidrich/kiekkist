@@ -3,7 +3,7 @@
 // Section templates are NOT generated: Elementor's element JSON is not a documented, stable schema.
 // Client-facing files carry the client's name only (no tool branding).
 import JSZip from 'jszip';
-import { readBin, headAssets } from './common.js';
+import { readBin, headAssets, relocateCssUrls } from './common.js';
 import { toElementorSettings, lengthAt } from '../tokens/elementor.js';
 import { fontFaces } from '../tokens/theme-json.js';
 import { cssProps } from '../tokens/flatten.js';
@@ -16,9 +16,10 @@ export async function exportTarget(ir, opts = {}) {
   const T = (rel) => `${child}/${rel}`;
   const families = [...new Set(fontFaces(ir.css.fonts).map((f) => f.family))];
   const { sheets, scripts } = headAssets(ir);
+  const hasFontsCss = ir.assets.some((a) => a.path === 'assets/fonts/fonts.css');
   const extraSheets = sheets.filter((h) => !['tokens.css', 'assets/site.css', 'assets/fonts/fonts.css'].includes(h));
   // child theme
-  files.set(T('style.css'), `/*\nTheme Name: ${ir.site.name}\nDescription: Child theme of Hello Elementor with the ${ir.site.name} design tokens and self-hosted fonts.\nTemplate: hello-elementor\nVersion: 0.1.0\nRequires at least: 6.6\nRequires PHP: 7.4\nText Domain: ${child}\nLicense: GPL-2.0-or-later\n*/\n`);
+  files.set(T('style.css'), `/*\nTheme Name: ${ir.site.name}\nDescription: Child theme of Hello Elementor with the ${ir.site.name} design tokens and self-hosted fonts.\nTemplate: hello-elementor\nVersion: 0.1.0\nRequires at least: 6.6\nRequires PHP: 7.4\nText Domain: ${child}\nLicense: GPL-2.0-or-later\nLicense URI: https://www.gnu.org/licenses/gpl-2.0.html\n*/\n`);
   files.set(T('functions.php'), `<?php
 /**
  * ${ir.site.name}: Hello Elementor child theme. Fonts are served from this theme; nothing is loaded from third parties.
@@ -27,8 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 add_action( 'wp_enqueue_scripts', function () {
 	$v = wp_get_theme()->get( 'Version' );
-	wp_enqueue_style( '${child}-fonts', get_stylesheet_directory_uri() . '/assets/fonts/fonts.css', array(), $v );
-	wp_enqueue_style( '${child}-tokens', get_stylesheet_directory_uri() . '/assets/css/tokens.css', array( '${child}-fonts' ), $v );
+${hasFontsCss ? `	wp_enqueue_style( '${child}-fonts', get_stylesheet_directory_uri() . '/assets/fonts/fonts.css', array(), $v );\n` : '	// fonts: @font-face rules live in assets/css/site.css\n'}	wp_enqueue_style( '${child}-tokens', get_stylesheet_directory_uri() . '/assets/css/tokens.css', ${hasFontsCss ? `array( '${child}-fonts' )` : 'array()'}, $v );
 	// Component styles of the design (global body type, section classes). Turn off with add_filter( '${child}/component_css', '__return_false' ).
 	if ( apply_filters( '${child}/component_css', true ) ) {
 		wp_enqueue_style( '${child}-site', get_stylesheet_directory_uri() . '/assets/css/site.css', array( '${child}-tokens' ), $v );
@@ -64,7 +64,7 @@ add_filter( 'option_show_avatars', '__return_false' );
 `);
   files.set(T('assets/css/tokens.css'), ir.tokens.css);
   for (const a of ir.assets) {
-    if (a.path === 'assets/site.css') files.set(T('assets/css/site.css'), String(readBin(opts.themeDir, a.path)).replace(/@import\s+url\(["']?fonts\/fonts\.css["']?\);?\s*/g, '/* fonts: enqueued separately */\n'));
+    if (a.path === 'assets/site.css') files.set(T('assets/css/site.css'), relocateCssUrls(String(readBin(opts.themeDir, a.path)).replace(/@import\s+url\(["']?(\.\/)?fonts\/fonts\.css["']?\);?\s*/g, '/* fonts: enqueued separately */\n')));
     else if (a.path.startsWith('assets/')) files.set(T(a.path), readBin(opts.themeDir, a.path));
   }
   // kit: global colours and fonts (V3 site settings)

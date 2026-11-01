@@ -66,6 +66,9 @@ test('react, wordpress and elementor exports write their packages', async () => 
   const theme_css = readFileSync(join(re, 'styles/theme.css'), 'utf8');
   assert.match(theme_css, /--background: var\(--c-/);
   assert.match(theme_css, /@theme inline/);
+  assert.match(theme_css, /--destructive: var\(--c-/, 'shadcn v4 components need --destructive');
+  assert.match(theme_css, /--color-destructive: var\(--destructive\)/);
+  assert.match(theme_css, /--radius-xl: var\(--radius\)/);
   const tsx = readdirSync(join(re, 'components')).filter((f) => f.endsWith('.tsx'));
   assert.ok(tsx.length >= 8);
   assert.match(readFileSync(join(re, 'components/Dauer.tsx'), 'utf8'), /function kkStyle/, 'style props become objects at runtime');
@@ -82,14 +85,44 @@ test('react, wordpress and elementor exports write their packages', async () => 
   assert.match(pat, /Slug: nordlicht-immobilien\/lagen/);
   assert.match(pat, /"templateLock":"contentOnly"/);
   assert.match(readFileSync(join(wp, slug, 'functions.php'), 'utf8'), /print_emoji_detection_script/);
+  // Theme Check REQUIRED items: style.css License + License URI, screenshot.png 1200x900; copyright notice in readme.txt
+  const css = readFileSync(join(wp, slug, 'style.css'), 'utf8');
+  assert.match(css, /^License: .+$/m);
+  assert.match(css, /^License URI: \S+$/m);
+  assert.match(readFileSync(join(wp, slug, 'readme.txt'), 'utf8'), /== Copyright ==\n\n.+Copyright \d{4}/);
+  const png = readFileSync(join(wp, slug, 'screenshot.png'));
+  assert.equal(png.toString('latin1', 1, 4), 'PNG');
+  assert.deepEqual([png.readUInt32BE(16), png.readUInt32BE(20)], [1200, 900]);
   const el = tmp();
   const e = await exportTheme({ themeDir: theme, target: 'elementor', out: el, force: true, check: false });
   assert.equal(e.code, 0);
   assert.match(readFileSync(join(el, 'kanzlei-brandt-weller-child/style.css'), 'utf8'), /Template: hello-elementor/);
+  assert.match(readFileSync(join(el, 'kanzlei-brandt-weller-child/style.css'), 'utf8'), /^License URI: https:\/\/www\.gnu\.org\/licenses\/gpl-2\.0\.html$/m);
   assert.match(readFileSync(join(el, 'kanzlei-brandt-weller-child/functions.php'), 'utf8'), /print_google_fonts', '__return_false'/);
   const kit = JSON.parse(readFileSync(join(el, 'elementor-kit/site-settings.json'), 'utf8'));
   assert.ok(kit.settings.system_colors.every((c) => /^#[0-9a-f]{6}$/.test(c.color)));
   assert.doesNotMatch(readFileSync(join(el, 'kanzlei-brandt-weller-child/functions.php'), 'utf8'), /kiekkist|kk export/i, 'no tool branding for end clients');
+});
+
+test('wordpress licence helpers: License URI and GPL compatibility', async () => {
+  const { licenseUri, gplCompatible } = await import('../../src/export/targets/wordpress.js');
+  assert.equal(licenseUri('GPL-2.0-or-later'), 'https://www.gnu.org/licenses/gpl-2.0.html');
+  assert.equal(licenseUri('MIT (code), CC BY 4.0 (copy)'), 'https://opensource.org/license/mit');
+  assert.equal(licenseUri('MIT (code), CC BY 4.0 (copy)', {}, true), 'LICENSE.md', 'compound licence points to the bundled file');
+  assert.equal(licenseUri('Kiekkist design licence (paid)', {}, true), 'LICENSE.md');
+  assert.equal(licenseUri('Kiekkist design licence (paid)', { licenseUri: 'https://example.com/l' }, true), 'https://example.com/l');
+  assert.equal(gplCompatible('GPL-2.0-or-later'), true);
+  assert.equal(gplCompatible('MIT (code)'), true);
+  assert.equal(gplCompatible('Kiekkist design licence (paid); fonts OFL-1.1'), false);
+  assert.equal(gplCompatible('CC-BY-4.0 (code, copy, drawings)'), false);
+});
+
+test('css moved to assets/css keeps its relative font and image URLs working', async () => {
+  const { relocateCssUrls } = await import('../../src/export/targets/common.js');
+  assert.equal(relocateCssUrls('src:url(fonts/a.woff2) format("woff2")'), 'src:url(../fonts/a.woff2) format("woff2")');
+  assert.equal(relocateCssUrls('src: url("./fonts/b.woff2")'), 'src: url("../fonts/b.woff2")');
+  assert.equal(relocateCssUrls("background:url('img/x.webp')"), "background:url('../img/x.webp')");
+  for (const keep of ['url(data:image/svg+xml;utf8,<svg/>)', 'url(/assets/a.png)', 'url(https://x.example/a.png)', 'url(#grad)']) assert.equal(relocateCssUrls(keep), keep);
 });
 
 test('planned targets answer with their TODO plan; unknown targets are bad input', async () => {

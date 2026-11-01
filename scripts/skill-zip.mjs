@@ -1,15 +1,15 @@
-// Builds dist/kiekkist-agency-skill.zip for upload on claude.ai (Settings, Capabilities, Skills).
-// The ZIP holds one folder, kiekkist-agency/, with SKILL.md at its top. Checks the SKILL.md front matter first.
-// Usage: node scripts/skill-zip.mjs [--out dist/kiekkist-agency-skill.zip]
+// Builds dist/web-design-studio-skill.zip for upload on claude.ai (Settings, Capabilities, Skills).
+// The ZIP holds one folder, web-design-studio/, with SKILL.md at its top. Checks the SKILL.md front matter first.
+// Usage: node scripts/skill-zip.mjs [--out dist/web-design-studio-skill.zip]
 import { readFileSync, readdirSync, statSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join, dirname, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import JSZip from 'jszip';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const SKILL = join(ROOT, 'skill', 'kiekkist-agency');
+const SKILL = join(ROOT, 'skill', 'web-design-studio');
 const i = process.argv.indexOf('--out');
-const OUT = i > 0 ? process.argv[i + 1] : join(ROOT, 'dist', 'kiekkist-agency-skill.zip');
+const OUT = i > 0 ? process.argv[i + 1] : join(ROOT, 'dist', 'web-design-studio-skill.zip');
 
 export function frontMatter(text) {
   const m = /^---\n([\s\S]*?)\n---\n/.exec(text);
@@ -29,7 +29,7 @@ const walk = (d) => {
     if (n.startsWith('.') || n === 'node_modules') continue;
     const p = join(d, n);
     if (statSync(p).isDirectory()) walk(p);
-    else zip.file(['kiekkist-agency', ...relative(SKILL, p).split(sep)].join('/'), readFileSync(p), { date: new Date('2026-10-30T00:00:00Z') });
+    else zip.file(['web-design-studio', ...relative(SKILL, p).split(sep)].join('/'), readFileSync(p), { date: new Date('2026-10-30T00:00:00Z') });
   }
 };
 walk(SKILL);
